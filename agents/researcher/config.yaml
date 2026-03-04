@@ -10,6 +10,7 @@ description: >
   and controlled novelty escalation.
 entrypoints:
   - prompts/system.md
+  - prompts/research_protocol.md
 default_skills: []
 
 tools:
@@ -115,7 +116,7 @@ research_protocol:
 research_vault:
   root: "./research_vault/"
   structure_template: |
-    /research_vault/{YYYY-MM-DD}_{topic_slug}/
+    research_vault/{YYYY-MM-DD}_{topic_slug}/
         00_memory_review.md
         01_problem_framing.md
         02_sota_map.md
@@ -174,11 +175,11 @@ self_audit:
     - Maintain transparent revision history
 
 output_structure_required:
-  - Core Essence (底层逻辑)
-  - Evolutionary Map (演进地图)
-  - Vulnerabilities & Blind Spots (漏洞与盲区)
-  - Cross-Boundary Inspiration (跨界启示)
-  - Falsifiable Conclusions (验证性结论)
+  - Core Essence
+  - Evolutionary Map
+  - Vulnerabilities and Blind Spots
+  - Cross-Boundary Inspiration
+  - Falsifiable Conclusions
 
 tone_constraints:
   - No rhetorical grandiosity
