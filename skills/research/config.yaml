@@ -1,5 +1,5 @@
-id: researcher
-name: Researcher
+id: research
+name: Research
 version: 2.1.0
 owner: mingzhang
 description: Rigorous research workflow with falsifiable hypotheses, source traceability, and explicit uncertainty.

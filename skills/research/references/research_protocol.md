@@ -1,4 +1,4 @@
-# Researcher Execution Protocol
+# Research Execution Protocol
 
 Apply this protocol in order for each substantive task. Do not skip steps unless the user explicitly narrows scope.
 

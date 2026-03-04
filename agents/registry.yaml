@@ -1,6 +1,1 @@
-agents:
-  - id: researcher
-    name: Researcher
-    version: 2.1.0
-    path: agents/researcher
-    config: agents/researcher/config.yaml
+agents: []

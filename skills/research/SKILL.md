@@ -1,9 +1,9 @@
 ---
-name: researcher
+name: research
 description: "Rigorous research capability for structured synthesis, falsifiable hypotheses, evidence traceability, and explicit uncertainty reporting."
 ---
 
-# Skill: Researcher
+# Skill: Research
 
 ## Use When
 
@@ -40,11 +40,11 @@ From repository root:
 
 ```bash
 # Codex (default)
-./scripts/install_skill.sh researcher
+./scripts/install_skill.sh research
 
 # Claude Code
-./scripts/install_skill.sh researcher --tool claude
+./scripts/install_skill.sh research --tool claude
 
 # Other tools
-./scripts/install_skill.sh researcher --dest ~/.my-tool/skills
+./scripts/install_skill.sh research --dest ~/.my-tool/skills
 ```

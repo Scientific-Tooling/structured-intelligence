@@ -2,5 +2,4 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-# Backward-compatible alias for the renamed skill id.
 exec "$ROOT_DIR/scripts/install_skill.sh" research "$@"

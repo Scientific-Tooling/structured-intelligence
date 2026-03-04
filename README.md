@@ -14,22 +14,22 @@ A repository for production-ready AI assets that improve coding, research, and w
 
 ## Quick Start
 
-### Use The `researcher` Skill
+### Use The `research` Skill
 
 After cloning this repository:
 
 ```bash
 # Default target: Codex (~/.codex/skills)
-./scripts/install_skill.sh researcher
+./scripts/install_skill.sh research
 
 # Claude Code (~/.claude/skills)
-./scripts/install_skill.sh researcher --tool claude
+./scripts/install_skill.sh research --tool claude
 
 # Other tools (custom skills directory)
-./scripts/install_skill.sh researcher --dest ~/.my-tool/skills
+./scripts/install_skill.sh research --dest ~/.my-tool/skills
 ```
 
-Then restart your tool session and ask for `researcher`.
+Then restart your tool session and ask for `research`.
 
 ### Build This Repository
 
