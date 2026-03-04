@@ -1,0 +1,8 @@
+id: source-summarizer
+name: Source Summarizer
+version: 0.1.0
+owner: mingzhang
+description: Summarize source material with traceable key points and citations.
+entrypoints:
+  - SKILL.md
+default_tools: []

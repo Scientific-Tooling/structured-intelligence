@@ -1,0 +1,6 @@
+skills:
+  - id: source-summarizer
+    name: Source Summarizer
+    version: 0.1.0
+    path: skills/examples/source-summarizer
+    config: skills/examples/source-summarizer/config.yaml
