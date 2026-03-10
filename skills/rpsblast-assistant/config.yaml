@@ -1,0 +1,13 @@
+id: rpsblast-assistant
+name: RPS-BLAST Assistant
+version: 0.1.0
+owner: mingzhang
+description: Acquire, prepare, and run standalone rpsblast/rpstblastn plus rpsbproc from natural-language requests, with CDD-specific setup guidance and output handling.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - Fetch

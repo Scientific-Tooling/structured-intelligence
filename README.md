@@ -31,6 +31,48 @@ After cloning this repository:
 
 Then restart your tool session and ask for `research`.
 
+### Use The `rpsblast-assistant` Skill
+
+Install the skill:
+
+```bash
+# Default target: Codex (~/.codex/skills)
+./scripts/install_skill.sh rpsblast-assistant
+
+# Claude Code (~/.claude/skills)
+./scripts/install_skill.sh rpsblast-assistant --tool claude
+```
+
+Then restart your tool session and use natural language.
+
+Codex examples:
+
+```text
+Use $rpsblast-assistant to tell me what I need to download for a local RPS-BLAST workflow.
+
+Use $rpsblast-assistant to download the minimal CDD database and rpsbproc annotation files into ./db and ./data.
+
+Use $rpsblast-assistant to check whether my local setup is complete for running rpsblast with db/Cdd.
+
+Use $rpsblast-assistant to run rpsblast on ./sequence.fasta against ./db/Cdd with E-value 0.01 and then post-process with rpsbproc.
+
+Use $rpsblast-assistant to explain the format of sequence.out and tell me which part is the real tabular data.
+```
+
+Claude Code examples:
+
+```text
+Use rpsblast-assistant to tell me what I need to download for a local RPS-BLAST workflow.
+
+Use rpsblast-assistant to download the minimal CDD database and rpsbproc annotation files into ./db and ./data.
+
+Use rpsblast-assistant to check whether my local setup is complete for running rpsblast with db/Cdd.
+
+Use rpsblast-assistant to run rpsblast on ./sequence.fasta against ./db/Cdd with E-value 0.01 and then post-process with rpsbproc.
+
+Use rpsblast-assistant to explain the format of sequence.out and tell me which part is the real tabular data.
+```
+
 ### Build This Repository
 
 1. Add an agent from `agents/_templates/agent`.

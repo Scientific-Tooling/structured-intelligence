@@ -19,3 +19,8 @@ skills:
     version: 0.1.0
     path: skills/structured-intelligence-skill-creator
     config: skills/structured-intelligence-skill-creator/config.yaml
+  - id: rpsblast-assistant
+    name: RPS-BLAST Assistant
+    version: 0.1.0
+    path: skills/rpsblast-assistant
+    config: skills/rpsblast-assistant/config.yaml

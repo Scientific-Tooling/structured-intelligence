@@ -1,0 +1,4 @@
+interface:
+  display_name: "RPS-BLAST Assistant"
+  short_description: "Use natural language to prepare, run, and interpret standalone rpsblast/rpstblastn plus rpsbproc workflows against CDD."
+  default_prompt: "Use rpsblast-assistant to prepare or run standalone rpsblast/rpstblastn plus rpsbproc from natural language, including setup checks, command execution, and output explanation."
