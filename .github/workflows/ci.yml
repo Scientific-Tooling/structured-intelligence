@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate repository structure
-        run: ./scripts/validate_structure.sh
+        run: bash ./scripts/validate_structure.sh
