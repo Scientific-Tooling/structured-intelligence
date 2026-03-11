@@ -4,12 +4,19 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 required_paths=(
+  "agents"
   "agents/registry.yaml"
+  "skills"
   "skills/registry.yaml"
+  "prompts"
+  "knowledge"
+  "knowledge/sources"
+  "knowledge/outputs"
   "workflows/coding/default.md"
   "workflows/research/default.md"
   "workflows/writing/default.md"
   "docs/architecture.md"
+  "docs/conventions.md"
   "README.md"
 )
 

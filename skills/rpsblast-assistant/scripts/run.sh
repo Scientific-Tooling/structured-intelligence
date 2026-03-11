@@ -54,6 +54,25 @@ find_bin() {
   die "Executable '$2' not found in PATH"
 }
 
+find_bin_or_empty() {
+  local preferred="$1"
+  local name="$2"
+  if [[ -n "$preferred" ]]; then
+    [[ -x "$preferred" ]] || return 1
+    printf '%s\n' "$preferred"
+    return 0
+  fi
+  if command -v "$name" >/dev/null 2>&1; then
+    command -v "$name"
+    return 0
+  fi
+  if command -v "$name.exe" >/dev/null 2>&1; then
+    command -v "$name.exe"
+    return 0
+  fi
+  return 1
+}
+
 print_sources() {
   cat <<'EOF'
 BLAST+ executables (contains rpsblast/rpstblastn):
@@ -112,7 +131,14 @@ db_archives_for_set() {
         "Tigr_LE.tar.gz"
       ;;
     *)
-      printf '%s\n' "${1//,/ }"
+      local archive
+      local archives=()
+      IFS=',' read -r -a archives <<< "$1"
+      for archive in "${archives[@]}"; do
+        archive="${archive#"${archive%%[![:space:]]*}"}"
+        archive="${archive%"${archive##*[![:space:]]}"}"
+        [[ -n "$archive" ]] && printf '%s\n' "$archive"
+      done
       ;;
   esac
 }
@@ -212,8 +238,10 @@ check_setup() {
 
   local rb
   local pb
+  local rpstblastn_path=""
   rb="$(find_bin "$rpsblast_bin" "rpsblast")"
   pb="$(find_bin "$rpsbproc_bin" "rpsbproc")"
+  rpstblastn_path="$(find_bin_or_empty "$rpstblastn_bin" "rpstblastn" || true)"
 
   require_any_match "${db_prefix}"'*'
   require_file "$data_dir/bitscore_specific.txt"
@@ -226,7 +254,7 @@ check_setup() {
   cat <<EOF
 Setup looks complete.
 rpsblast: $rb
-rpsblast_nucleotide: $(find_bin "$rpstblastn_bin" "rpstblastn" 2>/dev/null || printf '%s' 'not found in PATH; only needed for nucleotide queries')
+rpsblast_nucleotide: ${rpstblastn_path:-not found in PATH; only needed for nucleotide queries}
 rpsbproc: $pb
 db prefix: $db_prefix
 data dir: $data_dir

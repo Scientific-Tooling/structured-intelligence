@@ -2,7 +2,7 @@ id: <agent-id>
 name: <human-friendly-name>
 version: 0.1.0
 owner: <owner>
-description: <one-line-description>
+description: <yaml-one-line-description>
 entrypoints:
   - prompts/system.md
 default_skills: []

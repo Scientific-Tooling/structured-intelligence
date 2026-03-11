@@ -31,14 +31,17 @@
   - `entrypoints` must be a non-empty list of existing relative file paths
   - `default_skills` and `default_tools` must be string lists
   - Registry `path/config` must be safe relative paths (no absolute paths or `..`)
+  - Registered agent configs must live at `agents/<id>/config.yaml`
+  - Registered skill configs must live at `skills/<id>/config.yaml`
 
 ## Quality Gates
 
 - Every agent should include a smoke test in `tests/`.
+  - `scripts/validate_registry_schema.py` enforces `tests/smoke.md` for registered agents.
 - Every skill should document inputs, outputs, and failure modes in `SKILL.md`.
 - Every skill should include provider adapter metadata under `agents/`:
   - `openai.yaml`
   - `claude.yaml`
   - each file must define `interface.display_name`, `interface.short_description`, and `interface.default_prompt`
 - Add new entries to `registry.yaml` files when introducing assets.
-- Run `./scripts/validate_structure.sh` to enforce structure and registry schema checks.
+- Run `./scripts/validate_structure.sh` to enforce required top-level structure and registry schema checks.

@@ -80,3 +80,4 @@ Use rpsblast-assistant to explain the format of sequence.out and tell me which p
 3. Register both in their `registry.yaml` files.
 4. Follow the relevant workflow under `workflows/`.
 5. Run `./scripts/validate_structure.sh` before commit.
+   It checks the required top-level structure plus registry/schema rules for registered assets.

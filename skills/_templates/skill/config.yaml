@@ -2,7 +2,7 @@ id: <skill-id>
 name: <human-friendly-name>
 version: 0.1.0
 owner: <owner>
-description: <one-line-description>
+description: <yaml-one-line-description>
 entrypoints:
   - SKILL.md
 default_tools: []

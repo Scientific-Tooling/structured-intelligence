@@ -207,6 +207,16 @@ def validate_skill_documentation(skill_dir: Path, entry_label: str, errors: list
             )
 
 
+def validate_agent_bundle(agent_dir: Path, entry_label: str, errors: list[str]) -> None:
+    agent_doc = agent_dir / "AGENT.md"
+    if not agent_doc.exists() or not agent_doc.is_file():
+        errors.append(f"{entry_label}: missing required file: {agent_doc.relative_to(ROOT)}")
+
+    smoke_test = agent_dir / "tests" / "smoke.md"
+    if not smoke_test.exists() or not smoke_test.is_file():
+        errors.append(f"{entry_label}: missing required smoke test: {smoke_test.relative_to(ROOT)}")
+
+
 def validate_registry(
     registry_path: Path,
     root_key: str,
@@ -280,6 +290,10 @@ def validate_registry(
                 errors.append(
                     f"{entry_label}: 'path' must be 'agents/{entry['id']}' for registered agents"
                 )
+            if entry["config"] != f"agents/{entry['id']}/config.yaml":
+                errors.append(
+                    f"{entry_label}: 'config' must be 'agents/{entry['id']}/config.yaml' for registered agents"
+                )
 
         if len(errors) > entry_errors_start:
             continue
@@ -325,9 +339,7 @@ def validate_registry(
             validate_skill_documentation(entry_path, entry_label, errors)
             validate_skill_provider_metadata(entry_path, entry_label, errors)
         if root_key == "agents":
-            agent_doc = entry_path / "AGENT.md"
-            if not agent_doc.exists() or not agent_doc.is_file():
-                errors.append(f"{entry_label}: missing required file: {agent_doc.relative_to(ROOT)}")
+            validate_agent_bundle(entry_path, entry_label, errors)
 
     return errors
 

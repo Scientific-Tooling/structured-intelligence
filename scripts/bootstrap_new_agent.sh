@@ -33,6 +33,7 @@ cp "$ROOT_DIR/agents/_templates/agent/tests/smoke.md" "$ROOT/tests/smoke.md"
 
 AGENT_ID="$AGENT_ID" AGENT_NAME="$AGENT_NAME" OWNER="$OWNER" DESCRIPTION="$DESCRIPTION" ROOT="$ROOT" python3 - <<'PY'
 from pathlib import Path
+import json
 import os
 
 root = Path(os.environ["ROOT"])
@@ -41,6 +42,7 @@ replacements = {
     "<human-friendly-name>": os.environ["AGENT_NAME"],
     "<owner>": os.environ["OWNER"],
     "<one-line-description>": os.environ["DESCRIPTION"],
+    "<yaml-one-line-description>": json.dumps(os.environ["DESCRIPTION"]),
 }
 
 for rel_path in ("AGENT.md", "config.yaml"):

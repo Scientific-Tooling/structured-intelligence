@@ -165,21 +165,22 @@ if [[ ! -f "$SOURCE_DIR/SKILL.md" ]]; then
   exit 1
 fi
 
+TARGET_DIR="$TARGET_ROOT/$SKILL_ID"
+mkdir -p "$TARGET_ROOT"
+
+if [[ -e "$TARGET_DIR" && "$FORCE" -ne 1 ]]; then
+  echo "Target already exists: $TARGET_DIR"
+  echo "Re-run with --force to overwrite."
+  exit 1
+fi
+
 # Optional pre-install sync hook for skills that mirror canonical sources.
 SYNC_SCRIPT="$ROOT_DIR/scripts/sync_${SKILL_ID}_skill.sh"
 if [[ -f "$SYNC_SCRIPT" ]]; then
   bash "$SYNC_SCRIPT"
 fi
 
-TARGET_DIR="$TARGET_ROOT/$SKILL_ID"
-mkdir -p "$TARGET_ROOT"
-
 if [[ -e "$TARGET_DIR" ]]; then
-  if [[ "$FORCE" -ne 1 ]]; then
-    echo "Target already exists: $TARGET_DIR"
-    echo "Re-run with --force to overwrite."
-    exit 1
-  fi
   rm -rf "$TARGET_DIR"
 fi
 
