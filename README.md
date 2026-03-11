@@ -22,10 +22,13 @@ This repository is publicly available at `https://github.com/mingzhangyang/struc
 
 Relevant manuscript and skill materials include:
 
+- `docs/index.html`
 - `docs/ncbi-eutilities-assistant-manuscript.md`
 - `docs/rpsblast-assistant-manuscript.md`
 - `skills/ncbi-eutilities-assistant/`
 - `skills/rpsblast-assistant/`
+
+The repository also includes a lightweight landing page at `docs/index.html`, suitable for GitHub Pages-style hosting.
 
 ## Quick Start
 

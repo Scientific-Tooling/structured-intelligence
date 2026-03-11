@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Structured Intelligence | Skill-Based Scientific Tooling</title>
+    <meta
+      name="description"
+      content="Structured Intelligence is a repository for skill-based scientific tooling: reusable local AI skills for literature retrieval, domain annotation, research workflows, and transparent scientific automation."
+    />
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <nav class="topbar" aria-label="Primary">
+          <a class="brand" href="#top">Structured Intelligence</a>
+          <div class="topbar-links">
+            <a href="#skills">Skills</a>
+            <a href="#manuscripts">Manuscripts</a>
+            <a href="#why">Why now</a>
+            <a href="https://github.com/mingzhangyang/structured-intelligence">GitHub</a>
+          </div>
+        </nav>
+
+        <section class="hero-grid" id="top">
+          <div class="hero-copy reveal reveal-1">
+            <p class="eyebrow">Skill-Based Scientific Tooling</p>
+            <h1>Turn scientific workflows into reusable local skills.</h1>
+            <p class="lede">
+              Structured Intelligence is a practical argument for a different future
+              of scientific software: one where workflows are not trapped inside
+              private habits, fragile prompts, or undocumented shell fragments, but
+              published as reusable, inspectable skill bundles.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="https://github.com/mingzhangyang/structured-intelligence">
+                Explore the repository
+              </a>
+              <a class="button button-secondary" href="#skills">
+                See example skills
+              </a>
+            </div>
+            <ul class="signal-list" aria-label="Repository promises">
+              <li>Transparent, file-oriented workflows instead of opaque automation</li>
+              <li>Local-first skill bundles for Codex and Claude Code</li>
+              <li>Scientific use cases documented for reuse, critique, and extension</li>
+            </ul>
+          </div>
+
+          <aside class="hero-panel reveal reveal-2" aria-label="Example skill outputs">
+            <div class="panel-stack">
+              <article class="mini-card">
+                <p class="mini-label">Literature monitoring</p>
+                <h2>PubMed weekly briefing</h2>
+                <p>
+                  “Show me the last 7 days of CRISPR progress and write a concise
+                  update brief.”
+                </p>
+                <code>records.jsonl + brief.md + manifest.json</code>
+              </article>
+
+              <article class="mini-card accent-card">
+                <p class="mini-label">Sequence annotation</p>
+                <h2>CDD domain workflow</h2>
+                <p>
+                  “Download the minimal CDD assets, run RPS-BLAST, then explain
+                  the processed report.”
+                </p>
+                <code>asn.1 archive + rpsbproc output</code>
+              </article>
+            </div>
+          </aside>
+        </section>
+      </header>
+
+      <main>
+        <section class="section thesis" id="why">
+          <div class="section-heading reveal reveal-1">
+            <p class="eyebrow">Why this matters</p>
+            <h2>Scientific progress depends on methods that others can actually run.</h2>
+          </div>
+          <div class="thesis-grid">
+            <article class="thesis-card reveal reveal-1">
+              <h3>Too much know-how remains private</h3>
+              <p>
+                Labs routinely rely on undocumented prompts, ad hoc command history,
+                and one-off scripts that work once but do not travel well across
+                people, projects, or time.
+              </p>
+            </article>
+            <article class="thesis-card reveal reveal-2">
+              <h3>Scientific tools still carry hidden operational cost</h3>
+              <p>
+                Valuable systems like NCBI E-utilities and standalone RPS-BLAST remain
+                powerful, but much of their real usability still depends on knowing
+                the right choreography, formats, defaults, and failure modes.
+              </p>
+            </article>
+            <article class="thesis-card reveal reveal-3">
+              <h3>Skills create a public operational layer</h3>
+              <p>
+                A skill can preserve exact commands, references, and outputs while
+                making a workflow reusable through natural language. That makes method
+                transfer easier without turning science into a black box.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section manifesto">
+          <div class="repo-panel reveal reveal-2">
+            <div>
+              <p class="eyebrow">Manifesto</p>
+              <h2>We should publish operational knowledge, not just results.</h2>
+              <p>
+                A modern scientific result is rarely just a paper and a dataset. It is
+                also a retrieval routine, a screening heuristic, a parsing step, a
+                briefing pattern, a quality check, and a chain of decisions that are
+                often lost between people. Skill-based scientific tooling treats those
+                operational layers as first-class research assets.
+              </p>
+            </div>
+            <dl class="repo-meta">
+              <div>
+                <dt>Claim 1</dt>
+                <dd>Workflows should be inspectable enough to audit.</dd>
+              </div>
+              <div>
+                <dt>Claim 2</dt>
+                <dd>Natural language should trigger methods, not replace them.</dd>
+              </div>
+              <div>
+                <dt>Claim 3</dt>
+                <dd>Reusable skills can make scientific practice easier to share.</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="section workflow-band">
+          <div class="workflow-frame reveal reveal-2">
+            <div class="workflow-step">
+              <span>1</span>
+              <h3>Intent</h3>
+              <p>Ask for a scientific outcome in natural language.</p>
+            </div>
+            <div class="workflow-step">
+              <span>2</span>
+              <h3>Skill</h3>
+              <p>Translate that intent into an explicit, guarded workflow.</p>
+            </div>
+            <div class="workflow-step">
+              <span>3</span>
+              <h3>Artifacts</h3>
+              <p>Keep raw outputs, structured files, and inspectable summaries.</p>
+            </div>
+            <div class="workflow-step">
+              <span>4</span>
+              <h3>Reuse</h3>
+              <p>Repeat the process across projects, teams, and time windows.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="skills">
+          <div class="section-heading reveal reveal-1">
+            <p class="eyebrow">Representative Skills</p>
+            <h2>Two concrete examples of what this model looks like in practice.</h2>
+          </div>
+          <div class="card-grid">
+            <article class="feature-card reveal reveal-1">
+              <p class="card-tag">NCBI / Literature</p>
+              <h3>ncbi-eutilities-assistant</h3>
+              <p>
+                Wraps official NCBI E-utilities into reusable PubMed workflows for
+                search, review extraction, and recent-progress briefing. The aim is
+                not just easier querying, but a repeatable way to turn literature
+                monitoring into a shareable workflow artifact.
+              </p>
+              <ul>
+                <li>`esearch`, `esummary`, `efetch`, `elink`, `epost`</li>
+                <li>`pubmed-review` for structured JSON and JSONL</li>
+                <li>`pubmed-update-brief` for recurring topic surveillance</li>
+              </ul>
+              <div class="card-links">
+                <a href="./ncbi-eutilities-assistant-manuscript.md">Read manuscript</a>
+                <a href="../skills/ncbi-eutilities-assistant/SKILL.md">Open skill</a>
+              </div>
+            </article>
+
+            <article class="feature-card reveal reveal-2">
+              <p class="card-tag">CDD / Annotation</p>
+              <h3>rpsblast-assistant</h3>
+              <p>
+                Turns the standalone RPS-BLAST plus `rpsbproc` workflow into a local,
+                explainable skill for conserved-domain annotation. The method stays
+                explicit, but the operational burden becomes easier to teach,
+                delegate, and reproduce.
+              </p>
+              <ul>
+                <li>Asset download, setup checks, and deterministic execution</li>
+                <li>Correct archive-mode handling for `rpsbproc`</li>
+                <li>Natural-language interpretation of processed outputs</li>
+              </ul>
+              <div class="card-links">
+                <a href="./rpsblast-assistant-manuscript.md">Read manuscript</a>
+                <a href="../skills/rpsblast-assistant/SKILL.md">Open skill</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section manuscripts" id="manuscripts">
+          <div class="section-heading reveal reveal-1">
+            <p class="eyebrow">Documentation For Scientists</p>
+            <h2>Each flagship skill is paired with manuscript-style exposition.</h2>
+          </div>
+          <div class="manuscript-strip reveal reveal-2">
+            <div>
+              <h3>What the manuscripts do</h3>
+              <p>
+                They frame each skill as an interface-layer contribution: why the
+                underlying scientific tool matters, where usability breaks down, and
+                how a local AI skill can preserve rigor while improving adoption in
+                real research settings.
+              </p>
+            </div>
+            <div>
+              <h3>What they do not claim</h3>
+              <p>
+                These skills do not replace databases, command-line tools, or expert
+                judgment. They standardize retrieval and execution so interpretation,
+                criticism, and extension can happen on top of inspectable artifacts.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section repository">
+          <div class="repo-panel reveal reveal-2">
+            <div>
+              <p class="eyebrow">Repository</p>
+              <h2>Built for local AI-assisted research environments.</h2>
+              <p>
+                The repository targets filesystem-discovered skill systems such as
+                Codex and Claude Code. Each skill is a plain-text bundle with
+                `SKILL.md`, config metadata, scripts, references, and optional assets.
+                The goal is to make operational scientific knowledge legible enough
+                to inspect, reuse, and improve as a community.
+              </p>
+            </div>
+            <dl class="repo-meta">
+              <div>
+                <dt>Repository</dt>
+                <dd>
+                  <a href="https://github.com/mingzhangyang/structured-intelligence">
+                    github.com/mingzhangyang/structured-intelligence
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt>License</dt>
+                <dd>MIT</dd>
+              </div>
+              <div>
+                <dt>Core assets</dt>
+                <dd>skills, agents, workflows, manuscripts, validation scripts</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>Structured Intelligence</p>
+        <p>Language on the outside. Shared scientific method underneath.</p>
+      </footer>
+    </div>
+  </body>
+</html>
