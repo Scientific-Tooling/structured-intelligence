@@ -10,6 +10,8 @@
   --gold-soft: #edc278;
   --teal: #1b7668;
   --teal-soft: #9fd4c7;
+  --link: #0f6d60;
+  --link-hover: #0b4d44;
   --shadow: 0 20px 50px rgba(48, 40, 20, 0.12);
   --shadow-soft: 0 10px 24px rgba(48, 40, 20, 0.08);
   --radius-xl: 32px;
@@ -65,7 +67,27 @@ body::after {
 }
 
 a {
-  color: inherit;
+  color: var(--link);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid rgba(27, 118, 104, 0.24);
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
 .page-shell {
@@ -133,6 +155,9 @@ a {
 .topbar-links a {
   min-height: 44px;
   padding: 10px 0;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
 
 .hero-grid {
@@ -234,6 +259,12 @@ h1 {
   opacity: 0.92;
 }
 
+.topbar-links a:hover,
+.topbar-links a:focus-visible {
+  color: var(--ink);
+  border-color: rgba(27, 118, 104, 0.3);
+}
+
 .hero-facts {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -324,7 +355,7 @@ h1 {
 }
 
 .mini-card h2 {
-  font-size: 1.8rem;
+  font-size: 1rem;
   line-height: 1.05;
 }
 
@@ -369,12 +400,12 @@ h1 {
 }
 
 .section-heading {
-  max-width: 62ch;
+  max-width: none;
   margin-bottom: 22px;
 }
 
 .section-heading h2 {
-  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-size: clamp(1.8rem, 3.4vw, 2.9rem);
   line-height: 1.02;
 }
 
@@ -442,6 +473,34 @@ h1 {
   margin-top: 24px;
 }
 
+.card-links a:not(.button-primary):not(.button-secondary),
+.repo-meta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(27, 118, 104, 0.24);
+}
+
+.card-links a:not(.button-primary):not(.button-secondary)::after,
+.repo-meta a::after {
+  content: "\203A";
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.card-links a:not(.button-primary):not(.button-secondary):hover,
+.card-links a:not(.button-primary):not(.button-secondary):focus-visible,
+.repo-meta a:hover,
+.repo-meta a:focus-visible {
+  color: var(--link-hover);
+  border-color: rgba(11, 77, 68, 0.45);
+  transform: translateX(1px);
+}
+
 .artifact-row {
   display: flex;
   flex-wrap: wrap;
@@ -488,14 +547,6 @@ h1 {
   font-family: "SFMono-Regular", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   font-size: 0.92rem;
   line-height: 1.65;
-}
-
-.card-links a,
-.repo-meta a {
-  color: var(--teal);
-  font-weight: 700;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.18em;
 }
 
 .manuscript-strip {
@@ -656,6 +707,12 @@ h1 {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.62);
     border: 1px solid rgba(28, 43, 47, 0.08);
+  }
+
+  .card-links a:not(.button-primary):not(.button-secondary),
+  .repo-meta a {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .hero-copy,

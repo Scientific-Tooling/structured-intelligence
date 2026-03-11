@@ -6,6 +6,8 @@
   --muted: #5b696e;
   --teal: #1b7668;
   --gold: #bd7b22;
+  --link: #0f6d60;
+  --link-hover: #0b4d44;
   --line: rgba(29, 42, 47, 0.1);
   --shadow: 0 24px 60px rgba(45, 35, 20, 0.1);
   --max-width: 1120px;
@@ -30,7 +32,27 @@ body {
 }
 
 a {
-  color: var(--teal);
+  color: var(--link);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid rgba(27, 118, 104, 0.24);
+  outline-offset: 3px;
+  border-radius: 8px;
 }
 
 .shell {
@@ -84,6 +106,13 @@ a {
   align-items: center;
   color: var(--muted);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  color: var(--ink);
+  border-color: rgba(27, 118, 104, 0.3);
 }
 
 .hero {
@@ -104,8 +133,15 @@ a {
 }
 
 .brand-line a {
-  color: var(--teal);
+  color: var(--link);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.brand-line a:hover,
+.brand-line a:focus-visible {
+  color: var(--link-hover);
+  border-color: rgba(27, 118, 104, 0.24);
 }
 
 .brand-line span {
@@ -190,6 +226,10 @@ h6 {
   font-size: clamp(2.6rem, 5vw, 4.8rem);
   line-height: 0.98;
   max-width: 10ch;
+}
+
+.hero-title-wide {
+  max-width: 16ch;
 }
 
 .hero p {
@@ -277,6 +317,30 @@ h6 {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 18px;
+}
+
+.card-links a:not(.button-primary):not(.button-secondary) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(27, 118, 104, 0.24);
+}
+
+.card-links a:not(.button-primary):not(.button-secondary)::after {
+  content: "\203A";
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.card-links a:not(.button-primary):not(.button-secondary):hover,
+.card-links a:not(.button-primary):not(.button-secondary):focus-visible {
+  color: var(--link-hover);
+  border-color: rgba(11, 77, 68, 0.45);
+  transform: translateX(1px);
 }
 
 .button {
@@ -437,6 +501,7 @@ h6 {
 }
 
 .article-content a {
+  color: var(--link);
   text-underline-offset: 0.16em;
 }
 
@@ -513,6 +578,11 @@ h6 {
 
   .brand-line {
     font-size: 0.88rem;
+  }
+
+  .card-links a:not(.button-primary):not(.button-secondary) {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .button {
