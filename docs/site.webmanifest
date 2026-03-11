@@ -8,6 +8,12 @@
   "theme_color": "#1b7668",
   "icons": [
     {
+      "src": "/structured-intelligence/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
       "src": "/structured-intelligence/logo.svg",
       "sizes": "any",
       "type": "image/svg+xml",
