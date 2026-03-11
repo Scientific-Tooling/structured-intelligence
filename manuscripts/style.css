@@ -242,6 +242,8 @@ h6 {
 .article-side {
   position: sticky;
   top: 88px;
+  display: grid;
+  gap: 16px;
 }
 
 .side-card {
@@ -262,6 +264,37 @@ h6 {
   line-height: 1.7;
 }
 
+.toc-card {
+  padding-bottom: 18px;
+}
+
+.toc-links {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.toc-links p {
+  margin: 0;
+}
+
+.toc-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1.45;
+  background: rgba(27, 118, 104, 0.05);
+  border: 1px solid rgba(27, 118, 104, 0.08);
+}
+
+.toc-sub {
+  margin-left: 14px;
+  font-size: 0.94rem;
+  color: var(--muted);
+}
+
 .article-content h1 {
   margin: 24px 0 16px;
   font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -272,11 +305,13 @@ h6 {
   margin: 28px 0 12px;
   font-size: clamp(1.6rem, 3vw, 2.05rem);
   line-height: 1.08;
+  scroll-margin-top: 100px;
 }
 
 .article-content h3 {
   margin: 20px 0 10px;
   font-size: 1.3rem;
+  scroll-margin-top: 100px;
 }
 
 .article-content h1:first-child {

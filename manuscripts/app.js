@@ -1,4 +1,12 @@
 (function () {
+  function slugify(text) {
+    return text
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+      .replace(/-{2,}/g, "-");
+  }
+
   function escapeHtml(text) {
     return text
       .replace(/&/g, "&amp;")
@@ -17,6 +25,8 @@
   function renderMarkdown(markdown) {
     const lines = markdown.replace(/\r\n/g, "\n").split("\n");
     const html = [];
+    const headings = [];
+    const usedIds = new Map();
     let i = 0;
 
     function consumeParagraph(start) {
@@ -83,7 +93,13 @@
       const heading = trimmed.match(/^(#{1,6})\s+(.*)$/);
       if (heading) {
         const level = heading[1].length;
-        html.push(`<h${level}>${inlineFormat(heading[2].trim())}</h${level}>`);
+        const rawText = heading[2].trim();
+        const baseId = slugify(rawText) || "section";
+        const count = usedIds.get(baseId) || 0;
+        usedIds.set(baseId, count + 1);
+        const id = count === 0 ? baseId : `${baseId}-${count + 1}`;
+        headings.push({ level, id, text: rawText });
+        html.push(`<h${level} id="${id}">${inlineFormat(rawText)}</h${level}>`);
         i += 1;
         continue;
       }
@@ -107,7 +123,25 @@
       i = paragraph.next;
     }
 
-    return html.join("\n");
+    return { html: html.join("\n"), headings };
+  }
+
+  function renderToc(headings) {
+    const toc = document.querySelector("[data-toc]");
+    if (!toc) return;
+
+    const items = headings.filter((heading) => heading.level === 2 || heading.level === 3);
+    if (items.length === 0) {
+      toc.innerHTML = "<p>No section headings found.</p>";
+      return;
+    }
+
+    toc.innerHTML = items
+      .map((heading) => {
+        const cls = heading.level === 3 ? "toc-link toc-sub" : "toc-link";
+        return `<a class="${cls}" href="#${heading.id}">${escapeHtml(heading.text)}</a>`;
+      })
+      .join("");
   }
 
   async function main() {
@@ -122,7 +156,9 @@
     }
 
     const markdown = await response.text();
-    article.innerHTML = renderMarkdown(markdown);
+    const rendered = renderMarkdown(markdown);
+    article.innerHTML = rendered.html;
+    renderToc(rendered.headings);
   }
 
   main().catch((error) => {
