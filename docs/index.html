@@ -41,6 +41,20 @@
                 See example skills
               </a>
             </div>
+            <div class="hero-facts" aria-label="Project highlights">
+              <article class="fact-chip">
+                <span class="fact-value">2</span>
+                <span class="fact-label">scientific manuscripts</span>
+              </article>
+              <article class="fact-chip">
+                <span class="fact-value">2</span>
+                <span class="fact-label">flagship skills live now</span>
+              </article>
+              <article class="fact-chip">
+                <span class="fact-value">Local</span>
+                <span class="fact-label">filesystem-first execution</span>
+              </article>
+            </div>
             <ul class="signal-list" aria-label="Repository promises">
               <li>Transparent, file-oriented workflows instead of opaque automation</li>
               <li>Local-first skill bundles for Codex and Claude Code</li>
@@ -163,6 +177,27 @@
           </div>
         </section>
 
+        <section class="section prompt-lab">
+          <div class="section-heading reveal reveal-1">
+            <p class="eyebrow">Try The Model</p>
+            <h2>Ask for scientific work the way scientists actually think.</h2>
+          </div>
+          <div class="prompt-grid">
+            <article class="prompt-card reveal reveal-1">
+              <p class="card-tag">Weekly literature update</p>
+              <code>Use $ncbi-eutilities-assistant to show me the last 7 days of CRISPR progress on PubMed and write a concise update brief.</code>
+            </article>
+            <article class="prompt-card reveal reveal-2">
+              <p class="card-tag">Structured review prep</p>
+              <code>Use $ncbi-eutilities-assistant to run a PubMed review workflow for base editing over the last 30 days and extract structured abstracts.</code>
+            </article>
+            <article class="prompt-card reveal reveal-3">
+              <p class="card-tag">Conserved domain annotation</p>
+              <code>Use $rpsblast-assistant to download the minimal CDD assets, run RPS-BLAST on my FASTA, and explain the processed report.</code>
+            </article>
+          </div>
+        </section>
+
         <section class="section" id="skills">
           <div class="section-heading reveal reveal-1">
             <p class="eyebrow">Representative Skills</p>
@@ -183,6 +218,11 @@
                 <li>`pubmed-review` for structured JSON and JSONL</li>
                 <li>`pubmed-update-brief` for recurring topic surveillance</li>
               </ul>
+              <div class="artifact-row">
+                <span>brief.md</span>
+                <span>records.jsonl</span>
+                <span>manifest.json</span>
+              </div>
               <div class="card-links">
                 <a href="./ncbi-eutilities-assistant-manuscript.md">Read manuscript</a>
                 <a href="../skills/ncbi-eutilities-assistant/SKILL.md">Open skill</a>
@@ -203,6 +243,11 @@
                 <li>Correct archive-mode handling for `rpsbproc`</li>
                 <li>Natural-language interpretation of processed outputs</li>
               </ul>
+              <div class="artifact-row">
+                <span>Cdd database</span>
+                <span>ASN.1 archive</span>
+                <span>rpsbproc output</span>
+              </div>
               <div class="card-links">
                 <a href="./rpsblast-assistant-manuscript.md">Read manuscript</a>
                 <a href="../skills/rpsblast-assistant/SKILL.md">Open skill</a>
@@ -255,6 +300,14 @@
                 of upstream software, databases, or documentation, and it does not
                 imply endorsement by the original authors or institutions.
               </p>
+              <div class="hero-actions repo-actions">
+                <a class="button button-primary" href="https://github.com/mingzhangyang/structured-intelligence">
+                  Open GitHub repository
+                </a>
+                <a class="button button-secondary" href="./ncbi-eutilities-assistant-manuscript.md">
+                  Read a manuscript
+                </a>
+              </div>
             </div>
             <dl class="repo-meta">
               <div>

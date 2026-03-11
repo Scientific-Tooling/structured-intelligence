@@ -11,6 +11,7 @@
   --teal: #1b7668;
   --teal-soft: #9fd4c7;
   --shadow: 0 20px 50px rgba(48, 40, 20, 0.12);
+  --shadow-soft: 0 10px 24px rgba(48, 40, 20, 0.08);
   --radius-xl: 32px;
   --radius-lg: 22px;
   --radius-md: 16px;
@@ -85,6 +86,17 @@ a {
   align-items: center;
   gap: 16px;
   padding: 24px 0 12px;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  margin-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: rgba(250, 245, 236, 0.72);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-soft);
 }
 
 .brand,
@@ -105,6 +117,11 @@ a {
   gap: 18px;
   color: var(--muted);
   font-size: 0.96rem;
+}
+
+.topbar-links a {
+  min-height: 44px;
+  padding: 10px 0;
 }
 
 .hero-grid {
@@ -186,11 +203,53 @@ h1 {
 .button-primary {
   background: linear-gradient(135deg, var(--teal) 0%, #124e45 100%);
   color: #f8faf8;
+  box-shadow: 0 12px 24px rgba(18, 78, 69, 0.18);
 }
 
 .button-secondary {
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.48);
+}
+
+.button:hover,
+.button:focus-visible,
+.topbar-links a:hover,
+.topbar-links a:focus-visible,
+.card-links a:hover,
+.card-links a:focus-visible,
+.repo-meta a:hover,
+.repo-meta a:focus-visible {
+  outline: none;
+  opacity: 0.92;
+}
+
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.fact-chip {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid rgba(28, 43, 47, 0.08);
+}
+
+.fact-value {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.fact-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .signal-list,
@@ -372,6 +431,54 @@ h1 {
   margin-top: 24px;
 }
 
+.artifact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.artifact-row span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(27, 118, 104, 0.09);
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.prompt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.prompt-card {
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 247, 0.95), rgba(249, 242, 230, 0.9));
+  border: 1px solid rgba(28, 43, 47, 0.1);
+  box-shadow: var(--shadow-soft);
+}
+
+.prompt-card code {
+  display: block;
+  padding: 16px;
+  overflow-wrap: anywhere;
+  border-radius: 18px;
+  background: rgba(28, 43, 47, 0.92);
+  color: #eff6f2;
+  font-family: "SFMono-Regular", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
 .card-links a,
 .repo-meta a {
   color: var(--teal);
@@ -425,6 +532,10 @@ h1 {
   color: var(--ink);
 }
 
+.repo-actions {
+  margin-top: 20px;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
@@ -469,7 +580,9 @@ h1 {
   .card-grid,
   .manuscript-strip,
   .thesis-grid,
-  .workflow-frame {
+  .workflow-frame,
+  .prompt-grid,
+  .hero-facts {
     grid-template-columns: 1fr;
   }
 
@@ -489,10 +602,40 @@ h1 {
     width: min(calc(100% - 20px), var(--max-width));
   }
 
-  .topbar,
   .footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .topbar {
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 28px;
+  }
+
+  .topbar-links {
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .topbar-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .topbar-links a {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(28, 43, 47, 0.08);
   }
 
   .hero-copy,
@@ -501,7 +644,8 @@ h1 {
   .manuscript-strip,
   .workflow-frame,
   .feature-card,
-  .thesis-card {
+  .thesis-card,
+  .prompt-card {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -509,6 +653,16 @@ h1 {
   .hero-copy {
     padding-top: 28px;
     padding-bottom: 28px;
+  }
+
+  .hero-actions,
+  .repo-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
   }
 
   .section {
@@ -524,8 +678,42 @@ h1 {
   .workflow-step p,
   .signal-list li,
   .feature-card li,
-  .repo-meta dd {
+  .repo-meta dd,
+  .fact-label {
     font-size: 1rem;
+  }
+
+  .prompt-card code {
+    font-size: 0.9rem;
+  }
+
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  h1 {
+    max-width: none;
+    font-size: clamp(2.5rem, 15vw, 3.7rem);
+    line-height: 0.96;
+  }
+
+  .mini-card h2,
+  .section-heading h2 {
+    line-height: 1.06;
+  }
+
+  .workflow-frame {
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .workflow-step,
+  .repo-meta div,
+  .fact-chip {
+    padding: 16px;
   }
 }
 
