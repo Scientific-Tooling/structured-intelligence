@@ -2,6 +2,10 @@
 
 A repository for production-ready AI assets that improve coding, research, and writing throughput.
 
+Repository: `https://github.com/mingzhangyang/structured-intelligence`
+
+License: MIT, see [LICENSE](/mnt/c/Users/mingz/Codes/structured-intelligence/LICENSE)
+
 ## What Lives Here
 
 - `agents/`: Task-specific agents with prompts, config, and smoke tests.
@@ -11,6 +15,17 @@ A repository for production-ready AI assets that improve coding, research, and w
 - `prompts/`: Shared persona and task prompt libraries.
 - `scripts/`: Local automation for scaffolding and validation.
 - `docs/`: Architecture and contribution conventions.
+
+## Availability
+
+This repository is publicly available at `https://github.com/mingzhangyang/structured-intelligence`. It contains reusable local skills, agents, workflows, validation scripts, and manuscript-style documentation for selected skills. The repository is intended for local use in AI-assisted coding and research environments that support filesystem-discovered skill bundles.
+
+Relevant manuscript and skill materials include:
+
+- `docs/ncbi-eutilities-assistant-manuscript.md`
+- `docs/rpsblast-assistant-manuscript.md`
+- `skills/ncbi-eutilities-assistant/`
+- `skills/rpsblast-assistant/`
 
 ## Quick Start
 
@@ -127,3 +142,11 @@ Use ncbi-eutilities-assistant to fetch PubMed summaries for PMID 39696283 and 39
 4. Follow the relevant workflow under `workflows/`.
 5. Run `./scripts/validate_structure.sh` before commit.
    It checks the required top-level structure plus registry/schema rules for registered assets.
+
+## Citation And Reuse
+
+If you reference this repository in scientific writing, cite the repository URL and the access date, and identify the relevant manuscript or skill directory when possible. For example, the skill-focused manuscripts in `docs/` describe the corresponding implementations under `skills/`.
+
+## License
+
+This repository is distributed under the MIT License. See [LICENSE](/mnt/c/Users/mingz/Codes/structured-intelligence/LICENSE).

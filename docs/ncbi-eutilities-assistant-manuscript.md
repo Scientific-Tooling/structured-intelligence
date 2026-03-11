@@ -283,7 +283,7 @@ The operational limits are also concrete. NCBI recommends that API users include
 
 ## 11. Availability
 
-`ncbi-eutilities-assistant` is implemented as a reusable local skill within the Structured Intelligence repository. The manuscript source and skill bundle are available in this repository, including:
+`ncbi-eutilities-assistant` is implemented as a reusable local skill within the Structured Intelligence repository, which is publicly available at `https://github.com/mingzhangyang/structured-intelligence` (accessed March 11, 2026). The repository is distributed under the MIT License. The manuscript source and skill bundle described here are available in that repository, including:
 
 - skill definition and usage guidance
 - deterministic retrieval scripts
@@ -295,7 +295,7 @@ Within the repository, the relevant materials are located under:
 - `skills/ncbi-eutilities-assistant/`
 - `docs/ncbi-eutilities-assistant-manuscript.md`
 
-The skill is intended for local use in AI-assisted coding and research environments that support skill discovery from filesystem bundles.
+The skill is intended for local use in AI-assisted coding and research environments that support skill discovery from filesystem bundles. At the repository level, the materials can be cloned, installed with the bundled installation scripts, and inspected as plain-text workflow assets. Users citing the software should reference the repository URL together with an access date and, where relevant, the specific skill path documented in this manuscript.
 
 ## 12. Conclusion
 
