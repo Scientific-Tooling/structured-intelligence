@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Structured Intelligence logo</title>
+  <desc id="logoDesc">A stylized monogram combining teal and gold scientific shapes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="64" x2="448" y1="64" y2="448" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff9ef"/>
+      <stop offset="1" stop-color="#f2e1bc"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="116" x2="401" y1="94" y2="414" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d89a3d"/>
+      <stop offset="1" stop-color="#a86819"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="168" x2="340" y1="102" y2="406" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#289786"/>
+      <stop offset="1" stop-color="#13584d"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="132" fill="url(#bg)"/>
+  <path
+    d="M186 116c-43 0-78 35-78 78v32c0 43 35 78 78 78h78c17 0 30 13 30 30s-13 30-30 30H112v48h152c43 0 78-35 78-78s-35-78-78-78h-78c-17 0-30-13-30-30v-32c0-17 13-30 30-30h166v-48H186z"
+    fill="url(#gold)"
+  />
+  <rect x="214" y="98" width="84" height="316" rx="42" fill="url(#teal)"/>
+  <circle cx="256" cy="256" r="182" fill="none" stroke="rgba(28,43,47,0.08)" stroke-width="20"/>
+</svg>

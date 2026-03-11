@@ -105,10 +105,21 @@ a {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+}
+
+.brand img {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
 }
 
 .topbar-links {
@@ -614,6 +625,15 @@ h1 {
     border-radius: 28px;
   }
 
+  .brand {
+    font-size: 1.02rem;
+  }
+
+  .brand img {
+    width: 36px;
+    height: 36px;
+  }
+
   .topbar-links {
     flex-wrap: nowrap;
     gap: 10px;
@@ -698,6 +718,11 @@ h1 {
     max-width: none;
     font-size: clamp(2.5rem, 15vw, 3.7rem);
     line-height: 0.96;
+  }
+
+  .brand span {
+    max-width: 12ch;
+    line-height: 1.05;
   }
 
   .mini-card h2,
