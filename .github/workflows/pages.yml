@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - "manuscripts/**"
+      - "scripts/build_pages_site.sh"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -32,10 +34,13 @@ jobs:
         with:
           enablement: true
 
+      - name: Build Pages site
+        run: bash ./scripts/build_pages_site.sh
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: .site
 
       - name: Deploy to GitHub Pages
         id: deployment

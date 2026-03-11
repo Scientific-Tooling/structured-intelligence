@@ -6,12 +6,17 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mingzhangyang.github.io/structured-intelligence/ncbi-eutilities-assistant-manuscript.md</loc>
+    <loc>https://mingzhangyang.github.io/structured-intelligence/manuscripts/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mingzhangyang.github.io/structured-intelligence/rpsblast-assistant-manuscript.md</loc>
+    <loc>https://mingzhangyang.github.io/structured-intelligence/manuscripts/ncbi-eutilities-assistant/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mingzhangyang.github.io/structured-intelligence/manuscripts/rpsblast-assistant/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
