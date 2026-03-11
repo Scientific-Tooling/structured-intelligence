@@ -263,10 +263,19 @@ h1 {
 .thesis-card p,
 .manuscript-strip p,
 .repo-panel p,
+.repo-note,
 .workflow-step p {
   margin: 0;
   color: var(--muted);
   line-height: 1.68;
+}
+
+.repo-note {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.48);
 }
 
 .mini-card code {

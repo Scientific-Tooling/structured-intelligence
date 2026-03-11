@@ -281,6 +281,8 @@ There are also methodological limitations. A weekly or monthly brief is only as 
 
 The operational limits are also concrete. NCBI recommends that API users include `tool` and `email`, and that traffic remain within published request-rate guidance unless an API key is used [2,3]. A workflow tool that ignores these constraints may be convenient in the short term but unsound in sustained use. For these reasons, the skill is best understood as a high-leverage interface layer rather than an autonomous scientific reviewer.
 
+This point also matters institutionally. `ncbi-eutilities-assistant` is an independent, unofficial interaction layer around NCBI's public E-utilities and related PubMed workflows. It does not claim ownership of NCBI services, records, or documentation, and it should not be interpreted as an endorsed NCBI product. Users remain responsible for complying with upstream usage guidance, attribution norms, and applicable terms for the original resources [1-4].
+
 ## 11. Availability
 
 `ncbi-eutilities-assistant` is implemented as a reusable local skill within the Structured Intelligence repository, which is publicly available at `https://github.com/mingzhangyang/structured-intelligence` (accessed March 11, 2026). The repository is distributed under the MIT License. The manuscript source and skill bundle described here are available in that repository, including:
@@ -295,7 +297,7 @@ Within the repository, the relevant materials are located under:
 - `skills/ncbi-eutilities-assistant/`
 - `docs/ncbi-eutilities-assistant-manuscript.md`
 
-The skill is intended for local use in AI-assisted coding and research environments that support skill discovery from filesystem bundles. At the repository level, the materials can be cloned, installed with the bundled installation scripts, and inspected as plain-text workflow assets. Users citing the software should reference the repository URL together with an access date and, where relevant, the specific skill path documented in this manuscript.
+The skill is intended for local use in AI-assisted coding and research environments that support skill discovery from filesystem bundles. At the repository level, the materials can be cloned, installed with the bundled installation scripts, and inspected as plain-text workflow assets. Users citing the software should reference the repository URL together with an access date and, where relevant, the specific skill path documented in this manuscript. The repository's implementation should be understood as an independent, unofficial AI interface layer rather than a redistribution of, or substitute for, the original NCBI services and materials.
 
 ## 12. Conclusion
 

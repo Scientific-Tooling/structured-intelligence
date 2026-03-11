@@ -150,6 +150,12 @@ Use ncbi-eutilities-assistant to fetch PubMed summaries for PMID 39696283 and 39
 
 If you reference this repository in scientific writing, cite the repository URL and the access date, and identify the relevant manuscript or skill directory when possible. For example, the skill-focused manuscripts in `docs/` describe the corresponding implementations under `skills/`.
 
+## Independence And Upstream Rights
+
+This repository provides independent, unofficial AI interaction layers around existing scientific tools, APIs, and workflows. It does not claim ownership of the underlying third-party software, databases, services, or documentation, and it does not imply endorsement by the original authors, maintainers, or institutions.
+
+The intent is to add a transparent interface layer for local AI-assisted use, not to reproduce or replace the original applications. Users remain responsible for complying with the licenses, terms of use, attribution requirements, and usage policies of the upstream tools and data sources they invoke through these skills.
+
 ## License
 
 This repository is distributed under the MIT License. See [LICENSE](/mnt/c/Users/mingz/Codes/structured-intelligence/LICENSE).

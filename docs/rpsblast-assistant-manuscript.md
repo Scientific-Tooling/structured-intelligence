@@ -220,6 +220,8 @@ This approach improves usability, not biological validity. Several constraints r
 
 The operational limits are also concrete. Standalone CDD annotation depends on exact file relationships among executables, databases, annotation resources, and archive outputs. If these relationships are obscured, users can produce output that appears valid but is not post-processable. Accordingly, the skill is designed to expose commands, file paths, and output types rather than hide them. The goal is assisted operation, not opaque automation.
 
+This skill should also be understood institutionally as an independent, unofficial interaction layer around the standalone RPS-BLAST, CDD, and `rpsbproc` workflow described by NCBI resources [1-4]. It does not claim ownership of the underlying software, databases, or documentation, and it should not be interpreted as an endorsed upstream product. Users remain responsible for complying with the licenses, distribution conditions, and usage guidance attached to the original tools and data assets.
+
 ## 11. Availability
 
 `rpsblast-assistant` is implemented as a reusable local skill within the Structured Intelligence repository, which is publicly available at `https://github.com/mingzhangyang/structured-intelligence` (accessed March 11, 2026). The repository is distributed under the MIT License. The manuscript source and skill bundle described here are available in that repository, including:
@@ -234,7 +236,7 @@ Within the repository, the relevant materials are located under:
 - `skills/rpsblast-assistant/`
 - `docs/rpsblast-assistant-manuscript.md`
 
-The skill is intended for local use in AI-assisted coding and research environments that support skill discovery from filesystem bundles. At the repository level, the materials can be cloned, installed with the bundled installation scripts, and inspected as plain-text workflow assets. Users citing the software should reference the repository URL together with an access date and, where relevant, the specific skill path documented in this manuscript.
+The skill is intended for local use in AI-assisted coding and research environments that support skill discovery from filesystem bundles. At the repository level, the materials can be cloned, installed with the bundled installation scripts, and inspected as plain-text workflow assets. Users citing the software should reference the repository URL together with an access date and, where relevant, the specific skill path documented in this manuscript. The repository's implementation should be understood as an independent, unofficial AI interface layer rather than a redistribution of, or substitute for, the original upstream software and associated resources.
 
 ## 12. Conclusion
 
