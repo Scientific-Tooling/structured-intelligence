@@ -65,16 +65,22 @@ a:focus-visible {
   position: sticky;
   top: 0;
   z-index: 5;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  margin-top: 10px;
-  padding: 14px 18px;
-  border-radius: 999px;
-  background: rgba(248, 251, 255, 0.82);
+  margin-top: 0;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 14px max(18px, calc((100vw - var(--max-width)) / 2 + 18px));
+  border-radius: 0 0 28px 28px;
+  background: rgba(248, 251, 255, 0.9);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.52);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
   box-shadow: 0 10px 26px rgba(45, 35, 20, 0.08);
 }
 
@@ -119,6 +125,10 @@ a:focus-visible {
   display: grid;
   gap: 18px;
   padding: 28px 0 22px;
+}
+
+.article-hero .lede {
+  max-width: 66ch;
 }
 
 .hero-layout {
@@ -608,8 +618,9 @@ a:focus-visible {
   .topbar {
     flex-direction: column;
     align-items: stretch;
-    border-radius: 28px;
-    top: 8px;
+    padding: 12px 12px 14px;
+    border-radius: 0 0 24px 24px;
+    top: 0;
   }
 
   .nav-links {
