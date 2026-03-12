@@ -1,17 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@400;500;600;700&display=swap");
+
 :root {
-  --bg: #f4efe4;
-  --bg-strong: #efe2c3;
-  --paper: rgba(255, 252, 247, 0.72);
-  --paper-strong: rgba(255, 251, 244, 0.92);
-  --ink: #1c2b2f;
-  --muted: #5b6a6f;
+  --bg: #edf2f7;
+  --bg-strong: #dfeaf2;
+  --paper: rgba(248, 250, 252, 0.78);
+  --paper-strong: rgba(252, 253, 255, 0.94);
+  --ink: #1e293b;
+  --muted: #526171;
   --line: rgba(28, 43, 47, 0.14);
-  --gold: #bd7b22;
-  --gold-soft: #edc278;
-  --teal: #1b7668;
-  --teal-soft: #9fd4c7;
-  --link: #0f6d60;
-  --link-hover: #0b4d44;
+  --gold: #f97316;
+  --gold-soft: #fdba74;
+  --teal: #2563eb;
+  --teal-soft: #93c5fd;
+  --link: #1d4ed8;
+  --link-hover: #1e40af;
   --shadow: 0 20px 50px rgba(48, 40, 20, 0.12);
   --shadow-soft: 0 10px 24px rgba(48, 40, 20, 0.08);
   --radius-xl: 32px;
@@ -31,11 +33,11 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: "Atkinson Hyperlegible", "Segoe UI", sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(189, 123, 34, 0.18), transparent 28%),
-    radial-gradient(circle at 92% 14%, rgba(27, 118, 104, 0.16), transparent 26%),
-    linear-gradient(180deg, #f6f0e5 0%, #f2eadb 46%, #ede6da 100%);
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 28%),
+    radial-gradient(circle at 92% 14%, rgba(37, 99, 235, 0.16), transparent 26%),
+    linear-gradient(180deg, #f7fafc 0%, #eff5fb 46%, #ebf1f7 100%);
 }
 
 body::before,
@@ -54,7 +56,7 @@ body::before {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: rgba(189, 123, 34, 0.18);
+  background: rgba(249, 115, 22, 0.18);
 }
 
 body::after {
@@ -63,7 +65,7 @@ body::after {
   width: 280px;
   height: 280px;
   border-radius: 38% 62% 60% 40%;
-  background: rgba(27, 118, 104, 0.14);
+  background: rgba(37, 99, 235, 0.14);
 }
 
 a {
@@ -130,7 +132,7 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-family: "Crimson Pro", Georgia, serif;
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -184,6 +186,19 @@ a:focus-visible {
 .hero-copy {
   padding: 40px;
   border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-copy::before {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 180px;
+  height: 180px;
+  content: "";
+  border-radius: 0 0 180px 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(249, 115, 22, 0.04));
+  pointer-events: none;
 }
 
 .eyebrow {
@@ -199,7 +214,7 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-family: "Crimson Pro", Georgia, serif;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -216,6 +231,8 @@ h1 {
   font-size: 1.08rem;
   line-height: 1.72;
   color: var(--muted);
+  position: relative;
+  z-index: 1;
 }
 
 .hero-actions {
@@ -223,6 +240,8 @@ h1 {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 28px;
+  position: relative;
+  z-index: 1;
 }
 
 .button {
@@ -237,9 +256,9 @@ h1 {
 }
 
 .button-primary {
-  background: linear-gradient(135deg, var(--teal) 0%, #124e45 100%);
+  background: linear-gradient(135deg, var(--teal) 0%, #1e3a8a 100%);
   color: #f8faf8;
-  box-shadow: 0 12px 24px rgba(18, 78, 69, 0.18);
+  box-shadow: 0 12px 24px rgba(30, 58, 138, 0.2);
 }
 
 .button-secondary {
@@ -262,7 +281,7 @@ h1 {
 .topbar-links a:hover,
 .topbar-links a:focus-visible {
   color: var(--ink);
-  border-color: rgba(27, 118, 104, 0.3);
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .hero-facts {
@@ -270,6 +289,8 @@ h1 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin-top: 24px;
+  position: relative;
+  z-index: 1;
 }
 
 .fact-chip {
@@ -282,7 +303,7 @@ h1 {
 }
 
 .fact-value {
-  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-family: "Crimson Pro", Georgia, serif;
   font-size: 1.45rem;
   font-weight: 700;
   line-height: 1;
@@ -299,6 +320,8 @@ h1 {
   margin: 26px 0 0;
   padding: 0;
   list-style: none;
+  position: relative;
+  z-index: 1;
 }
 
 .signal-list li,
@@ -355,8 +378,8 @@ h1 {
 }
 
 .mini-card h2 {
-  font-size: 1rem;
-  line-height: 1.05;
+  font-size: 1.32rem;
+  line-height: 1.02;
 }
 
 .mini-card p,
@@ -384,24 +407,24 @@ h1 {
   width: fit-content;
   padding: 10px 12px;
   border-radius: 12px;
-  background: rgba(27, 118, 104, 0.09);
+  background: rgba(37, 99, 235, 0.09);
   color: var(--ink);
   font-size: 0.9rem;
 }
 
 .accent-card {
   background:
-    linear-gradient(135deg, rgba(189, 123, 34, 0.1), rgba(255, 255, 255, 0.85)),
+    linear-gradient(135deg, rgba(249, 115, 22, 0.12), rgba(255, 255, 255, 0.88)),
     var(--paper-strong);
 }
 
 .section {
-  padding: 34px 0;
+  padding: 40px 0;
 }
 
 .section-heading {
   max-width: none;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .section-heading h2 {
@@ -424,6 +447,18 @@ h1 {
 .feature-card {
   padding: 26px;
   border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before,
+.thesis-card::before {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 5px;
+  content: "";
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.92), rgba(249, 115, 22, 0.92));
 }
 
 .thesis-card h3,
@@ -450,7 +485,7 @@ h1 {
   min-height: 200px;
   padding: 20px;
   border-radius: 18px;
-  background: rgba(255, 255, 255, 0.54);
+  background: rgba(255, 255, 255, 0.68);
   border: 1px solid rgba(28, 43, 47, 0.08);
 }
 
@@ -461,7 +496,7 @@ h1 {
   height: 38px;
   margin-bottom: 16px;
   border-radius: 50%;
-  background: rgba(27, 118, 104, 0.1);
+  background: rgba(37, 99, 235, 0.1);
   color: var(--teal);
   font-weight: 800;
 }
@@ -482,7 +517,7 @@ h1 {
   color: var(--link);
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 1px solid rgba(27, 118, 104, 0.24);
+  border-bottom: 1px solid rgba(37, 99, 235, 0.24);
 }
 
 .card-links a:not(.button-primary):not(.button-secondary)::after,
@@ -497,7 +532,7 @@ h1 {
 .repo-meta a:hover,
 .repo-meta a:focus-visible {
   color: var(--link-hover);
-  border-color: rgba(11, 77, 68, 0.45);
+  border-color: rgba(30, 64, 175, 0.45);
   transform: translateX(1px);
 }
 
@@ -514,10 +549,15 @@ h1 {
   min-height: 36px;
   padding: 0 12px;
   border-radius: 999px;
-  background: rgba(27, 118, 104, 0.09);
+  background: rgba(37, 99, 235, 0.09);
   color: var(--ink);
   font-size: 0.9rem;
   font-weight: 600;
+}
+
+.workflow-note {
+  margin-top: 14px;
+  padding: 0 6px;
 }
 
 .prompt-grid {
@@ -643,9 +683,12 @@ h1 {
   .manuscript-strip,
   .thesis-grid,
   .workflow-frame,
-  .prompt-grid,
-  .hero-facts {
+  .prompt-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .workflow-step {
@@ -674,6 +717,7 @@ h1 {
     gap: 10px;
     padding: 12px;
     border-radius: 28px;
+    top: 8px;
   }
 
   .brand {
@@ -732,6 +776,12 @@ h1 {
     padding-bottom: 28px;
   }
 
+  .hero-copy::before {
+    width: 132px;
+    height: 132px;
+    border-radius: 0 0 132px 0;
+  }
+
   .hero-actions,
   .repo-actions {
     width: 100%;
@@ -744,6 +794,10 @@ h1 {
 
   .section {
     padding: 24px 0;
+  }
+
+  .section-heading {
+    margin-bottom: 18px;
   }
 
   .lede,
@@ -767,6 +821,14 @@ h1 {
   body::before,
   body::after {
     display: none;
+  }
+
+  .hero-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .fact-chip:last-child {
+    grid-column: 1 / -1;
   }
 }
 
@@ -796,6 +858,40 @@ h1 {
   .repo-meta div,
   .fact-chip {
     padding: 16px;
+  }
+
+  .hero-grid {
+    gap: 18px;
+    padding: 18px 0 32px;
+  }
+
+  .hero-copy,
+  .hero-panel,
+  .repo-panel,
+  .manuscript-strip,
+  .workflow-frame,
+  .feature-card,
+  .thesis-card,
+  .prompt-card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .mini-card {
+    padding: 18px;
+  }
+
+  .topbar-links a,
+  .button,
+  .card-links a:not(.button-primary):not(.button-secondary),
+  .repo-meta a {
+    min-height: 46px;
+  }
+
+  .prompt-card code {
+    padding: 14px;
+    font-size: 0.86rem;
+    line-height: 1.55;
   }
 }
 

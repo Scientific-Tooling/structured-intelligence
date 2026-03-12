@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scientifictooling.org/sitemap.xml
+Sitemap: https://scientifictooling.org/structured-intelligence/sitemap.xml

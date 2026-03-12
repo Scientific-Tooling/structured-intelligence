@@ -20,15 +20,16 @@ License: MIT, see [LICENSE](/mnt/c/Users/mingz/Codes/structured-intelligence/LIC
 
 This repository is publicly available at `https://github.com/Scientific-Tooling/structured-intelligence`. It contains reusable local skills, agents, workflows, validation scripts, and manuscript-style documentation for selected skills. The repository is intended for local use in AI-assisted coding and research environments that support filesystem-discovered skill bundles.
 
-Relevant manuscript and skill materials include:
+Relevant project-site, manuscript, and skill materials include:
 
 - `docs/index.html`
 - `docs/ncbi-eutilities-assistant-manuscript.md`
 - `docs/rpsblast-assistant-manuscript.md`
+- `manuscripts/`
 - `skills/ncbi-eutilities-assistant/`
 - `skills/rpsblast-assistant/`
 
-The repository also includes a lightweight landing page at `docs/index.html`, suitable for GitHub Pages-style hosting.
+The repository also includes a lightweight project landing page at `docs/index.html` and manuscript web pages under `manuscripts/`, suitable for project-scoped GitHub Pages hosting at `https://scientifictooling.org/structured-intelligence/`.
 
 ## Quick Start
 
