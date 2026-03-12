@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@400;500;600;700&display=swap");
-
 :root {
   --bg: #edf2f7;
   --bg-strong: #dfeaf2;
@@ -33,7 +31,6 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  font-family: "Atkinson Hyperlegible", "Segoe UI", sans-serif;
   background:
     radial-gradient(circle at top left, rgba(249, 115, 22, 0.18), transparent 28%),
     radial-gradient(circle at 92% 14%, rgba(37, 99, 235, 0.16), transparent 26%),
@@ -132,7 +129,6 @@ a:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: "Crimson Pro", Georgia, serif;
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -201,36 +197,7 @@ a:focus-visible {
   pointer-events: none;
 }
 
-.eyebrow {
-  margin: 0 0 14px;
-  color: var(--teal);
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3 {
-  margin: 0;
-  font-family: "Crimson Pro", Georgia, serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  max-width: 12ch;
-  font-size: clamp(3rem, 6vw, 5.6rem);
-  line-height: 0.94;
-}
-
 .lede {
-  max-width: 56ch;
-  margin: 22px 0 0;
-  font-size: 1.08rem;
-  line-height: 1.72;
-  color: var(--muted);
   position: relative;
   z-index: 1;
 }
@@ -303,7 +270,6 @@ h1 {
 }
 
 .fact-value {
-  font-family: "Crimson Pro", Georgia, serif;
   font-size: 1.45rem;
   font-weight: 700;
   line-height: 1;
@@ -695,7 +661,7 @@ h1 {
     min-height: auto;
   }
 
-  h1 {
+  .title-hero {
     max-width: 11ch;
   }
 }
@@ -833,12 +799,6 @@ h1 {
 }
 
 @media (max-width: 560px) {
-  h1 {
-    max-width: none;
-    font-size: clamp(2.5rem, 15vw, 3.7rem);
-    line-height: 0.96;
-  }
-
   .brand span {
     max-width: 12ch;
     line-height: 1.05;

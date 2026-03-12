@@ -9,6 +9,7 @@
       content="Web versions of manuscripts from Structured Intelligence, the flagship repository within Scientific Tooling."
     />
     <link rel="canonical" href="https://scientifictooling.org/structured-intelligence/manuscripts/" />
+    <link rel="stylesheet" href="./theme.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -34,42 +35,70 @@
           <span>/</span>
           <strong>Manuscripts</strong>
         </p>
-        <p class="eyebrow">Scientific Writing</p>
-        <h1 class="hero-title-wide">Publication-ready entry points for the Structured Intelligence manuscript series.</h1>
-        <p>
-          These pages present manuscript drafts from Structured Intelligence in a
-          web-native format while preserving the underlying markdown sources in `docs/`.
-          Scientific Tooling serves as the public-facing site; Structured Intelligence
-          remains the flagship repository and manuscript series featured here.
-        </p>
-        <div class="hero-pills">
-          <span class="meta-pill">Readable web layouts</span>
-          <span class="meta-pill">Markdown source preserved</span>
-          <span class="meta-pill">GitHub Pages ready</span>
+        <div class="hero-layout">
+          <div class="hero-main">
+            <p class="eyebrow">Scientific Writing</p>
+            <h1 class="title-hero title-hero--wide">Publication-ready entry points for the Structured Intelligence manuscript series.</h1>
+            <p class="lede">
+              These pages present manuscript drafts from Structured Intelligence in a
+              web-native format while preserving the underlying markdown sources in `docs/`.
+              Scientific Tooling serves as the public-facing site; Structured Intelligence
+              remains the flagship repository and manuscript series featured here.
+            </p>
+            <div class="hero-pills">
+              <span class="meta-pill">Readable web layouts</span>
+              <span class="meta-pill">Markdown source preserved</span>
+              <span class="meta-pill">GitHub Pages ready</span>
+            </div>
+            <div class="card-links hero-links">
+              <a class="button button-primary" href="#collection">Browse collection</a>
+              <a class="button button-secondary" href="https://github.com/Scientific-Tooling/structured-intelligence">Open repository</a>
+            </div>
+          </div>
+
+          <aside class="hero-side" aria-label="Collection summary">
+            <section class="hero-side-card">
+              <p class="eyebrow">Current Collection</p>
+              <div class="hero-stat-grid">
+                <article class="hero-stat">
+                  <strong>2</strong>
+                  <span>web editions live now</span>
+                </article>
+                <article class="hero-stat">
+                  <strong>Markdown</strong>
+                  <span>source preserved beside each manuscript</span>
+                </article>
+                <article class="hero-stat">
+                  <strong>Project-linked</strong>
+                  <span>every article maps back to a concrete skill bundle</span>
+                </article>
+              </div>
+            </section>
+
+            <section class="hero-side-card hero-side-note">
+              <p class="eyebrow">Editorial Frame</p>
+              <p>
+                Each manuscript pairs a repository skill with a publication-style explanation
+                of why the underlying scientific workflow matters, where operational barriers
+                exist, and how a transparent local AI layer can improve reuse without obscuring
+                the original method.
+              </p>
+            </section>
+          </aside>
         </div>
       </header>
 
-      <section class="publication-frame">
+      <section class="publication-frame" id="collection">
         <div class="publication-header">
           <div>
-            <p class="eyebrow">Current Collection</p>
-            <h2>Structured Intelligence Manuscript Series</h2>
+            <p class="eyebrow">Collection</p>
+            <h2 class="title-section">Structured Intelligence Manuscript Series</h2>
           </div>
           <div class="publication-meta">
             <span class="meta-pill">2 web editions</span>
             <span class="meta-pill">Methods and positioning</span>
             <span class="meta-pill">Independent AI interface layer</span>
           </div>
-        </div>
-
-        <div class="editor-note">
-          <p class="eyebrow">Editorial Note</p>
-          <p>
-            Each manuscript pairs a repository skill with a publication-style explanation
-            of why the underlying scientific workflow matters, where operational barriers
-            exist, and how a transparent local AI layer can improve reuse without obscuring
-            the original method.
-          </p>
         </div>
 
         <main class="card-grid publication-grid">

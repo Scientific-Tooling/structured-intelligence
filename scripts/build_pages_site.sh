@@ -8,6 +8,7 @@ rm -rf "$OUT_DIR"
 mkdir -p "$OUT_DIR"
 
 cp "$ROOT_DIR/docs/index.html" "$OUT_DIR/index.html"
+cp "$ROOT_DIR/docs/theme.css" "$OUT_DIR/theme.css"
 cp "$ROOT_DIR/docs/site.css" "$OUT_DIR/site.css"
 cp "$ROOT_DIR/docs/logo.svg" "$OUT_DIR/logo.svg"
 cp "$ROOT_DIR/docs/logo.png" "$OUT_DIR/logo.png"

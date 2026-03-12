@@ -146,6 +146,10 @@ Use ncbi-eutilities-assistant to fetch PubMed summaries for PMID 39696283 and 39
 4. Follow the relevant workflow under `workflows/`.
 5. Run `./scripts/validate_structure.sh` before commit.
    It checks the required top-level structure plus registry/schema rules for registered assets.
+6. Run `./scripts/sync_site_theme.sh` after updating shared page typography in the
+   `Scientific-Tooling.github.io` repository.
+   It syncs the shared `theme.css` into `docs/` and `manuscripts/` so project pages
+   keep the same hero-title and typography system as the organization homepage.
 
 ## Citation And Reuse
 
