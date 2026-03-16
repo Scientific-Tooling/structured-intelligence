@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Cell Type Annotation"
+  short_description: "Marker-based and reference-based cell type annotation of single-cell RNA-seq clusters using SingleR, Azimuth, or manual curation."
+  default_prompt: "Use $scrnaseq-cell-type-annotation to assign cell type labels to scRNA-seq clusters using SingleR or Azimuth and canonical marker genes."

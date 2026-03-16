@@ -1,0 +1,22 @@
+name: bioinfo-rnaseq
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - star=2.7.11a
+  - hisat2=2.2.1
+  - subread=2.0.6          # provides featureCounts
+  - salmon=1.10.2
+  - kallisto=0.50.1
+  - samtools=1.19
+  - r-base=4.3
+  - bioconductor-deseq2=1.42
+  - bioconductor-edger=4.0
+  - bioconductor-limma=3.58
+  - bioconductor-tximport=1.30
+  - r-tidyverse=2.0.0
+  - r-pheatmap=1.0.12
+  - r-ggplot2=3.5.0
+  - pip

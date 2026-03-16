@@ -1,0 +1,12 @@
+id: scrnaseq-quality-control
+name: scRNA-seq Quality Control
+version: 0.1.0
+owner: mingzhang
+description: Ambient RNA removal, doublet detection, and cell filtering for single-cell RNA-seq count matrices.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

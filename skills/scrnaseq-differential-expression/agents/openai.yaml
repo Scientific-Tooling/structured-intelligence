@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Differential Expression"
+  short_description: "Single-cell differential expression analysis using Wilcoxon rank-sum tests and pseudobulk approaches with DESeq2 or edgeR."
+  default_prompt: "Use $scrnaseq-differential-expression to find differentially expressed genes between conditions in single-cell RNA-seq data using pseudobulk DESeq2 or Wilcoxon tests."

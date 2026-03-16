@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Trajectory Analysis"
+  short_description: "Pseudotime inference and RNA velocity analysis of single-cell RNA-seq data using Monocle3 and scVelo."
+  default_prompt: "Use $scrnaseq-trajectory-analysis to infer developmental trajectories and pseudotime ordering from single-cell RNA-seq data with Monocle3 or RNA velocity with scVelo."

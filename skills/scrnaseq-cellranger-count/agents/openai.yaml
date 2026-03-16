@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Cell Ranger Count"
+  short_description: "Generate feature-barcode count matrices from raw scRNA-seq FASTQ files using Cell Ranger, STARsolo, or alevin-fry."
+  default_prompt: "Use $scrnaseq-cellranger-count to generate a feature-barcode count matrix from raw scRNA-seq FASTQ files."

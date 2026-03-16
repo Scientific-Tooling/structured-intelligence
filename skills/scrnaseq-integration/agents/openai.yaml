@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Integration"
+  short_description: "Multi-sample batch correction and integration of single-cell RNA-seq datasets using Harmony, Seurat CCA/RPCA, or scVI."
+  default_prompt: "Use $scrnaseq-integration to correct batch effects and integrate multiple single-cell RNA-seq samples using Harmony, Seurat, or scVI."

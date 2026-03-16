@@ -1,0 +1,12 @@
+id: scrnaseq-trajectory-analysis
+name: scRNA-seq Trajectory Analysis
+version: 0.1.0
+owner: mingzhang
+description: Pseudotime inference and RNA velocity analysis of single-cell RNA-seq data using Monocle3 and scVelo.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

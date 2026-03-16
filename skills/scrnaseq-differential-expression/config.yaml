@@ -1,0 +1,12 @@
+id: scrnaseq-differential-expression
+name: scRNA-seq Differential Expression
+version: 0.1.0
+owner: mingzhang
+description: Single-cell differential expression analysis using Wilcoxon rank-sum tests and pseudobulk approaches with DESeq2 or edgeR.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

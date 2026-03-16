@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Quality Control"
+  short_description: "Ambient RNA removal, doublet detection, and cell filtering for single-cell RNA-seq count matrices."
+  default_prompt: "Use scrnaseq-quality-control to remove ambient RNA, detect doublets, and filter low-quality cells from a scRNA-seq count matrix."

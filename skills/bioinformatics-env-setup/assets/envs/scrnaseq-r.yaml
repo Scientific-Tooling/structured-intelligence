@@ -1,0 +1,27 @@
+name: bioinfo-scrnaseq-r
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - r-base=4.3
+  - r-seurat=5.1.0
+  - r-seuratobject=5.0.2
+  - bioconductor-singler=2.4.0
+  - bioconductor-scdblfinder=1.16.0
+  - bioconductor-celldex=1.12.0       # reference datasets for SingleR
+  - bioconductor-dropletutils=1.22.0  # EmptyDrops improved cell calling
+  - r-soupx=1.6.2
+  - r-harmony=1.2.0
+  - r-tidyverse=2.0.0
+  - r-ggplot2=3.5.0
+  - r-patchwork=1.2.0
+  - r-matrix=1.6
+  - bioconductor-deseq2=1.42          # for pseudobulk DE
+  - bioconductor-edger=4.0
+  - r-remotes=2.5.0
+  - pip
+  # Post-install (run inside R — cannot install via conda):
+  #   remotes::install_github("cole-trapnell-lab/monocle3")
+  #   remotes::install_github("chris-mcginnis-ucsf/DoubletFinder")
+  #   SeuratData::InstallData("pbmcref")  # Azimuth PBMC reference

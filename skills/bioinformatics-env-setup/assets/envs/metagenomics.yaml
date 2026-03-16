@@ -1,0 +1,19 @@
+name: bioinfo-metagenomics
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - bowtie2=2.5.3
+  - samtools=1.19
+  - metaphlan=4.1.0
+  - humann=3.9
+  - kraken2=2.1.3
+  - bracken=2.9
+  - spades=4.0.0             # includes metaSPAdes
+  - megahit=1.2.9
+  - prodigal=2.6.3
+  - prokka=1.14.6
+  - diamond=2.1.9
+  - pip

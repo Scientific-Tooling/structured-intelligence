@@ -1,0 +1,27 @@
+name: bioinfo-scrnaseq-python
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - star=2.7.11a            # includes STARsolo; use --soloType for scRNA-seq
+  - samtools=1.19
+  - scanpy=1.10.1
+  - anndata=0.10.7
+  - leidenalg=0.10.2
+  - python-igraph=0.11.4
+  - harmonypy=0.0.9
+  - scrublet=0.2.3
+  - scvelo=0.3.2
+  - umap-learn=0.5.6
+  - matplotlib=3.8
+  - seaborn=0.13
+  - pandas=2.2
+  - numpy=1.26
+  - scipy=1.13
+  - pip
+  - pip:
+    - scvi-tools>=1.1.0
+    - cellbender>=0.3.2     # requires manual CUDA setup for GPU; runs on CPU without CUDA
+    - simpleaf>=0.16.0      # alevin-fry frontend

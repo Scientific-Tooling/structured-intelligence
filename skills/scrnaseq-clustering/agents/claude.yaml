@@ -1,0 +1,4 @@
+interface:
+  display_name: "scRNA-seq Clustering"
+  short_description: "Normalization, highly variable gene selection, PCA, UMAP, and Leiden/Louvain clustering of single-cell RNA-seq data."
+  default_prompt: "Use scrnaseq-clustering to normalize, reduce dimensions, and cluster single-cell RNA-seq data with UMAP visualization."

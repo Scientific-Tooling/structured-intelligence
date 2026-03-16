@@ -2,10 +2,11 @@ id: ngs-analysis-expert
 name: NGS Analysis Expert
 version: 0.1.0
 owner: mingzhang
-description: Expert bioinformatics agent for designing, executing, and troubleshooting WGS/WES, RNA-seq, and metagenomics analysis pipelines.
+description: Expert bioinformatics agent for designing, executing, and troubleshooting WGS/WES, RNA-seq, metagenomics, and single-cell RNA-seq analysis pipelines.
 entrypoints:
   - prompts/system.md
 default_skills:
+  - bioinformatics-env-setup
   - ngs-quality-control
   - ngs-read-preprocessing
   - genome-read-alignment
@@ -24,3 +25,10 @@ default_skills:
   - metagenome-assembly
   - metagenome-binning
   - metagenome-functional-profiling
+  - scrnaseq-cellranger-count
+  - scrnaseq-quality-control
+  - scrnaseq-clustering
+  - scrnaseq-cell-type-annotation
+  - scrnaseq-differential-expression
+  - scrnaseq-integration
+  - scrnaseq-trajectory-analysis

@@ -1,0 +1,12 @@
+id: scrnaseq-cellranger-count
+name: scRNA-seq Cell Ranger Count
+version: 0.1.0
+owner: mingzhang
+description: Generate feature-barcode count matrices from raw scRNA-seq FASTQ files using Cell Ranger, STARsolo, or alevin-fry.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

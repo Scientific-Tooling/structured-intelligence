@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bioinformatics Environment Setup"
+  short_description: "Install and verify bioinformatics software for NGS, RNA-seq, scRNA-seq, and metagenomics pipelines using conda, pip, or manual installation."
+  default_prompt: "Use bioinformatics-env-setup to install and verify the tools needed for my bioinformatics pipeline."

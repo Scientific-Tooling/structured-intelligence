@@ -1,0 +1,12 @@
+id: bioinformatics-env-setup
+name: Bioinformatics Environment Setup
+version: 0.1.0
+owner: mingzhang
+description: Guide users through installing and verifying bioinformatics software for NGS, RNA-seq, scRNA-seq, and metagenomics pipelines using conda, pip, or manual installation.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

@@ -24,6 +24,11 @@ skills:
     version: 0.1.0
     path: skills/ncbi-eutilities-assistant
     config: skills/ncbi-eutilities-assistant/config.yaml
+  - id: bioinformatics-env-setup
+    name: Bioinformatics Environment Setup
+    version: 0.1.0
+    path: skills/bioinformatics-env-setup
+    config: skills/bioinformatics-env-setup/config.yaml
   # --- NGS Shared ---
   - id: ngs-quality-control
     name: NGS Quality Control
@@ -92,6 +97,42 @@ skills:
     version: 0.1.0
     path: skills/rnaseq-functional-enrichment
     config: skills/rnaseq-functional-enrichment/config.yaml
+  # --- Single-Cell RNA-seq ---
+  - id: scrnaseq-cellranger-count
+    name: scRNA-seq Cell Ranger Count
+    version: 0.1.0
+    path: skills/scrnaseq-cellranger-count
+    config: skills/scrnaseq-cellranger-count/config.yaml
+  - id: scrnaseq-quality-control
+    name: scRNA-seq Quality Control
+    version: 0.1.0
+    path: skills/scrnaseq-quality-control
+    config: skills/scrnaseq-quality-control/config.yaml
+  - id: scrnaseq-clustering
+    name: scRNA-seq Clustering
+    version: 0.1.0
+    path: skills/scrnaseq-clustering
+    config: skills/scrnaseq-clustering/config.yaml
+  - id: scrnaseq-cell-type-annotation
+    name: scRNA-seq Cell Type Annotation
+    version: 0.1.0
+    path: skills/scrnaseq-cell-type-annotation
+    config: skills/scrnaseq-cell-type-annotation/config.yaml
+  - id: scrnaseq-differential-expression
+    name: scRNA-seq Differential Expression
+    version: 0.1.0
+    path: skills/scrnaseq-differential-expression
+    config: skills/scrnaseq-differential-expression/config.yaml
+  - id: scrnaseq-integration
+    name: scRNA-seq Integration
+    version: 0.1.0
+    path: skills/scrnaseq-integration
+    config: skills/scrnaseq-integration/config.yaml
+  - id: scrnaseq-trajectory-analysis
+    name: scRNA-seq Trajectory Analysis
+    version: 0.1.0
+    path: skills/scrnaseq-trajectory-analysis
+    config: skills/scrnaseq-trajectory-analysis/config.yaml
   # --- Metagenomics ---
   - id: metagenome-host-removal
     name: Metagenome Host Removal

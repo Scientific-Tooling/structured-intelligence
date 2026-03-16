@@ -1,0 +1,12 @@
+id: scrnaseq-clustering
+name: scRNA-seq Clustering
+version: 0.1.0
+owner: mingzhang
+description: Normalization, highly variable gene selection, PCA, UMAP, and Leiden/Louvain clustering of single-cell RNA-seq data.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

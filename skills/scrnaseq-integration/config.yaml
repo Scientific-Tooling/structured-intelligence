@@ -1,0 +1,12 @@
+id: scrnaseq-integration
+name: scRNA-seq Integration
+version: 0.1.0
+owner: mingzhang
+description: Multi-sample batch correction and integration of single-cell RNA-seq datasets using Harmony, Seurat CCA/RPCA, or scVI.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash

@@ -1,0 +1,14 @@
+name: bioinfo-ngs-shared
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - fastqc=0.12.1
+  - multiqc=1.21
+  - fastp=0.23.4
+  - trimmomatic=0.39
+  - samtools=1.19
+  - pigz=2.8
+  - pip
