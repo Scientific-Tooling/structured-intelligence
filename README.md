@@ -138,6 +138,41 @@ Use ncbi-eutilities-assistant to summarize the last 30 days of base editing rese
 Use ncbi-eutilities-assistant to fetch PubMed summaries for PMID 39696283 and 39650267 as JSON.
 ```
 
+### Use An Agent (with its default skills)
+
+After cloning this repository:
+
+```bash
+# Default target: Codex (~/.codex/agents + ~/.codex/skills)
+./scripts/install_agent.sh ngs-analysis-expert
+
+# Claude Code (~/.claude/agents + ~/.claude/skills)
+./scripts/install_agent.sh ngs-analysis-expert --tool claude
+
+# Other tools (custom directories)
+./scripts/install_agent.sh ngs-analysis-expert --dest ~/.my-tool/agents --skills-dest ~/.my-tool/skills
+```
+
+The script installs the agent directory and then automatically installs every skill listed in the agent's `default_skills` config. Use `--force` to overwrite existing installations:
+
+```bash
+./scripts/install_agent.sh ngs-analysis-expert --tool claude --force
+```
+
+Then restart your tool session. The agent and all its skills will be available together.
+
+Codex example:
+
+```text
+Use $ngs-analysis-expert to call germline variants from paired-end WGS FASTQs in ./data against GRCh38.
+```
+
+Claude Code example:
+
+```text
+Use ngs-analysis-expert to call germline variants from paired-end WGS FASTQs in ./data against GRCh38.
+```
+
 ### Build This Repository
 
 1. Add an agent from `agents/_templates/agent`.
