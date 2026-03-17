@@ -129,8 +129,8 @@ def main() -> None:
     parser.add_argument(
         "--normalization",
         choices=["minmax", "rank"],
-        default="minmax",
-        help="Per-metric normalization approach (default: minmax).",
+        default="rank",
+        help="Per-metric normalization approach (default: rank). Rank normalization is preferred for outlier robustness when tool scales differ; minmax is sensitive to extreme outliers.",
     )
     parser.add_argument(
         "--min-metrics",

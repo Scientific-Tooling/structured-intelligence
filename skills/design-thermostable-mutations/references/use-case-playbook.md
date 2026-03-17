@@ -9,6 +9,7 @@ Goal:
 
 Default workflow:
 
+0. Assess baseline thermostability first using `predict-protein-heat-stability` (sequence composition class, instability index, Arg/Lys ratio). This grounds the design objective and flags proteins that are already highly thermostable or have unusual composition.
 1. Define constraints (active site, interfaces, disulfides).
 2. Run candidate-site discovery and rank by structural context/risk.
 3. Prioritize second-shell, loop-rigidifying, and packing candidates.

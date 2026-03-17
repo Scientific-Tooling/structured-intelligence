@@ -29,7 +29,9 @@
       "WebFetch(domain:academic.oup.com)",
       "WebFetch(domain:www.semanticscholar.org)",
       "WebFetch(domain:www.researchgate.net)",
-      "WebFetch(domain:api.semanticscholar.org)"
+      "WebFetch(domain:api.semanticscholar.org)",
+      "Bash(./scripts/install_skill.sh predict-protein-heat-stability:*)",
+      "Bash(./scripts/install_skill.sh design-thermostable-mutations:*)"
     ]
   }
 }

@@ -145,6 +145,13 @@ def parse_mutation(mutation: str, sequence: str) -> Tuple[str, int, str]:
 
 
 def is_conservative_substitution(wt: str, mut: str) -> bool:
+    # G, P, and C each have structurally distinct properties and are never
+    # interchangeable: Gly has maximum backbone freedom (no side chain), Pro
+    # constrains the backbone phi angle (cyclic pyrrolidine), and Cys carries
+    # a reactive thiol. Cross-substitutions between them are non-conservative
+    # even though all three share the "special" class label.
+    if wt in {"G", "P", "C"} and mut in {"G", "P", "C"}:
+        return False
     return AA_CLASS.get(wt) == AA_CLASS.get(mut)
 
 
@@ -251,6 +258,27 @@ def local_aggregation_delta(sequence: str, position0: int, new_aa: str, window: 
 
 
 def estimate_ddg_simple(wt_seq: str, position0: int, new_aa: str) -> Dict[str, object]:
+    """Heuristic local packing proxy for mutation DDG estimation.
+
+    The aa_stability table is a hydrophobicity-like scale: hydrophobic residues
+    (C, W, F, Y, I, L, V, M) score negative (favorable for core packing) and
+    charged residues (D, E, K, R) score positive (unfavorable for hydrophobic
+    burial). DDG = aa_stability[new] - aa_stability[wt].
+
+    Limitation: this model scores substitutions toward hydrophobic residues as
+    stabilizing and substitutions toward charged/polar residues as destabilizing.
+    This is appropriate for buried hydrophobic core positions, but is incorrect
+    for surface-exposed positions where Arg/Lys/Asp/Glu enrichment is a
+    thermophile-associated thermostability strategy (salt bridges, charge-charge
+    interactions). Do not rely on this heuristic for surface sites; use
+    structure-based tools (Path B) for reliable surface-position estimates.
+
+    Note: predict_thermostability_score() uses the opposite weighting for
+    composition analysis (E/K/R are thermostability-promoting at the whole-
+    protein level). Both models are internally consistent for their purpose,
+    but they address different phenomena: whole-protein composition vs. local
+    hydrophobic burial at a single site.
+    """
     aa_stability = {
         "C": -1.5,
         "W": -1.0,
@@ -589,7 +617,14 @@ def main() -> int:
         "--min-stabilizing-ddg",
         type=float,
         default=-0.3,
-        help="Retain candidates with ddG <= threshold (default: -0.3)",
+        help=(
+            "DDG ceiling for candidate retention: only mutations with heuristic ddG estimate "
+            "<= this value are kept (default: -0.3). The value must be negative to select "
+            "stabilizing candidates. Calibrate against known stabilizing/neutral/destabilizing "
+            "variants before treating as a fixed cutoff; the heuristic model favors core "
+            "hydrophobic substitutions and underestimates surface charged-residue strategies. "
+            "See references/mutation-design-workflow.md."
+        ),
     )
     parser.add_argument(
         "--max-aggregation-delta",

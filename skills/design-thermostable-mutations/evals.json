@@ -109,5 +109,27 @@
       "Applies blocklist guardrails for catalytic or cofactor or disulfide positions",
       "Outputs ranked site candidates with rationale and site specs for downstream generation"
     ]
+  },
+  {
+    "name": "baseline-assessment-before-design",
+    "prompt": "I have a FASTA sequence for an industrial enzyme and want to know if it is already thermostable before designing mutations. How should I proceed?",
+    "files": [],
+    "expectations": [
+      "Recommends assessing baseline thermostability before launching mutation design",
+      "References or describes predict-protein-heat-stability for the baseline assessment step",
+      "Explains that design is only warranted if the baseline falls below the target operating temperature",
+      "Outlines the progression from baseline assessment to design-thermostable-mutations if improvement is needed"
+    ]
+  },
+  {
+    "name": "surface-charged-substitution-surface-site",
+    "prompt": "Suggest mutations to improve thermostability at surface-exposed positions of my enzyme. I expect Arg/Lys enrichment might be useful.",
+    "files": [],
+    "expectations": [
+      "Acknowledges that surface Arg/Lys enrichment is a known thermophile thermostability mechanism",
+      "Warns that the Path A heuristic DDG model penalizes charged substitutions and may underestimate their benefit at surface sites",
+      "Recommends structure-based scoring (Path B: FoldX or Tm-oriented tools) for surface positions",
+      "Does not dismiss Arg or Lys substitutions at surface sites based solely on heuristic DDG estimates"
+    ]
   }
 ]

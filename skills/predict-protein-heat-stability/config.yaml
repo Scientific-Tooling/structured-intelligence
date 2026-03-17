@@ -1,0 +1,13 @@
+id: predict-protein-heat-stability
+name: Predict Protein Heat Stability
+version: 0.1.0
+owner: mingzhang
+description: Decision-grade prediction of protein thermal stability (Tm, thermophilicity, ΔTm) from sequence and/or structure using multi-tool evidence integration with calibrated interpretation.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - WebSearch

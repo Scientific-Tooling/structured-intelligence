@@ -61,11 +61,16 @@ Default pipeline guardrails:
 ## Candidate Filtering Rules
 A candidate mutation should pass all:
 1. Not at protected positions
-2. DDG <= minimum stabilizing threshold (default `-0.3`)
+2. DDG <= ceiling threshold (default `-0.3`; only negative values select stabilizing candidates)
 3. Aggregation-risk delta <= max aggregation delta (default `0`)
 4. Conservative substitution (unless explicitly overridden)
 
-Note: the `-0.3` DDG threshold is a starting default. Calibrate it against known stabilizing, neutral, and destabilizing mutations in the same scaffold family and tool before applying it as a fixed cutoff. Different tools (FoldX vs. Rosetta vs. learned predictors) have different scales and systematic offsets.
+**Calibration required before use as a fixed cutoff.** The `-0.3` DDG threshold is a starting default, not a universal standard. Before treating it as a decision gate:
+- Run a control set of known stabilizing, neutral, and destabilizing mutations from the literature for the same scaffold or a close homolog.
+- Adjust the threshold to the empirical distribution of your tool's outputs.
+- Different tools (FoldX vs. Rosetta vs. learned predictors) have different scales and systematic offsets; a threshold valid for FoldX may be meaningless for Rosetta or ESM-1v.
+
+**Path A heuristic model bias:** `estimate_ddg_simple` is calibrated for local hydrophobic core packing. It penalizes charged residues (Asp, Glu, Lys, Arg), which means surface-exposed position mutations toward charged residues — a known thermophile thermostability mechanism — will be systematically underscored. For surface sites, rely on structure-based scoring (Path B) rather than the Path A heuristic alone.
 
 ## Confidence and Escalation
 - Treat predictions as ranked hypotheses, not biochemical truth.

@@ -6,9 +6,14 @@ skills:
     config: skills/research/config.yaml
   - id: design-thermostable-mutations
     name: Design Thermostable Mutations
-    version: 1.1.0
+    version: 1.2.0
     path: skills/design-thermostable-mutations
     config: skills/design-thermostable-mutations/config.yaml
+  - id: predict-protein-heat-stability
+    name: Predict Protein Heat Stability
+    version: 0.1.0
+    path: skills/predict-protein-heat-stability
+    config: skills/predict-protein-heat-stability/config.yaml
   - id: structured-intelligence-skill-creator
     name: Structured Intelligence Skill Creator
     version: 0.1.0

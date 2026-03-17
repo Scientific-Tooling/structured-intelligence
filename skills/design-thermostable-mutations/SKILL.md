@@ -141,10 +141,14 @@ From repository root:
 ./scripts/install_skill.sh design-thermostable-mutations --dest ~/.my-tool/skills
 ```
 
+## Related Skills
+- **predict-protein-heat-stability**: Use this first to assess baseline thermostability of a sequence or compare variant heat stability before launching mutation design. It provides Tm class prediction, composition features, and variant ΔTm analysis without requiring mutation design intent.
+
 ## Limits
 - Heuristic scores are triage evidence, not biochemical truth.
 - Predictions must be experimentally validated (Tm/T50/activity).
 - If functional constraints are incomplete, activity-preservation confidence drops.
+- Path A heuristic DDG model (`estimate_ddg_simple`) models local hydrophobic core packing; it underestimates surface-exposed positions where Arg/Lys enrichment and salt bridges drive thermostability. Use Path B for surface sites.
 - Common failure cases:
   - structure numbering mismatches that are not validated before scoring
   - incomplete active-site/cofactor/disulfide/blocklist constraints
