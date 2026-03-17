@@ -1,7 +1,35 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(git add:*)",
+      "Bash(python3:*)",
+      "Bash(grep:*)",
+      "Bash(tree:*)",
+      "Bash(for skill:*)",
+      "Bash(./scripts/validate_structure.sh 2>&1)",
+      "Bash(git commit:*)",
+      "Bash(./scripts/bootstrap_new_agent.sh ngs-analysis-expert:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(chmod:*)",
+      "Bash(bash scripts/install_agent.sh --help)",
+      "Bash(bash scripts/install_agent.sh ngs-analysis-expert --dest /tmp/test-agents --skills-dest /tmp/test-skills 2>&1)",
+      "WebFetch(domain:scientifictooling.org)",
+      "Bash(gh run:*)",
+      "Bash(git push:*)",
+      "Bash(bash scripts/validate_structure.sh 2>&1 | tail -30)",
+      "Bash(bash scripts/validate_structure.sh 2>&1)",
+      "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:www.nature.com)",
+      "WebFetch(domain:eutils.ncbi.nlm.nih.gov)",
+      "WebSearch",
+      "WebFetch(domain:doi.org)",
+      "WebFetch(domain:wires.onlinelibrary.wiley.com)",
+      "WebFetch(domain:academic.oup.com)",
+      "WebFetch(domain:www.semanticscholar.org)",
+      "WebFetch(domain:www.researchgate.net)",
+      "WebFetch(domain:api.semanticscholar.org)"
     ]
   }
 }
