@@ -25,7 +25,7 @@ description: Compare a continuous variable across three or more groups using one
 ## Workflow
 
 1. Read data; validate that group column has three or more levels.
-2. Run normality test (Shapiro-Wilk) and Levene's test for each group.
+2. Run normality tests (Shapiro-Wilk) within each group and run one global Levene's test across groups for homogeneity of variance.
 3. If all groups are normal and variances are approximately equal: one-way ANOVA.
    - If second factor provided: two-way ANOVA with interaction term.
 4. If normality or homogeneity of variance is violated: Kruskal-Wallis test.
@@ -34,8 +34,9 @@ description: Compare a continuous variable across three or more groups using one
    - Kruskal-Wallis: Dunn test with Benjamini-Hochberg correction.
 6. Compute effect size: eta-squared (η²) for ANOVA, epsilon-squared for Kruskal-Wallis.
 7. Generate a box plot with all groups and pairwise significance brackets.
-8. Write results and plot (PDF) to output directory.
-9. Report: omnibus test result, effect size, significant pairwise comparisons.
+8. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
+9. Write results and plot (PDF) to output directory.
+10. Report: omnibus test result, effect size, significant pairwise comparisons.
 
 ## Output Contract
 
@@ -43,6 +44,7 @@ description: Compare a continuous variable across three or more groups using one
 - Post-hoc comparisons table (TSV): group1, group2, statistic, p_value, adj_p_value, significant
 - Box plot with significance brackets (PDF)
 - Decision log explaining method selection (printed to stdout)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 
