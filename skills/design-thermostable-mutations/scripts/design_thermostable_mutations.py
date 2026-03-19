@@ -14,9 +14,6 @@ import re
 import sys
 from typing import Dict, Iterable, List, Set, Tuple
 
-from Bio import SeqIO
-from Bio.SeqUtils.ProtParam import ProteinAnalysis
-
 VALID_AA = set("ACDEFGHIKLMNPQRSTVWY")
 AMBIGUOUS_AA = set("BZXJUO")
 
@@ -46,6 +43,16 @@ AA_CLASS = {
 MUTATION_RE = re.compile(r"^([A-Z])(\d+)([A-Z])$")
 
 
+def try_import_biopython():
+    try:
+        from Bio import SeqIO as _seqio
+        from Bio.SeqUtils.ProtParam import ProteinAnalysis as _protein_analysis
+        return _seqio, _protein_analysis
+    except ImportError:
+        print("ERROR: biopython is not installed. Install with: pip install biopython", file=sys.stderr)
+        sys.exit(1)
+
+
 def normalize_sequence(seq: str) -> str:
     return seq.replace("\n", "").replace("\r", "").replace(" ", "").upper()
 
@@ -59,7 +66,8 @@ def validate_sequence(seq: str) -> Tuple[bool, bool]:
 
 
 def read_fasta(path: str, record_id: str | None) -> Tuple[str, str]:
-    parser = SeqIO.parse(path, "fasta")
+    seqio, _ = try_import_biopython()
+    parser = seqio.parse(path, "fasta")
 
     if record_id:
         for rec in parser:
@@ -156,7 +164,8 @@ def is_conservative_substitution(wt: str, mut: str) -> bool:
 
 
 def predict_thermostability_score(sequence: str) -> Dict[str, object]:
-    protein = ProteinAnalysis(sequence)
+    _, protein_analysis = try_import_biopython()
+    protein = protein_analysis(sequence)
     aa_raw = protein.amino_acids_percent
     aa = {
         residue: (value / 100.0 if value > 1.0 else value)

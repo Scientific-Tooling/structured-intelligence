@@ -10,6 +10,11 @@ the repository's canonical scaffold script.
 EOF
 }
 
+if [[ $# -eq 1 && ( "$1" == "-h" || "$1" == "--help" ) ]]; then
+  usage
+  exit 0
+fi
+
 if [[ $# -lt 1 || $# -gt 2 ]]; then
   usage
   exit 1
