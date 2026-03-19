@@ -4,6 +4,7 @@ set -euo pipefail
 # rnaseq-read-alignment: Splice-aware alignment of RNA-seq reads using STAR or HISAT2
 
 usage() {
+  local exit_code="${1:-1}"
   cat <<EOF
 Usage: $(basename "$0") [options]
 
@@ -15,13 +16,14 @@ Optional:
   -2, --read2 FILE        Reverse FASTQ file (paired-end)
   --aligner STR           Aligner to use: star or hisat2 (default: star)
   --gtf FILE              GTF annotation file
+  --genome-fasta FILE     Reference FASTA (required for STAR --two-pass)
   --outdir DIR            Output directory (default: ./alignment_output)
   --threads INT           Number of threads (default: 4)
   --two-pass              Enable STAR two-pass mode for novel junction discovery
   --max-intron INT        Maximum intron length
   -h, --help              Show this help message
 EOF
-  exit 1
+  exit "$exit_code"
 }
 
 # Defaults
@@ -30,6 +32,7 @@ READ2=""
 INDEX=""
 ALIGNER="star"
 GTF=""
+GENOME_FASTA=""
 OUTDIR="./alignment_output"
 THREADS=4
 TWO_PASS=false
@@ -43,11 +46,12 @@ while [[ $# -gt 0 ]]; do
     --index)      INDEX="$2"; shift 2 ;;
     --aligner)    ALIGNER="$2"; shift 2 ;;
     --gtf)        GTF="$2"; shift 2 ;;
+    --genome-fasta) GENOME_FASTA="$2"; shift 2 ;;
     --outdir)     OUTDIR="$2"; shift 2 ;;
     --threads)    THREADS="$2"; shift 2 ;;
     --two-pass)   TWO_PASS=true; shift ;;
     --max-intron) MAX_INTRON="$2"; shift 2 ;;
-    -h|--help)    usage ;;
+    -h|--help)    usage 0 ;;
     *)            echo "Error: unknown option $1" >&2; usage ;;
   esac
 done
@@ -78,12 +82,21 @@ if [[ "$ALIGNER" == "star" ]]; then
     echo "Error: STAR genome index not found at $INDEX" >&2
     exit 1
   fi
+  if [[ "$TWO_PASS" == true ]]; then
+    if [[ -z "$GENOME_FASTA" ]]; then
+      echo "Error: --genome-fasta is required for STAR --two-pass mode." >&2
+      exit 1
+    fi
+    if [[ ! -f "$GENOME_FASTA" ]]; then
+      echo "Error: genome FASTA not found: $GENOME_FASTA" >&2
+      exit 1
+    fi
+  fi
 
   # Build STAR command
   STAR_CMD=(STAR
     --runThreadN "$THREADS"
     --genomeDir "$INDEX"
-    --readFilesIn "$READ1"
     --outSAMtype BAM SortedByCoordinate
     --quantMode GeneCounts
     --outFileNamePrefix "${OUTDIR}/"
@@ -92,6 +105,8 @@ if [[ "$ALIGNER" == "star" ]]; then
   # Add read2 for paired-end
   if [[ -n "$READ2" ]]; then
     STAR_CMD+=(--readFilesIn "$READ1" "$READ2")
+  else
+    STAR_CMD+=(--readFilesIn "$READ1")
   fi
 
   # Handle compressed input
@@ -126,7 +141,7 @@ if [[ "$ALIGNER" == "star" ]]; then
     STAR --runMode genomeGenerate \
       --runThreadN "$THREADS" \
       --genomeDir "$PASS2_GENOME" \
-      --genomeFastaFiles "${INDEX}/../genome.fa" \
+      --genomeFastaFiles "$GENOME_FASTA" \
       --sjdbFileChrStartEnd "${PASS1_DIR}/SJ.out.tab" \
       --sjdbOverhang 100 \
       ${GTF:+--sjdbGTFfile "$GTF"}

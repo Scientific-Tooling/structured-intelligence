@@ -4,6 +4,7 @@ set -euo pipefail
 # rnaseq-alignment-qc: RNA-seq alignment quality assessment using RSeQC and Qualimap
 
 usage() {
+  local exit_code="${1:-1}"
   cat <<EOF
 Usage: $(basename "$0") [options]
 
@@ -16,7 +17,7 @@ Optional:
   --outdir DIR            Output directory (default: ./alignment_qc_output)
   -h, --help              Show this help message
 EOF
-  exit 1
+  exit "$exit_code"
 }
 
 # Defaults
@@ -32,7 +33,7 @@ while [[ $# -gt 0 ]]; do
     --bed)    BED="$2"; shift 2 ;;
     --gtf)    GTF="$2"; shift 2 ;;
     --outdir) OUTDIR="$2"; shift 2 ;;
-    -h|--help) usage ;;
+    -h|--help) usage 0 ;;
     *)        echo "Error: unknown option $1" >&2; usage ;;
   esac
 done

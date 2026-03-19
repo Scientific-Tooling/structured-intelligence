@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from __future__ import annotations
 """
 run_enrichment.py - GO, KEGG, and Reactome functional enrichment analysis via gseapy.
 Part of the rnaseq-functional-enrichment skill.
@@ -13,7 +14,7 @@ import os
 import sys
 import warnings
 
-import pandas as pd
+pd = None
 
 
 # ---------------------------------------------------------------------------
@@ -65,6 +66,15 @@ def parse_args():
         help="Output directory (default: enrichment_results)"
     )
     return parser.parse_args()
+
+
+def try_import_pandas():
+    try:
+        import pandas as pandas
+        return pandas
+    except ImportError:
+        print("ERROR: pandas is not installed. Install with: pip install pandas", file=sys.stderr)
+        sys.exit(1)
 
 
 # ---------------------------------------------------------------------------
@@ -245,10 +255,11 @@ def run_ora(args, gseapy, plt, databases, outdir):
                 # Filter gene set size
                 if "Overlap" in result_df.columns:
                     # Overlap column is formatted as "k/n"
-                    bg_size = result_df["Overlap"].str.split("/").str[1].astype(float, errors="ignore")
-                    result_df = result_df[
-                        bg_size.between(args.min_gs_size, args.max_gs_size)
-                    ]
+                    bg_size = pd.to_numeric(
+                        result_df["Overlap"].str.split("/").str[1],
+                        errors="coerce",
+                    )
+                    result_df = result_df[bg_size.between(args.min_gs_size, args.max_gs_size)]
 
                 safe_lib = lib.replace(" ", "_").replace("/", "_")
                 out_path = os.path.join(outdir, f"{db}_{safe_lib}_enrichment.tsv")
@@ -349,7 +360,9 @@ def run_gsea(args, gseapy, plt, databases, outdir):
 # Main
 # ---------------------------------------------------------------------------
 def main():
+    global pd
     args = parse_args()
+    pd = try_import_pandas()
 
     # Infer analysis type
     if args.analysis is None:

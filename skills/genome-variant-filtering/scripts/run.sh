@@ -5,6 +5,7 @@ set -euo pipefail
 # Filter raw variant calls using GATK hard filters, VQSR, or bcftools expressions.
 
 usage() {
+    local exit_code="${1:-1}"
     cat <<EOF
 Usage: $(basename "$0") --vcf VCF --ref REFERENCE [OPTIONS]
 
@@ -25,7 +26,7 @@ Optional:
   -h, --help          Show this help message
 
 EOF
-    exit 1
+    exit "$exit_code"
 }
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
@@ -55,7 +56,7 @@ while [[ $# -gt 0 ]]; do
         --dbsnp)            DBSNP="$2";               shift 2 ;;
         --snp-sensitivity)  SNP_SENSITIVITY="$2";     shift 2 ;;
         --indel-sensitivity) INDEL_SENSITIVITY="$2";  shift 2 ;;
-        -h|--help)          usage ;;
+        -h|--help)          usage 0 ;;
         *)                  echo "ERROR: Unknown argument: $1" >&2; usage ;;
     esac
 done

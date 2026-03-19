@@ -4,6 +4,7 @@ set -euo pipefail
 # rnaseq-read-counting: Gene-level read counting from aligned BAMs using featureCounts or HTSeq-count
 
 usage() {
+  local exit_code="${1:-1}"
   cat <<EOF
 Usage: $(basename "$0") [options]
 
@@ -22,7 +23,7 @@ Optional:
   --min-quality INT       Minimum mapping quality (default: 10)
   -h, --help              Show this help message
 EOF
-  exit 1
+  exit "$exit_code"
 }
 
 # Defaults
@@ -56,7 +57,7 @@ while [[ $# -gt 0 ]]; do
     --feature-type) FEATURE_TYPE="$2"; shift 2 ;;
     --attribute)    ATTRIBUTE="$2"; shift 2 ;;
     --min-quality)  MIN_QUALITY="$2"; shift 2 ;;
-    -h|--help)      usage ;;
+    -h|--help)      usage 0 ;;
     *)              echo "Error: unknown option $1" >&2; usage ;;
   esac
 done

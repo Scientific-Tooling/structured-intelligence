@@ -20,6 +20,7 @@ description: Splice-aware alignment of RNA-seq reads to a reference genome using
 - Optional:
   - Aligner choice: `star` or `hisat2` (default: `star`)
   - GTF annotation file (for STAR splice junction database)
+  - Reference FASTA path when running STAR in `--two-pass` mode (`--genome-fasta`)
   - Number of threads (default: 4)
   - Output directory (default: `./alignment_output`)
   - Two-pass mode for STAR (enables novel junction discovery)

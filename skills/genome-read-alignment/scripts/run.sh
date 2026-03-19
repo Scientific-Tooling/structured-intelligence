@@ -5,6 +5,7 @@ set -euo pipefail
 # Align FASTQ reads to a reference genome with BWA-MEM2, sort, index, and mark duplicates.
 
 usage() {
+    local exit_code="${1:-1}"
     cat <<EOF
 Usage: $(basename "$0") -1 READ1 -r REFERENCE [OPTIONS]
 
@@ -22,7 +23,7 @@ Optional:
   -h, --help          Show this help message
 
 EOF
-    exit 1
+    exit "$exit_code"
 }
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
@@ -46,7 +47,7 @@ while [[ $# -gt 0 ]]; do
         --rg)            RG="$2";          shift 2 ;;
         --sample-name)   SAMPLE_NAME="$2"; shift 2 ;;
         --tmp-dir)       TMP_DIR="$2";     shift 2 ;;
-        -h|--help)       usage ;;
+        -h|--help)       usage 0 ;;
         *)               echo "ERROR: Unknown argument: $1" >&2; usage ;;
     esac
 done

@@ -5,6 +5,7 @@ set -euo pipefail
 # Annotate variants with functional effects using SnpEff or Ensembl VEP.
 
 usage() {
+    local exit_code="${1:-1}"
     cat <<EOF
 Usage: $(basename "$0") --vcf VCF [OPTIONS]
 
@@ -22,7 +23,7 @@ Optional:
   -h, --help          Show this help message
 
 EOF
-    exit 1
+    exit "$exit_code"
 }
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
@@ -46,7 +47,7 @@ while [[ $# -gt 0 ]]; do
         --db-version)    DB_VERSION="$2";    shift 2 ;;
         --vep-plugins)   VEP_PLUGINS="$2";   shift 2 ;;
         --vep-fields)    VEP_FIELDS="$2";    shift 2 ;;
-        -h|--help)       usage ;;
+        -h|--help)       usage 0 ;;
         *)               echo "ERROR: Unknown argument: $1" >&2; usage ;;
     esac
 done

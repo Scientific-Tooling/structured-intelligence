@@ -7,6 +7,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 usage() {
+  local exit_code="${1:-1}"
   cat <<EOF
 Usage: $(basename "$0") [options]
 
@@ -34,7 +35,7 @@ Examples:
   $(basename "$0") --de-results de_results.tsv --tool gseapy --databases go,kegg,reactome
   $(basename "$0") --ranked-list ranked_genes.tsv --analysis gsea --organism mmu
 EOF
-  exit 1
+  exit "$exit_code"
 }
 
 # --- Defaults ---
@@ -64,7 +65,7 @@ while [[ $# -gt 0 ]]; do
     --min-gs-size)   MIN_GS_SIZE="$2";   shift 2 ;;
     --max-gs-size)   MAX_GS_SIZE="$2";   shift 2 ;;
     --outdir)        OUTDIR="$2";        shift 2 ;;
-    -h|--help)       usage ;;
+    -h|--help)       usage 0 ;;
     *) echo "Error: unknown option '$1'" >&2; usage ;;
   esac
 done

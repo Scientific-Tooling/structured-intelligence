@@ -5,6 +5,7 @@ set -euo pipefail
 # Call germline SNVs and indels from an aligned BAM using GATK HaplotypeCaller or DeepVariant.
 
 usage() {
+    local exit_code="${1:-1}"
     cat <<EOF
 Usage: $(basename "$0") --bam BAM --ref REFERENCE [OPTIONS]
 
@@ -23,7 +24,7 @@ Optional:
   -h, --help          Show this help message
 
 EOF
-    exit 1
+    exit "$exit_code"
 }
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
@@ -49,7 +50,7 @@ while [[ $# -gt 0 ]]; do
         --threads)      THREADS="$2";      shift 2 ;;
         --memory)       MEMORY="$2";       shift 2 ;;
         --model-type)   MODEL_TYPE="$2";   shift 2 ;;
-        -h|--help)      usage ;;
+        -h|--help)      usage 0 ;;
         *)              echo "ERROR: Unknown argument: $1" >&2; usage ;;
     esac
 done

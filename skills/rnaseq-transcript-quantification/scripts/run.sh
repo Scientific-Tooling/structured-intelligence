@@ -4,6 +4,7 @@ set -euo pipefail
 # rnaseq-transcript-quantification: Alignment-free transcript quantification using Salmon or kallisto
 
 usage() {
+  local exit_code="${1:-1}"
   cat <<EOF
 Usage: $(basename "$0") [options]
 
@@ -20,7 +21,7 @@ Optional:
   --bootstraps INT        Number of bootstrap samples (default: 0, disabled)
   -h, --help              Show this help message
 EOF
-  exit 1
+  exit "$exit_code"
 }
 
 # Defaults
@@ -44,7 +45,7 @@ while [[ $# -gt 0 ]]; do
     --outdir)        OUTDIR="$2"; shift 2 ;;
     --threads)       THREADS="$2"; shift 2 ;;
     --bootstraps)    BOOTSTRAPS="$2"; shift 2 ;;
-    -h|--help)       usage ;;
+    -h|--help)       usage 0 ;;
     *)               echo "Error: unknown option $1" >&2; usage ;;
   esac
 done

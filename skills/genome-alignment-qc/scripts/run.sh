@@ -5,6 +5,7 @@ set -euo pipefail
 # Assess alignment quality with coverage, mapping rates, insert size, and on-target metrics.
 
 usage() {
+    local exit_code="${1:-1}"
     cat <<EOF
 Usage: $(basename "$0") --bam BAM [OPTIONS]
 
@@ -20,7 +21,7 @@ Optional:
   -h, --help          Show this help message
 
 EOF
-    exit 1
+    exit "$exit_code"
 }
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
@@ -40,7 +41,7 @@ while [[ $# -gt 0 ]]; do
         --outdir)    OUTDIR="$2";    shift 2 ;;
         --threads)   THREADS="$2";   shift 2 ;;
         --per-base)  PER_BASE=true;  shift 1 ;;
-        -h|--help)   usage ;;
+        -h|--help)   usage 0 ;;
         *)           echo "ERROR: Unknown argument: $1" >&2; usage ;;
     esac
 done
