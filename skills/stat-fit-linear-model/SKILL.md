@@ -33,6 +33,7 @@ description: Fit a linear regression model, report coefficients and model fit, a
 6. Generate residual diagnostic plots: (a) residuals vs. fitted, (b) Q-Q plot of residuals, (c) scale-location, (d) Cook's distance.
 7. Test regression assumptions: normality of residuals (Shapiro-Wilk), homoscedasticity (Breusch-Pagan), absence of influential points (Cook's distance > 4/n).
 8. Write results table (TSV), model summary (text), and diagnostic plots (PDF) to output directory.
+9. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -40,6 +41,7 @@ description: Fit a linear regression model, report coefficients and model fit, a
 - Model fit summary (TSV): r_squared, adj_r_squared, f_statistic, f_p_value, aic, bic, n
 - Residual diagnostic plots (PDF, 4-panel)
 - Assumption test results (printed to stdout)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

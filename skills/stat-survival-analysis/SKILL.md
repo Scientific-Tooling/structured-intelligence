@@ -37,6 +37,7 @@ description: Estimate and compare survival functions using Kaplan-Meier curves a
    c. Report for each covariate: hazard ratio, 95% CI, z-statistic, p-value.
    d. Generate forest plot of hazard ratios.
 7. Write results and plots (PDF) to output directory.
+8. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -46,6 +47,7 @@ description: Estimate and compare survival functions using Kaplan-Meier curves a
 - Cox regression table (TSV): covariate, hazard_ratio, ci_lower, ci_upper, z_statistic, p_value (if covariates provided)
 - Kaplan-Meier plot with at-risk table (PDF)
 - Forest plot (PDF, Cox only)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

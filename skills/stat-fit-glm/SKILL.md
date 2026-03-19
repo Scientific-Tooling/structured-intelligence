@@ -35,6 +35,7 @@ description: Fit a generalized linear model (Poisson, Binomial, or Gaussian fami
 6. Generate diagnostic plots: residuals vs. fitted (Pearson residuals), Q-Q plot of deviance residuals.
 7. Write results table (TSV), model summary (text), and diagnostic plots (PDF) to output directory.
 8. Report overdispersion finding and family choice justification.
+9. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -42,6 +43,7 @@ description: Fit a generalized linear model (Poisson, Binomial, or Gaussian fami
 - Model fit summary (TSV): family, link, null_deviance, residual_deviance, aic, df_residual
 - Diagnostic plots (PDF)
 - Overdispersion test result (Poisson only, printed to stdout)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

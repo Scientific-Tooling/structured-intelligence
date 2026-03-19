@@ -32,6 +32,7 @@ description: Compute pairwise correlations and significance tests across all num
 6. Generate a scatter plot matrix (pairs plot) for datasets with ≤ 10 variables.
 7. Report the top 20 strongest positive and top 20 strongest negative correlations.
 8. Write correlation matrix (TSV), adjusted p-value matrix (TSV), and plots (PDF) to output directory.
+9. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -40,6 +41,7 @@ description: Compute pairwise correlations and significance tests across all num
 - Correlation heatmap (PDF)
 - Pairs plot (PDF, only if ≤ 10 variables)
 - Top correlations summary table (TSV): var1, var2, correlation, p_value, adj_p_value
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

@@ -40,6 +40,7 @@ description: Cluster samples or features using k-means or hierarchical clusterin
 4. Compute silhouette score for final cluster solution; report mean and per-sample scores.
 5. Assign and report cluster labels for each sample.
 6. Write cluster assignments (TSV), silhouette scores (TSV), heatmap or cluster plot (PDF) to output directory.
+7. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -48,6 +49,7 @@ description: Cluster samples or features using k-means or hierarchical clusterin
 - Clustered heatmap (PDF, hierarchical) or cluster scatter plot (PDF, k-means)
 - Elbow curve (PDF, k-means only when k is auto-selected)
 - Mean silhouette score (printed to stdout)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

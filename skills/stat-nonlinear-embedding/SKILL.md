@@ -36,12 +36,14 @@ description: Embed high-dimensional data into 2D using t-SNE or UMAP for explora
 6. If no metadata: generate plain scatter plot.
 7. Report: number of samples embedded, method and parameters used, runtime.
 8. Write embedding coordinates (TSV) and scatter plot (PDF) to output directory.
+9. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
 - Embedding coordinates (TSV): sample_id, dim1, dim2
 - Scatter plot (PDF): 2D embedding colored by metadata or uniform color
 - Parameters used (printed to stdout): method, all hyperparameters, random seed
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

@@ -34,6 +34,7 @@ description: Learn the structure and conditional probabilities of a Bayesian net
 6. Visualize the learned DAG: nodes = variables, directed edges = learned dependencies, edge width proportional to bootstrap support.
 7. Perform a Markov blanket analysis for each variable (its direct causes, effects, and spouses).
 8. Write the DAG adjacency matrix (TSV), CPD parameters (TSV), network plot (PDF), and Markov blanket summary (TSV) to output directory.
+9. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -42,6 +43,7 @@ description: Learn the structure and conditional probabilities of a Bayesian net
 - Network visualization (PDF): DAG with node labels and edge confidence
 - Markov blanket summary (TSV): variable, parents, children, spouses
 - High-confidence edge list (TSV): from, to, bootstrap_support
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

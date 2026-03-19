@@ -32,12 +32,14 @@ description: Assess data quality by reporting missing values, outliers, sample s
 6. Produce a missingness heatmap (rows = samples, columns = variables) if any missing values exist.
 7. Write a quality report (TSV) and missingness plot (PDF) to output directory.
 8. Summarize flags: list columns requiring attention and recommended actions (imputation, removal, transformation).
+9. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
 - Quality report table (TSV): column, dtype, n_non_missing, n_missing, missing_rate, n_outliers, outlier_rate, mean, sd, min, max, flags
 - Missingness heatmap (PDF, only if missing values present)
 - Summary of flagged columns (printed to stdout)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

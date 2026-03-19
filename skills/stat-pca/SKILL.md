@@ -35,6 +35,7 @@ description: Perform PCA on a numeric data matrix to reduce dimensionality, visu
 7. Plot PC1 vs. PC2 scatter; if metadata provided, color by specified annotation column; label outlier samples.
 8. Report top 20 features with highest absolute loading on PC1 and PC2.
 9. Write PC coordinates (TSV), loadings (TSV), variance explained (TSV), scree plot (PDF), and PCA scatter plot (PDF) to output directory.
+10. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -43,6 +44,7 @@ description: Perform PCA on a numeric data matrix to reduce dimensionality, visu
 - Variance explained table (TSV): PC, variance_explained, cumulative_variance
 - Scree plot (PDF)
 - PCA scatter plot (PDF, PC1 vs. PC2)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

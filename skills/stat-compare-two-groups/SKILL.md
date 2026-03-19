@@ -35,12 +35,14 @@ description: Compare a continuous variable between two groups with automatic sel
 7. Generate a box plot with individual data points and significance annotation.
 8. Write a structured result and plot (PDF) to output directory.
 9. Report method used, test statistic, p-value, effect size, confidence interval, and interpretation.
+10. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
 - Result (TSV): group1, group2, method_used, statistic, p_value, effect_size, effect_size_type, ci_lower, ci_upper, n_group1, n_group2
 - Box plot with data points (PDF)
 - Decision log explaining method selection (printed to stdout)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 

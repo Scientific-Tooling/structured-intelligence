@@ -37,6 +37,7 @@ description: Estimate model parameters using Bayesian inference (MCMC via Stan o
 8. Generate posterior predictive check plot (observed vs. simulated data).
 9. Write posterior summary (TSV), trace plots (PDF), and posterior plots (PDF) to output directory.
 10. Report convergence diagnostics; flag any parameters with R-hat ≥ 1.01 or ESS < 400.
+11. Save the executable analysis script (`analysis_code.py` or `analysis_code.R`) and software version manifest (`session_info.txt`) used to produce results.
 
 ## Output Contract
 
@@ -45,6 +46,7 @@ description: Estimate model parameters using Bayesian inference (MCMC via Stan o
 - Posterior distribution plots (PDF)
 - Posterior predictive check plot (PDF)
 - Convergence warnings (printed to stdout if any)
+- Reproducibility artifacts: `analysis_code.py` or `analysis_code.R`, plus `session_info.txt`
 
 ## Limits
 
