@@ -2,7 +2,7 @@
 
 ## Abstract
 
-Next-generation sequencing (NGS) analysis demands sustained expertise across a layered set of tasks: locating public datasets in heterogeneous archives, downloading them with correct access handling and integrity verification, and then running complex multi-step computational pipelines that differ substantially by sequencing modality. Each layer carries its own vocabulary, toolchain, and failure modes, and in practice researchers must coordinate all of them to answer a single biological question. This manuscript introduces `ngs-analysis-expert`, an AI orchestration agent backed by a collection of 34 purpose-built skills that spans the complete data lifecycle — from structured queries against NCBI SRA, GEO, ENA, GSA, and the NCBI Datasets portal through raw-data acquisition via SRA Toolkit and GDC client to full analysis pipelines covering whole-genome and whole-exome variant calling, bulk RNA-seq differential expression, single-cell RNA-seq, and shotgun metagenomics. The agent does not replace any of the underlying tools; it provides a policy layer that selects the correct pipeline for a stated scientific question, delegates each step to the appropriate skill, enforces quality checkpoints between steps, and explains tool-choice tradeoffs in terms relevant to the user's experimental design. Together, the agent and its skill library demonstrate that genomic analysis workflows can be decomposed into auditable, reusable, and composable components that are accessible through natural-language task descriptions without sacrificing transparency or reproducibility.
+Next-generation sequencing (NGS) analysis demands sustained expertise across a layered set of tasks: locating public datasets in heterogeneous archives, downloading them with correct access handling and integrity verification, and then running complex multi-step computational pipelines that differ substantially by sequencing modality. Each layer carries its own vocabulary, toolchain, and failure modes, and in practice researchers must coordinate all of them to answer a single biological question. This manuscript introduces `ngs-analysis-expert`, an AI orchestration agent backed by a collection of 35 purpose-built skills that spans the complete data lifecycle — from structured queries against NCBI SRA, GEO, ENA, GSA, and the NCBI Datasets portal through raw-data acquisition via SRA Toolkit and GDC client to full analysis pipelines covering whole-genome and whole-exome variant calling, bulk RNA-seq differential expression, single-cell RNA-seq, and shotgun metagenomics. The agent does not replace any of the underlying tools; it provides a policy layer that selects the correct pipeline for a stated scientific question, delegates each step to the appropriate skill, enforces quality checkpoints between steps, and explains tool-choice tradeoffs in terms relevant to the user's experimental design. Together, the agent and its skill library demonstrate that genomic analysis workflows can be decomposed into auditable, reusable, and composable components that are accessible through natural-language task descriptions without sacrificing transparency or reproducibility.
 
 ## 1. Introduction
 
@@ -51,7 +51,7 @@ The agent also handles multi-sample design explicitly. For cohort-scale WGS anal
 
 ### 3.2 Skill library overview
 
-The skill library contains 34 skills organized in five functional groups.
+The skill library contains 35 skills organized in five functional groups.
 
 **Public database search (5 skills)**: `search-sra`, `search-geo`, `search-ena`, `search-gsa`, and `search-ncbi-datasets`. These skills encapsulate the query syntax, field-tag conventions, metadata parsing, and output formatting for each archive. A user can request "find all paired-end RNA-seq datasets for Homo sapiens deposited in SRA since 2022" and receive a formatted run table with accession, platform, library layout, read count, and file size, along with a ready-made accession list for batch download.
 
@@ -187,7 +187,7 @@ The agent is specified through three files: an `AGENT.md` document that defines 
 
 ### 6.2 Skill structure
 
-Each of the 34 skills is defined through a `SKILL.md` document, a `config.yaml` for tool registration, provider-specific agent YAML files for Claude and OpenAI, an optional `references/` directory for embedded operational knowledge, and an optional `scripts/` directory for deterministic command-line wrappers. The download skills include shell scripts for single-accession and batch-mode operation. This structure is consistent across skills and validates against the repository's shared schema.
+Each of the 35 skills is defined through a `SKILL.md` document, a `config.yaml` for tool registration, provider-specific agent YAML files for Claude and OpenAI, an optional `references/` directory for embedded operational knowledge, and an optional `scripts/` directory for deterministic command-line wrappers. The download skills include shell scripts for single-accession and batch-mode operation. This structure is consistent across skills and validates against the repository's shared schema.
 
 ### 6.3 Shared knowledge base
 
@@ -207,7 +207,7 @@ As with all AI-mediated scientific workflows, the agent's outputs are a function
 
 ## 8. Availability
 
-The `ngs-analysis-expert` agent and all 34 associated skills are implemented within the Structured Intelligence repository, which is publicly available at `https://github.com/Scientific-Tooling/structured-intelligence` (accessed March 15, 2026). The repository is distributed under the MIT License. The relevant materials are located under:
+The `ngs-analysis-expert` agent and all 35 associated skills are implemented within the Structured Intelligence repository, which is publicly available at `https://github.com/Scientific-Tooling/structured-intelligence` (accessed March 15, 2026). The repository is distributed under the MIT License. The relevant materials are located under:
 
 - `agents/ngs-analysis-expert/` — agent definition, system prompt, and task template
 - `skills/search-sra/`, `skills/search-geo/`, `skills/search-ena/`, `skills/search-gsa/`, `skills/search-ncbi-datasets/` — archive search skills
