@@ -35,6 +35,14 @@ The repository also includes a lightweight project landing page at `docs/index.h
 
 ## Quick Start
 
+### Read An RKS Paper In PDF Workbench
+
+The [source-reading workflow](workflows/research/source-reading.md) connects an
+existing RKS paper to APW through their CLIs. It verifies and preserves the PDF
+revision, reuses an active reading session, and returns a viewer link. This is
+the first integration slice; evidence import and passage-linked briefs remain
+planned.
+
 ### Use The `research` Skill
 
 After cloning this repository:
