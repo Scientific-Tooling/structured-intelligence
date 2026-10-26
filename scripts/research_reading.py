@@ -18,7 +18,8 @@ class WorkflowError(Exception):
     """An actionable source, configuration, or command failure."""
 
 
-def run_json(command: list[str], *, env: dict[str, str] | None = None) -> dict:
+def run_json(command: list[str], *, env: dict[str, str] | None = None,
+             accepted_returncodes: tuple[int, ...] = (0,)) -> dict:
     child_env = {**os.environ, "PYTHONIOENCODING": "utf-8", **(env or {})}
     try:
         result = subprocess.run(
@@ -32,7 +33,7 @@ def run_json(command: list[str], *, env: dict[str, str] | None = None) -> dict:
         )
     except (OSError, subprocess.TimeoutExpired) as exc:
         raise WorkflowError(f"Could not run {command[0]}: {exc}") from exc
-    if result.returncode:
+    if result.returncode not in accepted_returncodes:
         raise WorkflowError(f"Command failed ({result.returncode}): {result.stderr.strip() or result.stdout.strip()}")
     try:
         payload = json.loads(result.stdout)

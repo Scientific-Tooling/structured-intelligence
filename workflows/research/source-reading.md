@@ -79,7 +79,7 @@ not a transaction or a guarantee of exactly-once creation.
 
 Keep the cache alongside the APW database in backups and do not edit its PDFs.
 The cache is verified at handoff time, not protected against subsequent external
-modification. Future evidence import must recheck document hashes. Changing the
+modification. The [evidence import workflow](evidence-import.md) rechecks document hashes. Changing the
 cache path can require a new session; automatically relocating existing sessions
 is outside this slice.
 
@@ -120,19 +120,14 @@ need separate validation. CI currently runs adapter unit tests on Windows and
 Linux; cross-repository integration is opt-in until compatible revisions are
 available together.
 
-## Remaining Phase 2 work
+## Next steps
 
-1. Add an APW evidence export contract with document hash, stable annotation/note
-   identity, page, quote/anchor, content revision, and review provenance. Produce
-   a dry-run report before applying selected imports.
-2. Implement native transactional imports in RKS with a database uniqueness
-   constraint on external evidence identity. Replaying an import must not
-   duplicate notes; conflicting revisions must be reviewable. RKS's current
-   `note add paper` API cannot guarantee this. A client-side text search followed
-   by `note add` would race and lose provenance.
-3. Define paper-merge handling, source revision conflicts, and deleted or edited
-   annotations. An absent export item must not silently delete durable evidence.
-4. Add and test viewer navigation to the supporting page/annotation, then produce
+Selected export, native transactional RKS import, explicit revision acceptance,
+and merge/deletion behavior are implemented in the
+[evidence import workflow](evidence-import.md).
+
+1. Add and test viewer navigation to the supporting page/annotation, then produce
    a source-linked brief. Current links reopen the reading session only.
-5. Exercise the full journey on a small rights-cleared corpus and perform browser,
-   Linux, and interrupted-import checks before declaring Phase 2 complete.
+2. Exercise the full journey on a small rights-cleared corpus and perform browser
+   checks before declaring Phase 2 complete. Scientific review and a researcher
+   pilot require real participants and are not implied by the engineering tests.
