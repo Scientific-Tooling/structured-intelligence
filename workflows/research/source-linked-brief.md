@@ -77,3 +77,8 @@ This is a generated engineering fixture. A representative scientific corpus,
 qualified scientific review, and a researcher pilot remain later requirements.
 The brief is an evidence inventory suitable for inspection, not a validated
 scientific answer.
+
+The next [scientific evaluation workflow](scientific-evaluation.md) supplies a
+rights-cleared single-cell methods starter corpus, frozen draft questions, a
+retrieval baseline, and an original-PDF journey. Its reference judgments still
+require independent domain review.

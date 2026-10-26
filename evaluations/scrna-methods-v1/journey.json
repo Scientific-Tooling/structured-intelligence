@@ -1,0 +1,34 @@
+{
+  "schema": "scientific-tooling.scientific-journey.v1",
+  "corpus_revision": "1914a020d82932ebb8b38deb4fec326ea44aa825237d55a4ccfdc35d4a394112",
+  "status": "agent_prepared_unreviewed_reading_notes",
+  "cases": [
+    {
+      "id": "pipeline-sample-size",
+      "paper_id": "vieth2019",
+      "passage_id": "vieth2019.abstract",
+      "page": 1,
+      "quote": "a good scRNA-seq pipeline can have the same impact on detecting a biological signal as quadrupling the sample size.",
+      "question": "What sample-size comparison do the authors report for pipeline choice in their simulations?",
+      "note": "The authors report that good pipeline choice can have an effect comparable to quadrupling sample size in their simulation setting. This is not a universal sample-size guarantee. Agent-prepared reading note; independent scientific review is pending."
+    },
+    {
+      "id": "donor-pseudoreplication",
+      "paper_id": "zimmerman2021",
+      "passage_id": "zimmerman2021.abstract",
+      "page": 1,
+      "quote": "Cells from the same individual share common genetic and environmental backgrounds and are not statistically independent; therefore, they are subsamples or pseudoreplicates.",
+      "question": "Why do the authors distinguish cells from independent individuals in single-cell differential-expression studies?",
+      "note": "The authors identify dependence among cells from the same individual and describe those cells as pseudoreplicates. Agent-prepared reading note; independent scientific review is pending."
+    },
+    {
+      "id": "biological-replicate-variation",
+      "paper_id": "squair2021",
+      "passage_id": "squair2021.abstract",
+      "page": 1,
+      "quote": "Here, we show that the relative performance of these methods is contingent on their ability to account for variation between biological replicates.",
+      "question": "What source of variation do the authors associate with differential-expression method performance?",
+      "note": "The authors associate relative method performance with accounting for variation between biological replicates. This note does not establish a universal ranking of all methods. Agent-prepared reading note; independent scientific review is pending."
+    }
+  ]
+}

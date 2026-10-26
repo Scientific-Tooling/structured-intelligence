@@ -1,0 +1,54 @@
+{
+  "schema": "scientific-tooling.scientific-journey-validation.v1",
+  "corpus_revision": "1914a020d82932ebb8b38deb4fec326ea44aa825237d55a4ccfdc35d4a394112",
+  "validated_at": "2026-10-26T19:20:20.475941+00:00",
+  "rks_commit": "b5aac77",
+  "apw_commit": "7715497",
+  "browser": "Chromium via APW locked Playwright 1.62.1",
+  "original_pdf_cases": 3,
+  "full_journey_repeated": true,
+  "cases": [
+    {
+      "case_id": "pipeline-sample-size",
+      "document_sha256": "112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940",
+      "page": 1,
+      "passed": true,
+      "replay_first_import_unchanged": 1,
+      "same_bundle_replay_unchanged": 1,
+      "scientific_review": "pending"
+    },
+    {
+      "case_id": "donor-pseudoreplication",
+      "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+      "page": 1,
+      "passed": true,
+      "replay_first_import_unchanged": 1,
+      "same_bundle_replay_unchanged": 1,
+      "scientific_review": "pending"
+    },
+    {
+      "case_id": "biological-replicate-variation",
+      "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+      "page": 1,
+      "passed": true,
+      "replay_first_import_unchanged": 1,
+      "same_bundle_replay_unchanged": 1,
+      "scientific_review": "pending"
+    }
+  ],
+  "visual_source_qa": {
+    "browser_pages_inspected": 3,
+    "runtime_table": {
+      "paper": "lause2021",
+      "original_pdf_page": 10,
+      "table": "Table 1"
+    },
+    "method": "Agent source/layout inspection, not qualified scientific review"
+  },
+  "scientific_accuracy": null,
+  "qualified_review_complete": false,
+  "implementation_sha256": {
+    "research_corpus_journey.py": "fda2c115605781b6c54335ef8fe96b7e72de179f59d5d2fed6fd084cfda8e62c",
+    "verify_research_passages.mjs": "abf1d751cb0a9649397a084ddffc27f1f4003ecd4b96cd72669160574a01098a"
+  }
+}
