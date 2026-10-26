@@ -11,6 +11,16 @@ import research_rks_benchmark as benchmark
 
 
 class NativeBenchmarkTest(unittest.TestCase):
+    def test_changed_or_legacy_query_semantics_cannot_reuse_the_new_method_identity(self):
+        valid = {"mode": "lexical", "lexical_retrieval": {"method": "bm25-terms-v1", "parameters": {"k1": 1.2, "b": 0.75}}}
+        self.assertEqual(benchmark.verify_search_identity(valid, "lexical")["method"], "bm25-terms-v1")
+        for payload in ({"mode": "lexical"}, {**valid, "mode": "phrase"},
+                        {**valid, "lexical_retrieval": {"method": "bm25-terms-v1", "parameters": {"k1": 2, "b": 0.75}}}):
+            with self.subTest(payload=payload), self.assertRaises(benchmark.WorkflowError):
+                benchmark.verify_search_identity(payload, "lexical")
+        self.assertEqual(benchmark.verify_search_identity({"mode": "phrase", "lexical_retrieval": {
+            "method": "literal-phrase-v1", "parameters": {}}}, "phrase")["method"], "literal-phrase-v1")
+
     def test_source_validation_precedes_any_native_write_or_workspace_creation(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

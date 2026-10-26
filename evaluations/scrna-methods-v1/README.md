@@ -26,6 +26,8 @@ expert gold standard. The review template contains zero approvals.
   anchors for original PDFs, rather than assumed pagination of JATS excerpts.
 - `baseline-results.json`: measured retrieval results with per-question rankings,
   split aggregates, native-interface limits, runtime provenance, and code hashes.
+- `ranked-term-results.json`: separate rerun after the RKS ranked-term fix, retaining
+  the original baseline and unchanged source/question revisions.
 - `journey-validation.json`: portable receipt of original-PDF source/brief/browser
   checks. Local handoffs, briefs, databases, cached PDFs, screenshots, and complete
   native responses remain under the ignored `.research-eval/` directory.
@@ -74,8 +76,12 @@ imports prepared excerpts as `extracted` records with `evaluation_only` provenan
 not as reviewed graph facts. No live extraction, paid model, or API evaluation is
 performed. Native responses and claim-to-excerpt maps remain inspectable.
 
-In the measured environment, RKS was at `b5aac77` and APW at `7715497`. Separate
-virtual environments are supported via explicit Python paths. On Windows, paths
+For the original retained baseline, RKS was at `b5aac77` and APW at `7715497`. The
+current native runner requires versioned ranked-term/phrase metadata and records
+`rks-bm25-terms-v1`, `rks-literal-phrase-v1` and `rks-local-hash-v1` separately.
+Use RKS with that search contract for new runs; the old `rks-lexical-v1` scores
+remain in `baseline-results.json` and are never relabeled as the new method.
+Separate virtual environments are supported via explicit Python paths. On Windows, paths
 end in `Scripts/python.exe`; on Linux, usually `bin/python`. CPU timings include
 CLI startup and normal command overhead; they are not isolated search-kernel timings.
 
@@ -95,10 +101,12 @@ Scientific answer accuracy and abstention accuracy are `null`, not zero or a
 lexical similarity proxy. Tables retain headers, row/cell boundaries, units, and
 footnotes; a runtime in seconds cannot be interchanged with the hours column.
 
-The BM25 baseline uses fixed `k1=1.2`, `b=0.75`, ASCII alphanumeric tokens,
+The fixed passage BM25 baseline uses `k1=1.2`, `b=0.75`, ASCII alphanumeric tokens,
 case-folding, no stemming, and no stop-word removal. RKS receives each full
-question verbatim. Its lexical interface currently performs substring matching;
-its `local-hash-v1` interface uses 64 dimensions and a global top-ten cap shared
+question verbatim. The original lexical interface performed substring matching;
+the updated interface ranks Unicode-normalized complete query terms with BM25,
+and explicit phrase mode matches literal substrings. Its `local-hash-v1`
+interface uses 64 dimensions and a global top-ten cap shared
 by paper, claim, and concept results. The benchmark preserves those exposed
 interfaces, does not backfill after non-passage/duplicate hits, and reports that
 comparison limit. It does not claim an isolated identical-candidate ranker contest.

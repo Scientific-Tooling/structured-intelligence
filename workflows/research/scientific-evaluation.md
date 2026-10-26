@@ -12,6 +12,13 @@ revisions, raw responses, model/index identity, native result caps, and duplicat
 handling. A new run must not overwrite an earlier run or use a researcher's active
 workspace. Prepared-source import checks do not measure extraction quality.
 
+The current runner requires RKS's `bm25-terms-v1` and `literal-phrase-v1` search
+metadata and rejects missing or changed method/parameter identities. Ranked term,
+literal phrase and local-hash results are recorded separately. Preserve the
+original `baseline-results.json`; use a new result file to compare behavior after
+the query-interpretation fix. Neither the questions nor the reference labels may
+be edited to improve a ranker's score.
+
 Then exercise the original-PDF reading journey. It creates unreviewed reading
 annotations, prepares dry-run reports, transactionally imports selected evidence,
 replays the import, and generates briefs. Browser verification checks that their

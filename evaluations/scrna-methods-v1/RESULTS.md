@@ -37,8 +37,8 @@ generalization estimates. No method or threshold was tuned after seeing scores.
 The two unanswerable probes were excluded from retrieval denominators; abstention
 accuracy and scientific answer accuracy remain unavailable (`null`).
 
-The native lexical result has a specific code-level explanation: RKS's current
-claim search uses `LIKE '%<complete query>%'`. The full natural-language questions
+The original native lexical result has a specific code-level explanation: RKS
+revision `b5aac77` used `LIKE '%<complete query>%'`. The full natural-language questions
 are not substrings of the passages. This is an interface/query-interpretation
 limitation, not a finding that the source material contains no relevant evidence.
 
@@ -78,16 +78,76 @@ valid alternatives or require correction. A generated brief is an inventory of
 recorded evidence, not a validated scientific synthesis. No researcher-effort
 improvement, clinical inference, or scientific release quality was established.
 
-The next engineering target is explicit, ranked term retrieval for natural-language
-questions in RKS. Address query interpretation in the shared search layer and
-retain an explicit phrase-search option, instead of silently switching methods
-only after empty results. Compare any implementation under a new method identity
-against these retained baselines, then validate on independently reviewed and
-newly held-out questions. A new embedding provider should be considered only with
-measured benefits and its own model/index/reindex provenance.
+The initial engineering target was explicit ranked term retrieval for
+natural-language questions in RKS. The follow-up below implements that change in
+the shared search layer and retains explicit phrase search. Independent review
+and newly held-out questions remain necessary. A new embedding provider should
+be considered only with measured benefits and its own model/index/reindex provenance.
 
 The reviewer packet, representative-corpus expansion, an independent question set,
 and a real researcher pilot remain the scientific acceptance path. Full Linux
 backend suites, installed-wheel smoke checks, and hosted cross-repository CI are
 separate reproducibility work; this checkpoint ran the research suite on Windows
 and Ubuntu and verified the three original-paper journeys locally.
+
+## Ranked-term fix and frozen-question rerun
+
+RKS commit `6fc5c61` replaces whole-query substring matching with shared ranked
+term retrieval across papers, claims, concepts, methods and datasets. The CLI,
+HTTP API and repository searches share the same implementation. Explicit
+`--mode phrase` provides literal substring matching without a fallback. Responses
+identify the lexical method, normalization, ranking policy and parameters.
+
+`bm25-terms-v1` fixes `k1=1.2`, `b=0.75`, Unicode NFKC/casefold normalization,
+complete alphanumeric terms, OR matching, and stable ID ties. It uses live records
+of each object type, with no stored-index synchronization requirement. Claims
+include linked concept names/aliases and selected scholarly context; workflow
+metadata and evaluation passage IDs are excluded. Query terms, relevance labels,
+source selections, corpus revision and question revision were unchanged. No
+parameters were tuned after the rerun.
+
+See [ranked-term-results.json](ranked-term-results.json) for every ranking and
+the native method metadata. The original `baseline-results.json` is preserved.
+
+| Method | Relevant target first | Relevant target in top five | Mean target recall at five | MRR at ten |
+| --- | --- | --- | --- | --- |
+| Original RKS lexical (`b5aac77`) | 0/18 | 0/18 | 0.0000 | 0.0000 |
+| Updated RKS `bm25-terms-v1` | 17/18 | 17/18 | 0.9074 | 0.9506 |
+| Explicit RKS `literal-phrase-v1` | 0/18 | 0/18 | 0.0000 | 0.0000 |
+| Unchanged RKS `local-hash-v1` | 5/18 | 9/18 | 0.4352 | 0.3858 |
+| Fixed standalone passage BM25 | 17/18 | 17/18 | 0.9074 | 0.9506 |
+
+The ranked-term top-five split is 12/13 development and 5/5 public reserved.
+The hash and standalone BM25 per-question rankings match the original recorded
+rankings exactly. As before, two insufficient-context probes are retained but
+excluded from retrieval denominators. The literal-phrase result is expected when
+complete question sentences do not occur in source passages; it is a deliberate
+lookup mode, not the default query interpretation.
+
+The remaining ranked-term miss is q02. Its draft target
+`vieth2019.normalization` appears ninth, with `lause2021.caveat` first. This is
+still a relevance-ranking limitation. It was not patched with a corpus-specific
+synonym, query rewrite, threshold, label revision or exclusion. The reserved set
+has already been observed and cannot become a new blind validation set. Next
+steps are independent review of all 20 questions and candidate alternatives,
+independently authored/newly held-out cases, then a measured semantic retrieval
+comparison if justified. Scientific answer and abstention accuracy remain null.
+
+Verification for this change:
+
+- Full RKS pytest suite: 155 tests and 26 subtests passed on Windows.
+- Repository-required full RKS unittest suite: 120 tests passed on Windows and
+  Ubuntu Python 3.10.
+- Full research/adapter/native CLI integration suite: 44 tests passed on Windows
+  and Ubuntu, including method-identity and changed-parameter rejection.
+- Search regressions cover CLI/HTTP agreement, default hybrid behavior, explicit
+  phrase matching, Unicode, literal punctuation, empty/unknown queries, stable
+  ordering, linked concept aliases, read-only search, and live updates/deletions.
+- All original PDF/JATS hashes and source/license transforms were reverified
+  before the fresh native benchmark workspace was created. Corpus/registry
+  validation, CLI help and Git whitespace checks passed.
+
+Complete raw responses, prepared sources and disposable workspace are retained
+locally under `.research-eval/ranked-terms-v1/`. This rerun did not repeat the
+original-PDF browser journeys or change APW code. Large-corpus latency, installed
+wheel smoke checks, hosted CI and researcher pilot outcomes were not measured.

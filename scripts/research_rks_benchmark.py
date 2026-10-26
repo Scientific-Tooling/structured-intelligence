@@ -23,6 +23,20 @@ from research_corpus import (
 from research_reading import WorkflowError, command_prefix, run_json
 
 
+NATIVE_METHODS = (("lexical", "rks-bm25-terms-v1"), ("phrase", "rks-literal-phrase-v1"),
+                  ("semantic", "rks-local-hash-v1"))
+
+
+def verify_search_identity(payload: dict, mode: str) -> dict:
+    metadata = payload.get("lexical_retrieval", {})
+    expected = "literal-phrase-v1" if mode == "phrase" else "bm25-terms-v1"
+    require(payload.get("mode") == mode and metadata.get("method") == expected,
+            "Native query interpretation changed; define a new evaluation method/version")
+    if mode != "phrase":
+        require(metadata.get("parameters") == {"k1": 1.2, "b": 0.75}, "Native BM25 parameters changed")
+    return metadata
+
+
 def run_benchmark(args: argparse.Namespace) -> dict:
     corpus, questions = load_corpus(args.corpus)
     # All integrity checks precede workspace creation. No fetch occurs here.
@@ -56,14 +70,18 @@ def run_benchmark(args: argparse.Namespace) -> dict:
         for claim_id, document in zip(imported["claim_ids"], selected, strict=True):
             require(claim_id not in claim_to_document, "Native claim identity collision")
             claim_to_document[claim_id] = document["id"]
-    methods: dict[str, dict] = {"rks-lexical-v1": {}, "rks-local-hash-v1": {}}
+    methods: dict[str, dict] = {name: {} for _, name in NATIVE_METHODS}
+    method_metadata = {}
     responses, timings = [], {name: [] for name in methods}
     for question in questions["questions"]:
-        for mode, name in (("lexical", "rks-lexical-v1"), ("semantic", "rks-local-hash-v1")):
+        for mode, name in NATIVE_METHODS:
             started = time.perf_counter()
             payload = run_json(rks + ["search", question["question"], "--mode", mode], env=env)
             timings[name].append(time.perf_counter() - started)
-            if mode == "lexical":
+            metadata = verify_search_identity(payload, mode)
+            require(name not in method_metadata or method_metadata[name] == metadata, "Native search policy changed during this run")
+            method_metadata[name] = metadata
+            if mode in {"lexical", "phrase"}:
                 matches = [(claim["id"], claim["text"]) for claim in payload["claims"]]
             else:
                 # Preserve the native global top-ten cap. Do not backfill after
@@ -84,8 +102,9 @@ def run_benchmark(args: argparse.Namespace) -> dict:
         "provenance": {
             "python": platform.python_version(), "rks_command": rks,
             "embedding_model": "local-hash-v1", "embedding_dimensions": 64,
+            "lexical_retrieval_by_method": method_metadata,
             "input_mode": "Prepared excerpts explicitly imported as extracted claims in a fresh disposable RKS workspace; no live extraction or reviewed graph promotion.",
-            "native_result_policy": "Verbatim questions; lexical claim order as returned; semantic claims within native global top ten, with no backfill.",
+            "native_result_policy": "Verbatim questions; ranked-term and literal-phrase claim order as returned, under separate method identities; semantic claims within native global top ten, with no backfill.",
             "bm25_comparison_notice": "BM25 ranks passages directly; RKS semantic results share a top-ten cap with papers/concepts. This compares exposed retrieval behavior, not isolated identical rankers.",
             "source_documents": {p["id"]: p["pdf"]["sha256"] for p in corpus["papers"]},
             "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
