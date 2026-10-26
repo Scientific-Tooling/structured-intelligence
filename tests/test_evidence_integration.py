@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
 from test_reading_integration import ADAPTER, APW_PYTHON, RKS_PYTHON, sample_pdf
 
@@ -71,6 +73,25 @@ print('{}')
             self.assertEqual(run_json(apply, env=env)["counts"]["added"], 2)
             self.assertEqual(run_json(apply, env=env)["counts"]["unchanged"], 2)
 
+            brief_command = [
+                sys.executable, str(ADAPTER.with_name("research_brief.py")), paper["id"],
+                "--question", "What is recorded in this synthetic reading fixture?",
+                "--workspace-id", "integration", "--rks-data-dir", str(data),
+                "--source-id", "reader", "--apw-db", str(db),
+                "--rks-python", RKS_PYTHON, "--apw-python", APW_PYTHON,
+            ]
+            brief_file = root / "brief.md"
+            brief = run_json(brief_command + ["--output", str(brief_file)])
+            self.assertEqual(brief["counts"]["linked_passages"], 2)
+            self.assertEqual(brief["counts"]["unreviewed"], 2)
+            links = re.findall(r"\[Open the supporting passage\]\(([^)]+)\)", brief_file.read_text(encoding="utf-8"))
+            self.assertEqual(len(links), 2)
+            query = parse_qs(urlsplit(links[0]).query)
+            resolve = apw + ["resolve-passage"]
+            for key, value in query.items():
+                resolve += ["--" + key.replace("_", "-"), value[0]]
+            self.assertEqual(run_json(resolve)["annotation"]["id"], annotation["id"])
+
             bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
             item = next(i for i in bundle["items"] if i["kind"] == "annotation")
             reviews = {"schema": "scientific-tooling.evidence-reviews.v1", "source_id": "reader",
@@ -103,6 +124,11 @@ print(json.dumps(AgentPdfWorkbenchService(Path(sys.argv[1])).delete_annotation(
             self.assertTrue(run_json([APW_PYTHON, "-c", delete, str(db), session_id])["deleted"])
             self.assertEqual(run_json(apply, env=env)["counts"]["unchanged"], 1)
             self.assertEqual(len(run_json(rks + ["note", "evidence", paper["id"]], env=env)["evidence"]), 2)
+            unavailable_file = root / "brief-after-deletion.md"
+            unavailable = run_json(brief_command + ["--output", str(unavailable_file)])
+            self.assertEqual(unavailable["counts"]["unavailable_passages"], 2)
+            self.assertEqual(unavailable["counts"]["linked_passages"], 0)
+            self.assertIn("Source quote", unavailable_file.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

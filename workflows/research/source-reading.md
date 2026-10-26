@@ -126,8 +126,10 @@ Selected export, native transactional RKS import, explicit revision acceptance,
 and merge/deletion behavior are implemented in the
 [evidence import workflow](evidence-import.md).
 
-1. Add and test viewer navigation to the supporting page/annotation, then produce
-   a source-linked brief. Current links reopen the reading session only.
-2. Exercise the full journey on a small rights-cleared corpus and perform browser
-   checks before declaring Phase 2 complete. Scientific review and a researcher
-   pilot require real participants and are not implied by the engineering tests.
+The [source-linked brief workflow](source-linked-brief.md) adds exact passage
+navigation after import. The reading-handoff URL still opens the session; generated
+brief citations include the PDF and passage identities.
+
+Exercise the journey on a representative rights-cleared scientific corpus before
+declaring Phase 2 complete. Scientific review and a researcher pilot require real
+participants and are not implied by generated fixtures or browser tests.

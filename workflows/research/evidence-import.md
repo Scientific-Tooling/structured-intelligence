@@ -80,8 +80,8 @@ metadata. It checks source identity, export/preview/apply, replay, explicit revi
 updates, and retention after APW deletion. RKS additionally tests concurrent imports,
 rollback, forced process termination, merge redirects, and snapshot restore.
 
-These are engineering tests. They establish neither a scientific review nor a
-researcher pilot. Page/annotation navigation, a source-linked research brief,
-browser validation, and the small redistributable corpus demonstration are the next
-Phase 2 slice. Hosted integration CI requires published compatible revisions;
-current adapter CI covers both adapters on Windows and Linux.
+Continue with the [source-linked brief](source-linked-brief.md) to generate a
+reading artifact and reopen its exact supporting passages. These are engineering
+tests; a scientific corpus, qualified review, and researcher pilot remain later
+requirements. Hosted integration CI requires published compatible revisions;
+current adapter CI covers the research adapters on Windows and Linux.
