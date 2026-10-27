@@ -38,7 +38,8 @@ The repository also includes a lightweight project landing page at `docs/index.h
 ### Read An RKS Paper In PDF Workbench
 
 Start with the [Windows/PowerShell walkthrough](workflows/research/windows-quickstart.md)
-for installation through a source-linked brief.
+or [Linux/macOS walkthrough](workflows/research/unix-quickstart.md) for installation
+through a source-linked brief.
 
 The [source-reading workflow](workflows/research/source-reading.md) connects an
 existing RKS paper to APW through their CLIs. It verifies and preserves the PDF
