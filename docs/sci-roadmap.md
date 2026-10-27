@@ -1,6 +1,6 @@
 # sci roadmap
 
-Updated October 27, 2026. Current baseline: **sci 0.3.0**.
+Updated October 27, 2026. Current baseline: **sci 0.3.1**.
 
 `sci` should help a researcher carry a question from papers to evidence, a
 defensible comparison, and a reproducible next step. The CLI maintains durable
@@ -14,7 +14,7 @@ for commands available today.
 
 ## Available today
 
-Version 0.3.0 provides:
+Version 0.3.1 provides:
 
 - One or more local PDFs under a shared research question, with `start`, `add`,
   `papers`, `open`, `status`, `resume`, and `stop`.
@@ -24,6 +24,8 @@ Version 0.3.0 provides:
   retained PDF snapshots and supporting-passage links.
 - A project brief that groups imported evidence by paper and shows coverage,
   including papers without evidence. It does not infer scientific conclusions.
+- A reader with project navigation, Evidence/Notes/Brief tabs, resizable sidebars,
+  focus mode and mobile drawers. Notes can link to readable supporting highlights.
 - JSON output and the bundled `paper-to-brief` agent skill, Windows/Linux/macOS
   workflows, and migration of existing single-paper workspaces.
 

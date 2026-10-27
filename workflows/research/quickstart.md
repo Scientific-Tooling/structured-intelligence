@@ -22,7 +22,7 @@ where the interpreter is named `python3`, use it for the installation command.
 If the environment's scripts directory is not on PATH, use
 `python -m scientific_tooling` in place of `sci`.
 
-`sci` is the short command. This workflow is version 0.3.0. The original
+`sci` is the short command. This workflow is version 0.3.1. The original
 `scientific-tooling` command remains an alias. Run the installation command above
 again to upgrade an existing environment; saved workspaces continue to work.
 
@@ -32,10 +32,14 @@ again to upgrade an existing environment; saved workspaces continue to work.
 sci start "paper.pdf" --question "What evidence addresses my question?" --workspace "my-review"
 ```
 
-The reader opens automatically. Highlight a passage, select it under **Evidence &
-brief**, and click **Preview selected evidence**. Inspect the quotes and comments,
-then click **Import evidence & create brief**. Download the brief or open its
-supporting passages. Imported observations remain unreviewed.
+The reader opens automatically. Highlight a passage, check it in the **Evidence**
+tab, and click **Preview selected evidence**. Inspect the quotes and comments,
+then click **Import evidence & create brief**. Open the **Brief** tab to download
+the brief or return to its supporting passages. Imported observations remain unreviewed.
+
+Use **Notes** to write a thought and link it to supporting highlights. Drag the
+sidebar edges to resize them, or choose **Focus on paper** for more reading space.
+On a phone, the Papers and Workspace buttons open one panel at a time.
 
 The CLI assigns and remembers an available local port. A second terminal is not
 needed. If the browser cannot open automatically, follow the returned URL.
@@ -71,7 +75,7 @@ sci open p2 --workspace "methods"
 sci brief --workspace "methods"
 ```
 
-Switch papers using **Project papers** in the reader. Refresh an open tab after
+Switch papers using **Project papers** in the reader. Use **Refresh project** after
 adding papers. Each paper keeps its own annotations, reading session and preview;
 all papers share the project's evidence database and question. Identical PDF bytes
 are reused, even under a different filename. Different versions are separate papers.

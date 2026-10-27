@@ -44,7 +44,8 @@ try {
   page.on("pageerror", error => errors.push(String(error)));
   await page.goto(opened.viewer_url);
   await expect(page.locator("#textLayer span").first()).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Evidence & brief", exact: true })).toBeVisible();
+  await expect(page.getByRole("tab", { name: /^Evidence/ })).toBeVisible();
+  await page.getByText("Highlight tools & comments", {exact: true}).click();
   await page.locator("#annotationCommentInput").fill("Unreviewed observation from the test source.");
   await page.evaluate(() => {
     const span = document.querySelector("#textLayer span");
@@ -55,13 +56,15 @@ try {
     selection.addRange(range);
   });
   await page.locator("#highlightBtn").click();
-  const panel = page.locator(".workflow-card");
+  const panel = page.locator(".panel.workspace");
   await expect(panel.getByRole("checkbox")).toHaveCount(1);
   await panel.getByRole("checkbox").check();
   await panel.getByRole("button", { name: "Preview selected evidence", exact: true }).click();
   await expect(panel.getByRole("region", { name: "Import preview" })).toContainText("Reading workflow test source.");
   await page.screenshot({ path: path.join(artifacts, "desktop-preview.png"), fullPage: true });
   await panel.getByRole("button", { name: "Import evidence & create brief", exact: true }).click();
+  await expect(panel.getByRole("button", {name: "View project brief →", exact: true})).toBeVisible();
+  await panel.getByRole("tab", {name: "Brief", exact: true}).click();
   await expect(panel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
   const downloadEvent = page.waitForEvent("download");
   await panel.getByRole("button", { name: "Download brief", exact: true }).click();
@@ -84,7 +87,8 @@ try {
   await expect(page.locator("#annotationList .selected")).toContainText("Reading workflow test source.");
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator("#toggleWorkspaceBtn").click();
-  await expect(panel.getByRole("heading", { name: "Evidence & brief", exact: true })).toBeVisible();
+  await expect(panel.getByRole("tab", { name: /^Evidence/ })).toBeVisible();
+  await panel.getByRole("tab", {name: "Brief", exact: true}).click();
   await expect(panel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "mobile-brief.png"), fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
@@ -97,11 +101,12 @@ try {
   await page.reload();
   const navigation = page.getByRole("navigation", { name: "Project papers" });
   await expect(navigation.getByRole("link")).toHaveCount(2);
-  const secondUrl = await navigation.getByRole("link", { name: "p2: second paper", exact: true }).getAttribute("href");
+  const secondUrl = await navigation.getByRole("link", { name: /p2.*second paper/ }).getAttribute("href");
   const secondTab = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   secondTab.on("pageerror", error => errors.push(String(error)));
   await secondTab.goto(secondUrl);
   await expect(secondTab.locator("#textLayer span").first()).toHaveText("Another workflow test source.");
+  await secondTab.getByText("Highlight tools & comments", {exact: true}).click();
   await secondTab.locator("#annotationCommentInput").fill("An observation from the second paper.");
   await secondTab.evaluate(() => {
     const range = document.createRange();
@@ -111,13 +116,15 @@ try {
     selection.addRange(range);
   });
   await secondTab.locator("#highlightBtn").click();
-  const secondPanel = secondTab.locator(".workflow-card");
+  const secondPanel = secondTab.locator(".panel.workspace");
   await expect(secondPanel.getByRole("checkbox")).toHaveCount(1);
   await secondPanel.getByRole("checkbox").check();
   await secondPanel.getByRole("button", { name: "Preview selected evidence", exact: true }).click();
   await expect(secondPanel.getByRole("region", { name: "Import preview" })).toContainText("Another workflow test source.");
   await expect(panel.getByRole("region", { name: "Import preview" })).toContainText("Reading workflow test source.");
   await secondPanel.getByRole("button", { name: "Import evidence & create brief", exact: true }).click();
+  await expect(secondPanel.getByRole("button", {name: "View project brief →", exact: true})).toBeVisible();
+  await secondPanel.getByRole("tab", {name: "Brief", exact: true}).click();
   await expect(secondPanel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
   const project = cli("status", "--paper", "p2");
   expect(project.brief.counts.evidence).toBe(2);
@@ -126,7 +133,12 @@ try {
   await secondTab.screenshot({ path: path.join(artifacts, "project-desktop.png"), fullPage: true });
   await secondTab.setViewportSize({ width: 390, height: 844 });
   await secondTab.locator("#toggleWorkspaceBtn").click();
+  await expect(secondPanel.getByRole("tab", {name: "Brief", exact: true})).toBeVisible();
+  await secondTab.locator("#toggleControlsBtn").click();
   await expect(secondTab.getByRole("navigation", { name: "Project papers" })).toBeVisible();
+  await expect(secondPanel).toBeHidden();
+  await secondTab.locator("#toggleWorkspaceBtn").click();
+  await expect(secondTab.getByRole("navigation", { name: "Project papers" })).toBeHidden();
   expect(await secondTab.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
   await secondTab.screenshot({ path: path.join(artifacts, "project-mobile.png"), fullPage: true });
   cli("stop");
