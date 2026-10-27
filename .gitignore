@@ -18,3 +18,8 @@ knowledge/outputs/**/*.tmp
 .site/
 # Local scientific-evaluation source caches, disposable workspaces, and run logs.
 .research-eval/
+.venv/
+.workflow-test/
+*.egg-info/
+build/
+dist/

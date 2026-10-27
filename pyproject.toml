@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scientific-tooling"
+version = "0.1.0"
+description = "A resumable local PDF-to-brief workflow for researchers and agents."
+readme = "workflows/research/quickstart.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = [
+  "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@b204e74c66a87683aa1cfa9fe6fbdffa6e1b84f5",
+  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@6e95aadc58657b7e3e6ce1cb08472efc00491d81",
+]
+
+[project.scripts]
+scientific-tooling = "scientific_tooling.cli:main"
+
+[tool.setuptools]
+include-package-data = false
+packages = ["scientific_tooling", "scientific_tooling.agent_skill"]
+package-dir = {"" = "src", "scientific_tooling.agent_skill" = "skills/paper-to-brief"}
+
+[tool.setuptools.package-data]
+"scientific_tooling.agent_skill" = ["SKILL.md", "agents/*.yaml"]

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper to Brief"
+  short_description: "Read a PDF and save evidence with source links"
+  default_prompt: "Use paper-to-brief to read this PDF and collect evidence relevant to my question."

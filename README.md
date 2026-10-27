@@ -35,6 +35,14 @@ The repository also includes a lightweight project landing page at `docs/index.h
 
 ## Quick Start
 
+### One Paper to a Source-Linked Brief
+
+Use the [guided workflow](workflows/research/quickstart.md) to install one package,
+open a PDF, select evidence in the reader, and download a brief. The
+`scientific-tooling` CLI manages the workspace and supports interruption recovery
+on Windows, Linux and macOS. Its bundled `paper-to-brief` skill lets an agent
+coordinate the same workflow through natural language.
+
 ### Read An RKS Paper In PDF Workbench
 
 Start with the [Windows/PowerShell walkthrough](workflows/research/windows-quickstart.md)

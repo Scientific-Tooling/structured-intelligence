@@ -1,0 +1,10 @@
+id: paper-to-brief
+name: Paper to Brief
+version: 0.1.0
+owner: mingzhang
+description: Read a local PDF, save selected evidence, and generate a source-linked brief in a resumable workspace.
+entrypoints:
+  - SKILL.md
+default_tools:
+  - Read
+  - Bash
