@@ -37,6 +37,10 @@ The repository also includes a lightweight project landing page at `docs/index.h
 
 ### One Paper to a Source-Linked Brief
 
+Use Python 3.12 or newer; **Python 3.14 is recommended** for the core tools.
+The repository default is recorded in `.python-version`. Bioinformatics Conda
+environments have their own dependency pins and are upgraded separately.
+
 Use the [guided workflow](workflows/research/quickstart.md) to install one package,
 open a PDF, select evidence in the reader, and download a brief. The
 `sci` CLI manages the workspace and supports interruption recovery

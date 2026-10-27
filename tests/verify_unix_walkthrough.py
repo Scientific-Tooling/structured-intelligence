@@ -175,8 +175,8 @@ def verify(shell: str) -> Path:
                 raise RuntimeError("Citation did not resolve to the selected passage")
             version = subprocess.check_output([str(work / ".venv/bin/python"), "-c", "import platform; print(platform.python_version())"],
                                               text=True, encoding="utf-8").strip()
-            if not (3, 10) <= tuple(map(int, version.split(".")[:2])) <= (3, 12):
-                raise RuntimeError("The walkthrough requires a Python 3.10-3.12 interpreter")
+            if tuple(map(int, version.split(".")[:2])) < (3, 12):
+                raise RuntimeError("The walkthrough requires Python 3.12 or newer (3.14 recommended)")
             receipt = {"passed": True, "platform": sys.platform, "shell": shell,
                        "python_version": version,
                        "source_commits": {repo: subprocess.check_output(["git", "-C", str(work / repo), "rev-parse", "HEAD"],

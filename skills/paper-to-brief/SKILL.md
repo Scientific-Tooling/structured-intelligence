@@ -16,7 +16,7 @@ workflow supports one paper and one question per workspace.
 Obtain the PDF path and question from the request. Reuse an explicitly identified
 workspace; otherwise choose a descriptive new directory in the user's workspace.
 The `scientific-tooling` package must be installed in the execution environment.
-Use its `sci` command (version 0.1.1 or later); `scientific-tooling` remains an
+Use its `sci` command (version 0.2.0 or later); `scientific-tooling` remains an
 equivalent compatibility alias.
 `sci doctor --json` checks its dependencies and reader assets.
 If unavailable, explain the missing installation and use the repository's

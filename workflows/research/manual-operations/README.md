@@ -27,7 +27,7 @@ From the repository root, run the native shell syntax checks:
 python -m unittest discover -s tests -p test_manual_docs.py -v
 ```
 
-On Linux or macOS with Python 3.10–3.12 and venv support, run the full manual
+On Linux or macOS with Python 3.12–3.15 and venv support, run the full manual
 workflow in fresh public checkouts:
 
 ```bash

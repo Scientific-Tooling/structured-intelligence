@@ -1,4 +1,4 @@
-"""Open a verified RKS source in APW using their public CLIs (Python 3.10+)."""
+"""Open a verified RKS source in APW using their public CLIs (Python 3.12+)."""
 
 from __future__ import annotations
 

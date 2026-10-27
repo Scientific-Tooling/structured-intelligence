@@ -13,15 +13,15 @@ Structured Intelligence connects their command-line tools. This walkthrough
 takes one local PDF through reading, selected evidence import, and a brief with
 a link back to the highlighted passage.
 
-**You need:** Linux or macOS, Bash or zsh, Git, Python 3.10–3.12 with working
+**You need:** Linux or macOS, Bash or zsh, Git, Python 3.12 or newer with working
 `venv`/pip, internet access for installation, and a local PDF you may use. Check
 `python3 --version` first. Debian/Ubuntu may require the `python3-venv` package
-matching your chosen interpreter. On macOS, use a suitable installed Python 3.
+matching your chosen interpreter. Python 3.14 is recommended on both platforms.
 No API key, MCP connection, Node.js, `jq`, or environment activation is needed
 for this path; APW's viewer assets are already built.
 
 If `python3` points to another version, use your supported interpreter (for
-example `python3.12`) for the one venv-creation command below.
+example `python3.14`) for the one venv-creation command below.
 
 > This is a source-checkout workflow. It requires the features in RKS
 > [6fc5c61](https://github.com/Scientific-Tooling/research-knowledge-substrate/commit/6fc5c61),

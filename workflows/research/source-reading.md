@@ -13,7 +13,7 @@ server or open a browser.
 
 ## Prerequisites
 
-- Python 3.10 or newer.
+- Python 3.12 or newer (3.14 recommended).
 - RKS installed from a checkout containing `rks papers source`.
 - APW installed, including its built viewer assets when using the viewer.
 - An RKS workspace containing a paper with an accessible local PDF.

@@ -13,9 +13,9 @@ Structured Intelligence connects their command-line tools. This walkthrough
 takes one local PDF through reading, selected evidence import, and a brief with
 a link back to the highlighted passage.
 
-**You need:** Windows, PowerShell 5.1 or 7, Git, Python 3.10–3.12 on PATH, an
-internet connection for installation, and a local PDF you may use. Python 3.12
-is the tested installation here. No API key, MCP connection, Node.js, or shell
+**You need:** Windows, PowerShell 5.1 or 7, Git, Python 3.12 or newer on PATH, an
+internet connection for installation, and a local PDF you may use. Python 3.14
+is recommended. No API key, MCP connection, Node.js, or shell
 activation is needed for this path; APW's viewer assets are already built.
 
 > This is a source-checkout workflow. It requires the features in RKS

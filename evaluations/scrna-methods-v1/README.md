@@ -55,7 +55,7 @@ Original PDFs are fetched into a local cache, not bundled in Git.
 ## Reproduce
 
 Run from the Structured Intelligence checkout. The validator, BM25 baseline, and
-review commands need only Python 3.10+. The native benchmark also needs the RKS
+review commands need only Python 3.12+ (3.14 recommended). The native benchmark also needs the RKS
 CLI; the original-PDF journey needs RKS/APW environments and a local APW viewer.
 
 ```bash

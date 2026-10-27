@@ -6,7 +6,8 @@ workspace. The same commands work on Windows, Linux and macOS.
 
 ## Install once
 
-Use Python 3.10–3.12 with pip and Git. Install into your chosen Python environment:
+Use Python 3.12 or newer with pip and Git; **Python 3.14 is recommended**.
+Install into your chosen Python environment:
 
 ```text
 python -m pip install --upgrade "git+https://github.com/Scientific-Tooling/structured-intelligence.git"
@@ -19,7 +20,7 @@ where the interpreter is named `python3`, use it for the installation command.
 If the environment's scripts directory is not on PATH, use
 `python -m scientific_tooling` in place of `sci`.
 
-`sci` is the short command, available in version 0.1.1 and later. The original
+`sci` is the short command. This workflow is version 0.2.0. The original
 `scientific-tooling` command remains an alias. Run the installation command above
 again to upgrade an existing environment; saved workspaces continue to work.
 
@@ -94,3 +95,17 @@ forward the returned port to the browser machine.
 
 For debugging or developing integrations with the individual tools, see
 [advanced manual operations](manual-operations/README.md).
+
+## Upgrading from Python 3.10 or 3.11
+
+Version 0.2.0 raises the minimum Python version to 3.12. Stop an active reader
+with the old environment's `sci stop --workspace "my-review"`, then create a
+fresh Python 3.14 virtual environment and install using the command above.
+Use the new environment's `sci resume --workspace "my-review"` to continue.
+Keep the saved workspace at the same absolute path; it is separate from the
+Python environment. Do not recreate it with `sci start` or copy an old virtual
+environment into a new interpreter.
+
+Core CI covers Python 3.12, 3.13, 3.14, and 3.15; 3.14 is the default for browser
+and native shell workflow checks. Scientific Conda environments retain their
+own pinned Python and analysis-library versions.
