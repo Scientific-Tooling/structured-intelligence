@@ -2,6 +2,10 @@
 
 Snapshot of in-flight and planned work. Update when scope shifts.
 
+For the `sci` CLI and research-project workflow, see the dedicated
+[sci roadmap](sci-roadmap.md), starting from the implemented multi-paper release.
+The roadmap below covers the repository's broader skills and agents.
+
 ## Done
 
 - Repository layout, registry schema, and `scripts/validate_structure.sh` quality gate.

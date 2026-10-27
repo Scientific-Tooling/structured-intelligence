@@ -4,6 +4,8 @@ Scientific Tooling now manages the RKS/APW workspace, reading session, import
 previews and reader process for you. Keep one or more PDFs under a shared research
 question in each project workspace. The same commands work on Windows, Linux and macOS.
 
+For planned capabilities and completion criteria, see the [sci roadmap](../../docs/sci-roadmap.md).
+
 ## Install once
 
 Use Python 3.12 or newer with pip and Git; **Python 3.14 is recommended**.

@@ -48,6 +48,9 @@ and download a combined brief with per-paper source links and coverage. The
 on Windows, Linux and macOS. Its bundled `paper-to-brief` skill lets an agent
 coordinate the same workflow through natural language.
 
+See the [sci roadmap](docs/sci-roadmap.md) for the current baseline, planned
+milestones and the criteria for completing each phase.
+
 For debugging, developing integrations, or connecting an existing RKS workspace,
 see [advanced manual operations](workflows/research/manual-operations/README.md).
 
