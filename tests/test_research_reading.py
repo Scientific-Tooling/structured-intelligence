@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import os
 import sys
 import tempfile
 import unittest
@@ -75,7 +76,7 @@ class ResearchReadingTest(unittest.TestCase):
     def test_reuses_matching_session_after_pagination(self) -> None:
         self.db.touch()
         ref = f"rks:review-a:p_000001:sha256:{self.source['pdf']['sha256']}"
-        snapshot = self.cache / f"{self.source['pdf']['sha256']}.pdf"
+        snapshot = (self.cache / f"{self.source['pdf']['sha256']}.pdf").resolve()
         session = {"id": "ps_existing", "paper_ref": ref, "pdf_uri": str(snapshot), "closed_at": None}
         with patch.object(
             workflow,
@@ -91,6 +92,21 @@ class ResearchReadingTest(unittest.TestCase):
         self.assertEqual(result["apw"]["session_id"], "ps_existing")
         self.assertEqual(run.call_args_list[-1].args[0][-2:], ["--offset", "100"])
 
+    def test_equivalent_snapshot_path_spelling_reuses_the_existing_session(self) -> None:
+        self.db.touch()
+        alias_directory = self.cache / "path-spelling"
+        alias_directory.mkdir(parents=True)
+        snapshot_alias = alias_directory / ".." / f"{self.source['pdf']['sha256']}.pdf"
+        session = {"id": "ps_alias", "paper_ref": f"rks:review-a:p_000001:sha256:{self.source['pdf']['sha256']}",
+                   "pdf_uri": str(snapshot_alias), "closed_at": None}
+        with patch.object(workflow, "run_json", side_effect=[self.source, {
+            "sessions": [session], "has_more": False,
+        }]) as run:
+            result = workflow.open_reading(self.args())
+        self.assertTrue(result["apw"]["reused_session"])
+        self.assertEqual(result["apw"]["session_id"], "ps_alias")
+        self.assertEqual(run.call_count, 2)  # No open-paper write after the source/list reads.
+
     def test_namespaces_separate_papers_with_identical_local_ids_and_bytes(self) -> None:
         references = []
         for workspace_id in ("review-a", "review-b"):
@@ -99,6 +115,23 @@ class ResearchReadingTest(unittest.TestCase):
             references.append(result["apw"]["paper_ref"])
             self.assertFalse(result["apw"]["reused_session"])
         self.assertNotEqual(*references)
+
+    def test_relative_session_path_is_not_reinterpreted_from_the_adapter_directory(self) -> None:
+        self.db.touch()
+        self.cache.mkdir()
+        candidate = {"id": "ps_relative", "paper_ref": f"rks:review-a:p_000001:sha256:{self.source['pdf']['sha256']}",
+                     "pdf_uri": f"{self.source['pdf']['sha256']}.pdf", "closed_at": None}
+        previous = Path.cwd()
+        try:
+            os.chdir(self.cache)
+            with patch.object(workflow, "run_json", side_effect=[self.source, {
+                "sessions": [candidate], "has_more": False,
+            }, {"id": "ps_new"}]):
+                result = workflow.open_reading(self.args())
+        finally:
+            os.chdir(previous)
+        self.assertFalse(result["apw"]["reused_session"])
+        self.assertEqual(result["apw"]["session_id"], "ps_new")
 
     def test_session_with_different_pdf_path_is_not_reused(self) -> None:
         self.db.touch()

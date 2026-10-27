@@ -72,7 +72,9 @@ copy is never published as the source. Existing copies are checked before reuse;
 corrupt copies produce an error rather than being silently overwritten.
 
 Sequential repeated opens reuse an active session for the same paper reference
-and snapshot path. A new PDF revision receives a new paper reference and session;
+and canonical absolute snapshot path. Equivalent absolute path spellings (including
+Windows short paths) resolve to that same location. Relative session paths are
+not reinterpreted from the adapter's working directory. A new PDF revision receives a new paper reference and session;
 the prior PDF copy remains available to its annotations. Simultaneous first opens
 can create separate sessions under the same paper reference. Session reuse is
 not a transaction or a guarantee of exactly-once creation.

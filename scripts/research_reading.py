@@ -134,8 +134,9 @@ def open_reading(args: argparse.Namespace) -> dict:
         for candidate in page["sessions"]:
             if (
                 candidate["paper_ref"] == paper_ref
-                and candidate["pdf_uri"] == str(snapshot)
                 and candidate["closed_at"] is None
+                and Path(candidate["pdf_uri"]).is_absolute()
+                and Path(candidate["pdf_uri"]).resolve() == snapshot
             ):
                 session = candidate
                 break
