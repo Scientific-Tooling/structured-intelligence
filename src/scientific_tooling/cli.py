@@ -45,7 +45,7 @@ def install_skill(destination: Path) -> dict:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog="scientific-tooling", description=__doc__)
+    parser = argparse.ArgumentParser(prog="sci", description=__doc__)
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)
     for name, help_text in (
@@ -133,7 +133,7 @@ def print_result(result: dict, as_json: bool) -> None:
         if result.get("running"):
             print(f"Reader: {result['viewer_url']}\nSelect highlights in the reader, then preview and import the evidence.")
         else:
-            print("Reader is stopped. Use scientific-tooling resume with this workspace.")
+            print("Reader is stopped. Use sci resume with this workspace.")
     if result.get("preview"):
         preview = result["preview"]
         print(f"Preview: {preview['id']}\nChanges: {json.dumps(preview['counts'])}")

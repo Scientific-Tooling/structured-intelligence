@@ -1,7 +1,7 @@
 skills:
   - id: paper-to-brief
     name: Paper to Brief
-    version: 0.1.0
+    version: 0.1.1
     path: skills/paper-to-brief
     config: skills/paper-to-brief/config.yaml
   - id: research

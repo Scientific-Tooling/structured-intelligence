@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scientific-tooling"
-version = "0.1.0"
+version = "0.1.1"
 description = "A resumable local PDF-to-brief workflow for researchers and agents."
 readme = "workflows/research/quickstart.md"
 requires-python = ">=3.10"
@@ -15,6 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
+sci = "scientific_tooling.cli:main"
 scientific-tooling = "scientific_tooling.cli:main"
 
 [tool.setuptools]

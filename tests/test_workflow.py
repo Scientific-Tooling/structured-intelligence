@@ -2,9 +2,10 @@
 from __future__ import annotations
 
 import json
+import os
 import socket
 import subprocess
-import sys
+import sysconfig
 import tempfile
 import unittest
 from pathlib import Path
@@ -48,7 +49,8 @@ class WorkflowTest(unittest.TestCase):
         self.addCleanup(lambda: server.stop(self.workspace))
 
     def cli(self, *args, code=0):
-        result = subprocess.run([sys.executable, "-m", "scientific_tooling", *args,
+        executable = Path(sysconfig.get_path("scripts")) / ("sci.exe" if os.name == "nt" else "sci")
+        result = subprocess.run([str(executable), *args,
                                  "--workspace", str(self.workspace.root), "--json"],
                                 capture_output=True, text=True, encoding="utf-8", timeout=60)
         self.assertEqual(result.returncode, code, result.stderr + result.stdout)

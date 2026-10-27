@@ -9,20 +9,24 @@ workspace. The same commands work on Windows, Linux and macOS.
 Use Python 3.10–3.12 with pip and Git. Install into your chosen Python environment:
 
 ```text
-python -m pip install "git+https://github.com/Scientific-Tooling/structured-intelligence.git"
-scientific-tooling doctor
+python -m pip install --upgrade "git+https://github.com/Scientific-Tooling/structured-intelligence.git"
+sci doctor
 ```
 
 This source installation includes compatible RKS and APW dependencies and the
 prebuilt reader. No Node.js, model API key or MCP setup is required. On systems
 where the interpreter is named `python3`, use it for the installation command.
 If the environment's scripts directory is not on PATH, use
-`python -m scientific_tooling` in place of `scientific-tooling`.
+`python -m scientific_tooling` in place of `sci`.
+
+`sci` is the short command, available in version 0.1.1 and later. The original
+`scientific-tooling` command remains an alias. Run the installation command above
+again to upgrade an existing environment; saved workspaces continue to work.
 
 ## Open your paper
 
 ```text
-scientific-tooling start "paper.pdf" --question "What evidence addresses my question?" --workspace "my-review"
+sci start "paper.pdf" --question "What evidence addresses my question?" --workspace "my-review"
 ```
 
 The reader opens automatically. Highlight a passage, select it under **Evidence &
@@ -38,7 +42,7 @@ needed. If the browser cannot open automatically, follow the returned URL.
 Install the bundled skill into the skills directory used by your agent:
 
 ```text
-scientific-tooling skill --dest "~/.codex/skills"
+sci skill --dest "~/.codex/skills"
 ```
 
 For another host, give its skills directory, such as `~/.claude/skills`.
@@ -55,9 +59,9 @@ its own data-handling behavior.
 ## Continue later
 
 ```text
-scientific-tooling resume --workspace "my-review"
-scientific-tooling status --workspace "my-review"
-scientific-tooling stop --workspace "my-review"
+sci resume --workspace "my-review"
+sci status --workspace "my-review"
+sci stop --workspace "my-review"
 ```
 
 Resume preserves the paper, question, session, previews and imported evidence.
@@ -71,9 +75,9 @@ Every command supports `--json`. `status` returns annotations and notes while th
 reader is running. Preview uses only explicitly selected IDs:
 
 ```text
-scientific-tooling preview --workspace "my-review" --annotation ANNOTATION_ID --json
-scientific-tooling apply PREVIEW_ID --workspace "my-review" --json
-scientific-tooling brief --workspace "my-review" --json
+sci preview --workspace "my-review" --annotation ANNOTATION_ID --json
+sci apply PREVIEW_ID --workspace "my-review" --json
+sci brief --workspace "my-review" --json
 ```
 
 Use the IDs returned by status/preview. Exact replays do not duplicate evidence.

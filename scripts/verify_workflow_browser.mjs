@@ -27,8 +27,11 @@ content += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n`;
 for (const offset of offsets.slice(1)) content += `${String(offset).padStart(10, "0")} 00000 n \n`;
 content += `trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF\n`;
 fs.writeFileSync(pdf, content);
-const cli = (...args) => JSON.parse(execFileSync(python,
-  ["-m", "scientific_tooling", ...args, "--workspace", workspace, "--json"],
+const executable = execFileSync(python, ["-c",
+  "import os, pathlib, sysconfig; print(pathlib.Path(sysconfig.get_path('scripts')) / ('sci.exe' if os.name == 'nt' else 'sci'))"],
+  { encoding: "utf8", timeout: 10000 }).trim();
+const cli = (...args) => JSON.parse(execFileSync(executable,
+  [...args, "--workspace", workspace, "--json"],
   { encoding: "utf8", timeout: 60000 }));
 const { chromium, expect: baseExpect } = createRequire(path.join(path.resolve(apw), "package.json"))("@playwright/test");
 const expect = baseExpect.configure({ timeout: 20000 });

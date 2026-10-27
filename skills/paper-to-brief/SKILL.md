@@ -16,7 +16,9 @@ workflow supports one paper and one question per workspace.
 Obtain the PDF path and question from the request. Reuse an explicitly identified
 workspace; otherwise choose a descriptive new directory in the user's workspace.
 The `scientific-tooling` package must be installed in the execution environment.
-`scientific-tooling doctor --json` checks its dependencies and reader assets.
+Use its `sci` command (version 0.1.1 or later); `scientific-tooling` remains an
+equivalent compatibility alias.
+`sci doctor --json` checks its dependencies and reader assets.
 If unavailable, explain the missing installation and use the repository's
 `workflows/research/quickstart.md` when accessible. Do not invent a package release.
 
@@ -25,7 +27,7 @@ If unavailable, explain the missing installation and use the repository's
 Use argument arrays or correctly quoted paths. All commands accept `--json` for
 machine-readable results. Keep the same workspace throughout the task.
 
-1. Start with `scientific-tooling start "paper.pdf" --question "the question"
+1. Start with `sci start "paper.pdf" --question "the question"
    --workspace "review" --no-open --json`. For existing work, use `resume
    --workspace "review" --no-open --json`. Show or open the returned `viewer_url`.
    The CLI owns the reader process, IDs, isolated databases and retained PDF.
