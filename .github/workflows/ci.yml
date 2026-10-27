@@ -30,6 +30,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Test research adapters
-        run: python -m unittest discover -s tests -p "test_research_*.py" -v
+        run: python scripts/run_research_tests.py
       - name: Validate scientific corpus and frozen questions
         run: python scripts/research_corpus.py validate
