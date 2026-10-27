@@ -43,17 +43,8 @@ open a PDF, select evidence in the reader, and download a brief. The
 on Windows, Linux and macOS. Its bundled `paper-to-brief` skill lets an agent
 coordinate the same workflow through natural language.
 
-### Read An RKS Paper In PDF Workbench
-
-Start with the [Windows/PowerShell walkthrough](workflows/research/windows-quickstart.md)
-or [Linux/macOS walkthrough](workflows/research/unix-quickstart.md) for installation
-through a source-linked brief.
-
-The [source-reading workflow](workflows/research/source-reading.md) connects an
-existing RKS paper to APW through their CLIs. It verifies and preserves the PDF
-revision, reuses an active reading session, and returns a viewer link. Continue
-with [selected evidence import](workflows/research/evidence-import.md) and
-[passage-linked briefs](workflows/research/source-linked-brief.md).
+For debugging, developing integrations, or connecting an existing RKS workspace,
+see [advanced manual operations](workflows/research/manual-operations/README.md).
 
 ### Use The `research` Skill
 

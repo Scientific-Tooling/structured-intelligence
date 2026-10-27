@@ -92,5 +92,5 @@ occupied by another program is reported without terminating that program or
 silently changing existing citation addresses. For SSH, use `--no-open` and
 forward the returned port to the browser machine.
 
-The [Windows](windows-quickstart.md) and [Linux/macOS](unix-quickstart.md) manual
-walkthroughs remain useful for inspecting the individual underlying tools.
+For debugging or developing integrations with the individual tools, see
+[advanced manual operations](manual-operations/README.md).

@@ -29,6 +29,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Check advanced manual command syntax
+        run: python -m unittest discover -s tests -p test_manual_docs.py -v
       - name: Test research adapters
         run: python scripts/run_research_tests.py
       - name: Validate scientific corpus and frozen questions
@@ -96,3 +98,40 @@ jobs:
             ${{ runner.temp }}/workflow-browser/*.json
             ${{ runner.temp }}/workflow-browser/*.md
           retention-days: 7
+
+  unix-walkthrough:
+    name: Unix walkthrough (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            shells: bash
+          - os: macos-latest
+            shells: bash zsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -p test_manual_docs.py -v
+      - name: Run the documented Unix workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          for smoke_shell in ${{ matrix.shells }}; do
+            python tests/verify_unix_walkthrough.py --shell "$smoke_shell"
+          done
+      - name: Retain walkthrough diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unix-walkthrough-${{ matrix.os }}
+          path: |
+            .workflow-test/manual/unix-*/terminal-*.log
+            .workflow-test/manual/unix-*/receipt.json
+            .workflow-test/manual/unix-*/terminal-a.sh
+            .workflow-test/manual/unix-*/server-sample.txt
+          retention-days: 7
+          include-hidden-files: true
