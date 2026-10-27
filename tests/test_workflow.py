@@ -15,12 +15,12 @@ from urllib.parse import urlsplit
 from scientific_tooling import reading, server
 from scientific_tooling.cli import install_skill
 from scientific_tooling.reading import WorkflowError
-from scientific_tooling.state import lock
+from scientific_tooling.state import lock, read_json, write_json
 from scientific_tooling.workspace import Workspace
 
 
-def pdf_bytes() -> bytes:
-    text = b"BT /F1 12 Tf 72 720 Td (Reading workflow test source.) Tj ET"
+def pdf_bytes(quote: str = "Reading workflow test source.") -> bytes:
+    text = f"BT /F1 12 Tf 72 720 Td ({quote}) Tj ET".encode()
     objects = [b"<< /Type /Catalog /Pages 2 0 R >>", b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
                b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>",
                b"<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>",
@@ -120,7 +120,7 @@ class WorkflowTest(unittest.TestCase):
                 self.workspace.apply(preview["id"])
         result = self.workspace.apply(preview["id"])
         self.assertEqual(result["result"]["counts"]["unchanged"], 1)
-        evidence = self.workspace.rks("note", "evidence", self.workspace.load()["paper_id"])
+        evidence = self.workspace.rks("note", "evidence", self.workspace.load()["papers"][0]["paper_id"])
         self.assertEqual(len(evidence["evidence"]), 1)
 
     def test_changed_annotation_requires_new_preview_and_explicit_update(self):
@@ -173,6 +173,127 @@ class WorkflowTest(unittest.TestCase):
         self.assertIn("name: paper-to-brief", (skill / "SKILL.md").read_text())
         with self.assertRaisesRegex(WorkflowError, "already exists"):
             install_skill(self.root / "skills")
+
+    def test_multi_paper_cli_browser_sessions_and_project_brief(self):
+        first = self.cli("resume", "--no-open")
+        second_pdf = self.root / "second.pdf"
+        second_pdf.write_bytes(pdf_bytes("Second independent source."))
+        self.assertEqual(self.cli("add", str(second_pdf))["added"], ["p2"])
+        self.assertEqual(self.cli("add", str(second_pdf))["added"], [])
+        papers = self.cli("papers")["papers"]
+        self.assertEqual(len(papers), 2)
+        self.assertNotEqual(papers[0]["session_id"], papers[1]["session_id"])
+        self.assertEqual(papers[0]["viewer_url"], first["viewer_url"])
+        self.assertIn("--paper", self.cli("annotate", "--page", "1", "--quote", "test", code=1)["message"])
+        previews = []
+        port = self.workspace.load()["port"]
+        for paper, quote in zip(papers, ("Reading workflow test source.", "Second independent source.")):
+            opened = self.cli("open", paper["key"], "--no-open")
+            self.assertEqual(opened["session_id"], paper["session_id"])
+            annotation = self.cli("annotate", "--paper", paper["key"], "--page", "1", "--quote", quote)["id"]
+            # Same HTTP boundary as two browser tabs, each bound to its own session.
+            preview = server.request(port, "/api/workflow", {"action": "preview", "session_id": paper["session_id"],
+                                     "annotation_ids": [annotation], "note_ids": []})["preview"]
+            previews.append(preview)
+        with self.assertRaisesRegex(WorkflowError, "current preview for this paper"):
+            server.request(port, "/api/workflow", {"action": "apply", "session_id": papers[1]["session_id"],
+                           "preview_id": previews[0]["id"]})
+        for paper, preview in zip(papers, previews):
+            result = server.request(port, "/api/workflow", {"action": "apply", "session_id": paper["session_id"],
+                                    "preview_id": preview["id"]})
+            self.assertTrue(result["applied"])
+        gap = self.root / "unread.pdf"
+        gap.write_bytes(pdf_bytes("A third source without imported evidence."))
+        old_brief = Path(self.workspace.summary()["brief"]["path"])
+        self.cli("add", str(gap))
+        self.assertIsNone(self.workspace.summary()["brief"])
+        self.assertTrue(old_brief.is_file())
+        result = self.cli("brief")["brief"]
+        self.assertEqual(result["paper_count"], 3)
+        self.assertEqual(result["counts"]["evidence"], 2)
+        self.assertEqual(result["counts"]["unreviewed"], 2)
+        self.assertEqual(result["papers"][2]["counts"]["evidence"], 0)
+        text = Path(result["path"]).read_text(encoding="utf-8")
+        self.assertIn("Second independent source.", text)
+        self.assertIn("coverage gap", text)
+        self.cli("stop")
+        resumed = self.cli("resume", "--paper", "p2", "--no-open")
+        self.assertEqual(resumed["viewer_url"], papers[1]["viewer_url"])
+        for url in resumed["brief"]["passage_urls"]:
+            citation = urlsplit(url)
+            self.assertIn(server.request(citation.port, "/api/passage?" + citation.query)["annotation"]["quote"],
+                          ("Reading workflow test source.", "Second independent source."))
+
+    def test_addition_recovers_lost_response_and_retains_same_named_papers(self):
+        first = self.cli("resume", "--no-open")
+        directory = self.root / "other"
+        directory.mkdir()
+        second = directory / self.pdf.name
+        second.write_bytes(pdf_bytes("Different content with the same filename."))
+        original = self.workspace.rks
+        def lose_ingest(*args, **kwargs):
+            result = original(*args, **kwargs)
+            if args[:2] == ("ingest", "pdf"):
+                raise WorkflowError("lost second ingestion response")
+            return result
+        with patch.object(self.workspace, "rks", side_effect=lose_ingest):
+            with self.assertRaisesRegex(WorkflowError, "lost second"):
+                self.workspace.add([second])
+        pending = self.cli("status", "--paper", "p2")
+        self.assertEqual(pending["phase"], "initializing")
+        resumed = self.cli("open", "p2", "--no-open")
+        self.assertNotEqual(resumed["session_id"], first["session_id"])
+        self.assertEqual(self.workspace.rks("papers", "list")["total_count"], 2)
+        self.assertEqual(len(self.workspace.apw("list-sessions")["sessions"]), 2)
+        papers = self.workspace.load()["papers"]
+        self.assertEqual(papers[0]["title"], papers[1]["title"])
+        self.assertNotEqual(papers[0]["paper_id"], papers[1]["paper_id"])
+        # Duplicate bytes at a different path still refer to the same paper.
+        copy = self.root / "copy.pdf"
+        copy.write_bytes(second.read_bytes())
+        self.assertEqual(self.workspace.add([copy]), [])
+
+    def test_all_inputs_validated_before_start_or_add(self):
+        bad = self.root / "bad.pdf"
+        bad.write_text("not a PDF")
+        second = self.root / "valid.pdf"
+        second.write_bytes(pdf_bytes("Another source."))
+        before = self.workspace.file.read_bytes()
+        with self.assertRaisesRegex(WorkflowError, "PDF header"):
+            self.workspace.add([second, bad])
+        self.assertEqual(before, self.workspace.file.read_bytes())
+        other = Workspace(self.root / "new")
+        with self.assertRaisesRegex(WorkflowError, "PDF header"):
+            other.create([second, bad], "A question")
+        self.assertFalse(other.file.exists())
+        self.workspace = other
+        started = self.cli("start", str(second), str(self.pdf), str(second), "--question", "A question", "--no-open")
+        self.assertEqual(started["paper_count"], 2)
+        self.assertEqual(len(other.load()["papers"]), 2)
+
+    def test_legacy_manifest_migration_keeps_evidence_and_source_links(self):
+        annotation = self.annotation()
+        preview = self.workspace.preview([annotation], [])
+        self.workspace.apply(preview["id"])
+        self.workspace.make_brief()
+        before = self.workspace.summary()
+        self.cli("stop")
+        data = self.workspace.load()
+        paper = data.pop("papers")[0]
+        handoff = self.workspace.root / paper.pop("handoff")
+        write_json(self.workspace.root / "handoff.json", read_json(handoff))
+        paper.pop("key")
+        paper.pop("title")
+        data.update(paper, schema="scientific-tooling.workspace.v1")
+        write_json(self.workspace.file, data)
+        self.workspace.summary()  # A read does not rewrite legacy state.
+        self.assertEqual(read_json(self.workspace.file)["schema"], "scientific-tooling.workspace.v1")
+        resumed = self.cli("resume", "--no-open")
+        self.assertEqual(resumed["viewer_url"], before["viewer_url"])
+        self.assertEqual(resumed["preview"], before["preview"])
+        self.assertEqual(resumed["brief"], before["brief"])
+        self.assertEqual(read_json(self.workspace.root / "workspace.v1.json"), data)
+        self.assertEqual(self.workspace.apply(preview["id"])["result"]["counts"]["unchanged"], 1)
 
 
 if __name__ == "__main__":

@@ -32,13 +32,14 @@ def request(port: int, path: str, payload: dict | None = None, *, timeout: float
             return json.load(response)
     except HTTPError as exc:
         try:
-            message = json.load(exc).get("error", str(exc))
+            with exc:
+                message = json.load(exc).get("error", str(exc))
         except (ValueError, AttributeError):
             message = str(exc)
         raise WorkflowError(message) from exc
 
 
-def running(workspace: Workspace, *, detailed: bool = True) -> dict | None:
+def running(workspace: Workspace, *, detailed: bool = True, paper: str | None = None) -> dict | None:
     path = workspace.root / "server.json"
     if not path.is_file():
         return None
@@ -49,15 +50,20 @@ def running(workspace: Workspace, *, detailed: bool = True) -> dict | None:
         return None
     if response.get("instance_id") == record["instance_id"] and response.get("workspace_id") == record["workspace_id"]:
         if detailed:
-            return request(record["port"], "/api/workflow?" + urlencode({"session_id": response["session_id"]}))
+            selected = workspace.summary(paper)
+            if selected["session_id"] is None:
+                return {**selected, "running": True, "next_action": "Resume to finish preparing this paper."}
+            return request(record["port"], "/api/workflow?" + urlencode({"session_id": selected["session_id"]}))
         return response
     return None
 
 
-def ensure_running(workspace: Workspace, *, detailed: bool = True) -> dict:
-    existing = running(workspace, detailed=detailed)
+def ensure_running(workspace: Workspace, *, detailed: bool = True, paper: str | None = None) -> dict:
+    existing = running(workspace, detailed=False)
     if existing:
-        return existing
+        if any(p["phase"] == "initializing" for p in workspace.load()["papers"]):
+            workspace.prepare()
+        return running(workspace, detailed=detailed, paper=paper)
     with lock(workspace.root / "server.lock"):
         workspace.prepare()
     command = [sys.executable, "-m", "scientific_tooling", "serve", "--workspace", str(workspace.root)]
@@ -67,7 +73,7 @@ def ensure_running(workspace: Workspace, *, detailed: bool = True) -> dict:
                                cwd=os.path.dirname(sys.executable), env={**os.environ, "PYTHONIOENCODING": "utf-8"}, **options)
     deadline = time.monotonic() + 20
     while time.monotonic() < deadline:
-        current = running(workspace, detailed=detailed)
+        current = running(workspace, detailed=detailed, paper=paper)
         if current:
             return current
         if process.poll() is not None:
@@ -108,7 +114,8 @@ class HostedWorkflow:
         self.workspace, self.service = workspace, service
         self.instance_id, self.token = instance_id, token
         self.workspace_id = workspace.load()["workspace_id"]
-        self.session_id = read_json(workspace.root / "handoff.json")["apw"]["session_id"]
+        data = workspace.load()
+        self.session_id = read_json(workspace.root / data["papers"][0]["handoff"])["apw"]["session_id"]
         self.server = None
 
     def status(self, session_id: str | None) -> dict:
@@ -117,9 +124,11 @@ class HostedWorkflow:
             return {"enabled": True, "running": True, "instance_id": self.instance_id,
                     "workspace_id": self.workspace_id, "session_id": self.session_id}
         try:
-            data = self.workspace.summary()
-            if session_id and data["session_id"] != session_id:
+            try:
+                paper = self.workspace.for_session(session_id)
+            except WorkflowError:
                 return {"enabled": False}
+            data = self.workspace.summary(paper)
             data.update(enabled=True, instance_id=self.instance_id, running=True)
             # Read the whole selection space through APW's public service, including
             # pagination; do not query APW's SQLite tables from orchestration.
@@ -145,14 +154,12 @@ class HostedWorkflow:
                     raise WorkflowError("Only the owning workflow can stop this reader.")
                 Thread(target=self.server.shutdown, daemon=True).start()
                 return {"stopping": True}
-            session_id = read_json(self.workspace.root / "handoff.json")["apw"]["session_id"]
-            if payload.get("session_id") != session_id:
-                raise WorkflowError("This operation belongs to a different reading session.")
+            paper = self.workspace.for_session(payload.get("session_id"))
             if action == "preview":
-                result = self.workspace.preview(payload.get("annotation_ids", []), payload.get("note_ids", []))
+                result = self.workspace.preview(payload.get("annotation_ids", []), payload.get("note_ids", []), paper)
                 return {"preview": result}
             if action == "apply":
-                result = self.workspace.apply(payload.get("preview_id"))
+                result = self.workspace.apply(payload.get("preview_id"), paper=paper)
                 if result["applied"]:
                     # Keep the successful import receipt even if generating the brief
                     # fails. A retry can safely replay or request only the brief.
@@ -213,13 +220,14 @@ def _serve_owned(workspace: Workspace, instance_id: str, token: str) -> None:
         server.server_close()
 
 
-def annotate(workspace: Workspace, page: int, quote: str, comment: str) -> dict:
+def annotate(workspace: Workspace, page: int, quote: str, comment: str, paper: str | None = None) -> dict:
     import uuid
     from datetime import datetime, timezone
 
     if page < 1 or not quote.strip():
         raise WorkflowError("An annotation needs a positive page number and an exact source quote.")
-    state = ensure_running(workspace)
+    selected = workspace.select(workspace.load(), paper)
+    state = ensure_running(workspace, paper=selected["key"])
     now = datetime.now(timezone.utc).isoformat()
     annotation = {"id": "ann_" + uuid.uuid4().hex, "page": page, "type": "highlight", "quote": quote,
                   "anchor": None, "rects": [], "comment": comment, "tags": [], "createdAt": now, "updatedAt": now}

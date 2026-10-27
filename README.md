@@ -35,14 +35,15 @@ The repository also includes a lightweight project landing page at `docs/index.h
 
 ## Quick Start
 
-### One Paper to a Source-Linked Brief
+### Papers to a Source-Linked Project Brief
 
 Use Python 3.12 or newer; **Python 3.14 is recommended** for the core tools.
 The repository default is recorded in `.python-version`. Bioinformatics Conda
 environments have their own dependency pins and are upgraded separately.
 
 Use the [guided workflow](workflows/research/quickstart.md) to install one package,
-open a PDF, select evidence in the reader, and download a brief. The
+open one or more PDFs under a research question, select evidence in the reader,
+and download a combined brief with per-paper source links and coverage. The
 `sci` CLI manages the workspace and supports interruption recovery
 on Windows, Linux and macOS. Its bundled `paper-to-brief` skill lets an agent
 coordinate the same workflow through natural language.

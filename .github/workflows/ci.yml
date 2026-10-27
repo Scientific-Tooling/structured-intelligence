@@ -81,7 +81,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Scientific-Tooling/agent-pdf-workbench
-          ref: dec1c1602f4b20605dead4d6f504b0f3d53f66e3
+          ref: 36112db1776b8543a062f57234df7290309137dc
           path: apw
       - uses: actions/setup-python@v5
         with:

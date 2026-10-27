@@ -88,11 +88,62 @@ try {
   await expect(panel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
   await page.screenshot({ path: path.join(artifacts, "mobile-brief.png"), fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
+  // Grow an existing project while the first paper's tab remains open.
+  const secondPdf = path.join(artifacts, "second paper.pdf");
+  fs.writeFileSync(secondPdf, content.replace("Reading workflow test source.", "Another workflow test source."));
+  const added = cli("add", secondPdf);
+  expect(added.added).toEqual(["p2"]);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.reload();
+  const navigation = page.getByRole("navigation", { name: "Project papers" });
+  await expect(navigation.getByRole("link")).toHaveCount(2);
+  const secondUrl = await navigation.getByRole("link", { name: "p2: second paper", exact: true }).getAttribute("href");
+  const secondTab = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  secondTab.on("pageerror", error => errors.push(String(error)));
+  await secondTab.goto(secondUrl);
+  await expect(secondTab.locator("#textLayer span").first()).toHaveText("Another workflow test source.");
+  await secondTab.locator("#annotationCommentInput").fill("An observation from the second paper.");
+  await secondTab.evaluate(() => {
+    const range = document.createRange();
+    range.selectNodeContents(document.querySelector("#textLayer span"));
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  });
+  await secondTab.locator("#highlightBtn").click();
+  const secondPanel = secondTab.locator(".workflow-card");
+  await expect(secondPanel.getByRole("checkbox")).toHaveCount(1);
+  await secondPanel.getByRole("checkbox").check();
+  await secondPanel.getByRole("button", { name: "Preview selected evidence", exact: true }).click();
+  await expect(secondPanel.getByRole("region", { name: "Import preview" })).toContainText("Another workflow test source.");
+  await expect(panel.getByRole("region", { name: "Import preview" })).toContainText("Reading workflow test source.");
+  await secondPanel.getByRole("button", { name: "Import evidence & create brief", exact: true }).click();
+  await expect(secondPanel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
+  const project = cli("status", "--paper", "p2");
+  expect(project.brief.counts.evidence).toBe(2);
+  expect(project.brief.counts.unreviewed).toBe(2);
+  expect(project.brief.text).toContain("## Coverage");
+  await secondTab.screenshot({ path: path.join(artifacts, "project-desktop.png"), fullPage: true });
+  await secondTab.setViewportSize({ width: 390, height: 844 });
+  await secondTab.locator("#toggleWorkspaceBtn").click();
+  await expect(secondTab.getByRole("navigation", { name: "Project papers" })).toBeVisible();
+  expect(await secondTab.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
+  await secondTab.screenshot({ path: path.join(artifacts, "project-mobile.png"), fullPage: true });
+  cli("stop");
+  cli("resume", "--no-open");
+  await secondTab.setViewportSize({ width: 1440, height: 1000 });
+  for (const url of project.brief.passage_urls) {
+    await secondTab.goto(url);
+    await expect(secondTab.locator("#annotationList .selected")).toBeVisible();
+    await expect(secondTab.locator("#textLayer span").first()).toBeVisible();
+  }
+  fs.writeFileSync(path.join(artifacts, "project-brief.md"), project.brief.text);
   expect(errors).toEqual([]);
   fs.writeFileSync(path.join(artifacts, "receipt.json"), JSON.stringify({
     passed: true, user_created_highlight: true, preview_and_apply: true, download: true,
     passage_link: true, stop_and_resume: true, desktop_and_mobile: true, page_errors: errors,
-    workspace, brief: resumed.brief.path,
+    multiple_papers: true, separate_tabs: true, project_citations_after_resume: true,
+    workspace, brief: project.brief.path,
   }, null, 2));
   console.log(`Browser journey passed. Artifacts: ${artifacts}`);
 } finally {

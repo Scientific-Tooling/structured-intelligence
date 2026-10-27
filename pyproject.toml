@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scientific-tooling"
-version = "0.2.0"
-description = "A resumable local PDF-to-brief workflow for researchers and agents."
+version = "0.3.0"
+description = "Resumable multi-paper research projects and source-linked briefs for researchers and agents."
 readme = "workflows/research/quickstart.md"
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
   "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@fd44ad7388abb482a5980508531383cacf4da381",
-  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@dec1c1602f4b20605dead4d6f504b0f3d53f66e3",
+  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@36112db1776b8543a062f57234df7290309137dc",
 ]
 
 [project.scripts]

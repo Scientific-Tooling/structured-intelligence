@@ -64,7 +64,8 @@ def check_passage(apw: list[str], record: dict, passage: dict) -> tuple[bool, st
     return True, "Source and annotation revision verified; the viewer checks page text when opened."
 
 
-def generate_brief(args: argparse.Namespace) -> dict:
+def render_brief(args: argparse.Namespace, *, allow_empty: bool = False) -> tuple[str, dict]:
+    """Validate and render one paper for either a standalone or project brief."""
     session_url(args.viewer_url, "validate-before-reading")
     if not args.question.strip():
         raise WorkflowError("Provide a bounded research question.")
@@ -91,7 +92,7 @@ def generate_brief(args: argparse.Namespace) -> dict:
                 or item["revision"] != digest({key: value for key, value in item.items() if key != "revision"})):
             raise WorkflowError("Unexpected imported evidence contract or revision. Inspect RKS before generating a brief.")
         selected.append(entry)
-    if not selected or (args.rks_note_id and set(args.rks_note_id) != {entry["note_id"] for entry in selected}):
+    if (not selected and not allow_empty) or (args.rks_note_id and set(args.rks_note_id) != {entry["note_id"] for entry in selected}):
         raise WorkflowError("No matching imported evidence, or a selected RKS note is missing from this source workspace.")
     lines = ["# Source-linked reading brief", "", f"Question: {escape(args.question)}", "",
              f"RKS paper: {escape(paper_id)}. Workspace: {escape(args.workspace_id)}.", "",
@@ -132,10 +133,17 @@ def generate_brief(args: argparse.Namespace) -> dict:
     lines += ["## Limits", "", "Links require the selected APW database and retained PDF cache. "
               "The viewer rejects changed documents, deleted or edited passage anchors, out-of-range pages, "
               "and quotes that cannot be located unambiguously. Source text layout is checked when the link opens.", ""]
+    if not selected:
+        lines += ["No evidence has been imported for this paper yet. This is a coverage gap, not a negative finding.", ""]
+    return "\n".join(lines), {"schema": "scientific-tooling.research-brief.v1",
+                              "path": str(args.output.resolve()), "paper_id": paper_id, "counts": counts}
+
+
+def generate_brief(args: argparse.Namespace) -> dict:
+    text, result = render_brief(args)
     with args.output.open("x", encoding="utf-8") as output:
-        output.write("\n".join(lines))
-    return {"schema": "scientific-tooling.research-brief.v1", "path": str(args.output.resolve()),
-            "paper_id": paper_id, "counts": counts}
+        output.write(text)
+    return result
 
 
 def build_parser() -> argparse.ArgumentParser:

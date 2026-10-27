@@ -49,7 +49,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)
     for name, help_text in (
-        ("start", "Start or resume one PDF and question; open its reader."),
+        ("start", "Start a project with one or more PDFs and a question."),
+        ("add", "Add PDFs to an existing project; identical files are reused."),
+        ("papers", "List project papers and their reading progress."),
+        ("open", "Open a paper from this project."),
         ("resume", "Resume the saved reading workspace and open its reader."),
         ("status", "Show saved progress and available annotations."),
         ("preview", "Preview explicitly selected evidence without importing."),
@@ -65,11 +68,16 @@ def build_parser() -> argparse.ArgumentParser:
         sub.add_argument("--json", action="store_true", help="Return structured results for agents.")
         if name not in {"doctor", "skill"}:
             sub.add_argument("--workspace", type=Path, default=Path("review"))
+        if name in {"start", "add"}:
+            sub.add_argument("pdf", type=Path, nargs="+")
         if name == "start":
-            sub.add_argument("pdf", type=Path)
             sub.add_argument("--question", required=True)
             sub.add_argument("--port", type=int, default=0, help="Optional fixed local port; default assigns and remembers a free port.")
-        if name in {"start", "resume"}:
+        if name == "open":
+            sub.add_argument("paper", help="Project paper key (p1, p2, …) or RKS paper ID.")
+        if name in {"resume", "status", "annotate", "preview"}:
+            sub.add_argument("--paper", help="Project paper key (p1, p2, …) or RKS paper ID.")
+        if name in {"start", "resume", "open"}:
             sub.add_argument("--no-open", action="store_true", help="Return the URL without opening a browser.")
         if name == "preview":
             sub.add_argument("--annotation", action="append", default=[])
@@ -92,7 +100,13 @@ def dispatch(args) -> dict:
     if args.command == "skill":
         return install_skill(args.dest)
     workspace = Workspace(args.workspace)
-    if args.command in {"start", "resume"}:
+    if args.command == "add":
+        added = workspace.add(args.pdf)
+        return {**workspace.summary(), "added": added, "running": server.running(workspace, detailed=False) is not None}
+    if args.command == "papers":
+        data = workspace.load()
+        return {"question": data["question"], "papers": [workspace.paper_summary(data, p) for p in data["papers"]]}
+    if args.command in {"start", "resume", "open"}:
         diagnosis = doctor()
         if not diagnosis["ok"]:
             raise WorkflowError("Installation check failed: " + json.dumps(diagnosis))
@@ -100,7 +114,9 @@ def dispatch(args) -> dict:
             workspace.create(args.pdf, args.question, args.port)
         else:
             workspace.load()
-        result = server.ensure_running(workspace)
+        paper = getattr(args, "paper", None)
+        workspace.select(workspace.load(), paper, default=True)
+        result = server.ensure_running(workspace, paper=paper)
         if not args.no_open:
             result["browser_opened"] = webbrowser.open(result["viewer_url"])
         return result
@@ -109,18 +125,18 @@ def dispatch(args) -> dict:
         return {"stopped": True}
     if args.command == "status":
         workspace.load()
-        return server.running(workspace) or {**workspace.summary(), "running": False}
+        return server.running(workspace, paper=args.paper) or {**workspace.summary(args.paper), "running": False}
     if args.command == "stop":
         return server.stop(workspace)
     if args.command == "preview":
-        return {"preview": workspace.preview(args.annotation, args.note)}
+        return {"preview": workspace.preview(args.annotation, args.note, args.paper)}
     if args.command == "apply":
         return workspace.apply(args.preview_id, accept_updates=args.accept_updates)
     if args.command == "brief":
         server.ensure_running(workspace, detailed=False)
         return {"brief": workspace.make_brief()}
     if args.command == "annotate":
-        return server.annotate(workspace, args.page, args.quote, args.comment)
+        return server.annotate(workspace, args.page, args.quote, args.comment, args.paper)
     raise WorkflowError("Unsupported command")
 
 
@@ -134,6 +150,10 @@ def print_result(result: dict, as_json: bool) -> None:
             print(f"Reader: {result['viewer_url']}\nSelect highlights in the reader, then preview and import the evidence.")
         else:
             print("Reader is stopped. Use sci resume with this workspace.")
+    if "papers" in result:
+        for paper in result["papers"]:
+            print(f"  {paper['key']}  {paper['title']}  ({paper['phase']})")
+        print("Open a paper with sci open p1 --workspace <project>.")
     if result.get("preview"):
         preview = result["preview"]
         print(f"Preview: {preview['id']}\nChanges: {json.dumps(preview['counts'])}")
@@ -144,7 +164,7 @@ def print_result(result: dict, as_json: bool) -> None:
             print("Full evidence and conflicts are available with --json. Apply using this preview ID after inspection.")
     if result.get("brief"):
         print(f"Brief: {result['brief']['path']}")
-    if not any(key in result for key in ("phase", "preview", "brief")):
+    if not any(key in result for key in ("phase", "preview", "brief", "papers")):
         print(json.dumps(result, indent=2))
 
 
