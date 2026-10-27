@@ -6,6 +6,7 @@
 4. Synthesize findings with citations.
 5. Record open questions and confidence level.
 
+For a concise end-to-end example, use the [Windows/PowerShell walkthrough](windows-quickstart.md).
 For a paper already stored in RKS, use the [source-reading workflow](source-reading.md)
-to open a verified PDF revision in Agent PDF Workbench. Explicit evidence import
-and passage-linked briefs are the next integration steps.
+to open a verified PDF revision in Agent PDF Workbench. Then [import selected
+evidence](evidence-import.md) and [generate a passage-linked brief](source-linked-brief.md).
