@@ -14,7 +14,8 @@ def main() -> int:
     sys.stdout.buffer.write(result.stdout)
     sys.stdout.buffer.flush()
     if result.returncode and os.environ.get("GITHUB_ACTIONS") == "true":
-        message = result.stdout.decode("utf-8", errors="replace")[-20000:]
+        # GitHub truncates long annotations; keep the traceback at the log tail.
+        message = result.stdout[-3500:].decode("utf-8", errors="replace")
         escaped = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
         sys.stdout.buffer.write(f"::error title=Research test traceback::{escaped}\n".encode("utf-8"))
         sys.stdout.buffer.flush()
