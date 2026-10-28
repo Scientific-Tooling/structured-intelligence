@@ -20,7 +20,7 @@ from .reading import WorkflowError
 from .state import lock, read_json, write_json
 from .workspace import Workspace
 from .comparison import evidence_options
-from . import discovery
+from . import discovery, maintenance
 
 # Library callers retain handles for readers they started and reap them on stop.
 # CLI callers may exit while their deliberately detached reader continues running.
@@ -171,7 +171,7 @@ class HostedWorkflow:
                 return {"enabled": False}
             data = self.workspace.summary(paper)
             data.update(enabled=True, instance_id=self.instance_id, running=True,
-                        capabilities={"evidence_search": True, "comparisons": True, "discovery": True})
+                        capabilities={"evidence_search": True, "comparisons": True, "discovery": True, "maintenance": True})
             # Read the whole selection space through APW's public service, including
             # pagination; do not query APW's SQLite tables from orchestration.
             for kind in ("annotations", "notes"):
@@ -217,6 +217,10 @@ class HostedWorkflow:
                 Thread(target=self.server.shutdown, daemon=True).start()
                 return {"stopping": True}
             paper = self.workspace.for_session(payload.get("session_id"))
+            if action == "project_update":
+                return maintenance.inspect(self.workspace, save=True)
+            if action == "discovery_repeat":
+                return {"discovery": discovery.repeat(self.workspace, payload.get("discovery_id"))}
             if action in {"discovery_search", "discovery_lookup"}:
                 return {"discovery": discovery.discover(self.workspace, action.removeprefix("discovery_"), payload.get("query"),
                     provider=payload.get("provider", "pubmed"), limit=payload.get("limit", 10))}
@@ -239,12 +243,12 @@ class HostedWorkflow:
                     # Keep the successful import receipt even if generating the brief
                     # fails. A retry can safely replay or request only the brief.
                     try:
-                        result["brief"] = self.workspace.make_brief()
+                        result["brief"] = self.workspace.make_brief(payload.get("preview_id"))
                     except (WorkflowError, OSError, ValueError) as exc:
                         result["brief_error"] = str(exc)
                 return result
             if action == "brief":
-                return {"brief": self.workspace.make_brief()}
+                return {"brief": self.workspace.make_brief(payload.get("request_id"))}
             raise WorkflowError("Unknown workflow action.")
         except (WorkflowError, OSError, KeyError, TypeError) as exc:
             raise ValueError(str(exc)) from exc
@@ -256,6 +260,15 @@ class HostedWorkflow:
             if params.get("discovery_id"):
                 result["discovery"] = discovery.show(self.workspace, params["discovery_id"])
             return result
+        except (WorkflowError, OSError, KeyError, TypeError) as exc:
+            raise ValueError(str(exc)) from exc
+
+    def maintenance(self, params: dict) -> dict:
+        try:
+            self.workspace.for_session(params.get("session_id"))
+            if params.get("edition_id"):
+                return maintenance.history(self.workspace, params["edition_id"])
+            return maintenance.inspect(self.workspace)
         except (WorkflowError, OSError, KeyError, TypeError) as exc:
             raise ValueError(str(exc)) from exc
 

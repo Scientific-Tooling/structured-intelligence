@@ -2,13 +2,12 @@
 from __future__ import annotations
 
 import argparse
-import os
 import re
 import sys
 import uuid
 from pathlib import Path
 
-from . import brief, comparison, evidence, reading, search
+from . import comparison, evidence, maintenance, reading, search
 from .reading import WorkflowError, hash_stream, run_json
 from .state import lock, read_json, write_json
 
@@ -85,8 +84,6 @@ class Workspace:
             record.update(key=key, handoff=f"papers/{key}/handoff.json")
             data["papers"].append(record)
             added.append(key)
-        if added:
-            data.pop("brief", None)  # Preserve old files, invalidate current coverage.
         return added
 
     def initialize(self, question: str, port: int = 0, *, records=None) -> None:
@@ -264,67 +261,17 @@ class Workspace:
                     data["workspace_id"], "--apply", "--plan", str(directory / "plan.json")]
             if accept_updates:
                 args.append("--accept-updates")
-            # Invalidate across an uncertain response; the old artifact is retained.
-            previous_brief = data.pop("brief", None)
-            self.save(data)
+            # Retain the previous edition; freshness is checked against its inputs.
             result = self.rks(*args, codes=(0, 2))
             if result.get("applied") is not True:
                 return {"applied": False, "result": result, "next_action": "Inspect conflicts and prepare a fresh preview."}
             write_json(directory / "receipt.json", result)
             selected["phase"] = "imported"
-            if previous_brief and not result["counts"]["added"] and not result["counts"]["updated"]:
-                data["brief"] = previous_brief
             self.save(data)
             return {"applied": True, "result": result}
 
-    def make_brief(self) -> dict:
-        with lock(self.root / "workspace.lock"):
-            data = self.load()
-            if not data["port"]:
-                raise WorkflowError("Resume the reader before generating passage links.")
-            if any(not p["paper_id"] or p["phase"] == "initializing" for p in data["papers"]):
-                raise WorkflowError("Resume this project to finish preparing all papers before generating a brief.")
-            out = self.root / "briefs"
-            out.mkdir(exist_ok=True)
-            identity = uuid.uuid4().hex
-            pending, target = out / (".pending-" + identity), out / (identity + ".md")
-            sections, coverage = [], []
-            counts = dict.fromkeys(("evidence", "reviewed", "unreviewed", "linked_passages", "unavailable_passages"), 0)
-            for paper in data["papers"]:
-                args = argparse.Namespace(paper_id=paper["paper_id"], question=data["question"],
-                    workspace_id=data["workspace_id"], rks_data_dir=self.root / "rks", source_id=data["source_id"],
-                    apw_db=self.root / "events.db", rks_note_id=[], viewer_url=f"http://127.0.0.1:{data['port']}",
-                    output=pending, rks_python=Path(sys.executable), apw_python=Path(sys.executable))
-                text, result = brief.render_brief(args, allow_empty=True)
-                for key in counts:
-                    counts[key] += result["counts"][key]
-                coverage.append({"key": paper["key"], "paper_id": paper["paper_id"], "title": paper["title"], "counts": result["counts"]})
-                # Preserve the verified per-paper renderer and attribution, nested
-                # beneath a project heading rather than inventing scientific claims.
-                body = text.split("\n", 1)[1]
-                body = re.sub(r"^(#+) ", r"#\1 ", body, flags=re.MULTILINE)
-                sections.append(f"## {brief.escape(paper['key'] + ': ' + paper['title'])}\n" + body)
-            if not counts["evidence"]:
-                raise WorkflowError("No matching imported evidence. Preview and import selected material from at least one paper first.")
-            lines = ["# Source-linked project brief", "", f"Question: {brief.escape(data['question'])}", "",
-                     "Evidence is grouped by paper for comparison. No agreement, contradiction, or scientific conclusion is inferred.", "",
-                     "## Coverage", "", "| Paper | Evidence | Reviewed | Unreviewed | Linked passages | Unavailable |",
-                     "| --- | ---: | ---: | ---: | ---: | ---: |"]
-            for paper in coverage:
-                c = paper["counts"]
-                lines.append(f"| {brief.escape(paper['key'] + ': ' + paper['title']).replace(chr(10), ' ')} | {c['evidence']} | {c['reviewed']} | {c['unreviewed']} | {c['linked_passages']} | {c['unavailable_passages']} |")
-            lines += ["", "Papers without imported evidence remain visible as coverage gaps, not negative findings.", "", *sections]
-            try:
-                with pending.open("x", encoding="utf-8") as stream:
-                    stream.write("\n".join(lines))
-                os.replace(pending, target)
-            finally:
-                pending.unlink(missing_ok=True)
-            result = {"schema": "scientific-tooling.project-brief.v1", "path": str(target),
-                      "counts": counts, "papers": coverage, "paper_count": len(coverage)}
-            data["brief"] = result
-            self.save(data)
-            return result
+    def make_brief(self, request_id: str | None = None) -> dict:
+        return maintenance.make_brief(self, request_id)
 
     def paper_summary(self, data: dict, paper: dict) -> dict:
         path = self.root / paper["handoff"]
@@ -353,6 +300,10 @@ class Workspace:
                   "brief": data.get("brief")}
         if result["brief"]:
             text = Path(result["brief"]["path"]).read_text(encoding="utf-8")
-            result["brief"] = {**result["brief"], "text": text,
+            if result["brief"].get("id"):
+                edition = maintenance.history(self, result["brief"]["id"])
+                if text != edition["text"] or result["brief"]["path"] != edition["result"]["path"]:
+                    raise WorkflowError("Saved brief text or location changed. Inspect its retained edition before using it.")
+            result["brief"] = {**result["brief"], "text": text, "freshness": "unchecked",
                                "passage_urls": re.findall(r"\[Open the supporting passage\]\(([^)]+)\)", text)}
         return result

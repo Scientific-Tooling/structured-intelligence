@@ -75,6 +75,15 @@ owned test workspace. After stopping all writers, back up the whole directory.
 
 ## Output Contract
 
+For ongoing projects, run `changes --workspace "review" --json` before treating a
+saved brief as current. Inspect affected sources, evidence and comparison reviews.
+`update` saves a change report without importing or reviewing anything. `history`
+lists retained brief editions; `history EDITION_ID --json` includes their exact
+supporting snapshots. Retry an interrupted brief with its saved `--request-id`.
+Repeat a saved discovery only when new discovery is authorized, using
+`discover repeat DISCOVERY_ID`; inspect candidates and preserve explicit PDF and
+evidence selection. Freshness at a check time does not establish scientific validity.
+
 Return the brief path, the workspace path needed to resume, useful passage links,
 and any source/review limitations affecting the answer. Keep setup logs and IDs
 out of the research narrative unless they are needed to resolve a problem.

@@ -77,7 +77,7 @@ def checked_passages(apw: list[str], record: dict, viewer_url: str | None, check
     return passages
 
 
-def render_brief(args: argparse.Namespace, *, allow_empty: bool = False) -> tuple[str, dict]:
+def render_brief(args: argparse.Namespace, *, allow_empty: bool = False, evidence_payload=None) -> tuple[str, dict]:
     """Validate and render one paper for either a standalone or project brief."""
     session_url(args.viewer_url, "validate-before-reading")
     if not args.question.strip():
@@ -87,7 +87,7 @@ def render_brief(args: argparse.Namespace, *, allow_empty: bool = False) -> tupl
     rks = command_prefix(args.rks_python, "rks", "rks")
     apw = command_prefix(args.apw_python, "agent_pdf_workbench.dev_cli", "apw-dev")
     apw += ["--db-path", str(args.apw_db.resolve())]
-    payload = run_json(rks + ["note", "evidence", args.paper_id],
+    payload = evidence_payload if evidence_payload is not None else run_json(rks + ["note", "evidence", args.paper_id],
                        env={"RKS_DATA_DIR": str(args.rks_data_dir.resolve())})
     paper_id = payload["paper_id"]  # May be the canonical target of an RKS merge.
     selected = []
@@ -119,6 +119,8 @@ def render_brief(args: argparse.Namespace, *, allow_empty: bool = False) -> tupl
         reviewed = review["status"] == "reviewed"
         counts["reviewed" if reviewed else "unreviewed"] += 1
         lines += [f"## {escape(entry['note_id'])}: {'Recorded human review' if reviewed else 'Unreviewed reading material'}", ""]
+        if entry.get("status", "current") != "current" or entry.get("reading_status", "unchanged") != "unchanged":
+            lines += ["**Needs attention:** this retained import differs from, or cannot be checked against, its current source or reading material.", ""]
         if reviewed:
             lines += [f"Reviewer (caller asserted): {escape(review['reviewer'])}. Reviewed at {escape(review['reviewed_at'])}.",
                       "", f"Review scope: {escape(review['statement'])}", ""]
@@ -131,7 +133,9 @@ def render_brief(args: argparse.Namespace, *, allow_empty: bool = False) -> tupl
         for passage in item["passages"]:
             key = (record["source"]["session_id"], record["document"]["sha256"], digest(passage))
             if key not in checked:
-                checked[key] = check_passage(apw, record, passage)
+                saved_check = next((p for p in entry.get("passages", []) if p["annotation_id"] == passage["annotation_id"]), None)
+                checked[key] = ((saved_check["available"], saved_check["message"]) if saved_check is not None
+                                else check_passage(apw, record, passage))
             ready, message = checked[key]
             lines += [f"Source quote, page {passage['page']}:", "",
                       *["> " + escape(line) for line in passage["quote"].splitlines()], ""]

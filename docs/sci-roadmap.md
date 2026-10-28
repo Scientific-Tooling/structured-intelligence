@@ -48,7 +48,7 @@ Keep each milestone useful on its own and revisit the order after researcher pil
 | 1. Find evidence across a project | In progress: implemented on main; release and independent evaluation pending | Locate relevant saved evidence without reopening every paper. |
 | 2. Compare and review findings | In progress: implemented on main; release and independent domain review pending | Compare methods or claims with traceable support and explicit gaps. |
 | 3. Discover and add relevant papers | In progress: implemented on main; release and independent evaluation pending | Move from a question or identifier to a selected, attributed reading set. |
-| 4. Maintain a living project | Later; builds on 2–3 | Understand what changed when sources or interpretations change. |
+| 4. Maintain a living project | In progress: change reports, retained brief editions and explicit discovery repeats; recurrence and evaluation pending | Understand what changed when sources or interpretations change. |
 | 5. Connect evidence to analysis | Exploratory | Turn a literature decision into a bounded, reproducible analysis handoff. |
 
 ### 1. Find evidence across a project
@@ -109,6 +109,11 @@ list and a selected reading set; duplicates, changed versions, unavailable sourc
 and interrupted imports retain clear identities and recovery paths.
 
 ### 4. Maintain a living project
+
+The first development slice provides change checks, saved update reports, brief
+editions with supporting snapshots, interrupted-publication recovery, reader
+history and explicit repeats of saved discovery. See
+[commands, freshness semantics and remaining gates](living-projects.md).
 
 Track additions and changes to sources, evidence, reviews and generated briefs.
 Show what changed since the last brief and which interpretations need attention.

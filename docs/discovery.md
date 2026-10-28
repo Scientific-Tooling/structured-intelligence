@@ -9,7 +9,7 @@ For the browser workflow, follow the [nine-step screenshot guide](discovery-scre
 
 This implementation is available on main and is not in the tagged sci 0.3.1
 release. The package and browser CI pin APW to
-`92ab2ae409a1b3b22934a3e35082a0f1042bc304`, which includes discovery and the
+`2806a6c182a0ae442b39e68015a9bf76d31a3af5`, which includes discovery and the
 research desk reader. Paper changes preserve the reader layout, workspace tab
 and zoom mode while restoring each paper's reading position.
 

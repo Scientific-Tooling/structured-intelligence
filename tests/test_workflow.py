@@ -390,7 +390,8 @@ class WorkflowTest(unittest.TestCase):
         gap.write_bytes(pdf_bytes("A third source without imported evidence."))
         old_brief = Path(self.workspace.summary()["brief"]["path"])
         self.cli("add", str(gap))
-        self.assertIsNone(self.workspace.summary()["brief"])
+        self.assertEqual(self.workspace.summary()["brief"]["freshness"], "unchecked")
+        self.assertEqual(Path(self.workspace.summary()["brief"]["path"]), old_brief)
         self.assertTrue(old_brief.is_file())
         result = self.cli("brief")["brief"]
         self.assertEqual(result["paper_count"], 3)

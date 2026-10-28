@@ -9,7 +9,7 @@ import webbrowser
 from importlib.resources import files
 from pathlib import Path
 
-from . import __version__, comparison, discovery, server
+from . import __version__, comparison, discovery, maintenance, server
 from .reading import WorkflowError
 from .workspace import Workspace
 
@@ -93,6 +93,8 @@ def build_parser() -> argparse.ArgumentParser:
         if name == "apply":
             sub.add_argument("preview_id", help="The exact preview ID you inspected.")
             sub.add_argument("--accept-updates", action="store_true", help="Explicitly accept reviewed revision changes; other conflicts still fail.")
+        if name == "brief":
+            sub.add_argument("--request-id", help="Resume a saved brief request without duplicating its edition.")
         if name == "annotate":
             sub.add_argument("--page", type=int, required=True)
             sub.add_argument("--quote", required=True)
@@ -101,6 +103,7 @@ def build_parser() -> argparse.ArgumentParser:
             sub.add_argument("--dest", type=Path, required=True, help="Agent's skills directory, e.g. ~/.codex/skills or ~/.claude/skills.")
     comparison.register(commands)
     discovery.register(commands)
+    maintenance.register(commands)
     return parser
 
 
@@ -110,6 +113,10 @@ def dispatch(args) -> dict:
     if args.command == "skill":
         return install_skill(args.dest)
     workspace = Workspace(args.workspace)
+    if args.command in {"changes", "update"}:
+        return maintenance.inspect(workspace, save=args.command == "update")
+    if args.command == "history":
+        return maintenance.history(workspace, args.edition_id)
     if args.command == "init":
         workspace.initialize(args.question, args.port)
         return workspace.summary()
@@ -155,7 +162,7 @@ def dispatch(args) -> dict:
         return workspace.apply(args.preview_id, accept_updates=args.accept_updates)
     if args.command == "brief":
         server.ensure_running(workspace, detailed=False)
-        return {"brief": workspace.make_brief()}
+        return {"brief": workspace.make_brief(args.request_id)}
     if args.command == "annotate":
         return server.annotate(workspace, args.page, args.quote, args.comment, args.paper)
     raise WorkflowError("Unsupported command")
@@ -165,10 +172,35 @@ def print_result(result: dict, as_json: bool) -> None:
     if as_json:
         print(json.dumps(result, ensure_ascii=True, indent=2))
         return
+    if result.get("schema") == maintenance.REPORT:
+        print(f"Brief freshness: {result['freshness']} (checked {result['checked_at']})")
+        print(f"{len(result['changes'])} changes since the last retained edition; {len(result['attention'])} items need attention.")
+        for change in result["changes"]:
+            print(f"  {change['category']}: {change['change']} {change['id']}")
+        for item in result["attention"]:
+            print(f"  Attention: {item.get('paper', '')} {item['id']}: {item['message']}")
+        if result.get("path"):
+            print(f"Saved report: {result['path']}")
+        print("No sources selected, evidence imported or scientific reviews recorded. Use --json for exact before/after records.")
+        return
+    if result.get("schema") == maintenance.EDITION:
+        print(result["text"])
+        return
+    if result.get("schema") == "scientific-tooling.project-history.v1":
+        for item in result["editions"]:
+            print(f"{item['id']}  {item['created_at']}  {item['result']['path']}")
+        for request_id in result["pending_briefs"]:
+            print(f"Interrupted brief: {request_id}. Resume with sci brief --request-id {request_id}.")
+        for item in result["legacy_briefs"]:
+            print(f"Legacy brief (unverified inputs): {item['path']}")
+        return
     if result.get("schema") == discovery.RUN_SCHEMA:
         print(f"Discovery {result['id']} ({result['status']})\n{result['provider']}: {result['query']}\nRetrieved: {result['retrieved_at']}")
         if result["error"]:
             print(result["error"])
+        if result.get("candidate_changes"):
+            print("Changes from saved discovery: " + json.dumps(result["candidate_changes"]))
+            print("Not returned means absent from this bounded result list, not retracted or removed.")
         for candidate in result["candidates"]:
             print(f"\n{candidate['id']}. {candidate['title']} ({candidate['year'] or 'year unknown'})")
             print(", ".join(candidate["authors"]) + " · " + (candidate["venue"] or ""))

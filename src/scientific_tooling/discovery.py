@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import hashlib
-import json
 import os
 import re
 import tempfile
@@ -73,7 +72,7 @@ def inventory(workspace):
             "works": data.get("works", []), "selections": selections}
 
 
-def discover(workspace, action, query, *, provider="pubmed", limit=10, client=None):
+def discover(workspace, action, query, *, provider="pubmed", limit=10, client=None, previous=None):
     data = workspace.load()
     if action not in {"search", "lookup"} or not isinstance(query, str) or not query.strip() or len(query) > 1500:
         raise WorkflowError("Provide a nonempty query or identifier of at most 1500 characters.")
@@ -88,6 +87,8 @@ def discover(workspace, action, query, *, provider="pubmed", limit=10, client=No
     run = {"schema": RUN_SCHEMA, "id": run_id, "workspace_id": data["workspace_id"], "question": data["question"],
            "action": action, "query": query.strip(), "provider": provider, "limit": limit, "retrieved_at": now(),
            "status": "pending", "error": None, "responses": [], "candidates": [], "requests": []}
+    if previous:
+        run["repeated_from"] = {"id": previous["id"], "revision": previous["revision"]}
     client = client or sources.Client()
     def save():
         run["revision"] = digest({k: v for k, v in run.items() if k != "revision"})
@@ -109,6 +110,12 @@ def discover(workspace, action, query, *, provider="pubmed", limit=10, client=No
         if len(records) > limit or len({r["provider_id"] for r in records}) != len(records):
             raise WorkflowError("Provider returned too many or duplicate records.")
         run["candidates"] = [{"id": f"c{i + 1}", **r, "review_status": "unreviewed"} for i, r in enumerate(records)]
+        if previous:
+            old = {c["provider_id"]: {k: v for k, v in c.items() if k != "id"} for c in previous["candidates"]}
+            new = {c["provider_id"]: {k: v for k, v in c.items() if k != "id"} for c in run["candidates"]}
+            run["candidate_changes"] = {"added": sorted(new.keys() - old.keys()), "not_returned": sorted(old.keys() - new.keys()),
+                                        "changed": sorted(k for k in old.keys() & new.keys() if old[k] != new[k]),
+                                        "unchanged": sorted(k for k in old.keys() & new.keys() if old[k] == new[k])}
         run.update(status="complete", details=details)
         save()
     except (OSError, HTTPException, ValueError, KeyError, TypeError, AttributeError, IndexError, WorkflowError) as exc:
@@ -116,6 +123,14 @@ def discover(workspace, action, query, *, provider="pubmed", limit=10, client=No
         save()
         raise WorkflowError(f"Discovery {run_id} failed: {exc}. Its query and responses are retained; use discover show.") from exc
     return run
+
+
+def repeat(workspace, run_id, *, client=None):
+    previous = show(workspace, run_id)
+    if previous["status"] != "complete":
+        raise WorkflowError("Repeat a completed saved discovery; rerun failed queries explicitly.")
+    return discover(workspace, previous["action"], previous["query"], provider=previous["provider"],
+                    limit=previous["limit"], client=client, previous=previous)
 
 
 def bind_work(data, candidate, run, request_id):
@@ -269,7 +284,7 @@ def verify_snapshot(snapshot):
 def register(commands):
     parser = commands.add_parser("discover", help="Find candidate papers, inspect saved searches and add selected PDFs.")
     actions = parser.add_subparsers(dest="discovery_action", required=True)
-    for name in ("search", "lookup", "list", "show", "select", "retry"):
+    for name in ("search", "lookup", "list", "show", "select", "retry", "repeat"):
         sub = actions.add_parser(name)
         sub.add_argument("--workspace", type=Path, default=Path("review"))
         sub.add_argument("--json", action="store_true")
@@ -278,7 +293,7 @@ def register(commands):
         if name == "search":
             sub.add_argument("--provider", choices=("pubmed", "crossref"), default="pubmed")
             sub.add_argument("--limit", type=int, default=10)
-        if name in {"show", "select"}:
+        if name in {"show", "select", "repeat"}:
             sub.add_argument("discovery_id")
         if name == "select":
             sub.add_argument("--candidate", required=True)
@@ -298,6 +313,8 @@ def dispatch(workspace, args):
         return inventory(workspace)
     if action == "show":
         return show(workspace, args.discovery_id)
+    if action == "repeat":
+        return repeat(workspace, args.discovery_id)
     if action == "select":
         return select(workspace, args.discovery_id, args.candidate, pdf=args.pdf, source=args.source, request_id=args.request_id)
     return select(workspace, request_id=args.request_id, retry=True)

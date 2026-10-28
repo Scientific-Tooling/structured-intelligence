@@ -145,6 +145,12 @@ Repository `main` also provides [paper discovery](../../docs/discovery.md):
 explicit PDF selection. The pinned APW reader includes its browser panel and
 steady navigation between papers; the guide records validation and acceptance gates.
 
+For [living projects](../../docs/living-projects.md), use `sci changes` to check what
+changed since the last brief, `sci update` to save the report, and `sci history` to
+inspect retained editions (all accept `--workspace` and `--json`). The reader's
+Brief tab presents the same changes and history. `sci discover repeat DISCOVERY_ID`
+repeats an exact saved query without selecting results automatically.
+
 ## Upgrading from Python 3.10 or 3.11
 
 Version 0.2.0 raises the minimum Python version to 3.12. Stop an active reader
