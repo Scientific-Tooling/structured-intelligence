@@ -171,6 +171,7 @@ try {
   expect(await secondTab.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
   await secondTab.screenshot({ path: path.join(artifacts, "project-mobile.png"), fullPage: true });
   await secondPanel.getByRole("tab", { name: /^Evidence/ }).click();
+  await secondPanel.locator(".project-evidence-search > summary").click();
   await search.getByRole("searchbox").fill("source");
   await search.getByRole("button", { name: "Search evidence", exact: true }).click();
   await expect(search.getByRole("status")).toContainText("2 evidence matches");
@@ -248,6 +249,12 @@ try {
     workspace, brief: project.brief.path,
   }, null, 2));
   console.log(`Browser journey passed. Artifacts: ${artifacts}`);
+} catch (error) {
+  if (process.env.GITHUB_ACTIONS === "true") {
+    const message = String(error.stack ?? error).slice(-6000).replaceAll("%", "%25").replaceAll("\r", "%0D").replaceAll("\n", "%0A");
+    console.log(`::error title=Workflow browser failure::${message}`);
+  }
+  throw error;
 } finally {
   if (browser) await browser.close();
   if (fs.existsSync(path.join(workspace, "workspace.json"))) cli("stop");

@@ -55,6 +55,12 @@ try {
   await page.screenshot({ path: path.join(output, "discovery-mobile.png"), fullPage: true });
   expect(errors).toEqual([]);
   console.log("Discovery browser journey passed.");
+} catch (error) {
+  if (process.env.GITHUB_ACTIONS === "true") {
+    const message = String(error.stack ?? error).slice(-6000).replaceAll("%", "%25").replaceAll("\r", "%0D").replaceAll("\n", "%0A");
+    console.log(`::error title=Discovery browser failure::${message}`);
+  }
+  throw error;
 } finally {
   await browser.close();
 }
