@@ -135,6 +135,11 @@ forward the returned port to the browser machine.
 For debugging or developing integrations with the individual tools, see
 [advanced manual operations](manual-operations/README.md).
 
+Repository `main` also includes [project evidence search](../../docs/evidence-search.md)
+and [comparison and human review](../../docs/comparisons.md), with matching RKS/APW
+commits pinned for installation. These development features are not in the tagged
+sci 0.3.1 release; independent scientific evaluation remains pending.
+
 ## Upgrading from Python 3.10 or 3.11
 
 Version 0.2.0 raises the minimum Python version to 3.12. Stop an active reader

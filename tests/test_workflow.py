@@ -1,15 +1,17 @@
 """Real installed RKS/APW integration, recovery, and process ownership checks."""
 from __future__ import annotations
 
+import io
 import json
 import os
 import socket
 import subprocess
 import sysconfig
 import tempfile
+import time
 import unittest
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from urllib.parse import urlsplit
 
 from scientific_tooling import reading, server
@@ -84,6 +86,174 @@ class WorkflowTest(unittest.TestCase):
         # Artifact errors must not make the owned server unmanageable.
         self.assertTrue(self.cli("stop")["stopped"])
         self.assertFalse((self.workspace.root / "server.json").exists())
+
+    def test_project_evidence_search_cli_http_scope_and_stale_passages(self):
+        self.cli("resume", "--no-open")
+        second = self.root / "second.pdf"
+        second.write_bytes(pdf_bytes("Independent replication source."))
+        self.workspace.add([second])
+        self.assertEqual(self.cli("search", "source")["total"], 0)
+        for paper, quote in [("p1", "Reading workflow test source."), ("p2", "Independent replication source.")]:
+            annotation = self.cli("annotate", "--paper", paper, "--page", "1", "--quote", quote,
+                                  "--comment", "A variance interpretation.")["id"]
+            preview = self.cli("preview", "--paper", paper, "--annotation", annotation)["preview"]
+            self.cli("apply", preview["id"])
+            self.cli("apply", preview["id"])  # Replays never duplicate search hits.
+        results = self.cli("search", "source")
+        self.assertEqual(results["total"], 2)
+        self.assertEqual({r["paper"]["key"] for r in results["results"]}, {"p1", "p2"})
+        self.assertEqual(self.cli("search", "source", "--paper", "p2")["total"], 1)
+        self.assertEqual(self.cli("search", "source", "--review", "reviewed")["total"], 0)
+        self.assertEqual(self.cli("search", "source", "--limit", "1", "--offset", "1")["results"], results["results"][1:])
+        commentary = self.cli("search", "variance")["results"]
+        self.assertTrue(all(r["matches"][0]["role"] == "commentary" for r in commentary))
+        self.assertEqual(self.cli("search", "workflow replication", "--mode", "phrase")["total"], 0)
+        self.assertEqual(self.cli("search", "")["outcome"], "empty_query")
+        self.assertIn("not in this project", self.cli("search", "source", "--paper", "p99", code=1)["message"])
+        state = server.running(self.workspace)
+        port = self.workspace.load()["port"]
+        http = server.request(port, f"/api/workflow/search?session_id={state['session_id']}&q=source&paper=p2")
+        self.assertEqual(http["results"], self.cli("search", "source", "--paper", "p2")["results"])
+        with self.assertRaises(WorkflowError):
+            server.request(port, "/api/workflow/search?session_id=foreign&q=source")
+        for result in results["results"]:
+            citation = urlsplit(result["passages"][0]["url"])
+            source = server.request(citation.port, "/api/passage?" + citation.query)
+            self.assertEqual(source["annotation"]["quote"], result["matches"][0]["text"])
+        self.cli("stop")
+        unchanged = [self.workspace.file, self.workspace.root / "rks" / "rks.sqlite3", self.workspace.root / "events.db"]
+        before = [p.read_bytes() for p in unchanged]
+        self.assertEqual(self.cli("search", "source")["total"], 2)
+        self.assertEqual(before, [p.read_bytes() for p in unchanged])
+        self.assertFalse((self.workspace.root / "server.json").exists())
+        Path(self.workspace.summary("p1")["source_pdf"]).write_bytes(b"corrupt retained source")
+        stale = self.cli("search", "source", "--paper", "p1")["results"][0]
+        self.assertFalse(stale["passages"][0]["available"])
+        self.assertIsNone(stale["passages"][0]["url"])
+        self.assertEqual(stale["matches"][0]["text"], "Reading workflow test source.")
+
+    def test_search_rejects_foreign_evidence_response_and_ambiguous_paper(self):
+        self.workspace.prepare()
+        data = self.workspace.load()
+        duplicate = {**data["papers"][0], "key": "p2"}
+        data["papers"].append(duplicate)
+        with self.assertRaisesRegex(WorkflowError, "Ambiguous"):
+            self.workspace.select(data, duplicate["paper_id"])
+        with patch.object(self.workspace, "rks", return_value={"schema": "rks.evidence-search.v1", "workspace_id": "foreign"}):
+            with self.assertRaisesRegex(WorkflowError, "Unexpected RKS"):
+                self.workspace.search("source")
+
+    def test_comparison_cli_review_recovery_and_stale_passages(self):
+        self.cli("resume", "--no-open")
+        annotation = self.annotation()
+        preview = self.cli("preview", "--annotation", annotation)["preview"]
+        self.cli("apply", preview["id"])
+        second = self.root / "second.pdf"
+        second.write_bytes(pdf_bytes("Different experimental conditions."))
+        self.workspace.add([second])
+        created = self.cli("compare", "create", "--title", "Engineering fixture",
+                           "--criterion", "Conditions", "--criterion", "Limitations")["comparison"]
+        self.assertEqual(len(created["cells"]), 4)
+        self.assertTrue(all(c["support_status"] == "gap" for c in created["cells"]))
+        evidence = self.cli("search", "source")["results"][0]
+        current = self.cli("compare", "set", created["id"], "--paper", "p1", "--criterion", "c1",
+                           "--expected-revision", created["revision"], "--text", "No increase at 5 mg; not 50 mg.",
+                           "--conditions", "Synthetic fixture; n=12; 20 C", "--origin", "agent",
+                           "--evidence", evidence["note_id"] + "@" + evidence["revision"])["comparison"]
+        self.assertEqual(current["cells"][0]["support_status"], "linked")
+        reviewed = self.cli("compare", "review", current["id"], "--paper", "p1", "--criterion", "c1",
+                            "--expected-revision", current["revision"], "--reviewer", "Synthetic test reviewer",
+                            "--scope", "Engineering fixture only", "--decision", "accepted",
+                            "--statement", "Tests persistence, not scientific validity.")
+        review = reviewed["comparison"]["cells"][0]["review"]
+        self.assertEqual(review["status"], "accepted")
+        self.assertEqual(review["latest"]["evidence_revisions"][0]["revision"], evidence["revision"])
+        self.assertEqual(reviewed["comparison"]["cells"][0]["origin"], "agent")
+        self.assertIn("No increase at 5 mg; not 50 mg.", reviewed["comparison"]["markdown"])
+        self.cli("stop")
+        self.cli("resume", "--no-open")
+        replay = self.cli("compare", "retry", reviewed["request_id"])
+        self.assertTrue(replay["replayed"])
+        self.assertEqual(len(replay["comparison"]["cells"][0]["review"]["history"]), 1)
+        self.assertEqual(self.cli("search", "source")["results"][0]["record"]["item"]["review"]["status"], "unreviewed")
+        port = self.workspace.load()["port"]
+        session = self.workspace.summary("p1")["session_id"]
+        view = server.request(port, f"/api/workflow/comparisons?session_id={session}&comparison_id={current['id']}")
+        self.assertEqual(view["comparison"], replay["comparison"])
+        self.assertEqual(len(view["evidence"]), 1)
+        with self.assertRaises(WorkflowError):
+            server.request(port, "/api/workflow/comparisons?session_id=foreign")
+        self.cli("stop")
+        files = [self.workspace.file, self.workspace.root / "rks" / "rks.sqlite3", self.workspace.root / "events.db"]
+        before = [p.read_bytes() for p in files]
+        self.cli("compare", "show", current["id"], "--history")
+        self.assertEqual(before, [p.read_bytes() for p in files])
+        # Removing an APW annotation without reimporting still invalidates its passage.
+        from agent_pdf_workbench.service import AgentPdfWorkbenchService
+        service = AgentPdfWorkbenchService(db_path=self.workspace.root / "events.db")
+        service.delete_annotation(session_id=session, annotation_id=annotation)
+        stale = self.cli("compare", "show", current["id"])["comparison"]["cells"][0]
+        self.assertEqual(stale["support_status"], "stale")
+        self.assertEqual(stale["review"]["status"], "stale")
+        self.assertEqual(stale["evidence"][0]["passages"][0]["quote"], "Reading workflow test source.")
+
+    def test_comparison_lost_response_and_conflicting_save(self):
+        self.workspace.prepare()
+        original = self.workspace.rks
+        def lose_result(*args, **kwargs):
+            result = original(*args, **kwargs)
+            if args[:2] == ("comparison", "apply"):
+                raise WorkflowError("simulated lost comparison response")
+            return result
+        with patch.object(self.workspace, "rks", side_effect=lose_result):
+            with self.assertRaisesRegex(WorkflowError, "Request retained"):
+                self.workspace.compare("create", payload={"title": "Recoverable", "criteria": ["Conditions"]},
+                                       request_id="a" * 32)
+        replay = self.cli("compare", "retry", "a" * 32)
+        self.assertTrue(replay["replayed"])
+        self.assertEqual(len(self.cli("compare", "list")["comparisons"]), 1)
+        current = replay["comparison"]
+        payload = {"paper": "p1", "criterion_id": "c1", "text": "Unsupported draft", "conditions": "Unknown",
+                   "origin": "agent", "evidence": []}
+        saved = self.workspace.compare("set", comparison_id=current["id"], expected_revision=current["revision"], payload=payload)
+        self.assertEqual(saved["comparison"]["cells"][0]["support_status"], "unsupported")
+        with self.assertRaisesRegex(WorkflowError, "changed after inspection"):
+            self.workspace.compare("set", comparison_id=current["id"], expected_revision=current["revision"], payload=payload)
+
+    def test_startup_waits_for_publication_acknowledgement_before_reading_record(self):
+        state = {"spawned": False, "published": False}
+        receipt = {"schema": "scientific-tooling.reader-ready.v1", "instance_id": "owned",
+                   "workspace_id": self.workspace.load()["workspace_id"]}
+        child = Mock()
+        def read_ready():
+            time.sleep(0.05)  # Keep publication in progress while the parent waits.
+            state["published"] = True
+            return json.dumps(receipt).encode() + b"\n"
+        child.stdout.readline.side_effect = read_ready
+        def launch(*args, **kwargs):
+            state["spawned"] = True
+            self.assertEqual(kwargs["stdout"], subprocess.PIPE)
+            return child
+        def running(*args, **kwargs):
+            if not state["spawned"]:
+                return None
+            self.assertTrue(state["published"], "Parent opened the record during publication")
+            return {"instance_id": "owned", "running": True}
+        with patch.object(self.workspace, "prepare"), patch.object(server, "running", side_effect=running), \
+                patch.object(server.subprocess, "Popen", side_effect=launch):
+            self.assertTrue(server.ensure_running(self.workspace)["running"])
+        child.terminate.assert_not_called()
+        child.stdout.close.assert_called_once()
+
+    def test_failed_startup_acknowledgement_stops_only_the_launched_child(self):
+        child = Mock(stdout=io.BytesIO(b'{"schema":"wrong"}\n'))
+        child.poll.return_value = None
+        with patch.object(self.workspace, "prepare"), patch.object(server, "running", return_value=None), \
+                patch.object(server.subprocess, "Popen", return_value=child):
+            with self.assertRaisesRegex(WorkflowError, "invalid startup acknowledgement"):
+                server.ensure_running(self.workspace)
+        child.terminate.assert_called_once()
+        child.wait.assert_called_once_with(timeout=5)
 
     def test_lost_ingestion_and_session_responses_resume_without_duplicates(self):
         original = self.workspace.rks

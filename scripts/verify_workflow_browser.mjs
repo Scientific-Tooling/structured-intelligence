@@ -130,6 +130,33 @@ try {
   expect(project.brief.counts.evidence).toBe(2);
   expect(project.brief.counts.unreviewed).toBe(2);
   expect(project.brief.text).toContain("## Coverage");
+  // Search the same durable imports from both the CLI and the reader.
+  await secondPanel.getByRole("tab", { name: /^Evidence/ }).click();
+  const search = secondPanel.getByRole("region", { name: "Find project evidence" });
+  await search.getByRole("searchbox", { name: "Search imported evidence" }).fill("workflow source");
+  await search.getByRole("button", { name: "Search evidence", exact: true }).click();
+  await expect(search.getByRole("status")).toContainText("2 evidence matches");
+  expect(cli("search", "workflow source").total).toBe(2);
+  await expect(search.getByRole("link")).toHaveCount(2);
+  await search.getByLabel("Paper", { exact: true }).selectOption("p2");
+  await search.getByRole("button", { name: "Search evidence", exact: true }).click();
+  await expect(search.getByRole("status")).toContainText("1 evidence matches");
+  await expect(search.locator("article")).toContainText("Another workflow test source.");
+  await search.getByLabel("Review status", { exact: true }).selectOption("reviewed");
+  await search.getByRole("button", { name: "Search evidence", exact: true }).click();
+  await expect(search.getByRole("status")).toContainText("No imported evidence matches");
+  await search.getByLabel("Review status", { exact: true }).selectOption("all");
+  await search.getByLabel("Paper", { exact: true }).selectOption("");
+  await search.getByRole("searchbox").fill("observation");
+  await search.getByRole("button", { name: "Search evidence", exact: true }).click();
+  await expect(search.getByRole("status")).toContainText("2 evidence matches");
+  await expect(search.getByText("Commentary", { exact: true })).toHaveCount(2);
+  await secondTab.screenshot({ path: path.join(artifacts, "search-desktop.png"), fullPage: true });
+  const searchedCitation = await search.getByRole("link").first().getAttribute("href");
+  await search.getByRole("link").first().click();
+  await expect(secondTab.locator("#annotationList .selected")).toBeVisible();
+  await secondTab.goto(secondUrl);
+  await secondPanel.getByRole("tab", {name: "Brief", exact: true}).click();
   await secondTab.screenshot({ path: path.join(artifacts, "project-desktop.png"), fullPage: true });
   await secondTab.setViewportSize({ width: 390, height: 844 });
   await secondTab.locator("#toggleWorkspaceBtn").click();
@@ -141,20 +168,81 @@ try {
   await expect(secondTab.getByRole("navigation", { name: "Project papers" })).toBeHidden();
   expect(await secondTab.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
   await secondTab.screenshot({ path: path.join(artifacts, "project-mobile.png"), fullPage: true });
+  await secondPanel.getByRole("tab", { name: /^Evidence/ }).click();
+  await search.getByRole("searchbox").fill("source");
+  await search.getByRole("button", { name: "Search evidence", exact: true }).click();
+  await expect(search.getByRole("status")).toContainText("2 evidence matches");
+  expect(await secondTab.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
+  await secondTab.screenshot({ path: path.join(artifacts, "search-mobile.png"), fullPage: true });
   cli("stop");
   cli("resume", "--no-open");
   await secondTab.setViewportSize({ width: 1440, height: 1000 });
-  for (const url of project.brief.passage_urls) {
+  for (const url of [...project.brief.passage_urls, searchedCitation]) {
     await secondTab.goto(url);
     await expect(secondTab.locator("#annotationList .selected")).toBeVisible();
     await expect(secondTab.locator("#textLayer span").first()).toBeVisible();
   }
+  // Synthetic reviewer assertions below test engineering behavior only.
+  await secondPanel.getByRole("tab", { name: "Compare", exact: true }).click();
+  const compare = secondPanel.getByRole("region", { name: "Compare and review findings", exact: true });
+  await compare.getByLabel("Comparison title", { exact: true }).fill("Conditions across two papers");
+  await compare.getByLabel("Criteria, one per line", { exact: true }).fill("Conditions\nLimitations");
+  await compare.getByRole("button", { name: "Create comparison", exact: true }).click();
+  await expect(compare.getByRole("table")).toBeVisible();
+  await expect(compare.getByRole("table")).toContainText("Missing information");
+  await compare.getByRole("button", { name: "Inspect p1 Conditions", exact: true }).click();
+  const editor = compare.getByRole("region", { name: "Selected comparison entry", exact: true });
+  await editor.getByLabel("Interpretation", { exact: true }).fill("No increase at 5 mg; not 50 mg. Synthetic fixture.");
+  await editor.getByLabel("Experimental conditions", { exact: true }).fill("Synthetic population; n=12; 20 C");
+  await editor.getByLabel("Interpretation origin", { exact: true }).selectOption("agent");
+  await editor.getByRole("checkbox", { name: /Page 1: Reading workflow test source/ }).check();
+  await editor.getByRole("button", { name: "Save interpretation", exact: true }).click();
+  await expect(editor.getByRole("link", { name: "Open comparison source · page 1", exact: true })).toBeVisible();
+  await expect(editor.getByLabel("Interpretation origin", { exact: true })).toHaveValue("agent");
+  const comparisonCitation = await editor.getByRole("link", { name: "Open comparison source · page 1", exact: true }).getAttribute("href");
+  await editor.getByText("Record human review", { exact: true }).click();
+  await editor.getByLabel("Reviewer", { exact: true }).fill("Synthetic test reviewer");
+  await editor.getByLabel("Review scope", { exact: true }).fill("Engineering fixture persistence only");
+  await editor.getByLabel("Review statement", { exact: true }).fill("Not a scientific review.");
+  await editor.getByLabel("Review decision", { exact: true }).selectOption("accepted");
+  await editor.getByRole("checkbox", { name: "I performed this review and am recording my decision." }).check();
+  await editor.getByRole("button", { name: "Record review decision", exact: true }).click();
+  await expect(editor.getByText("Review history · accepted", { exact: true })).toBeVisible();
+  const comparisonId = cli("compare", "list").comparisons[0].id;
+  const reviewed = cli("compare", "show", comparisonId).comparison;
+  expect(reviewed.cells.filter(c => c.review.status === "accepted")).toHaveLength(1);
+  expect(reviewed.cells.filter(c => c.support_status === "gap")).toHaveLength(3);
+  expect(cli("search", "source", "--review", "reviewed").total).toBe(0);
+  await secondTab.screenshot({ path: path.join(artifacts, "comparison-desktop.png"), fullPage: true });
+  const comparisonDownload = secondTab.waitForEvent("download");
+  await compare.getByRole("button", { name: "Download comparison", exact: true }).click();
+  await (await comparisonDownload).saveAs(path.join(artifacts, "comparison.md"));
+  expect(fs.readFileSync(path.join(artifacts, "comparison.md"), "utf8")).toContain("No increase at 5 mg; not 50 mg.");
+  cli("stop");
+  cli("resume", "--no-open");
+  await secondTab.reload();
+  await secondPanel.getByRole("tab", { name: "Compare", exact: true }).click();
+  await compare.getByLabel("Saved comparison", { exact: true }).selectOption(comparisonId);
+  await expect(editor.getByText("Review history · accepted", { exact: true })).toBeVisible();
+  await editor.getByLabel("Interpretation", { exact: true }).fill("A changed proposal needs another review.");
+  await editor.getByRole("button", { name: "Save interpretation", exact: true }).click();
+  await expect(editor.getByText("Review history · stale", { exact: true })).toBeVisible();
+  await secondTab.setViewportSize({ width: 390, height: 844 });
+  await secondTab.locator("#toggleWorkspaceBtn").click();
+  await expect(compare.getByRole("table")).toBeVisible();
+  expect(await secondTab.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBeTruthy();
+  await secondTab.screenshot({ path: path.join(artifacts, "comparison-mobile.png"), fullPage: true });
+  await secondTab.goto(comparisonCitation);
+  await expect(secondTab.locator("#annotationList .selected")).toContainText("Reading workflow test source.");
   fs.writeFileSync(path.join(artifacts, "project-brief.md"), project.brief.text);
   expect(errors).toEqual([]);
   fs.writeFileSync(path.join(artifacts, "receipt.json"), JSON.stringify({
     passed: true, user_created_highlight: true, preview_and_apply: true, download: true,
     passage_link: true, stop_and_resume: true, desktop_and_mobile: true, page_errors: errors,
     multiple_papers: true, separate_tabs: true, project_citations_after_resume: true,
+    evidence_search: true, paper_and_review_filters: true, search_citation_after_resume: true,
+    comparison_matrix: true, scoped_review_after_resume: true, edited_review_stale: true,
+    comparison_citation: true, comparison_download: true, comparison_mobile: true,
     workspace, brief: project.brief.path,
   }, null, 2));
   console.log(`Browser journey passed. Artifacts: ${artifacts}`);

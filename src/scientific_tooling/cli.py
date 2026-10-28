@@ -9,7 +9,7 @@ import webbrowser
 from importlib.resources import files
 from pathlib import Path
 
-from . import __version__, server
+from . import __version__, comparison, server
 from .reading import WorkflowError
 from .workspace import Workspace
 
@@ -52,6 +52,7 @@ def build_parser() -> argparse.ArgumentParser:
         ("start", "Start a project with one or more PDFs and a question."),
         ("add", "Add PDFs to an existing project; identical files are reused."),
         ("papers", "List project papers and their reading progress."),
+        ("search", "Find imported quotations and commentary across this project."),
         ("open", "Open a paper from this project."),
         ("resume", "Resume the saved reading workspace and open its reader."),
         ("status", "Show saved progress and available annotations."),
@@ -75,8 +76,14 @@ def build_parser() -> argparse.ArgumentParser:
             sub.add_argument("--port", type=int, default=0, help="Optional fixed local port; default assigns and remembers a free port.")
         if name == "open":
             sub.add_argument("paper", help="Project paper key (p1, p2, …) or RKS paper ID.")
-        if name in {"resume", "status", "annotate", "preview"}:
+        if name in {"resume", "status", "annotate", "preview", "search"}:
             sub.add_argument("--paper", help="Project paper key (p1, p2, …) or RKS paper ID.")
+        if name == "search":
+            sub.add_argument("query")
+            sub.add_argument("--review", choices=("all", "reviewed", "unreviewed"), default="all")
+            sub.add_argument("--mode", choices=("lexical", "phrase"), default="lexical")
+            sub.add_argument("--limit", type=int, default=20)
+            sub.add_argument("--offset", type=int, default=0)
         if name in {"start", "resume", "open"}:
             sub.add_argument("--no-open", action="store_true", help="Return the URL without opening a browser.")
         if name == "preview":
@@ -91,6 +98,7 @@ def build_parser() -> argparse.ArgumentParser:
             sub.add_argument("--comment", default="")
         if name == "skill":
             sub.add_argument("--dest", type=Path, required=True, help="Agent's skills directory, e.g. ~/.codex/skills or ~/.claude/skills.")
+    comparison.register(commands)
     return parser
 
 
@@ -100,6 +108,11 @@ def dispatch(args) -> dict:
     if args.command == "skill":
         return install_skill(args.dest)
     workspace = Workspace(args.workspace)
+    if args.command == "compare":
+        return comparison.dispatch(workspace, args)
+    if args.command == "search":
+        return workspace.search(args.query, paper=args.paper, review=args.review, mode=args.mode,
+                                limit=args.limit, offset=args.offset)
     if args.command == "add":
         added = workspace.add(args.pdf)
         return {**workspace.summary(), "added": added, "running": server.running(workspace, detailed=False) is not None}
@@ -144,6 +157,41 @@ def print_result(result: dict, as_json: bool) -> None:
     if as_json:
         print(json.dumps(result, ensure_ascii=True, indent=2))
         return
+    if "comparison" in result:
+        item = result["comparison"]
+        print(item["markdown"])
+        print(f"Comparison: {item['id']}\nRevision: {item['revision']}")
+        if result.get("request_id"):
+            print(f"Saved request: {result['request_id']}")
+        return
+    if "comparisons" in result:
+        for item in result["comparisons"]:
+            print(f"{item['id']}  {item['title']}")
+        if not result["comparisons"]:
+            print("No comparisons yet. Use sci compare create with a title and criteria.")
+        return
+    if result.get("schema") == "scientific-tooling.evidence-search.v1":
+        print(f"{result['total']} imported evidence matches for {result['query']!r}.")
+        for entry in result["results"]:
+            item = entry["record"]["item"]
+            print(f"\n{entry['rank']}. {entry['paper']['key']}: {entry['paper']['title']} ({item['review']['status']})")
+            print(f"   Evidence: {entry['note_id']} / {item['id']} · revision {entry['revision']}")
+            print(f"   Source SHA-256: {entry['record']['document']['sha256']}")
+            for match in entry["matches"]:
+                location = f" (page {match['page']})" if match.get("page") else ""
+                print(f"   {match['role'].capitalize()}{location}: {match['text']}")
+            for passage in entry["passages"]:
+                print(f"   Page {passage['page']}: {passage['url'] or passage['message']}")
+            if not entry["passages"]:
+                print("   No supporting passage is linked to this note.")
+        if result["unavailable_evidence"]:
+            print(f"{len(result['unavailable_evidence'])} imports need attention; inspect --json for details.")
+        if result["pending_papers"]:
+            print("Papers still being prepared: " + ", ".join(result["pending_papers"]))
+        if result["has_more"]:
+            print(f"More matches: repeat with --offset {result['offset'] + result['limit']}.")
+        print("Search covers imported evidence only. " + result["reader_hint"])
+        return
     if "phase" in result:
         print(f"{result['question']}\nProgress: {result['phase']}\nWorkspace: {result['workspace']}")
         if result.get("running"):
@@ -172,6 +220,8 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     try:
         result = dispatch(args)
+        if args.command == "serve":
+            return 0  # Internal child emitted its single startup acknowledgement.
         print_result(result, args.json)
         if result.get("ok") is False or result.get("applied") is False or (result.get("preview") or {}).get("counts", {}).get("conflict", 0):
             return 2

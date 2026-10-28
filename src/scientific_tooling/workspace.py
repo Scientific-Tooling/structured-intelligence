@@ -8,7 +8,7 @@ import sys
 import uuid
 from pathlib import Path
 
-from . import brief, evidence, reading
+from . import brief, comparison, evidence, reading, search
 from .reading import WorkflowError, hash_stream, run_json
 from .state import lock, read_json, write_json
 
@@ -123,9 +123,11 @@ class Workspace:
             if len(data["papers"]) == 1 or default:
                 return data["papers"][0]
             raise WorkflowError("Choose a paper with --paper (for example p1). Use sci papers to list this project.")
-        for item in data["papers"]:
-            if paper in (item["key"], item["paper_id"]):
-                return item
+        matches = [item for item in data["papers"] if paper in (item["key"], item["paper_id"])]
+        if len(matches) > 1:
+            raise WorkflowError("Ambiguous paper identity. Choose a unique project paper key from sci papers.")
+        if matches:
+            return matches[0]
         raise WorkflowError(f"Paper {paper!r} is not in this project. Use sci papers to list it.")
 
     def for_session(self, session_id: str) -> str:
@@ -194,6 +196,13 @@ class Workspace:
                     handoff = read_json(path)
                     handoff["apw"]["viewer_url"] = reading.session_url(f"http://127.0.0.1:{port}", handoff["apw"]["session_id"])
                     write_json(path, handoff)
+
+    def search(self, query: str, *, paper: str | None = None, review: str = "all",
+               mode: str = "lexical", limit: int = 20, offset: int = 0) -> dict:
+        return search.search_project(self, query, paper=paper, review=review, mode=mode, limit=limit, offset=offset)
+
+    def compare(self, action: str, **kwargs) -> dict:
+        return comparison.operate(self, action, **kwargs)
 
     def batch_dir(self, batch_id: str) -> Path:
         if not isinstance(batch_id, str) or not re.fullmatch(r"[0-9a-f]{32}", batch_id):

@@ -11,7 +11,7 @@ import sys
 import time
 import traceback
 from contextlib import redirect_stderr
-from threading import Thread
+from threading import Event, Thread
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import ProxyHandler, Request, build_opener
@@ -19,6 +19,7 @@ from urllib.request import ProxyHandler, Request, build_opener
 from .reading import WorkflowError
 from .state import lock, read_json, write_json
 from .workspace import Workspace
+from .comparison import evidence_options
 
 
 def request(port: int, path: str, payload: dict | None = None, *, timeout: float = 60) -> dict:
@@ -69,25 +70,46 @@ def ensure_running(workspace: Workspace, *, detailed: bool = True, paper: str | 
     command = [sys.executable, "-m", "scientific_tooling", "serve", "--workspace", str(workspace.root)]
     options = {"creationflags": subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP} if os.name == "nt" else {"start_new_session": True}
     (workspace.root / "server.log").touch(exist_ok=True)
-    process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
                                cwd=os.path.dirname(sys.executable), env={**os.environ, "PYTHONIOENCODING": "utf-8"}, **options)
-    deadline = time.monotonic() + 20
-    while time.monotonic() < deadline:
-        current = running(workspace, detailed=detailed, paper=paper)
-        if current:
-            return current
-        if process.poll() is not None:
+    # A filename can become visible during publication before Windows allows it
+    # to be opened. The child explicitly acknowledges completed publication;
+    # startup must not infer readiness by polling that file.
+    ready = Event()
+    response = []
+    def read_ready():
+        try:
+            response.append(process.stdout.readline())
+        finally:
+            ready.set()
+    listener = Thread(target=read_ready, daemon=True)
+    listener.start()
+    try:
+        if not ready.wait(timeout=20):
+            raise WorkflowError(f"Reader startup timed out. Inspect {workspace.root / 'server.log'} and resume.")
+        if not response or not response[0]:
             tail = (workspace.root / "server.log").read_text(encoding="utf-8", errors="replace")[-1800:]
             raise WorkflowError(f"Reader could not start. See {workspace.root / 'server.log'}\n{tail}")
-        time.sleep(0.1)
-    # This handle belongs to the child just launched, never a stored/recycled PID.
-    process.terminate()
-    try:
-        process.wait(timeout=5)
-    except subprocess.TimeoutExpired:
-        process.kill()
-        process.wait(timeout=5)
-    raise WorkflowError(f"Reader startup timed out. Inspect {workspace.root / 'server.log'} and resume.")
+        receipt = json.loads(response[0])
+        if receipt.get("schema") != "scientific-tooling.reader-ready.v1" or receipt.get("workspace_id") != workspace.load()["workspace_id"]:
+            raise WorkflowError("Reader returned an invalid startup acknowledgement. Inspect server.log.")
+        current = running(workspace, detailed=detailed, paper=paper)
+        if not current or current.get("instance_id") != receipt.get("instance_id"):
+            raise WorkflowError("Reader did not confirm its published instance. Inspect server.log.")
+        return current
+    except BaseException:
+        # This handle belongs to the child just launched, never a stored/recycled PID.
+        if process.poll() is None:
+            process.terminate()
+            try:
+                process.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(timeout=5)
+        raise
+    finally:
+        listener.join(timeout=5)
+        process.stdout.close()
 
 
 def stop(workspace: Workspace) -> dict:
@@ -129,7 +151,8 @@ class HostedWorkflow:
             except WorkflowError:
                 return {"enabled": False}
             data = self.workspace.summary(paper)
-            data.update(enabled=True, instance_id=self.instance_id, running=True)
+            data.update(enabled=True, instance_id=self.instance_id, running=True,
+                        capabilities={"evidence_search": True, "comparisons": True})
             # Read the whole selection space through APW's public service, including
             # pagination; do not query APW's SQLite tables from orchestration.
             for kind in ("annotations", "notes"):
@@ -145,6 +168,26 @@ class HostedWorkflow:
         except (WorkflowError, OSError, KeyError) as exc:
             raise ValueError(str(exc)) from exc
 
+    def search(self, params: dict) -> dict:
+        try:
+            self.workspace.for_session(params.get("session_id"))
+            return self.workspace.search(params.get("q", ""), paper=params.get("paper") or None,
+                                         review=params.get("review", "all"), mode=params.get("mode", "lexical"),
+                                         limit=int(params.get("limit", "20")), offset=int(params.get("offset", "0")))
+        except (WorkflowError, OSError, KeyError, TypeError) as exc:
+            raise ValueError(str(exc)) from exc
+
+    def comparisons(self, params: dict) -> dict:
+        try:
+            self.workspace.for_session(params.get("session_id"))
+            result = self.workspace.compare("list")
+            if params.get("comparison_id"):
+                result.update(self.workspace.compare("show", comparison_id=params["comparison_id"]))
+                result["evidence"] = evidence_options(self.workspace)["evidence"]
+            return result
+        except (WorkflowError, OSError, KeyError, TypeError) as exc:
+            raise ValueError(str(exc)) from exc
+
     def execute(self, payload: dict) -> dict:
         try:
             action = payload.get("action")
@@ -155,6 +198,10 @@ class HostedWorkflow:
                 Thread(target=self.server.shutdown, daemon=True).start()
                 return {"stopping": True}
             paper = self.workspace.for_session(payload.get("session_id"))
+            if action in {"comparison_create", "comparison_set", "comparison_review"}:
+                return self.workspace.compare(action.removeprefix("comparison_"),
+                    comparison_id=payload.get("comparison_id"), payload=payload.get("payload"),
+                    expected_revision=payload.get("expected_revision"), request_id=payload.get("request_id"))
             if action == "preview":
                 result = self.workspace.preview(payload.get("annotation_ids", []), payload.get("note_ids", []), paper)
                 return {"preview": result}
@@ -213,6 +260,8 @@ def _serve_owned(workspace: Workspace, instance_id: str, token: str) -> None:
         write_json(record_path, {"instance_id": instance_id, "token": token,
                                 "workspace_id": data["workspace_id"], "port": server.server_address[1]})
         signal.signal(signal.SIGTERM, lambda *_: Thread(target=server.shutdown, daemon=True).start())
+        print(json.dumps({"schema": "scientific-tooling.reader-ready.v1", "instance_id": instance_id,
+                          "workspace_id": data["workspace_id"]}), flush=True)
         server.serve_forever()
     except KeyboardInterrupt:
         pass

@@ -1,6 +1,6 @@
 # sci roadmap
 
-Updated October 27, 2026. Current baseline: **sci 0.3.1**.
+Updated October 28, 2026. Current baseline: **sci 0.3.1**.
 
 `sci` should help a researcher carry a question from papers to evidence, a
 defensible comparison, and a reproducible next step. The CLI maintains durable
@@ -35,14 +35,18 @@ the scientific correctness of imported interpretations.
 
 ## Planned sequence
 
-Only the baseline above is implemented. The milestones below are proposed in
+The baseline above is released. Repository `main` adds project evidence search
+through the CLI, JSON interface and reader, with exact published dependency pins; see
+[usage, contracts and acceptance gaps](evidence-search.md). Milestone 2 also has a
+development implementation of comparison matrices and revision-bound human reviews;
+see [usage, recovery and acceptance gaps](comparisons.md). The milestones below remain in
 priority order, without promised dates, release numbers, or final command names.
 Keep each milestone useful on its own and revisit the order after researcher pilots.
 
 | Milestone | Status | Researcher outcome |
 | --- | --- | --- |
-| 1. Find evidence across a project | Next | Locate relevant saved evidence without reopening every paper. |
-| 2. Compare and review findings | Planned after 1 | Compare methods or claims with traceable support and explicit gaps. |
+| 1. Find evidence across a project | In progress: implemented on main; release and independent evaluation pending | Locate relevant saved evidence without reopening every paper. |
+| 2. Compare and review findings | In progress: implemented on main; release and independent domain review pending | Compare methods or claims with traceable support and explicit gaps. |
 | 3. Discover and add relevant papers | Planned after 1–2 | Move from a question or identifier to a selected, attributed reading set. |
 | 4. Maintain a living project | Later; builds on 2–3 | Understand what changed when sources or interpretations change. |
 | 5. Connect evidence to analysis | Exploratory | Turn a literature decision into a bounded, reproducible analysis handoff. |

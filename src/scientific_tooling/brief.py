@@ -64,6 +64,19 @@ def check_passage(apw: list[str], record: dict, passage: dict) -> tuple[bool, st
     return True, "Source and annotation revision verified; the viewer checks page text when opened."
 
 
+def checked_passages(apw: list[str], record: dict, viewer_url: str | None, checked: dict) -> list[dict]:
+    """Shared citation checks for search and comparisons; never substitutes a source."""
+    passages = []
+    for passage in record["item"]["passages"]:
+        key = (record["source"]["session_id"], record["document"]["sha256"], digest(passage))
+        if key not in checked:
+            checked[key] = check_passage(apw, record, passage)
+        available, reason = checked[key]
+        url = passage_url(viewer_url, record, passage) if available and viewer_url else None
+        passages.append({**passage, "available": available, "message": reason, "url": url})
+    return passages
+
+
 def render_brief(args: argparse.Namespace, *, allow_empty: bool = False) -> tuple[str, dict]:
     """Validate and render one paper for either a standalone or project brief."""
     session_url(args.viewer_url, "validate-before-reading")

@@ -10,8 +10,8 @@ readme = "workflows/research/quickstart.md"
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
-  "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@fd44ad7388abb482a5980508531383cacf4da381",
-  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@1773e6b4b44fd9950f7a08399f480e653e8dbedf",
+  "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@fe16190d51dfa410273bce3d2621af1a4ed2fb43",
 ]
 
 [project.scripts]
