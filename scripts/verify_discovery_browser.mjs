@@ -43,8 +43,14 @@ try {
   await discovery.getByRole("heading", { name: "Literal conditions: no effect at 5 mg" }).scrollIntoViewIfNeeded();
   await page.screenshot({ path: path.join(output, "discovery-desktop.png"), fullPage: true });
   const selected = page.getByRole("navigation", { name: "Project papers" }).getByRole("link", { name: /Literal conditions: no effect at 5 mg/ });
+  await page.getByRole("tab", { name: "Notes", exact: true }).click();
+  const beforeSwitch = await page.locator(".reader-toolbar").boundingBox();
+  await page.evaluate(() => { window.readerSwitchProbe = "same document"; });
   await selected.click();
   await expect(page.locator("#textLayer span").first()).toHaveText("Selected discovery source.");
+  expect(await page.evaluate(() => window.readerSwitchProbe)).toBe("same document");
+  expect(await page.locator(".reader-toolbar").boundingBox()).toEqual(beforeSwitch);
+  await expect(page.getByRole("tab", { name: "Notes", exact: true })).toHaveAttribute("aria-selected", "true");
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator("#toggleControlsBtn").click();
   await page.getByText("Discover and add papers", { exact: true }).first().click();
