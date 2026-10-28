@@ -9,7 +9,7 @@ import webbrowser
 from importlib.resources import files
 from pathlib import Path
 
-from . import __version__, comparison, server
+from . import __version__, comparison, discovery, server
 from .reading import WorkflowError
 from .workspace import Workspace
 
@@ -49,6 +49,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--version", action="version", version=__version__)
     commands = parser.add_subparsers(dest="command", required=True)
     for name, help_text in (
+        ("init", "Start a research question before selecting any papers."),
         ("start", "Start a project with one or more PDFs and a question."),
         ("add", "Add PDFs to an existing project; identical files are reused."),
         ("papers", "List project papers and their reading progress."),
@@ -71,7 +72,7 @@ def build_parser() -> argparse.ArgumentParser:
             sub.add_argument("--workspace", type=Path, default=Path("review"))
         if name in {"start", "add"}:
             sub.add_argument("pdf", type=Path, nargs="+")
-        if name == "start":
+        if name in {"start", "init"}:
             sub.add_argument("--question", required=True)
             sub.add_argument("--port", type=int, default=0, help="Optional fixed local port; default assigns and remembers a free port.")
         if name == "open":
@@ -99,6 +100,7 @@ def build_parser() -> argparse.ArgumentParser:
         if name == "skill":
             sub.add_argument("--dest", type=Path, required=True, help="Agent's skills directory, e.g. ~/.codex/skills or ~/.claude/skills.")
     comparison.register(commands)
+    discovery.register(commands)
     return parser
 
 
@@ -108,6 +110,11 @@ def dispatch(args) -> dict:
     if args.command == "skill":
         return install_skill(args.dest)
     workspace = Workspace(args.workspace)
+    if args.command == "init":
+        workspace.initialize(args.question, args.port)
+        return workspace.summary()
+    if args.command == "discover":
+        return discovery.dispatch(workspace, args)
     if args.command == "compare":
         return comparison.dispatch(workspace, args)
     if args.command == "search":
@@ -118,7 +125,8 @@ def dispatch(args) -> dict:
         return {**workspace.summary(), "added": added, "running": server.running(workspace, detailed=False) is not None}
     if args.command == "papers":
         data = workspace.load()
-        return {"question": data["question"], "papers": [workspace.paper_summary(data, p) for p in data["papers"]]}
+        return {"question": data["question"], "papers": [workspace.paper_summary(data, p) for p in data["papers"]],
+                "works": data.get("works", [])}
     if args.command in {"start", "resume", "open"}:
         diagnosis = doctor()
         if not diagnosis["ok"]:
@@ -156,6 +164,37 @@ def dispatch(args) -> dict:
 def print_result(result: dict, as_json: bool) -> None:
     if as_json:
         print(json.dumps(result, ensure_ascii=True, indent=2))
+        return
+    if result.get("schema") == discovery.RUN_SCHEMA:
+        print(f"Discovery {result['id']} ({result['status']})\n{result['provider']}: {result['query']}\nRetrieved: {result['retrieved_at']}")
+        if result["error"]:
+            print(result["error"])
+        for candidate in result["candidates"]:
+            print(f"\n{candidate['id']}. {candidate['title']} ({candidate['year'] or 'year unknown'})")
+            print(", ".join(candidate["authors"]) + " · " + (candidate["venue"] or ""))
+            print("Identifiers: " + json.dumps(candidate["identifiers"]) + "\n" + candidate["landing_url"])
+            for index, source in enumerate(candidate["pdf_sources"], 1):
+                print(f"  PDF source {index} (unverified): {source['url']}")
+            if not candidate["pdf_sources"]:
+                print("  No PDF source reported. Keep this reference or select a local PDF.")
+        print("Discovery does not add papers, import evidence or record review. Use discover select for explicit selections.")
+        return
+    if result.get("schema") == discovery.SELECTION_SCHEMA:
+        print(f"Selection {result['request']['id']}: {result['status']}")
+        if result["paper_key"]:
+            print(f"Paper: {result['paper_key']}. Use sci resume to open the retained PDF.")
+        if result["error"]:
+            print(result["error"])
+        return
+    if result.get("schema") == "scientific-tooling.discovery-list.v1":
+        for run in result["discoveries"]:
+            print(f"{run['id']}  {run['provider']}  {run['status']}  {run['query']}")
+        for work in result["works"]:
+            print(f"{work['id']}  {work['title']}  PDFs: {', '.join(work['paper_keys']) or 'none'}")
+        for selection in result["selections"]:
+            print(f"Selection {selection['request']['id']}: {selection['status']} · {selection['candidate_title']}")
+            if selection["error"]:
+                print("  " + selection["error"])
         return
     if "comparison" in result:
         item = result["comparison"]
@@ -196,12 +235,15 @@ def print_result(result: dict, as_json: bool) -> None:
         print(f"{result['question']}\nProgress: {result['phase']}\nWorkspace: {result['workspace']}")
         if result.get("running"):
             print(f"Reader: {result['viewer_url']}\nSelect highlights in the reader, then preview and import the evidence.")
+        elif result["phase"] == "discovering":
+            print(result["next_action"])
         else:
             print("Reader is stopped. Use sci resume with this workspace.")
     if "papers" in result:
         for paper in result["papers"]:
             print(f"  {paper['key']}  {paper['title']}  ({paper['phase']})")
-        print("Open a paper with sci open p1 --workspace <project>.")
+        if result["papers"]:
+            print("Open a paper with sci open p1 --workspace <project>.")
     if result.get("preview"):
         preview = result["preview"]
         print(f"Preview: {preview['id']}\nChanges: {json.dumps(preview['counts'])}")

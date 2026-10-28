@@ -11,7 +11,7 @@ requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
   "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
-  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@fe16190d51dfa410273bce3d2621af1a4ed2fb43",
+  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@c9aa169ec4fdcb5dd79d65c67baedb426df6bd73",
 ]
 
 [project.scripts]
@@ -20,8 +20,8 @@ scientific-tooling = "scientific_tooling.cli:main"
 
 [tool.setuptools]
 include-package-data = false
-packages = ["scientific_tooling", "scientific_tooling.agent_skill"]
-package-dir = {"" = "src", "scientific_tooling.agent_skill" = "skills/paper-to-brief"}
+packages = ["scientific_tooling", "scientific_tooling.agent_skill", "scientific_tooling.ncbi_eutils"]
+package-dir = {"" = "src", "scientific_tooling.agent_skill" = "skills/paper-to-brief", "scientific_tooling.ncbi_eutils" = "skills/ncbi-eutilities-assistant/scripts"}
 
 [tool.setuptools.package-data]
 "scientific_tooling.agent_skill" = ["SKILL.md", "agents/*.yaml"]

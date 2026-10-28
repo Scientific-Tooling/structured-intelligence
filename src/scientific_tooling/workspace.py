@@ -24,7 +24,7 @@ class Workspace:
 
     def load(self) -> dict:
         if not self.file.is_file():
-            raise WorkflowError("Workspace not found. Use start with PDFs and a question first.")
+            raise WorkflowError("Workspace not found. Use init with a question, or start with PDFs and a question.")
         data = read_json(self.file)
         if data.get("schema") not in {SCHEMA, LEGACY_SCHEMA}:
             raise WorkflowError("Unsupported workspace format. Preserve this directory and use a compatible version.")
@@ -89,10 +89,10 @@ class Workspace:
             data.pop("brief", None)  # Preserve old files, invalidate current coverage.
         return added
 
-    def create(self, pdfs: Path | list[Path], question: str, port: int = 0) -> None:
+    def initialize(self, question: str, port: int = 0, *, records=None) -> None:
         if not question.strip() or not 0 <= port <= 65535:
             raise WorkflowError("Provide a nonempty research question and a port from 0 to 65535.")
-        records = self.inspect_pdfs(pdfs)  # Validate the entire input before changing state.
+        records = records or []
         self.root.mkdir(parents=True, exist_ok=True)
         with lock(self.root / "workspace.lock"):
             if self.file.exists():
@@ -109,6 +109,9 @@ class Workspace:
             self.append_papers(data, records)
             self.save(data)
 
+    def create(self, pdfs: Path | list[Path], question: str, port: int = 0) -> None:
+        self.initialize(question, port, records=self.inspect_pdfs(pdfs))
+
     def add(self, pdfs: list[Path]) -> list[str]:
         records = self.inspect_pdfs(pdfs)
         with lock(self.root / "workspace.lock"):
@@ -119,6 +122,8 @@ class Workspace:
         return added
 
     def select(self, data: dict, paper: str | None = None, *, default: bool = False) -> dict:
+        if not data["papers"]:
+            raise WorkflowError("No PDF is selected yet. Use sci discover to find and select a paper before reading.")
         if paper is None:
             if len(data["papers"]) == 1 or default:
                 return data["papers"][0]
@@ -325,12 +330,21 @@ class Workspace:
         path = self.root / paper["handoff"]
         handoff = read_json(path) if path.is_file() else None
         session = handoff["apw"]["session_id"] if handoff else None
+        work = next((work for work in data.get("works", []) if work["id"] == paper.get("work_id")), None)
+        bibliography = {key: work.get(key) for key in ("authors", "year", "venue")} if work else None
         return {"key": paper["key"], "title": paper["title"], "paper_id": paper["paper_id"], "phase": paper["phase"],
+                "bibliography": bibliography,
                 "source_pdf": str(self.root / "pdfs" / (paper["sha256"] + ".pdf")), "session_id": session,
-                "viewer_url": reading.session_url(f"http://127.0.0.1:{data['port']}", session) if session and data["port"] else None}
+                "viewer_url": reading.session_url(f"http://127.0.0.1:{data['port']}", session) if session and data["port"] else None,
+                "work_id": paper.get("work_id"), "document_sha256": paper["sha256"]}
 
     def summary(self, paper: str | None = None) -> dict:
         data = self.load()
+        if not data["papers"]:
+            return {"schema": SCHEMA, "workspace": str(self.root), "workspace_id": data["workspace_id"],
+                    "question": data["question"], "phase": "discovering", "paper_count": 0, "papers": [],
+                    "works": data.get("works", []), "session_id": None, "viewer_url": None,
+                    "preview": None, "brief": None, "next_action": "Discover candidate papers and select a PDF to start reading."}
         selected = self.select(data, paper, default=True)
         result = {"schema": SCHEMA, "workspace": str(self.root), "workspace_id": data["workspace_id"],
                   "question": data["question"], **self.paper_summary(data, selected),

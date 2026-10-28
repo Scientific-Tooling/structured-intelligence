@@ -244,6 +244,20 @@ class WorkflowTest(unittest.TestCase):
             self.assertTrue(server.ensure_running(self.workspace)["running"])
         child.terminate.assert_not_called()
         child.stdout.close.assert_called_once()
+        server._owned_children.pop((str(self.workspace.root), "owned"))
+
+    def test_stop_reaps_only_child_handles_owned_by_this_library_process(self):
+        child, foreign = Mock(), Mock()
+        child.poll.return_value = None
+        foreign.poll.return_value = None
+        owned_key = (str(self.workspace.root), "owned")
+        other_key = (str(self.root / "other-workspace"), "foreign")
+        with patch.dict(server._owned_children, {owned_key: child, other_key: foreign}, clear=True):
+            server._reap_children(self.workspace, "owned")
+            child.wait.assert_called_once_with(timeout=5)
+            foreign.wait.assert_not_called()
+            self.assertNotIn(owned_key, server._owned_children)
+            self.assertIn(other_key, server._owned_children)
 
     def test_failed_startup_acknowledgement_stops_only_the_launched_child(self):
         child = Mock(stdout=io.BytesIO(b'{"schema":"wrong"}\n'))

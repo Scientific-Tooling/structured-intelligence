@@ -101,7 +101,7 @@ try {
   await page.reload();
   const navigation = page.getByRole("navigation", { name: "Project papers" });
   await expect(navigation.getByRole("link")).toHaveCount(2);
-  const secondUrl = await navigation.getByRole("link", { name: /p2.*second paper/ }).getAttribute("href");
+  const secondUrl = await navigation.getByRole("link", { name: /second paper/ }).getAttribute("href");
   const secondTab = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   secondTab.on("pageerror", error => errors.push(String(error)));
   await secondTab.goto(secondUrl);
@@ -132,12 +132,14 @@ try {
   expect(project.brief.text).toContain("## Coverage");
   // Search the same durable imports from both the CLI and the reader.
   await secondPanel.getByRole("tab", { name: /^Evidence/ }).click();
+  await secondPanel.locator(".project-evidence-search > summary").click();
   const search = secondPanel.getByRole("region", { name: "Find project evidence" });
   await search.getByRole("searchbox", { name: "Search imported evidence" }).fill("workflow source");
   await search.getByRole("button", { name: "Search evidence", exact: true }).click();
   await expect(search.getByRole("status")).toContainText("2 evidence matches");
   expect(cli("search", "workflow source").total).toBe(2);
   await expect(search.getByRole("link")).toHaveCount(2);
+  await search.locator(".evidence-search-filters > summary").click();
   await search.getByLabel("Paper", { exact: true }).selectOption("p2");
   await search.getByRole("button", { name: "Search evidence", exact: true }).click();
   await expect(search.getByRole("status")).toContainText("1 evidence matches");

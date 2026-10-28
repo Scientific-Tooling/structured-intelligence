@@ -20,6 +20,20 @@ from .reading import WorkflowError
 from .state import lock, read_json, write_json
 from .workspace import Workspace
 from .comparison import evidence_options
+from . import discovery
+
+# Library callers retain handles for readers they started and reap them on stop.
+# CLI callers may exit while their deliberately detached reader continues running.
+_owned_children: dict[tuple[str, str], subprocess.Popen] = {}
+
+
+def _reap_children(workspace, instance_id=None):
+    for key, child in list(_owned_children.items()):
+        if key[0] != str(workspace.root):
+            continue
+        if key[1] == instance_id or child.poll() is not None:
+            child.wait(timeout=5)
+            del _owned_children[key]
 
 
 def request(port: int, path: str, payload: dict | None = None, *, timeout: float = 60) -> dict:
@@ -60,6 +74,8 @@ def running(workspace: Workspace, *, detailed: bool = True, paper: str | None = 
 
 
 def ensure_running(workspace: Workspace, *, detailed: bool = True, paper: str | None = None) -> dict:
+    if not workspace.load()["papers"]:
+        raise WorkflowError("No PDF is selected yet. Use sci discover to find and select a paper before opening the reader.")
     existing = running(workspace, detailed=False)
     if existing:
         if any(p["phase"] == "initializing" for p in workspace.load()["papers"]):
@@ -96,6 +112,7 @@ def ensure_running(workspace: Workspace, *, detailed: bool = True, paper: str | 
         current = running(workspace, detailed=detailed, paper=paper)
         if not current or current.get("instance_id") != receipt.get("instance_id"):
             raise WorkflowError("Reader did not confirm its published instance. Inspect server.log.")
+        _owned_children[(str(workspace.root), receipt["instance_id"])] = process
         return current
     except BaseException:
         # This handle belongs to the child just launched, never a stored/recycled PID.
@@ -116,6 +133,7 @@ def stop(workspace: Workspace) -> dict:
     current = running(workspace, detailed=False)
     if not current:
         with lock(workspace.root / "server.lock"):
+            _reap_children(workspace)
             return {"stopped": True, "already_stopped": True, "workspace": str(workspace.root)}
     record = read_json(workspace.root / "server.json")
     request(record["port"], "/api/workflow", {"action": "stop", "token": record["token"]})
@@ -124,6 +142,7 @@ def stop(workspace: Workspace) -> dict:
         if not (workspace.root / "server.json").exists():
             try:
                 with lock(workspace.root / "server.lock"):
+                    _reap_children(workspace, record["instance_id"])
                     return {"stopped": True, "workspace": str(workspace.root)}
             except WorkflowError:
                 pass
@@ -152,7 +171,7 @@ class HostedWorkflow:
                 return {"enabled": False}
             data = self.workspace.summary(paper)
             data.update(enabled=True, instance_id=self.instance_id, running=True,
-                        capabilities={"evidence_search": True, "comparisons": True})
+                        capabilities={"evidence_search": True, "comparisons": True, "discovery": True})
             # Read the whole selection space through APW's public service, including
             # pagination; do not query APW's SQLite tables from orchestration.
             for kind in ("annotations", "notes"):
@@ -198,6 +217,15 @@ class HostedWorkflow:
                 Thread(target=self.server.shutdown, daemon=True).start()
                 return {"stopping": True}
             paper = self.workspace.for_session(payload.get("session_id"))
+            if action in {"discovery_search", "discovery_lookup"}:
+                return {"discovery": discovery.discover(self.workspace, action.removeprefix("discovery_"), payload.get("query"),
+                    provider=payload.get("provider", "pubmed"), limit=payload.get("limit", 10))}
+            if action == "discovery_select":
+                # Local filesystem paths are deliberately CLI-only; browser selections use saved provider URLs.
+                return {"selection": discovery.select(self.workspace, payload.get("discovery_id"), payload.get("candidate_id"),
+                    source=payload.get("source"), request_id=payload.get("request_id"))}
+            if action == "discovery_retry":
+                return {"selection": discovery.select(self.workspace, request_id=payload.get("request_id"), retry=True)}
             if action in {"comparison_create", "comparison_set", "comparison_review"}:
                 return self.workspace.compare(action.removeprefix("comparison_"),
                     comparison_id=payload.get("comparison_id"), payload=payload.get("payload"),
@@ -218,6 +246,16 @@ class HostedWorkflow:
             if action == "brief":
                 return {"brief": self.workspace.make_brief()}
             raise WorkflowError("Unknown workflow action.")
+        except (WorkflowError, OSError, KeyError, TypeError) as exc:
+            raise ValueError(str(exc)) from exc
+
+    def discovery(self, params: dict) -> dict:
+        try:
+            self.workspace.for_session(params.get("session_id"))
+            result = discovery.inventory(self.workspace)
+            if params.get("discovery_id"):
+                result["discovery"] = discovery.show(self.workspace, params["discovery_id"])
+            return result
         except (WorkflowError, OSError, KeyError, TypeError) as exc:
             raise ValueError(str(exc)) from exc
 

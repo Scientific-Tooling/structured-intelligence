@@ -47,7 +47,7 @@ Keep each milestone useful on its own and revisit the order after researcher pil
 | --- | --- | --- |
 | 1. Find evidence across a project | In progress: implemented on main; release and independent evaluation pending | Locate relevant saved evidence without reopening every paper. |
 | 2. Compare and review findings | In progress: implemented on main; release and independent domain review pending | Compare methods or claims with traceable support and explicit gaps. |
-| 3. Discover and add relevant papers | Planned after 1–2 | Move from a question or identifier to a selected, attributed reading set. |
+| 3. Discover and add relevant papers | In progress: implemented on main; release and independent evaluation pending | Move from a question or identifier to a selected, attributed reading set. |
 | 4. Maintain a living project | Later; builds on 2–3 | Understand what changed when sources or interpretations change. |
 | 5. Connect evidence to analysis | Exploratory | Turn a literature decision into a bounded, reproducible analysis handoff. |
 
@@ -86,6 +86,13 @@ restart and are invalidated appropriately by edits. Independent domain review
 checks numerical values, conditions, negation and claimed contradictions.
 
 ### 3. Discover and add relevant papers
+
+The first development slice provides question-only projects, bounded PubMed and
+Crossref searches, DOI/PMID lookup, saved candidates, explicit PDF selection,
+work/version identities and interrupted-selection recovery. See
+[commands, provenance, validation and remaining gates](discovery.md). Its reader
+panel ships through the pinned APW reader dependency, including the research desk
+layout and steady navigation between papers.
 
 Bring bounded literature discovery and identifier-based import into the project
 workflow, reusing existing discovery skills and RKS ingestion. Present candidates

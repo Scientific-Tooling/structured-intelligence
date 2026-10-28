@@ -67,6 +67,10 @@ jobs:
         run: python -c "import glob, subprocess, sys; subprocess.check_call([sys.executable, '-m', 'pip', 'install', *glob.glob('dist/*.whl')])"
       - name: Verify installed workflow and interruption recovery
         run: python scripts/run_research_tests.py discover -s tests -p test_workflow.py -v
+      - name: Verify saved discovery, selection and interruption recovery
+        run: python scripts/run_research_tests.py discover -s tests -p test_discovery.py -v
+      - name: Verify atomic records with concurrent readers
+        run: python scripts/run_research_tests.py discover -s tests -p test_state.py -v
       - name: Verify reading and evidence adapters against installed packages
         shell: python
         run: |
@@ -81,7 +85,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: Scientific-Tooling/agent-pdf-workbench
-          ref: fe16190d51dfa410273bce3d2621af1a4ed2fb43
+          ref: c9aa169ec4fdcb5dd79d65c67baedb426df6bd73
           path: apw
       - uses: actions/setup-python@v5
         with:
@@ -99,6 +103,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify highlight to brief and resumed passage link
         run: node scripts/verify_workflow_browser.mjs "$(command -v python)" "$PWD/apw" "$RUNNER_TEMP/workflow-browser"
+      - name: Verify explicit discovery selection and lost response recovery
+        run: python scripts/verify_discovery_browser.py --apw "$PWD/apw" --output "$RUNNER_TEMP/discovery-browser"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -107,6 +113,8 @@ jobs:
             ${{ runner.temp }}/workflow-browser/*.png
             ${{ runner.temp }}/workflow-browser/*.json
             ${{ runner.temp }}/workflow-browser/*.md
+            ${{ runner.temp }}/discovery-browser/*.png
+            ${{ runner.temp }}/discovery-browser/*.json
           retention-days: 7
 
   unix-walkthrough:

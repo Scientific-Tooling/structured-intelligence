@@ -9,9 +9,18 @@ from pathlib import Path
 
 from .reading import WorkflowError
 
+if os.name == "nt":
+    from .windows_files import open_record, replace
+else:
+    replace = os.replace
+
+    def open_record(path):
+        return path.open("r", encoding="utf-8")
+
 
 def read_json(path: Path) -> dict:
-    value = json.loads(path.read_text(encoding="utf-8"))
+    with open_record(path) as stream:
+        value = json.load(stream)
     if not isinstance(value, dict):
         raise WorkflowError(f"Expected a JSON object in {path}")
     return value
@@ -26,7 +35,7 @@ def write_json(path: Path, value: dict) -> None:
             stream.write("\n")
             stream.flush()
             os.fsync(stream.fileno())
-        os.replace(pending, path)
+        replace(pending, path)
     finally:
         Path(pending).unlink(missing_ok=True)
 

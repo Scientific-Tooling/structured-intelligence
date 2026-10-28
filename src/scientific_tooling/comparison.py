@@ -79,6 +79,8 @@ def evidence_options(workspace):
 
 def scope(workspace):
     data = workspace.load()
+    if not data["papers"]:
+        raise WorkflowError("Select a PDF before comparing findings.")
     if any(not p["paper_id"] for p in data["papers"]):
         raise WorkflowError("Resume this project to finish preparing its papers before comparing findings.")
     sources = {f"{p['paper_id']}:{p['sha256']}": p for p in data["papers"]}

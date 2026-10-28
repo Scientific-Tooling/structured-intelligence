@@ -140,6 +140,11 @@ and [comparison and human review](../../docs/comparisons.md), with matching RKS/
 commits pinned for installation. These development features are not in the tagged
 sci 0.3.1 release; independent scientific evaluation remains pending.
 
+Repository `main` also provides [paper discovery](../../docs/discovery.md):
+`sci init --question ...`, bounded PubMed/Crossref queries, DOI/PMID lookup and
+explicit PDF selection. The pinned APW reader includes its browser panel and
+steady navigation between papers; the guide records validation and acceptance gates.
+
 ## Upgrading from Python 3.10 or 3.11
 
 Version 0.2.0 raises the minimum Python version to 3.12. Stop an active reader
