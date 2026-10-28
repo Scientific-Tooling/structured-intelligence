@@ -63,7 +63,8 @@ try {
   await expect(panel.getByRole("region", { name: "Import preview" })).toContainText("Reading workflow test source.");
   await page.screenshot({ path: path.join(artifacts, "desktop-preview.png"), fullPage: true });
   await panel.getByRole("button", { name: "Import evidence & create brief", exact: true }).click();
-  await expect(panel.getByText("Evidence imported. Review status is unchanged.", { exact: true })).toBeVisible();
+  await expect(panel.getByRole("region", { name: "Evidence import", exact: true })
+    .getByText("Evidence imported. Review status is unchanged.", { exact: true })).toBeVisible();
   await expect(panel.getByRole("button", {name: "View project brief →", exact: true})).toBeVisible();
   await panel.getByRole("tab", {name: "Brief", exact: true}).click();
   await expect(panel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
@@ -125,7 +126,8 @@ try {
   await expect(panel.getByRole("region", { name: "Import preview" })).toContainText("Reading workflow test source.");
   await secondPanel.getByRole("button", { name: "Import evidence & create brief", exact: true }).click();
   // A retained older brief stays visible while a new edition is being generated.
-  await expect(secondPanel.getByText("Evidence imported. Review status is unchanged.", { exact: true })).toBeVisible();
+  await expect(secondPanel.getByRole("region", { name: "Evidence import", exact: true })
+    .getByText("Evidence imported. Review status is unchanged.", { exact: true })).toBeVisible();
   await expect(secondPanel.getByRole("button", {name: "View project brief →", exact: true})).toBeVisible();
   await secondPanel.getByRole("tab", {name: "Brief", exact: true}).click();
   await expect(secondPanel.getByRole("button", { name: "Download brief", exact: true })).toBeVisible();
