@@ -4,8 +4,10 @@ from __future__ import annotations
 import argparse
 import hashlib
 import re
+import sqlite3
 import sys
 import uuid
+from contextlib import closing
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -40,9 +42,43 @@ def verified(path, schema, workspace_id):
     return value
 
 
+def read_rks_state(workspace, data):
+    """Use the same native operations as RKS's CLI, in one read-only observation.
+
+    Pass the project path/scope explicitly; never change process-wide RKS config
+    or initialize a database. The next capture opens a new transaction.
+    """
+    sources, evidence, comparisons = {}, [], []
+    if not any(p["paper_id"] for p in data["papers"]):
+        return sources, evidence, comparisons
+    from rks.operations.comparison import list_comparisons, list_evidence, show_comparison
+    from rks.operations.paper_source import describe_paper_source
+    from rks.storage.db import connect_db_readonly
+    from rks.storage.paper_repository import PaperRepository
+    try:
+        with closing(connect_db_readonly(workspace.root / "rks" / "rks.sqlite3")) as conn:
+            conn.execute("BEGIN")
+            for paper in data["papers"]:
+                if paper["paper_id"]:
+                    try:
+                        sources[paper["paper_id"]] = describe_paper_source(PaperRepository(conn).get_paper(paper["paper_id"]))
+                    except (OSError, ValueError, KeyError):
+                        sources[paper["paper_id"]] = None
+            if all(p["paper_id"] for p in data["papers"]):
+                scope = {"workspace_id": data["workspace_id"], "source_id": data["source_id"],
+                         "paper_sources": [f"{p['paper_id']}:{p['sha256']}" for p in data["papers"]]}
+                evidence = list_evidence(conn, **scope)["evidence"]
+                comparisons = [show_comparison(conn, item["id"], **scope)
+                               for item in list_comparisons(conn, **scope)["comparisons"]]
+    except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
+        raise WorkflowError(f"Cannot inspect this project's RKS state: {exc}") from exc
+    return sources, evidence, comparisons
+
+
 def capture(workspace):
     """Retain imported records, current availability and exact comparison/review states."""
     data = workspace.load()
+    native_sources, native_evidence, native_comparisons = read_rks_state(workspace, data)
     papers = []
     for paper in data["papers"]:
         source = workspace.root / "pdfs" / (paper["sha256"] + ".pdf")
@@ -55,7 +91,9 @@ def capture(workspace):
             status = "missing"
         if paper["paper_id"]:
             try:
-                native = workspace.rks("papers", "source", paper["paper_id"])
+                native = native_sources[paper["paper_id"]]
+                if native is None:
+                    raise WorkflowError("RKS source unavailable")
                 from .reading import validate_source
                 descriptor = validate_source(native, paper["paper_id"])
                 if (descriptor["sha256"], descriptor["size_bytes"]) != (paper["sha256"], paper["size_bytes"]):
@@ -66,18 +104,34 @@ def capture(workspace):
                        "source_status": status, "prepared": paper["phase"] != "initializing"})
     evidence, comparisons = [], []
     if papers and all(p["paper_id"] for p in papers):
-        evidence = comparison.evidence_options(workspace)["evidence"]
+        from agent_pdf_workbench.evidence import export_evidence
+        from agent_pdf_workbench.passage import resolve_passage
+
+        evidence = native_evidence
+        paper_scope = {f"{p['paper_id']}:{p['sha256']}": p for p in data["papers"]}
+        # APW owns these read-only APIs. Avoid starting a Python process per item
+        # or constructing its service (which initializes/migrates the database).
+        # This cache belongs to one observation; stable_snapshot reads again.
         checked = {}
+        db_path = workspace.root / "events.db"
+        def resolver(**citation):
+            try:
+                return resolve_passage(db_path, **citation)
+            except sqlite3.Error as exc:
+                raise WorkflowError(str(exc)) from exc
         apw = [sys.executable, "-m", "agent_pdf_workbench.dev_cli", "--db-path", str(workspace.root / "events.db")]
         for entry in evidence:
             record, item = entry["record"], entry["record"]["item"]
+            paper = paper_scope[f"{record['paper_id']}:{record['document']['sha256']}"]
+            entry["paper"] = {k: paper[k] for k in ("key", "title")}
             entry["paper_id"] = record["paper_id"]
             entry["passages"] = brief.checked_passages(apw, record,
-                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked)
+                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked, resolver=resolver)
             entry["reading_item"] = None
             try:
-                exported = workspace.apw("export-evidence", "--session-id", record["source"]["session_id"],
-                    "--source-id", data["source_id"], f"--{item['kind']}-id", item["id"])
+                exported = export_evidence(db_path, session_id=record["source"]["session_id"],
+                    source_id=data["source_id"], annotation_ids=[item["id"]] if item["kind"] == "annotation" else [],
+                    note_ids=[item["id"]] if item["kind"] == "note" else [])
                 if (exported.get("workspace_id") != data["workspace_id"]
                         or exported.get("paper_id") != record["paper_id"]
                         or exported["document"]["sha256"] != record["document"]["sha256"]):
@@ -85,10 +139,11 @@ def capture(workspace):
                 entry["reading_status"] = ("unchanged" if exported["items"][0]["content_revision"] == item["content_revision"]
                                            else "changed_since_import")
                 entry["reading_item"] = exported["items"][0]
-            except WorkflowError:
+            except (WorkflowError, OSError, ValueError, sqlite3.Error):
                 entry["reading_status"] = "unavailable"
-        for item in workspace.compare("list")["comparisons"]:
-            comparisons.append(workspace.compare("show", comparison_id=item["id"])["comparison"])
+        for item in native_comparisons:
+            comparisons.append(comparison.enrich(workspace, item, data, paper_scope,
+                                                  checked=checked, resolver=resolver))
     elif any(p["paper_id"] for p in papers):
         raise WorkflowError("Resume the interrupted paper selection before checking project changes.")
     snapshot = {"schema": SNAPSHOT, "workspace_id": data["workspace_id"], "source_id": data["source_id"],

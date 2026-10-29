@@ -6,9 +6,9 @@ not part of the tagged sci 0.3.1 release. RKS continues to own evidence and revi
 decisions; APW owns reading records. sci retains the inputs and outputs of each
 project brief without changing their scientific review status.
 
-The package pins APW reader commit `2806a6c182a0ae442b39e68015a9bf76d31a3af5`
-for the matching history UI. Stop the old reader before upgrading, then resume the
-same workspace with the new installation.
+The package pins APW reader commit `3ea2a5290f25dbc86a7ea178d0c0ed92849b2ba0`
+for the history UI and citation reliability fixes. Stop the old reader before
+upgrading, then resume the same workspace with the new installation.
 
 ## Check what changed
 

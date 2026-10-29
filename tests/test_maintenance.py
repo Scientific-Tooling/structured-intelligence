@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from agent_pdf_workbench.service import AgentPdfWorkbenchService
+from agent_pdf_workbench import evidence as apw_evidence, passage as apw_passage
 from scientific_tooling import discovery, maintenance, server
 from scientific_tooling.reading import WorkflowError
 from scientific_tooling.state import read_json, write_json
@@ -37,6 +38,68 @@ class MaintenanceTest(unittest.TestCase):
     def import_annotation(self, accept_updates=False):
         preview = self.workspace.preview([self.annotation["id"]], [])
         return self.workspace.apply(preview["id"], accept_updates=accept_updates)
+
+    def test_passages_are_shared_with_comparisons_but_rechecked_between_observations(self):
+        entry = self.workspace.search("source")["results"][0]
+        created = self.workspace.compare("create", payload={"title": "Fixture", "criteria": ["Result"]})["comparison"]
+        self.workspace.compare("set", comparison_id=created["id"], expected_revision=created["revision"],
+            payload={"paper": "p1", "criterion_id": "c1", "text": "Fixture", "conditions": "Synthetic",
+                     "origin": "agent", "evidence": [{"note_id": entry["note_id"], "revision": entry["revision"]}]})
+        self.workspace.make_brief()
+        with patch.object(apw_passage, "resolve_passage", wraps=apw_passage.resolve_passage) as resolve, \
+                patch.object(self.workspace, "rks", side_effect=AssertionError("Inspection must not spawn RKS")), \
+                patch.object(self.workspace, "apw", side_effect=AssertionError("Inspection must not spawn APW")):
+            result = maintenance.inspect(self.workspace)
+        self.assertEqual(result["freshness"], "current")
+        self.assertEqual(resolve.call_count, 2)  # Once per observation, including comparison support.
+
+    def test_missing_rks_database_is_not_created(self):
+        database = self.workspace.root / "rks" / "rks.sqlite3"
+        database.rename(database.with_suffix(".backup"))
+        with self.assertRaisesRegex(WorkflowError, "Cannot inspect this project's RKS state"):
+            maintenance.inspect(self.workspace)
+        self.assertFalse(database.exists())
+
+    def test_native_reads_reject_a_foreign_workspace_identity(self):
+        data = self.workspace.load()
+        data["workspace_id"] = "foreign"
+        with patch.object(self.workspace, "load", return_value=data):
+            with self.assertRaisesRegex(WorkflowError, "another evidence workspace"):
+                maintenance.inspect(self.workspace)
+
+    def test_actual_reading_change_between_observations_is_rejected(self):
+        original = maintenance.capture
+        def edit_after_observation(workspace):
+            result = original(workspace)
+            self.annotation.update(comment="Changed between observations", updatedAt="2026-10-28T15:00:00+00:00")
+            self.service.upsert_annotation(session_id=self.session, annotation=self.annotation)
+            return result
+        with patch.object(maintenance, "capture", side_effect=edit_after_observation):
+            with self.assertRaisesRegex(WorkflowError, "changed during inspection"):
+                maintenance.inspect(self.workspace)
+
+    def test_missing_reading_database_is_not_created_and_retained_evidence_survives(self):
+        self.workspace.make_brief()
+        database = self.workspace.root / "events.db"
+        database.rename(database.with_suffix(".backup"))
+        result = maintenance.inspect(self.workspace)
+        self.assertFalse(database.exists())
+        self.assertEqual(result["freshness"], "outdated")
+        evidence = next(c["after"] for c in result["changes"] if c["category"] == "evidence")
+        self.assertEqual(evidence["reading_status"], "unavailable")
+        self.assertFalse(evidence["passages"][0]["available"])
+        self.assertEqual(evidence["record"]["item"]["content"]["comment"], "Original interpretation")
+
+    def test_export_from_another_source_is_rejected(self):
+        original = apw_evidence.export_evidence
+        def foreign_export(*args, **kwargs):
+            result = original(*args, **kwargs)
+            result["paper_id"] = "foreign"
+            return result
+        with patch.object(apw_evidence, "export_evidence", side_effect=foreign_export):
+            snapshot = maintenance.capture(self.workspace)
+        self.assertEqual(snapshot["evidence"][0]["reading_status"], "unavailable")
+        self.assertIsNone(snapshot["evidence"][0]["reading_item"])
 
     def test_read_only_changes_preserve_editions_and_detect_unimported_edit(self):
         first = self.workspace.make_brief("a" * 32)

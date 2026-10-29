@@ -90,18 +90,18 @@ def scope(workspace):
     return data, sources, args
 
 
-def enrich(workspace, result, data, papers):
+def enrich(workspace, result, data, papers, *, checked=None, resolver=None):
     if result.get("schema") != "rks.comparison.v1" or result.get("workspace_id") != data["workspace_id"]:
         raise WorkflowError("Unexpected RKS comparison response. Check compatible tool versions.")
     if result["source_id"] != data["source_id"] or not set(result["paper_sources"]) <= set(papers):
         raise WorkflowError("Comparison returned sources outside this project")
     apw = [sys.executable, "-m", "agent_pdf_workbench.dev_cli", "--db-path", str(workspace.root / "events.db")]
-    checked = {}
+    checked = {} if checked is None else checked
     for cell in result["cells"]:
         cell["paper"] = {k: papers[cell["paper_source"]][k] for k in ("key", "title")}
         for evidence in cell["evidence"]:
             evidence["passages"] = checked_passages(apw, evidence["record"],
-                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked)
+                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked, resolver=resolver)
         if any(not p["available"] for e in cell["evidence"] for p in e["passages"]):
             cell["support_status"] = "stale"
             if cell["review"]["latest"]:

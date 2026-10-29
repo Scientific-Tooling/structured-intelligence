@@ -43,6 +43,15 @@ see [usage, recovery and acceptance gaps](comparisons.md). The milestones below 
 priority order, without promised dates, release numbers, or final command names.
 Keep each milestone useful on its own and revisit the order after researcher pilots.
 
+An [agent-operated three-paper pilot](../evaluations/living-project-pilot-2026-10-28/README.md)
+verified change detection, retained editions and exact replay on October 28, 2026.
+It also exposed four failed citation targets out of ten and loss of the open paper
+after a quote-matching error. The [subsequent remediation](../evaluations/living-project-pilot-2026-10-28/README.md#remediation)
+fixes both defects: all ten unchanged links now open with highlights, rejected
+quotes retain the paper, and inspection avoids per-record process startup.
+Independent researcher and scientific review remain pending; these engineering
+checks do not complete milestones 1-4.
+
 | Milestone | Status | Researcher outcome |
 | --- | --- | --- |
 | 1. Find evidence across a project | In progress: implemented on main; release and independent evaluation pending | Locate relevant saved evidence without reopening every paper. |

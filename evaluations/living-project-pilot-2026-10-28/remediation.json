@@ -1,0 +1,132 @@
+{
+  "schema": "scientific-tooling.pilot-remediation.v1",
+  "date": "2026-10-28",
+  "baseline_result": "results.json",
+  "apw_commit": "3ea2a5290f25dbc86a7ea178d0c0ed92849b2ba0",
+  "rks_commit": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+  "fresh_install_public_dependency_pins_verified": true,
+  "browser_citations": [
+    {
+      "note_id": "n_000001",
+      "paper": "p1",
+      "page": 1,
+      "url": "http://127.0.0.1:52718/?session_id=ps_ae9ad0ab957c&document_sha256=464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c&annotation_id=ann_0d83fce29c0040bfb815a7020606f29c&page=1&passage_sha256=3748f779f2ccfb20995406a9c704ad7120e875c042041ba5f160f83e67d690a0",
+      "ready": true,
+      "highlight_rects": 2
+    },
+    {
+      "note_id": "n_000002",
+      "paper": "p1",
+      "page": 3,
+      "url": "http://127.0.0.1:52718/?session_id=ps_ae9ad0ab957c&document_sha256=464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c&annotation_id=ann_49d83e2344b544f98f72672408b7d9f1&page=3&passage_sha256=040df3f91b17a05237ddd92ba1c9220da3dd4d51f357ad14dd20310ea241bb62",
+      "ready": true,
+      "highlight_rects": 5
+    },
+    {
+      "note_id": "n_000003",
+      "paper": "p1",
+      "page": 1,
+      "url": "http://127.0.0.1:52718/?session_id=ps_ae9ad0ab957c&document_sha256=464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c&annotation_id=ann_78eb2e3024fd4af78c99787f9d9a376f&page=1&passage_sha256=f2d34f1880caded98da13085a2d08dae58360aaa445946cd888dcd9a554a7db2",
+      "ready": true,
+      "highlight_rects": 3
+    },
+    {
+      "note_id": "n_000004",
+      "paper": "p2",
+      "page": 2,
+      "url": "http://127.0.0.1:52718/?session_id=ps_7202764ea4f7&document_sha256=465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a&annotation_id=ann_1e93180167bc48d8a75a544c70dfe30c&page=2&passage_sha256=67dd8ca224923c48217178d8690e7a66a75f42aca382aa8d05842876f86ead3a",
+      "ready": true,
+      "error": "Cited quote is missing or ambiguous on this page. Reader returned to the empty workspace.",
+      "highlight_rects": 29
+    },
+    {
+      "note_id": "n_000005",
+      "paper": "p2",
+      "page": 1,
+      "url": "http://127.0.0.1:52718/?session_id=ps_7202764ea4f7&document_sha256=465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a&annotation_id=ann_375c8ad9db2b4023bcd9ddf35a786503&page=1&passage_sha256=958f08a6a0b74b3a47f4ca76267ce6dde6da190a9fc480baadff691fa155f4b6",
+      "ready": true,
+      "error": null,
+      "highlight_rects": 2
+    },
+    {
+      "note_id": "n_000006",
+      "paper": "p2",
+      "page": 8,
+      "url": "http://127.0.0.1:52718/?session_id=ps_7202764ea4f7&document_sha256=465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a&annotation_id=ann_93937e845099455a808315f0c117321a&page=8&passage_sha256=cdb7a64bfa300eb9bb0d6460e8a19fd70a63c95505af0a9a0e6b89da12874e39",
+      "ready": true,
+      "error": "Cited quote is missing or ambiguous on this page; reader returned to empty workspace.",
+      "highlight_rects": 6
+    },
+    {
+      "note_id": "n_000007",
+      "paper": "p3",
+      "page": 4,
+      "url": "http://127.0.0.1:52718/?session_id=ps_862e882eb069&document_sha256=7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a&annotation_id=ann_703062d902e84743819ab31a018c9515&page=4&passage_sha256=a22e4c42ae8b4c12dc9ca5848319ce21cc0a00844649e278f7080d62913dbc66",
+      "ready": true,
+      "error": null,
+      "highlight_rects": 20
+    },
+    {
+      "note_id": "n_000008",
+      "paper": "p3",
+      "page": 3,
+      "url": "http://127.0.0.1:52718/?session_id=ps_862e882eb069&document_sha256=7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a&annotation_id=ann_f429b9877eca402da836db133631b633&page=3&passage_sha256=a28d4dd5f81d7f87bede8ecfdf57438997840c1e1c4951219a9cd0fc130ecb51",
+      "ready": true,
+      "error": "Cited quote is missing or ambiguous on this page; reader returned to empty workspace.",
+      "highlight_rects": 36
+    },
+    {
+      "note_id": "n_000009",
+      "paper": "p3",
+      "page": 3,
+      "url": "http://127.0.0.1:52718/?session_id=ps_862e882eb069&document_sha256=7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a&annotation_id=ann_f6f480c4dec04244b3dac030dccd93fa&page=3&passage_sha256=c17ec37c5f6daa70d12bcf5b8cdeefb975827468e28301481a910c5258ec94a1",
+      "ready": true,
+      "error": null,
+      "highlight_rects": 4
+    },
+    {
+      "note_id": "n_000010",
+      "paper": "p1",
+      "page": 6,
+      "url": "http://127.0.0.1:52718/?session_id=ps_ae9ad0ab957c&document_sha256=464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c&annotation_id=ann_7b26d020dd72401a9984ae83adf5a771&page=6&passage_sha256=48c93395c672d33c31ba33ea92f7d73df9a5744193decfea2486034cc0c0f2c8",
+      "ready": true,
+      "error": "Cited quote is missing or ambiguous on this page; reader returned to empty workspace.",
+      "highlight_rects": 20
+    }
+  ],
+  "rejected_citations": [
+    {
+      "kind": "absent",
+      "rejected": true,
+      "sessionRetained": true,
+      "selectedMarks": 0,
+      "sourceVisible": true
+    },
+    {
+      "kind": "ambiguous",
+      "rejected": true,
+      "sessionRetained": true,
+      "selectedMarks": 0,
+      "sourceVisible": true
+    }
+  ],
+  "freshness_seconds": [
+    0.8615705999545753,
+    0.8509434000588953,
+    0.8809527999255806
+  ],
+  "freshness_subprocesses": 0,
+  "baseline_profile_seconds": 17.449964700033888,
+  "baseline_profile_subprocesses": 72,
+  "baseline_files_unchanged": true,
+  "all_edition_files_unchanged_during_verification": true,
+  "snapshot_exactly_matches_retained_edition": true,
+  "freshness": "current",
+  "changes": 0,
+  "edition_count": 2,
+  "unreviewed_evidence": 10,
+  "unreviewed_comparisons": 6,
+  "scientific_review_count": 0,
+  "scientific_accuracy": null,
+  "limitations": "Agent-operated engineering checks; timings are local wall-clock observations, not a controlled benchmark."
+}

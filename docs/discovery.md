@@ -9,9 +9,11 @@ For the browser workflow, follow the [nine-step screenshot guide](discovery-scre
 
 This implementation is available on main and is not in the tagged sci 0.3.1
 release. The package and browser CI pin APW to
-`2806a6c182a0ae442b39e68015a9bf76d31a3af5`, which includes discovery and the
+`3ea2a5290f25dbc86a7ea178d0c0ed92849b2ba0`, which includes discovery and the
 research desk reader. Paper changes preserve the reader layout, workspace tab
 and zoom mode while restoring each paper's reading position.
+The reader also exposes saved provider query translations and handles citation
+spacing across PDF fragments without changing saved quotes.
 
 ## Start with a question
 
@@ -29,6 +31,17 @@ characters, with 1–25 results (default 10). No agent expands the query or choo
 papers automatically. Results preserve provider order, query translation and
 warnings where supplied. Relevance is the provider's ranking, not a reviewed
 judgment of suitability for the research question.
+
+In the reader, expand **Search details from pubmed** to inspect the actual query
+translation, result count and provider warnings. PubMed can map broad natural
+language to unexpected concepts. For a narrower search, tag specific terms with
+`[Title/Abstract]`, for example `pseudobulk[Title/Abstract] AND
+replicates[Title/Abstract]`, then inspect the returned candidates. Field tags
+disable automatic term mapping for those terms, which can also exclude useful
+synonyms; see [PubMed's search guidance](https://pubmed.ncbi.nlm.nih.gov/help/#using-search-field-tags).
+Use a DOI or PMID lookup when the intended paper is already known. The application
+preserves your exact query and the provider response; it never rewrites a query
+or selects a result automatically.
 
 ## Look up and select a work
 

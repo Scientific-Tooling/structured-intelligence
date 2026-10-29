@@ -1,0 +1,569 @@
+{
+  "schema": "scientific-tooling.real-paper-pilot.v1",
+  "date": "2026-10-28",
+  "question": "For replicated single-cell RNA-seq comparisons within a cell type, how do biological replication and benchmark conditions affect the reported strengths and limitations of pseudobulk and mixed-model differential expression?",
+  "scope": "Agent-operated engineering pilot with real historical papers; not an independent researcher trial or a current systematic review.",
+  "outcome": "living_project_state_checks_passed_with_citation_navigation_blockers",
+  "scientific_tooling_git": "0b957a1305cfb9f9d2197814a74452e0d5497183",
+  "dependency_revisions": {
+    "agent-pdf-workbench": "2806a6c182a0ae442b39e68015a9bf76d31a3af5",
+    "research-knowledge-substrate": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea"
+  },
+  "sources": [
+    {
+      "id": "zimmerman2021",
+      "title": "A practical solution to pseudoreplication bias in single-cell studies",
+      "authors": [
+        "Kip D Zimmerman",
+        "Mark A Espeland",
+        "Carl D Langefeld"
+      ],
+      "doi": "10.1038/s41467-021-21038-1",
+      "pmcid": "PMC7854630",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7854630/",
+      "publisher_url": "https://doi.org/10.1038/s41467-021-21038-1",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7854630/fullTextXML",
+        "sha256": "ceb08f28de71780ed7379e5957f55e13ea0e7601d72568fc7dcd0fcba62fe3a0",
+        "size_bytes": 122162
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-021-21038-1.pdf",
+        "sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "size_bytes": 1037814,
+        "page_count": 9
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "57ee6918a4aad32a6cea3e908629424ea8fac29acb84e262d6c9ef40a096de1d",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "squair2021",
+      "title": "Confronting false discoveries in single-cell differential expression",
+      "authors": [
+        "Jordan W. Squair",
+        "Matthieu Gautier",
+        "Claudia Kathe",
+        "Mark A. Anderson",
+        "Nicholas D. James",
+        "Thomas H. Hutson",
+        "Rémi Hudelle",
+        "Taha Qaiser",
+        "Kaya J. E. Matson",
+        "Quentin Barraud",
+        "Ariel J. Levine",
+        "Gioele La Manno",
+        "Michael A. Skinnider",
+        "Grégoire Courtine"
+      ],
+      "doi": "10.1038/s41467-021-25960-2",
+      "pmcid": "PMC8479118",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8479118/",
+      "publisher_url": "https://doi.org/10.1038/s41467-021-25960-2",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8479118/fullTextXML",
+        "sha256": "b57cae308d321f956f9faf08e17409270a6c42e5688ae4aa80c36cda54c00ac9",
+        "size_bytes": 206175
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-021-25960-2.pdf",
+        "sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "size_bytes": 6800245,
+        "page_count": 15
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "40610f514a023addaaded0b956f6d392f035a44f501dabef6662c19fe8d9c15a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "crowell2020",
+      "title": "muscat detects subpopulation-specific state transitions from multi-sample multi-condition single-cell transcriptomics data",
+      "authors": [
+        "Helena L. Crowell",
+        "Charlotte Soneson",
+        "Pierre-Luc Germain",
+        "Daniela Calini",
+        "Ludovic Collin",
+        "Catarina Raposo",
+        "Dheeraj Malhotra",
+        "Mark D. Robinson"
+      ],
+      "doi": "10.1038/s41467-020-19894-4",
+      "pmcid": "PMC7705760",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7705760/",
+      "publisher_url": "https://doi.org/10.1038/s41467-020-19894-4",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7705760/fullTextXML",
+        "sha256": "2b928a2e682ed7ec76e3f367182404c3fb472cc60af10d7efa1b4aad649a0553",
+        "size_bytes": 206022
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-020-19894-4.pdf",
+        "sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "size_bytes": 2817431,
+        "page_count": 12
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "40610f514a023addaaded0b956f6d392f035a44f501dabef6662c19fe8d9c15a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    }
+  ],
+  "discoveries": [
+    {
+      "id": "89b5957b2bad43e78f68523ee017c489",
+      "query": "single cell differential expression biological replicates",
+      "provider": "pubmed",
+      "details": {
+        "total": 917,
+        "sort": "relevance",
+        "query_translation": "(\"single person\"[MeSH Terms] OR (\"single\"[All Fields] AND \"person\"[All Fields]) OR \"single person\"[All Fields] OR \"single\"[All Fields] OR \"singles\"[All Fields]) AND (\"cells\"[MeSH Terms] OR \"cells\"[All Fields] OR \"cell\"[All Fields]) AND (\"cell differentiation\"[MeSH Terms] OR (\"cell\"[All Fields] AND \"differentiation\"[All Fields]) OR \"cell differentiation\"[All Fields] OR \"differentiated\"[All Fields] OR \"differentiation\"[All Fields] OR \"differential\"[All Fields] OR \"differentials\"[All Fields] OR \"differentiate\"[All Fields] OR \"differentiates\"[All Fields] OR \"differentiating\"[All Fields] OR \"differentiational\"[All Fields] OR \"differentiations\"[All Fields] OR \"differentiative\"[All Fields]) AND (\"express\"[All Fields] OR \"expresse\"[All Fields] OR \"expresses\"[All Fields] OR \"expressing\"[All Fields] OR \"expressions\"[All Fields] OR \"gene expression\"[MeSH Terms] OR (\"gene\"[All Fields] AND \"expression\"[All Fields]) OR \"gene expression\"[All Fields] OR \"expressed\"[All Fields] OR \"expression\"[All Fields]) AND (\"biological products\"[Supplementary Concept] OR \"biological products\"[All Fields] OR \"biologic\"[All Fields] OR \"biological products\"[MeSH Terms] OR (\"biological\"[All Fields] AND \"products\"[All Fields]) OR \"biological\"[All Fields] OR \"biology\"[MeSH Terms] OR \"biology\"[All Fields] OR \"biologicals\"[All Fields] OR \"biological factors\"[Supplementary Concept] OR \"biological factors\"[All Fields] OR \"biological factors\"[MeSH Terms] OR (\"biological\"[All Fields] AND \"factors\"[All Fields]) OR \"biologics\"[All Fields] OR \"biologically\"[All Fields]) AND (\"dna replication\"[MeSH Terms] OR (\"dna\"[All Fields] AND \"replication\"[All Fields]) OR \"dna replication\"[All Fields] OR \"replication\"[All Fields] OR \"replicability\"[All Fields] OR \"replicable\"[All Fields] OR \"replicate\"[All Fields] OR \"replicated\"[All Fields] OR \"replicates\"[All Fields] OR \"replicating\"[All Fields] OR \"replicational\"[All Fields] OR \"replications\"[All Fields] OR \"replicative\"[All Fields] OR \"replicatively\"[All Fields] OR \"replicator\"[All Fields] OR \"replicators\"[All Fields])",
+        "warnings": {}
+      },
+      "candidates": [
+        {
+          "title": "An Efficient Platform for Astrocyte Differentiation from Human Induced Pluripotent Stem Cells.",
+          "identifiers": {
+            "pmid": "28757165",
+            "doi": "10.1016/j.stemcr.2017.06.018",
+            "pmcid": "PMC5550034"
+          }
+        },
+        {
+          "title": "Timely TGFβ signalling inhibition induces notochord.",
+          "identifiers": {
+            "pmid": "39695233",
+            "doi": "10.1038/s41586-024-08332-w",
+            "pmcid": "PMC11735409"
+          }
+        },
+        {
+          "title": "Transcriptional paradigms in mammalian mitochondrial biogenesis and function.",
+          "identifiers": {
+            "pmid": "18391175",
+            "doi": "10.1152/physrev.00025.2007"
+          }
+        },
+        {
+          "title": "Single-cell RNA-seq uncovers dynamic processes orchestrated by RNA-binding protein DDX43 in chromatin remodeling during spermiogenesis.",
+          "identifiers": {
+            "pmid": "37120627",
+            "doi": "10.1038/s41467-023-38199-w",
+            "pmcid": "PMC10294715"
+          }
+        },
+        {
+          "title": "Single-cell transcriptomics identifies chondrocyte differentiation dynamics in vivo and in vitro.",
+          "identifiers": {
+            "pmid": "40712580",
+            "doi": "10.1016/j.devcel.2025.06.031"
+          }
+        }
+      ]
+    },
+    {
+      "id": "694c23e5ecb94753a96af6b5d48560da",
+      "query": "single-cell[Title/Abstract] AND (pseudobulk[Title/Abstract] OR pseudoreplication[Title/Abstract])",
+      "provider": "pubmed",
+      "details": {
+        "total": 244,
+        "sort": "relevance",
+        "query_translation": "\"single-cell\"[Title/Abstract] AND (\"pseudobulk\"[Title/Abstract] OR \"pseudoreplication\"[Title/Abstract])",
+        "warnings": {}
+      },
+      "candidates": [
+        {
+          "title": "Single-cell RNA-Seq analysis reveals cell subsets and gene signatures associated with rheumatoid arthritis disease activity.",
+          "identifiers": {
+            "pmid": "38954480",
+            "doi": "10.1172/jci.insight.178499",
+            "pmcid": "PMC11343607"
+          }
+        },
+        {
+          "title": "Single cell transcriptomic analyses of human heart failure with preserved ejection fraction.",
+          "identifiers": {
+            "pmid": "40161758",
+            "doi": "10.1101/2025.03.06.641949",
+            "pmcid": "PMC11952296"
+          }
+        },
+        {
+          "title": "Cell-type-specific and disease-associated expression quantitative trait loci in the human lung.",
+          "identifiers": {
+            "pmid": "38548990",
+            "doi": "10.1038/s41588-024-01702-0",
+            "pmcid": "PMC11018522"
+          }
+        },
+        {
+          "title": "SenSkin™: a human skin-specific cellular senescence gene set.",
+          "identifiers": {
+            "pmid": "39998731",
+            "doi": "10.1007/s11357-025-01568-y",
+            "pmcid": "PMC12181445"
+          }
+        },
+        {
+          "title": "Heterogeneous pseudobulk simulation enables realistic benchmarking of cell-type deconvolution methods.",
+          "identifiers": {
+            "pmid": "38956606",
+            "doi": "10.1186/s13059-024-03292-w",
+            "pmcid": "PMC11218230"
+          }
+        }
+      ]
+    }
+  ],
+  "selection": "Three explicit DOI lookups; matched, SHA-256-verified PDFs selected from the existing licensed corpus cache. Search results were not automatically selected.",
+  "maintenance": {
+    "baseline_id": "ca422e5b5b94402a915191e446ccda67",
+    "revised_id": "8bcaffd91a39413ca6cebbd821e9838a",
+    "edition_count": 2,
+    "baseline_files_unchanged": true,
+    "exact_original_text_recovered": true,
+    "brief_retry_replayed_without_duplicate": true,
+    "final_freshness": "current",
+    "final_changes": 0,
+    "unreviewed_comparisons": 6,
+    "evidence": {
+      "evidence": 10,
+      "reviewed": 0,
+      "unreviewed": 10,
+      "linked_passages": 10,
+      "unavailable_passages": 0
+    },
+    "paper_count_after_repeat": 3,
+    "repeated_discovery": {
+      "added": [],
+      "not_returned": [],
+      "changed": [],
+      "unchanged": [
+        "10.1038/s41467-021-21038-1"
+      ]
+    },
+    "scientific_review_count": 0,
+    "scientific_accuracy": null
+  },
+  "baseline_file_sha256": {
+    "brief.md": "85fbbd2adb7f556e7cf3eacb291a4ba30b37d08c213ea7fc6dff767a6f3e58cf",
+    "record.json": "2ac71060a14469f759415bb702473652cdba2339c174031c76b55c76454512e2"
+  },
+  "comparison": {
+    "id": "cmp_0f45d3e27fa044729c08b9a906132f57",
+    "revision": "5f611a44b3efb664273c2eba279898bf53bb266ccfadc5846afef8c3354c85eb",
+    "criteria": [
+      {
+        "id": "c1",
+        "label": "Experimental unit and benchmark"
+      },
+      {
+        "id": "c2",
+        "label": "Method finding and limits"
+      }
+    ],
+    "version": 8
+  },
+  "cells": [
+    {
+      "key": "p_000001:464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c|c1",
+      "paper": {
+        "key": "p1",
+        "title": "A practical solution to pseudoreplication bias in single-cell studies"
+      },
+      "criterion_id": "c1",
+      "text": "Cells from one individual are correlated subsamples. The study evaluates type 1 error using simulated inter- and intra-individual variance estimated from real data.",
+      "conditions": "Within-cell-type comparisons across individuals; a simulation-based reference standard. Do not equate cell count with independent sample count.",
+      "origin": "agent",
+      "cell_revision": "db3001ecc1b53e5b3d65c343006132f2962e1d3eb8745d349693c488a797f858",
+      "support_status": "linked",
+      "review": {
+        "status": "unreviewed",
+        "latest": null,
+        "history": []
+      }
+    },
+    {
+      "key": "p_000001:464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c|c2",
+      "paper": {
+        "key": "p1",
+        "title": "A practical solution to pseudoreplication bias in single-cell studies"
+      },
+      "criterion_id": "c2",
+      "text": "The authors report a power advantage for mixed-effects models over pseudo-bulk aggregation in their simulation-based study. Their discussion particularly emphasizes heavy imbalance and within-subject variability large relative to between-subject variability. This conditional finding does not directly overturn rankings from the other papers' different benchmarks.",
+      "conditions": "Within-cell-type comparisons across individuals; simulations of inter- and intra-individual variance. The additional page-6 passage qualifies the initial abstract-level interpretation. Unequal cells per individual and the within-/between-individual variance ratio matter; this entry does not establish a universal winner.",
+      "origin": "agent",
+      "cell_revision": "01a0ec8786b02ca2690b5cf32321534dd7c41c72753666db59375fe597063d66",
+      "support_status": "linked",
+      "review": {
+        "status": "unreviewed",
+        "latest": null,
+        "history": []
+      }
+    },
+    {
+      "key": "p_000002:465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a|c1",
+      "paper": {
+        "key": "p2",
+        "title": "Confronting false discoveries in single-cell differential expression"
+      },
+      "criterion_id": "c1",
+      "text": "Performance depends on accounting for between-replicate variation. The reported main benchmark compares 14 methods across 18 reference datasets, using concordance between matched bulk and single-cell DE results.",
+      "conditions": "Matched populations and perturbations are the reference; the concordance metric differs from simulated power and type 1 error. Eighteen reference datasets are distinct from the separate 46-dataset compendium.",
+      "origin": "agent",
+      "cell_revision": "7bd9434441cdfdfb1aaf4dc0c464211d12de7fe030d37c65641e3e76643b5549",
+      "support_status": "linked",
+      "review": {
+        "status": "unreviewed",
+        "latest": null,
+        "history": []
+      }
+    },
+    {
+      "key": "p_000002:465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a|c2",
+      "paper": {
+        "key": "p2",
+        "title": "Confronting false discoveries in single-cell differential expression"
+      },
+      "criterion_id": "c2",
+      "text": "All six leading methods in the main benchmark aggregate cells within biological replicates. A follow-up GLMM analysis also reports accurate results for specific settings and convergence to pseudobulk performance at 500 or more cells, qualifying a blanket claim that mixed models always perform worse.",
+      "conditions": "Main 14-method/18-dataset benchmark and separate follow-up GLMM experiments. The reported 25-50 and 500-or-more cell settings are benchmark conditions, not universal design thresholds.",
+      "origin": "agent",
+      "cell_revision": "c7bcf3d7c0a44544606c59de5d0a59a001e0b1eb4f8e27dc83b9cfc9ea070e8d",
+      "support_status": "linked",
+      "review": {
+        "status": "unreviewed",
+        "latest": null,
+        "history": []
+      }
+    },
+    {
+      "key": "p_000003:7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a|c1",
+      "paper": {
+        "key": "p3",
+        "title": "muscat detects subpopulation-specific state transitions from multi-sample multi-condition single-cell transcriptomics data"
+      },
+      "criterion_id": "c1",
+      "text": "The framework retains sample labels within cell subpopulations for replicated condition comparisons. Its main simulation targets an average 200 cells per subpopulation-sample, about 3,600 cells overall, and five repeats per scenario.",
+      "conditions": "Multi-sample differential-state simulation; cells per sample and simulation repetitions are different quantities. Reference data and simulation design differ from the other two papers.",
+      "origin": "agent",
+      "cell_revision": "aa5e63452a885c6b47f79cba96645ceb17ca68ccb12c70ce66f130a27101f52f",
+      "support_status": "linked",
+      "review": {
+        "status": "unreviewed",
+        "latest": null,
+        "history": []
+      }
+    },
+    {
+      "key": "p_000003:7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a|c2",
+      "paper": {
+        "key": "p3",
+        "title": "muscat detects subpopulation-specific state transitions from multi-sample multi-condition single-cell transcriptomics data"
+      },
+      "criterion_id": "c2",
+      "text": "Most pseudobulk and cell-level mixed-model methods perform well for DE, DM and DP and are relatively consistent across simulation repeats. The selected passage supports both method families under these conditions.",
+      "conditions": "DE: mean expression changes; DM: modality changes; DP: mixture-proportion changes. Do not extend this result to DB, discussed separately as difficult when means do not differ, or infer a universal winner.",
+      "origin": "agent",
+      "cell_revision": "71b1a0305eb62ad1b2883ae4cf8a68ca7934d8278026687342e1d928b854b248",
+      "support_status": "linked",
+      "review": {
+        "status": "unreviewed",
+        "latest": null,
+        "history": []
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "note_id": "n_000001",
+      "paper": "p1",
+      "revision": "7651874856dcac7755bf882f4750c50013ea5253f6e53447c2afcb1f8c647a0d",
+      "source_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+      "page": 1,
+      "quote": "Cells from the same individual share common genetic and environmental backgrounds and are not statistically independent; therefore, they are subsamples or pseudoreplicates.",
+      "interpretation": "The authors distinguish individual biological replicates from correlated cells within an individual. This is a claim about the experimental unit, not a method ranking. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": true,
+      "browser_error": null
+    },
+    {
+      "note_id": "n_000002",
+      "paper": "p1",
+      "revision": "70a1109dd986f52d3fde93475a0ac39a5a088c7258120f1934c80bd6456f222a",
+      "source_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+      "page": 3,
+      "quote": "We completed a simulation study that reproduced both the inter- and intra-individual variance structures estimated from real data and documented the effect of intra-individual correlation on the type 1 error rates of the most frequently used single-cell analysis tools",
+      "interpretation": "The benchmark uses simulated inter- and intra-individual variance estimated from real data and evaluates type 1 error. These simulations are a different reference standard from Squair's matched bulk/single-cell concordance benchmark. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": true,
+      "browser_error": null
+    },
+    {
+      "note_id": "n_000003",
+      "paper": "p1",
+      "revision": "1d6ccce0945f2d1fcdda4be9448363b8cf62f6fdbbb27ba4e2637a99b44b9141",
+      "source_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+      "page": 1,
+      "quote": "Here, we document this dependence across a range of cell types and show that pseudo-bulk aggregation methods are conservative and underpowered relative to mixed models.",
+      "interpretation": "The abstract reports greater power for mixed models than pseudo-bulk aggregation in this study. This initial note does not yet extract the imbalance and variance conditions from the discussion; it is not a universal ranking. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": true,
+      "browser_error": null
+    },
+    {
+      "note_id": "n_000010",
+      "paper": "p1",
+      "revision": "efcd6d363a3d0c5fd6914f3f8d51410b6230028332dfd65767921c744bada597",
+      "source_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+      "page": 6,
+      "quote": "we recommend mixed-effects models based on long-standing statistical justi fications for the analysis of subsamples, including increased power. This is parti- cularly so in scenarios with heavy imbalance and where within- subject variability is large compared to between-subject variability.",
+      "interpretation": "The authors qualify their mixed-effects recommendation by emphasizing heavy imbalance and within-subject variability large relative to between-subject variability. This discussion passage refines the initial abstract-level reading without claiming a universal method ranking. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": false,
+      "browser_error": "Cited quote is missing or ambiguous on this page; reader returned to empty workspace."
+    },
+    {
+      "note_id": "n_000004",
+      "paper": "p2",
+      "revision": "1bb7b716aa5b07d4593e88cca13ee058e0f9b37e2d8338f7d2dbe20031e6c15b",
+      "source_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+      "page": 2,
+      "quote": "We compared the performance of the fourteen methods across the entire compendium of the eighteen gold standard datasets. This analysis immediately revealed that all six of the top- performing methods shared a common analytical property. These methods aggregated cells within a biological replicate, to form so- called ‘pseudobulks’, before applying a statistical test",
+      "interpretation": "In the reported comparison of 14 methods across 18 matched reference datasets, all six top-performing methods aggregated cells within biological replicates. The performance measure is concordance with matched bulk RNA-seq, not identical to simulation power or type 1 error. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": false,
+      "browser_error": "Cited quote is missing or ambiguous on this page. Reader returned to the empty workspace."
+    },
+    {
+      "note_id": "n_000005",
+      "paper": "p2",
+      "revision": "947a444f73a046e31a9fcbf3f133a86fad23e39e0da4e742f9bb8576236fa82e",
+      "source_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+      "page": 1,
+      "quote": "Here, we show that the relative performance of these methods is contingent on their ability to account for variation between biological replicates.",
+      "interpretation": "The authors associate DE method performance with accounting for variation between biological replicates. More cells are not automatically more independent biological replicates. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": true,
+      "browser_error": null
+    },
+    {
+      "note_id": "n_000006",
+      "paper": "p2",
+      "revision": "6e750e8c728598e06ac3beaa394d9563cef54f160568797c9867e236f7003baf",
+      "source_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+      "page": 8,
+      "quote": "In datasets of 25-50 cells, GLMMs could produce accurate results under very speci fic parameter combinations. However, in datasets comprising 500 or more cells, their performance converged to that of pseudobulk DE methods.",
+      "interpretation": "The follow-up GLMM comparison reports parameter-sensitive accuracy at 25-50 cells and convergence with pseudobulk at 500 or more cells. These are reported benchmark sizes, not a universal cell-count recommendation. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": false,
+      "browser_error": "Cited quote is missing or ambiguous on this page; reader returned to empty workspace."
+    },
+    {
+      "note_id": "n_000007",
+      "paper": "p3",
+      "revision": "065be0cc61106934ca465adb696265bf5fc631f06827e06a0521702952789107",
+      "source_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+      "page": 4,
+      "quote": "For DE, DM, and DP, there is a set of methods that perform generally well, including most of the pseudobulk approaches and cell-level MM models. Aggregation- and MM- based methods also performed fairly consistent across simulation replicates, while other methods were generally more erratic in their performance",
+      "interpretation": "Most pseudobulk and cell-level mixed-model approaches perform well for DE, DM and DP in this simulation. This passage does not establish equivalent performance for DB (distribution changes with unchanged means), discussed immediately before it. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": true,
+      "browser_error": null
+    },
+    {
+      "note_id": "n_000008",
+      "paper": "p3",
+      "revision": "eca1f65b8fb9ecfc58f72ec23ae4755a949c196a9674dfa2f6697b927957ffca",
+      "source_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+      "page": 3,
+      "quote": "To ensure that method performances are comparable and do not suffer from low cell numbers, we simulated an average of 200 cells per subpopulation-sample instance, amounting to a total of ~200 × (S1 + S2)× K ≈3, 600 cells per simulation. Each simulation and method was repeated five times per scenario, and performances were averaged across replicates.",
+      "interpretation": "The main simulation aims for an average 200 cells per subpopulation-sample and about 3,600 cells overall; each scenario is repeated five times. These simulation repetitions are distinct from the three biological samples per condition described immediately above the quote. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": false,
+      "browser_error": "Cited quote is missing or ambiguous on this page; reader returned to empty workspace."
+    },
+    {
+      "note_id": "n_000009",
+      "paper": "p3",
+      "revision": "15af4a45271ac9b6aa2eeb769773500bdd08fda4d24cf9f79fff466ea28d53ba",
+      "source_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+      "page": 3,
+      "quote": "Each cell additionally has a sub- population (cluster) label as well as a sample label; metadata should be linked to samples, such that they can be organized into comparable groups with sample-level replicates",
+      "interpretation": "The muscat framework links cells to subpopulations and biological samples and organizes comparable groups with sample-level replication. Agent-prepared interpretation; independent scientific review pending.",
+      "review": {
+        "status": "unreviewed"
+      },
+      "backend_available": true,
+      "browser_passage_ready": true,
+      "browser_error": null
+    }
+  ],
+  "browser": {
+    "attempted": 10,
+    "passed": 6,
+    "failed": 4,
+    "failure_behavior": "Valid session/PDF loaded, quote matching failed, and the reader cleared the session and URL to an empty workspace."
+  },
+  "timings_seconds": {
+    "baseline-brief": 17.383,
+    "baseline-changes": 17.843,
+    "changed-report": 18.763,
+    "revised-brief": 18.445,
+    "brief-replay": 0.576,
+    "original-edition": 0.319,
+    "history-final": 0.347,
+    "final-changes": 18.344
+  },
+  "timing_scope": "Observed Windows wall-clock durations, one observation per named operation; includes process startup and normal command overhead, not an isolated benchmark.",
+  "independent_review": {
+    "status": "pending",
+    "reviewer": null,
+    "scientific_accuracy": null,
+    "researcher_effort_improvement": null
+  }
+}

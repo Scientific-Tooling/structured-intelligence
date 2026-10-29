@@ -37,11 +37,15 @@ def passage_url(base: str, record: dict, passage: dict) -> str:
     return urlunsplit((parsed.scheme, parsed.netloc, quote(parsed.path or "/", safe="/:@%"), urlencode(query), ""))
 
 
-def check_passage(apw: list[str], record: dict, passage: dict) -> tuple[bool, str]:
+def check_passage(apw: list[str], record: dict, passage: dict, *, resolver=None) -> tuple[bool, str]:
     if not passage["quote"].strip():
         return False, "No text quote. Capture and review a source text anchor before citing it."
     try:
-        resolved = run_json(apw + [
+        citation = {"session_id": record["source"]["session_id"],
+                    "document_sha256": record["document"]["sha256"],
+                    "annotation_id": passage["annotation_id"], "page": passage["page"],
+                    "passage_sha256": digest(passage)}
+        resolved = resolver(**citation) if resolver else run_json(apw + [
             "resolve-passage", "--session-id", record["source"]["session_id"],
             "--document-sha256", record["document"]["sha256"],
             "--annotation-id", passage["annotation_id"], "--page", str(passage["page"]),
@@ -64,13 +68,13 @@ def check_passage(apw: list[str], record: dict, passage: dict) -> tuple[bool, st
     return True, "Source and annotation revision verified; the viewer checks page text when opened."
 
 
-def checked_passages(apw: list[str], record: dict, viewer_url: str | None, checked: dict) -> list[dict]:
+def checked_passages(apw: list[str], record: dict, viewer_url: str | None, checked: dict, *, resolver=None) -> list[dict]:
     """Shared citation checks for search and comparisons; never substitutes a source."""
     passages = []
     for passage in record["item"]["passages"]:
         key = (record["source"]["session_id"], record["document"]["sha256"], digest(passage))
         if key not in checked:
-            checked[key] = check_passage(apw, record, passage)
+            checked[key] = check_passage(apw, record, passage, resolver=resolver)
         available, reason = checked[key]
         url = passage_url(viewer_url, record, passage) if available and viewer_url else None
         passages.append({**passage, "available": available, "message": reason, "url": url})
