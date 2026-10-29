@@ -1,0 +1,114 @@
+[
+  {
+    "name": "workflow",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_workflow.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 181.32152920006774,
+    "log_sha256": "df81d8bbe1a2755aa71b7ec8da82e294efe551fdd9460027fdb27b9ae355565d"
+  },
+  {
+    "name": "discovery",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_discovery.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 13.410240299999714,
+    "log_sha256": "bc80872b448968168e8c1d4b5b5411925f2e08569829b5b5bdeb524f2cd2a808"
+  },
+  {
+    "name": "state",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_state.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 0.8555135999340564,
+    "log_sha256": "fe480a1310d63d51cbddbfbb9dba7973536416937b7c59f6c54bd9018aa4c665"
+  },
+  {
+    "name": "maintenance",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_maintenance.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 105.63994890009053,
+    "log_sha256": "2f1d69b42710575defe9e781b6c8e65f798503b86d75aec59477cf6087d5a00b"
+  },
+  {
+    "name": "analysis",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_analysis.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 57.50783860008232,
+    "log_sha256": "3591eab66fad0819405c92f51a19e5642907a8635d5bf9f55124f44ff501417f"
+  },
+  {
+    "name": "adapters",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_research_*.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 1.5159102999605238,
+    "log_sha256": "dc6648f8b6ab71428346628486c1cb4da7f5c1e1d7d87d5197175e1219e66e2e"
+  },
+  {
+    "name": "boundary",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_*integration.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 13.794013200094923,
+    "log_sha256": "cc52e0cfa76f88c5b876ae0b04daa34d3f6c6bf52cb4ad0e8c5aeba8010d973e"
+  }
+]

@@ -7,17 +7,22 @@ import re
 import sqlite3
 import sys
 import uuid
-from contextlib import closing
+from contextlib import closing, suppress
 from datetime import datetime, timezone
 from pathlib import Path
 
 from . import brief, comparison
-from .reading import WorkflowError, hash_stream
-from .state import lock, read_json, write_json
+from .reading import WorkflowError, hash_file, validate_source
+from .state import hex_id, lock, read_sealed, replace, seal, write_json
 
 SNAPSHOT = "scientific-tooling.project-snapshot.v1"
 EDITION = "scientific-tooling.brief-edition.v1"
 REPORT = "scientific-tooling.project-update.v1"
+REQUEST = "scientific-tooling.brief-request.v1"
+
+
+class NotReady(WorkflowError):
+    """A brief precondition failed. Nothing was interrupted, so no request is retained."""
 
 
 def now():
@@ -25,21 +30,21 @@ def now():
 
 
 def identity(value):
-    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{32}", value):
-        raise WorkflowError("Use an edition or request ID from this project's history.")
-    return value
-
-
-def seal(value):
-    return {**value, "revision": brief.digest(value)}
+    return hex_id(value, "Use an edition or request ID from this project's history.")
 
 
 def verified(path, schema, workspace_id):
-    value = read_json(path)
-    if (value.get("schema") != schema or value.get("workspace_id") != workspace_id
-            or value.get("revision") != brief.digest({k: v for k, v in value.items() if k != "revision"})):
-        raise WorkflowError(f"Saved project history changed or belongs to another project: {path}")
-    return value
+    return read_sealed(path, schema, workspace_id, f"Saved project history changed or belongs to another project: {path}")
+
+
+def published(path, text):
+    """Whether a brief file holds exactly this edition's text.
+
+    Earlier releases wrote brief.md in text mode, which on Windows turned each
+    newline into CRLF; that exact translation of the edition text is accepted.
+    """
+    content = Path(path).read_bytes()
+    return content in (text.encode("utf-8"), text.replace("\n", "\r\n").encode("utf-8"))
 
 
 def read_rks_state(workspace, data):
@@ -49,7 +54,8 @@ def read_rks_state(workspace, data):
     or initialize a database. The next capture opens a new transaction.
     """
     sources, evidence, comparisons = {}, [], []
-    if not any(p["paper_id"] for p in data["papers"]):
+    scope = comparison.paper_sources(data["papers"])
+    if not scope:
         return sources, evidence, comparisons
     from rks.operations.comparison import list_comparisons, list_evidence, show_comparison
     from rks.operations.paper_source import describe_paper_source
@@ -58,18 +64,17 @@ def read_rks_state(workspace, data):
     try:
         with closing(connect_db_readonly(workspace.root / "rks" / "rks.sqlite3")) as conn:
             conn.execute("BEGIN")
-            for paper in data["papers"]:
-                if paper["paper_id"]:
-                    try:
-                        sources[paper["paper_id"]] = describe_paper_source(PaperRepository(conn).get_paper(paper["paper_id"]))
-                    except (OSError, ValueError, KeyError):
-                        sources[paper["paper_id"]] = None
-            if all(p["paper_id"] for p in data["papers"]):
-                scope = {"workspace_id": data["workspace_id"], "source_id": data["source_id"],
-                         "paper_sources": [f"{p['paper_id']}:{p['sha256']}" for p in data["papers"]]}
-                evidence = list_evidence(conn, **scope)["evidence"]
-                comparisons = [show_comparison(conn, item["id"], **scope)
-                               for item in list_comparisons(conn, **scope)["comparisons"]]
+            for paper in scope.values():
+                try:
+                    sources[paper["paper_id"]] = describe_paper_source(PaperRepository(conn).get_paper(paper["paper_id"]))
+                except (OSError, ValueError, KeyError):
+                    sources[paper["paper_id"]] = None
+            # A paper whose preparation was interrupted has no RKS identity yet. It is
+            # reported as unprepared while the prepared papers are still read.
+            arguments = {"workspace_id": data["workspace_id"], "source_id": data["source_id"], "paper_sources": list(scope)}
+            evidence = list_evidence(conn, **arguments)["evidence"]
+            comparisons = [show_comparison(conn, item["id"], **arguments)
+                           for item in list_comparisons(conn, **arguments)["comparisons"]]
     except (OSError, ValueError, KeyError, sqlite3.Error) as exc:
         raise WorkflowError(f"Cannot inspect this project's RKS state: {exc}") from exc
     return sources, evidence, comparisons
@@ -79,14 +84,19 @@ def capture(workspace):
     """Retain imported records, current availability and exact comparison/review states."""
     data = workspace.load()
     native_sources, native_evidence, native_comparisons = read_rks_state(workspace, data)
+    scope = comparison.paper_sources(data["papers"])
+    hashes = {}
+    def file_hash(path):
+        # One hash per file per observation; stable_snapshot's next observation reads again.
+        key = str(Path(path).resolve())
+        if key not in hashes:
+            hashes[key] = hash_file(path)
+        return hashes[key]
     papers = []
     for paper in data["papers"]:
         source = workspace.root / "pdfs" / (paper["sha256"] + ".pdf")
-        status = "available"
         try:
-            with source.open("rb") as stream:
-                if hash_stream(stream) != (paper["sha256"], paper["size_bytes"]):
-                    status = "changed"
+            status = "available" if file_hash(source) == (paper["sha256"], paper["size_bytes"]) else "changed"
         except FileNotFoundError:
             status = "missing"
         if paper["paper_id"]:
@@ -94,7 +104,6 @@ def capture(workspace):
                 native = native_sources[paper["paper_id"]]
                 if native is None:
                     raise WorkflowError("RKS source unavailable")
-                from .reading import validate_source
                 descriptor = validate_source(native, paper["paper_id"])
                 if (descriptor["sha256"], descriptor["size_bytes"]) != (paper["sha256"], paper["size_bytes"]):
                     status = "rks_source_changed"
@@ -102,13 +111,11 @@ def capture(workspace):
                 status = "rks_source_unavailable"
         papers.append({**{k: paper.get(k) for k in ("key", "title", "paper_id", "sha256", "size_bytes", "work_id")},
                        "source_status": status, "prepared": paper["phase"] != "initializing"})
-    evidence, comparisons = [], []
-    if papers and all(p["paper_id"] for p in papers):
+    evidence, comparisons = native_evidence, []
+    if scope:
         from agent_pdf_workbench.evidence import export_evidence
         from agent_pdf_workbench.passage import resolve_passage
 
-        evidence = native_evidence
-        paper_scope = {f"{p['paper_id']}:{p['sha256']}": p for p in data["papers"]}
         # APW owns these read-only APIs. Avoid starting a Python process per item
         # or constructing its service (which initializes/migrates the database).
         # This cache belongs to one observation; stable_snapshot reads again.
@@ -119,33 +126,18 @@ def capture(workspace):
                 return resolve_passage(db_path, **citation)
             except sqlite3.Error as exc:
                 raise WorkflowError(str(exc)) from exc
-        apw = [sys.executable, "-m", "agent_pdf_workbench.dev_cli", "--db-path", str(workspace.root / "events.db")]
+        viewer_url = f"http://127.0.0.1:{data['port']}" if data["port"] else None
         for entry in evidence:
-            record, item = entry["record"], entry["record"]["item"]
-            paper = paper_scope[f"{record['paper_id']}:{record['document']['sha256']}"]
+            record = entry["record"]
+            paper = scope[f"{record['paper_id']}:{record['document']['sha256']}"]
             entry["paper"] = {k: paper[k] for k in ("key", "title")}
             entry["paper_id"] = record["paper_id"]
-            entry["passages"] = brief.checked_passages(apw, record,
-                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked, resolver=resolver)
-            entry["reading_item"] = None
-            try:
-                exported = export_evidence(db_path, session_id=record["source"]["session_id"],
-                    source_id=data["source_id"], annotation_ids=[item["id"]] if item["kind"] == "annotation" else [],
-                    note_ids=[item["id"]] if item["kind"] == "note" else [])
-                if (exported.get("workspace_id") != data["workspace_id"]
-                        or exported.get("paper_id") != record["paper_id"]
-                        or exported["document"]["sha256"] != record["document"]["sha256"]):
-                    raise WorkflowError("Reading export is outside this project's exact source scope.")
-                entry["reading_status"] = ("unchanged" if exported["items"][0]["content_revision"] == item["content_revision"]
-                                           else "changed_since_import")
-                entry["reading_item"] = exported["items"][0]
-            except (WorkflowError, OSError, ValueError, sqlite3.Error):
-                entry["reading_status"] = "unavailable"
+            entry["passages"] = brief.checked_passages(None, record, viewer_url, checked,
+                                                       resolver=resolver, file_hash=file_hash)
+        read_reading_states(export_evidence, db_path, data, evidence)
         for item in native_comparisons:
-            comparisons.append(comparison.enrich(workspace, item, data, paper_scope,
-                                                  checked=checked, resolver=resolver))
-    elif any(p["paper_id"] for p in papers):
-        raise WorkflowError("Resume the interrupted paper selection before checking project changes.")
+            comparisons.append(comparison.enrich(workspace, item, data, scope,
+                                                  checked=checked, resolver=resolver, file_hash=file_hash))
     snapshot = {"schema": SNAPSHOT, "workspace_id": data["workspace_id"], "source_id": data["source_id"],
                 "question": data["question"], "reader_port": data["port"], "papers": papers,
                 "works": data.get("works", []), "evidence": sorted(evidence, key=lambda e: e["source_key"]),
@@ -153,6 +145,40 @@ def capture(workspace):
     if workspace.load() != data:
         raise WorkflowError("The project changed during inspection. Check changes again after the active operation finishes.")
     return seal(snapshot)
+
+
+def read_reading_states(export_evidence, db_path, data, evidence):
+    """Compare each import with its current APW reading item, exporting once per session.
+
+    An export fails as a whole when any selected item is missing, so a failed
+    session is retried item by item and only the missing items are unavailable.
+    """
+    def export(session_id, entries):
+        selected = {(e["record"]["item"]["kind"], e["record"]["item"]["id"]) for e in entries}
+        try:
+            return export_evidence(db_path, session_id=session_id, source_id=data["source_id"],
+                                   annotation_ids=sorted(i for kind, i in selected if kind == "annotation"),
+                                   note_ids=sorted(i for kind, i in selected if kind == "note"))
+        except (OSError, ValueError, KeyError, TypeError, sqlite3.Error):
+            return None
+    sessions = {}
+    for entry in evidence:
+        sessions.setdefault(entry["record"]["source"]["session_id"], []).append(entry)
+    for session_id, entries in sessions.items():
+        batch = export(session_id, entries)
+        for entry in entries:
+            exported = batch if batch is not None or len(entries) == 1 else export(session_id, [entry])
+            record, item = entry["record"], entry["record"]["item"]
+            entry["reading_item"], entry["reading_status"] = None, "unavailable"
+            if (exported is None or exported.get("workspace_id") != data["workspace_id"]
+                    or exported.get("paper_id") != record["paper_id"]
+                    or exported.get("document", {}).get("sha256") != record["document"]["sha256"]):
+                continue  # Missing, or outside this project's exact source scope.
+            current = next((i for i in exported["items"] if (i["kind"], i["id"]) == (item["kind"], item["id"])), None)
+            if current is not None:
+                entry["reading_item"] = current
+                entry["reading_status"] = ("unchanged" if current["content_revision"] == item["content_revision"]
+                                           else "changed_since_import")
 
 
 def stable_snapshot(workspace):
@@ -173,20 +199,21 @@ def editions(workspace):
     return sorted(records, key=lambda r: (r["created_at"], r["id"]))
 
 
-def history(workspace, edition_id=None):
+def history(workspace, edition_id=None, *, records=None):
+    workspace_id = workspace.load()["workspace_id"]
     if edition_id:
         path = workspace.root / "briefs" / identity(edition_id) / "record.json"
         if not path.is_file():
             raise WorkflowError("Brief edition not found in this project.")
-        result = verified(path, EDITION, workspace.load()["workspace_id"])
+        result = verified(path, EDITION, workspace_id)
         if result["id"] != edition_id:
             raise WorkflowError("Brief edition identity does not match its saved directory.")
         return result
-    records = editions(workspace)
+    records = editions(workspace) if records is None else records
     pending = []
     known = {r["id"] for r in records}
     for path in (workspace.root / "briefs").glob("*/request.json"):
-        request = verified(path, "scientific-tooling.brief-request.v1", workspace.load()["workspace_id"])
+        request = verified(path, REQUEST, workspace_id)
         if request["id"] != identity(path.parent.name):
             raise WorkflowError("Brief request identity does not match its directory.")
         if request["id"] not in known:
@@ -197,12 +224,38 @@ def history(workspace, edition_id=None):
             "legacy_briefs": [{"path": str(p), "freshness": "unverified"} for p in sorted((workspace.root / "briefs").glob("*.md"))]}
 
 
-def difference(before, after, key, category):
+# Identities, revisions and availability decide freshness and what counts as a
+# change. Rendered wording, links and tool-specific detail stay in the snapshot
+# for inspection, but never make an edition outdated on their own.
+STATE = {
+    "papers": ("key", lambda p: {k: p.get(k) for k in ("title", "paper_id", "sha256", "size_bytes", "work_id",
+                                                        "source_status", "prepared")}),
+    "works": ("id", lambda w: w),
+    "evidence": ("source_key", lambda e: {
+        "note_id": e["note_id"], "revision": e["revision"], "status": e["status"], "source_status": e["source_status"],
+        "reading_status": e["reading_status"], "reading_revision": (e.get("reading_item") or {}).get("content_revision"),
+        "passages": [[p["annotation_id"], p["page"], p["available"]] for p in e["passages"]]}),
+    "comparisons": ("id", lambda c: {
+        "title": c["title"], "criteria": c["criteria"], "paper_sources": c["paper_sources"], "version": c["version"],
+        "excluded_papers": c["excluded_papers"],
+        "cells": [[cell["key"], cell["cell_revision"], cell["support_status"], cell["review"]["status"],
+                   len(cell["review"]["history"])] for cell in c["cells"]]}),
+}
+
+
+def state(snapshot):
+    return {"project": {k: snapshot.get(k) for k in ("question", "reader_port")},
+            **{name: {item[key]: project(item) for item in snapshot.get(name, [])}
+               for name, (key, project) in STATE.items()}}
+
+
+def difference(before, after, key, category, project):
     old, new = {v[key]: v for v in before}, {v[key]: v for v in after}
     return [{"category": category, "id": k,
              "change": "added" if k not in old else "removed" if k not in new else "changed",
              "before": old.get(k), "after": new.get(k)}
-            for k in sorted(old.keys() | new.keys()) if old.get(k) != new.get(k)]
+            for k in sorted(old.keys() | new.keys())
+            if k not in old or k not in new or project(old[k]) != project(new[k])]
 
 
 def report(workspace, snapshot):
@@ -210,17 +263,21 @@ def report(workspace, snapshot):
     previous = records[-1] if records else None
     baseline = previous["snapshot"] if previous else {}
     changes = []
-    for name, key in (("papers", "key"), ("works", "id"), ("evidence", "source_key"), ("comparisons", "id")):
-        changes += difference(baseline.get(name, []), snapshot[name], key, name)
+    for name, (key, project) in STATE.items():
+        changes += difference(baseline.get(name, []), snapshot[name], key, name, project)
     if previous and any(baseline.get(k) != snapshot[k] for k in ("question", "reader_port")):
         changes.append({"category": "project", "id": snapshot["workspace_id"], "change": "changed",
                         "before": {k: baseline.get(k) for k in ("question", "reader_port")},
                         "after": {k: snapshot[k] for k in ("question", "reader_port")}})
     attention = []
     for paper in snapshot["papers"]:
-        if paper["source_status"] != "available" or not paper["prepared"]:
-            attention.append({"kind": "source", "paper": paper["key"], "id": paper["sha256"],
-                              "message": f"Retained source is {paper['source_status']}; prepared: {paper['prepared']}."})
+        if not paper["prepared"]:
+            message = "Preparation of this paper was interrupted. Resume this project to finish it before generating a brief."
+        elif paper["source_status"] != "available":
+            message = f"Retained source is {paper['source_status']}."
+        else:
+            continue
+        attention.append({"kind": "source", "paper": paper["key"], "id": paper["sha256"], "message": message})
     for entry in snapshot["evidence"]:
         reasons = []
         if entry["status"] != "current":
@@ -248,9 +305,9 @@ def report(workspace, snapshot):
                               "message": "Comparison excludes later papers: " + ", ".join(item["excluded_papers"])})
     return {"schema": REPORT, "workspace_id": snapshot["workspace_id"], "checked_at": now(),
             "baseline_id": previous["id"] if previous else None,
-            "freshness": ("current" if baseline.get("revision") == snapshot["revision"] else "outdated") if previous else "unverified",
+            "freshness": ("current" if state(baseline) == state(snapshot) else "outdated") if previous else "unverified",
             "snapshot_revision": snapshot["revision"], "changes": changes, "attention": attention,
-            "history": history(workspace)}
+            "history": history(workspace, records=records)}
 
 
 def inspect(workspace, *, save=False):
@@ -265,51 +322,65 @@ def inspect(workspace, *, save=False):
     return result
 
 
+def require_ready(data):
+    if not data["port"] or not data["papers"] or any(p["phase"] == "initializing" for p in data["papers"]):
+        raise NotReady("Resume the reader and finish preparing the selected papers before generating a brief.")
+
+
 def make_brief(workspace, request_id=None):
     request_id = identity(request_id or uuid.uuid4().hex)
     with lock(workspace.root / "workspace.lock"):
         data = workspace.load()
         directory = workspace.root / "briefs" / request_id
-        directory.mkdir(parents=True, exist_ok=True)
-        request_path = directory / "request.json"
-        if request_path.exists():
-            request = verified(request_path, "scientific-tooling.brief-request.v1", data["workspace_id"])
+        request_path, record_path = directory / "request.json", directory / "record.json"
+        replayed = record_path.exists()
+        if not replayed:
+            require_ready(data)  # Before a request is retained for resumption.
+        created = not request_path.exists()
+        if created:
+            directory.mkdir(parents=True, exist_ok=True)
+            write_json(request_path, seal({"schema": REQUEST, "workspace_id": data["workspace_id"],
+                                          "id": request_id, "created_at": now()}))
+        else:
+            request = verified(request_path, REQUEST, data["workspace_id"])
             if request["id"] != request_id:
                 raise WorkflowError("Brief request identity changed.")
-        else:
-            write_json(request_path, seal({"schema": "scientific-tooling.brief-request.v1", "workspace_id": data["workspace_id"],
-                                          "id": request_id, "created_at": now()}))
-        record_path = directory / "record.json"
-        replayed = record_path.exists()
         if replayed:
             record = verified(record_path, EDITION, data["workspace_id"])
         else:
             try:
                 record = render_edition(workspace, request_id, directory)
                 write_json(record_path, record)  # Commit point: text and provenance publish together.
+            except NotReady:
+                if created:  # Nothing was interrupted, so this request is not listed for resumption.
+                    request_path.unlink(missing_ok=True)
+                    with suppress(OSError):
+                        directory.rmdir()
+                raise
             except (WorkflowError, OSError, ValueError) as exc:
                 raise WorkflowError(f"{exc}\nBrief request retained: {request_id}. Retry sci brief --request-id {request_id}.") from exc
         target = directory / "brief.md"
         if target.exists():
-            if target.read_text(encoding="utf-8") != record["text"]:
+            if not published(target, record["text"]):
                 raise WorkflowError("Saved brief text changed. Preserve it and inspect its edition record.")
         else:
             # The canonical record already contains the whole output. An interrupted
             # convenience-file publication can be recovered from that exact edition.
-            from .state import replace
+            # Exact bytes, so the file matches the edition's text_sha256 on every platform.
             pending = directory / ".brief.md"
-            pending.write_text(record["text"], encoding="utf-8")
+            pending.write_bytes(record["text"].encode("utf-8"))
             replace(pending, target)
-        latest = editions(workspace)[-1]
-        data["brief"] = latest["result"]
-        workspace.save(data)
+        # Replaying an older request keeps the newest edition as the project's brief.
+        latest = data.get("brief") or {}
+        if not latest.get("id") or (record["created_at"], record["id"]) >= (latest["created_at"], latest["id"]):
+            data["brief"] = record["result"]
+            workspace.save(data)
         return {**record["result"], "replayed": replayed}
 
 
 def render_edition(workspace, edition_id, directory):
     data = workspace.load()
-    if not data["port"] or not data["papers"] or any(p["phase"] == "initializing" for p in data["papers"]):
-        raise WorkflowError("Resume the reader and finish preparing the selected papers before generating a brief.")
+    require_ready(data)
     snapshot = capture(workspace)
     sections, coverage = [], []
     counts = dict.fromkeys(("evidence", "reviewed", "unreviewed", "linked_passages", "unavailable_passages"), 0)
@@ -327,7 +398,7 @@ def render_edition(workspace, edition_id, directory):
         body = re.sub(r"^(#+) ", r"#\1 ", text.split("\n", 1)[1], flags=re.MULTILINE)
         sections.append(f"## {brief.escape(paper['key'] + ': ' + paper['title'])}\n" + body)
     if not counts["evidence"]:
-        raise WorkflowError("No matching imported evidence. Preview and import selected material first.")
+        raise NotReady("No matching imported evidence. Preview and import selected material first.")
     checked_at = now()
     lines = ["# Source-linked project brief", "", f"Question: {brief.escape(data['question'])}", "",
              f"Edition: {edition_id}. Captured at {checked_at}.",

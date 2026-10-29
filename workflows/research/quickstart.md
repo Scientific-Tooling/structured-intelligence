@@ -1,5 +1,8 @@
 # Your papers, one question, a source-linked brief
 
+New to `sci`? Read the [two-minute introduction](../../docs/sci-overview.md) or
+the [detailed user guide with screenshots](../../docs/sci-user-guide.md).
+
 Scientific Tooling now manages the RKS/APW workspace, reading session, import
 previews and reader process for you. Keep one or more PDFs under a shared research
 question in each project workspace. The same commands work on Windows, Linux and macOS.
@@ -150,6 +153,12 @@ changed since the last brief, `sci update` to save the report, and `sci history`
 inspect retained editions (all accept `--workspace` and `--json`). The reader's
 Brief tab presents the same changes and history. `sci discover repeat DISCOVERY_ID`
 repeats an exact saved query without selecting results automatically.
+
+For [analysis handoffs](../../docs/analysis-handoffs.md), use `sci analysis create`
+to retain an explicit proposal with selected comparison support, dataset identity,
+parameters and environment specification. `sci analysis check` detects changes to
+those inputs. The guide includes a synthetic dataset; this first slice retains a
+draft and does not run an analysis or record scientific approval.
 
 ## Upgrading from Python 3.10 or 3.11
 

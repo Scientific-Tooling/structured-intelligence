@@ -1,0 +1,36 @@
+{
+  "candidate": "2026-10-29-c1",
+  "time": "2026-10-29T16:35:55.739936+00:00",
+  "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "machine": "AMD64",
+  "processor": "Intel64 Family 6 Model 158 Stepping 10, GenuineIntel",
+  "cpu_count": 6,
+  "modules": {
+    "scientific-tooling": {
+      "version": "0.4.0.dev20261029",
+      "path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Lib\\site-packages\\scientific_tooling\\__init__.py",
+      "direct_url": "{\"archive_info\": {\"hash\": \"sha256=03567b270e91be9ef0b57daa2b413deed1580b993522fc648fdfe9cee931945d\", \"hashes\": {\"sha256\": \"03567b270e91be9ef0b57daa2b413deed1580b993522fc648fdfe9cee931945d\"}}, \"url\": \"file:///C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/wheels/scientific_tooling-0.4.0.dev20261029-py3-none-any.whl\"}"
+    },
+    "agent-pdf-workbench": {
+      "version": "0.3.2.dev20261029",
+      "path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Lib\\site-packages\\agent_pdf_workbench\\__init__.py",
+      "direct_url": "{\"archive_info\": {\"hash\": \"sha256=b3107c3834b002c6ceaec27b79540d4ee77dd867fb08b1afb3d9f273baf61f18\", \"hashes\": {\"sha256\": \"b3107c3834b002c6ceaec27b79540d4ee77dd867fb08b1afb3d9f273baf61f18\"}}, \"url\": \"file:///C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/wheels/agent_pdf_workbench-0.3.2.dev20261029-py3-none-any.whl\"}"
+    },
+    "research-knowledge-substrate": {
+      "version": "0.2.0",
+      "path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Lib\\site-packages\\rks\\__init__.py",
+      "direct_url": "{\"archive_info\": {\"hash\": \"sha256=4da2e23a4654c81880ca87d3ba6cb546e36e25cb2a15582d7f7a598c7570a992\", \"hashes\": {\"sha256\": \"4da2e23a4654c81880ca87d3ba6cb546e36e25cb2a15582d7f7a598c7570a992\"}}, \"url\": \"file:///C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/wheels/research_knowledge_substrate-0.2.0-py3-none-any.whl\"}"
+    }
+  },
+  "manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc",
+  "protocol_sha256": "450498048d7b3b9a1c8943d7011f59f3131fc54e81d29383c254757d9b219425",
+  "analysis_skill_sha256": "8946c2c3c2371a6595dace578947788a9d48c7b2ebca6d094da51d504df88328",
+  "reader_app_sha256": "83b24fb227ae535c55e2834f7084329d36cbe56fae9fd35e7ca3e3d58209c459",
+  "wheels": {
+    "agent_pdf_workbench-0.3.2.dev20261029-py3-none-any.whl": "b3107c3834b002c6ceaec27b79540d4ee77dd867fb08b1afb3d9f273baf61f18",
+    "research_knowledge_substrate-0.2.0-py3-none-any.whl": "4da2e23a4654c81880ca87d3ba6cb546e36e25cb2a15582d7f7a598c7570a992",
+    "scientific_tooling-0.4.0.dev20261029-py3-none-any.whl": "03567b270e91be9ef0b57daa2b413deed1580b993522fc648fdfe9cee931945d"
+  },
+  "public_dependency_install": false
+}

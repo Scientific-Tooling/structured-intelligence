@@ -1,0 +1,128 @@
+[
+  {
+    "name": "workflow",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_workflow.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 220.32373149995692,
+    "log_sha256": "ea5eadfe00a2d63f637c29f9241e9384862691ae9d2b12e46e62fc1889cd4d33",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  },
+  {
+    "name": "discovery",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_discovery.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 17.002716700080782,
+    "log_sha256": "203b11d108c91be89d7896c8757b2ac91a9e5f9cd632432848502f0a82a614e2",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  },
+  {
+    "name": "state",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_state.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 1.202623400138691,
+    "log_sha256": "32ed83ec5b2fac875ef5a5ae0a0e617772fff659888afc261f4d879bbc1cd01e",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  },
+  {
+    "name": "maintenance",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_maintenance.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 119.90722129982896,
+    "log_sha256": "e30c285410a4193e096ebed4f75aca09c56d09c41b96afefc88d0f795d6f6f02",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  },
+  {
+    "name": "analysis",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_analysis.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 61.20053949998692,
+    "log_sha256": "6cb3dc6fc73f06df3fbac765fdef5bd453cab947e44bdc26c99ba07c6ffaa075",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  },
+  {
+    "name": "adapters",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_research_*.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 1.3764594001695514,
+    "log_sha256": "a82aa14c4f7cd655bce94067f3146198cc37c534acc0ba5ef70c3d2011b09efb",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  },
+  {
+    "name": "boundary",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_*integration.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+    "exit_code": 0,
+    "seconds": 14.516504700062796,
+    "log_sha256": "20bd1d4bc9686982e12390ea63ad05a27d66ff25f0fd8e0cec847d8e935475dc",
+    "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+  }
+]

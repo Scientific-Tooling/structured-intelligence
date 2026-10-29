@@ -9,7 +9,7 @@ from pathlib import Path
 
 from . import comparison, evidence, maintenance, reading, search
 from .reading import WorkflowError, hash_stream, run_json
-from .state import lock, read_json, write_json
+from .state import hex_id, lock, read_json, write_json
 
 SCHEMA = "scientific-tooling.workspace.v2"
 LEGACY_SCHEMA = "scientific-tooling.workspace.v1"
@@ -207,9 +207,7 @@ class Workspace:
         return comparison.operate(self, action, **kwargs)
 
     def batch_dir(self, batch_id: str) -> Path:
-        if not isinstance(batch_id, str) or not re.fullmatch(r"[0-9a-f]{32}", batch_id):
-            raise WorkflowError("Use the preview ID returned by this workspace.")
-        return self.root / "imports" / batch_id
+        return self.root / "imports" / hex_id(batch_id, "Use the preview ID returned by this workspace.")
 
     def preview(self, annotation_ids: list[str], note_ids: list[str], paper: str | None = None) -> dict:
         if not annotation_ids and not note_ids:
@@ -299,11 +297,14 @@ class Workspace:
                   "preview": self.preview_data(selected["batch_id"]) if selected["batch_id"] else None,
                   "brief": data.get("brief")}
         if result["brief"]:
-            text = Path(result["brief"]["path"]).read_text(encoding="utf-8")
+            path = Path(result["brief"]["path"])
             if result["brief"].get("id"):
                 edition = maintenance.history(self, result["brief"]["id"])
-                if text != edition["text"] or result["brief"]["path"] != edition["result"]["path"]:
+                if str(path) != edition["result"]["path"] or not maintenance.published(path, edition["text"]):
                     raise WorkflowError("Saved brief text or location changed. Inspect its retained edition before using it.")
+                text = edition["text"]
+            else:
+                text = path.read_text(encoding="utf-8")  # Legacy brief without a retained edition.
             result["brief"] = {**result["brief"], "text": text, "freshness": "unchecked",
                                "passage_urls": re.findall(r"\[Open the supporting passage\]\(([^)]+)\)", text)}
         return result

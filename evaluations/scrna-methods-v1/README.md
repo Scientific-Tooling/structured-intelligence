@@ -57,6 +57,11 @@ Original PDFs are fetched into a local cache, not bundled in Git.
 Run from the Structured Intelligence checkout. The validator, BM25 baseline, and
 review commands need only Python 3.12+ (3.14 recommended). The native benchmark also needs the RKS
 CLI; the original-PDF journey needs RKS/APW environments and a local APW viewer.
+Use an installed Scientific Tooling environment for the commands below. To use
+the checkout's standard-library-only validator without installing, explicitly set
+`PYTHONPATH` to `src` (`$env:PYTHONPATH = 'src'` in PowerShell or
+`export PYTHONPATH=src` in a POSIX shell). Corpus imports no longer silently
+redirect the interpreter from an installed package into the checkout.
 
 ```bash
 python scripts/research_corpus.py validate

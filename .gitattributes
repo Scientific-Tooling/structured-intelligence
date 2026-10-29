@@ -1,0 +1,6 @@
+# These retained receipts include hashes of raw file bytes. Preserve line endings
+# across Windows and Unix checkouts rather than normalizing immutable evidence.
+# Whitespace in retained sources and Windows command logs is part of those bytes.
+evaluations/development-candidate-2026-10-29/** -text -whitespace
+evaluations/imported-evidence-2026-10-29/** -text -whitespace
+evaluations/publication-2026-10-29/** -text -whitespace

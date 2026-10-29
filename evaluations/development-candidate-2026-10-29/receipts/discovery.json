@@ -1,0 +1,18 @@
+{
+  "name": "discovery",
+  "command": [
+    "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+    "scripts/run_research_tests.py",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_discovery.py",
+    "-v"
+  ],
+  "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+  "exit_code": 0,
+  "seconds": 17.002716700080782,
+  "log_sha256": "203b11d108c91be89d7896c8757b2ac91a9e5f9cd632432848502f0a82a614e2",
+  "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+}

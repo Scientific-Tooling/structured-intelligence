@@ -9,7 +9,7 @@ import webbrowser
 from importlib.resources import files
 from pathlib import Path
 
-from . import __version__, comparison, discovery, maintenance, server
+from . import __version__, analysis, comparison, discovery, maintenance, server
 from .reading import WorkflowError
 from .workspace import Workspace
 
@@ -104,6 +104,7 @@ def build_parser() -> argparse.ArgumentParser:
     comparison.register(commands)
     discovery.register(commands)
     maintenance.register(commands)
+    analysis.register(commands)
     return parser
 
 
@@ -113,6 +114,8 @@ def dispatch(args) -> dict:
     if args.command == "skill":
         return install_skill(args.dest)
     workspace = Workspace(args.workspace)
+    if args.command == "analysis":
+        return analysis.dispatch(workspace, args)
     if args.command in {"changes", "update"}:
         return maintenance.inspect(workspace, save=args.command == "update")
     if args.command == "history":
@@ -171,6 +174,28 @@ def dispatch(args) -> dict:
 def print_result(result: dict, as_json: bool) -> None:
     if as_json:
         print(json.dumps(result, ensure_ascii=True, indent=2))
+        return
+    if result.get("schema") == analysis.CHECK:
+        print(f"Handoff freshness: {result['freshness']} (checked {result['checked_at']})")
+        print(f"{len(result['issues'])} changes or unavailable inputs; {len(result['attention'])} support items need attention.")
+        for issue in result["issues"]:
+            print(f"  {issue['kind']}: {issue['message']}")
+        print("Draft plan: no analysis has run and no scientific review of the plan is recorded.")
+        print(result["scope"])
+        return
+    if result.get("schema") == analysis.HANDOFF:
+        print(result["artifacts"]["handoff.md"])
+        return
+    if "handoff" in result:
+        print(f"Draft analysis handoff: {result['path']}")
+        print(f"ID: {result['handoff']['id']}; exact replay: {result['replayed']}")
+        print(f"{len(result['handoff']['attention'])} support items need attention. No analysis or scientific review was recorded.")
+        return
+    if "handoffs" in result:
+        for item in result["handoffs"]:
+            print(f"{item['id']}  {item['title']}  ({item['purpose']}; freshness unchecked)")
+        for request_id in result["pending_requests"]:
+            print(f"Pending request: {request_id}")
         return
     if result.get("schema") == maintenance.REPORT:
         print(f"Brief freshness: {result['freshness']} (checked {result['checked_at']})")
@@ -286,6 +311,8 @@ def print_result(result: dict, as_json: bool) -> None:
             print("Full evidence and conflicts are available with --json. Apply using this preview ID after inspection.")
     if result.get("brief"):
         print(f"Brief: {result['brief']['path']}")
+        if "phase" in result:
+            print("This is the latest saved brief. Run sci changes to check whether it still matches the project.")
     if not any(key in result for key in ("phase", "preview", "brief", "papers")):
         print(json.dumps(result, indent=2))
 
@@ -297,6 +324,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "serve":
             return 0  # Internal child emitted its single startup acknowledgement.
         print_result(result, args.json)
+        if result.get("schema") == analysis.CHECK and result["freshness"] != "current":
+            return 2
         if result.get("ok") is False or result.get("applied") is False or (result.get("preview") or {}).get("counts", {}).get("conflict", 0):
             return 2
         return 0

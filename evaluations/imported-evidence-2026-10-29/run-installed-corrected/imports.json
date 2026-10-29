@@ -1,0 +1,1070 @@
+{
+  "note_to_document": {
+    "n_000001": {
+      "document_id": "vieth2019.abstract",
+      "canonical_id": "vieth2019.abstract",
+      "text": "The recent rapid spread of single cell RNA sequencing (scRNA-seq) methods has created a large variety of experimental and computational pipelines for which best practices have not yet been established. Here, we use simulations based on five scRNA-seq library protocols in combination with nine realistic differential expression (DE) setups to systematically evaluate three mapping, four imputation, seven normalisation and four differential expression testing approaches resulting in ~3000 pipelines, allowing us to also assess interactions among pipeline steps. We find that choices of normalisation and library preparation protocols have the biggest impact on scRNA-seq analyses. Specifically, we find that library preparation determines the ability to detect symmetric expression differences, while normalisation dominates pipeline performance in asymmetric DE-setups. Finally, we illustrate the importance of informed choices by showing that a good scRNA-seq pipeline can have the same impact on detecting a biological signal as quadrupling the sample size.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.abstract\"]",
+      "revision": "f3723d66499f72b9b253083e73a7822efb6faace0540e643a9ef9f3a5b7384d5",
+      "paper_id": "p_000001",
+      "paper_key": "p1"
+    },
+    "n_000002": {
+      "document_id": "vieth2019.abstract.whitespace-copy",
+      "canonical_id": "vieth2019.abstract",
+      "text": "The  recent  rapid  spread  of  single  cell  RNA  sequencing  (scRNA-seq)  methods  has  created  a  large  variety  of  experimental  and  computational  pipelines  for  which  best  practices  have  not  yet  been  established.  Here,  we  use  simulations  based  on  five  scRNA-seq  library  protocols  in  combination  with  nine  realistic  differential  expression  (DE)  setups  to  systematically  evaluate  three  mapping,  four  imputation,  seven  normalisation  and  four  differential  expression  testing  approaches  resulting  in  ~3000  pipelines,  allowing  us  to  also  assess  interactions  among  pipeline  steps.  We  find  that  choices  of  normalisation  and  library  preparation  protocols  have  the  biggest  impact  on  scRNA-seq  analyses.  Specifically,  we  find  that  library  preparation  determines  the  ability  to  detect  symmetric  expression  differences,  while  normalisation  dominates  pipeline  performance  in  asymmetric  DE-setups.  Finally,  we  illustrate  the  importance  of  informed  choices  by  showing  that  a  good  scRNA-seq  pipeline  can  have  the  same  impact  on  detecting  a  biological  signal  as  quadrupling  the  sample  size.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.abstract.whitespace-copy\"]",
+      "revision": "b94476c716ffe042ad678bdfe470f7353bbfa218f8276f84d5ce3816db23333e",
+      "paper_id": "p_000001",
+      "paper_key": "p1"
+    },
+    "n_000003": {
+      "document_id": "vieth2019.normalization",
+      "canonical_id": "vieth2019.normalization",
+      "text": "The next step in any RNA-seq analysis is the normalisation of the count matrix. The main idea here is that the resulting size factors correct for differing sequencing depths. In order to improve normalisation, spike-ins as an added standard can help, but are not feasible for all scRNA-seq library preparations. Another avenue to improve normalisation would be to deal with sparsity by imputing missing data prior to normalisation as discussed in the next chapter (Fig. 1c). To begin with, we compare how much the estimated size factors deviate from the truth. As long as there is only a small proportion of DE-genes or if the differences are symmetric, estimated size factors are not too far from the simulated ones and there are no large differences among methods (Fig. 3a and Supplementary Figs. 10 and 11). However with increasing asymmetry, size factors deviate more and more and the single cell methods scran25 and SCnorm26 perform markedly better than the bulk methods TMM27, MR28 and Positive Counts as well as the single cell method Linnorm29.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.normalization\"]",
+      "revision": "5e6babb8a62b99a739461921bb5f62255e52b08ec1652ceaf1332bb5ddafa0fd",
+      "paper_id": "p_000001",
+      "paper_key": "p1"
+    },
+    "n_000004": {
+      "document_id": "hafemeister2019.abstract",
+      "canonical_id": "hafemeister2019.abstract",
+      "text": "Single-cell RNA-seq (scRNA-seq) data exhibits significant cell-to-cell variation due to technical factors, including the number of molecules detected in each cell, which can confound biological heterogeneity with technical effects. To address this, we present a modeling framework for the normalization and variance stabilization of molecular count data from scRNA-seq experiments. We propose that the Pearson residuals from \u201cregularized negative binomial regression,\u201d where cellular sequencing depth is utilized as a covariate in a generalized linear model, successfully remove the influence of technical characteristics from downstream analyses while preserving biological heterogeneity. Importantly, we show that an unconstrained negative binomial model may overfit scRNA-seq data, and overcome this by pooling information across genes with similar abundances to obtain stable parameter estimates. Our procedure omits the need for heuristic steps including pseudocount addition or log-transformation and improves common downstream analytical tasks such as variable gene selection, dimensional reduction, and differential expression. Our approach can be applied to any UMI-based scRNA-seq dataset and is freely available as part of the R package sctransform, with a direct interface to our single-cell toolkit Seurat.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000002\",\"6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a\",\"note\",\"corpus-hafemeister2019.abstract\"]",
+      "revision": "4ee23b9f9d84a113539b35cfadb485a20862a0ca8aa86c10a0e7b3bcd02c1afb",
+      "paper_id": "p_000002",
+      "paper_key": "p2"
+    },
+    "n_000005": {
+      "document_id": "hafemeister2019.depth",
+      "canonical_id": "hafemeister2019.depth",
+      "text": "In general, the normalized expression level of a gene should not be correlated with the total sequencing depth of a cell. Downstream analytical tasks (dimensional reduction, differential expression) should also not be influenced by variation in sequencing depth.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000002\",\"6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a\",\"note\",\"corpus-hafemeister2019.depth\"]",
+      "revision": "f144ba7e9d2229213824f9f3f0618b48d9c19b9c46ce03c727dc04ece371a575",
+      "paper_id": "p_000002",
+      "paper_key": "p2"
+    },
+    "n_000006": {
+      "document_id": "townes2019.abstract",
+      "canonical_id": "townes2019.abstract",
+      "text": "Single-cell RNA-Seq (scRNA-Seq) profiles gene expression of individual cells. Recent scRNA-Seq datasets have incorporated unique molecular identifiers (UMIs). Using negative controls, we show UMI counts follow multinomial sampling with no zero inflation. Current normalization procedures such as log of counts per million and feature selection by highly variable genes produce false variability in dimension reduction. We propose simple multinomial methods, including generalized principal component analysis (GLM-PCA) for non-normal distributions, and feature selection using deviance. These methods outperform the current practice in a downstream clustering assessment using ground truth datasets.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000003\",\"5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae\",\"note\",\"corpus-townes2019.abstract\"]",
+      "revision": "cbbad68a1aa9edc4044a15a9345c017b356d4d66c3cbefd431c2134c05a20967",
+      "paper_id": "p_000003",
+      "paper_key": "p3"
+    },
+    "n_000007": {
+      "document_id": "townes2019.umi-read",
+      "canonical_id": "townes2019.umi-read",
+      "text": "To illustrate the marked difference between UMI count distributions and read count distributions, we created histograms from individual genes and spike-ins of the negative control data. Here, the UMI counts are the computationally de-duplicated versions of the read counts; both measurements are from the same experiment, so no differences are due to technical or biological variation. The results suggest that while read counts appear zero-inflated and multimodal, UMI counts follow a discrete distribution with no zero inflation (Additional file 1: Figure S1). The apparent zero inflation in read counts is a result of PCR duplicates.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000003\",\"5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae\",\"note\",\"corpus-townes2019.umi-read\"]",
+      "revision": "0f9ce1f933563fd240c1076e14c90130dfe277acf498423ccd00aa84db1d23cc",
+      "paper_id": "p_000003",
+      "paper_key": "p3"
+    },
+    "n_000008": {
+      "document_id": "lause2021.caveat",
+      "canonical_id": "lause2021.caveat",
+      "text": "The above arguments show that the overdispersion parameter estimates in Hafemeister and Satija [3] for genes with low expression were strongly biased. In practice, however, the predicted variance \u03bc+\u03bc2/\u03b8 is only weakly affected by the exact value of \u03b8 for low expression means \u03bc, and so the bias reported here does not substantially affect the Pearson residuals (see below).",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.caveat\"]",
+      "revision": "cda60fd00e704d58d0b1edc3b185ee9c37891220d32e928a29e54bb0189dd261",
+      "paper_id": "p_000004",
+      "paper_key": "p4"
+    },
+    "n_000009": {
+      "document_id": "lause2021.model",
+      "canonical_id": "lause2021.model",
+      "text": "We show that the model of Hafemeister and Satija produces noisy parameter estimates because it is overspecified, which is why the original paper employs post hoc smoothing. When specified more parsimoniously, it has a simple analytic solution equivalent to the rank-one Poisson GLM-PCA of Townes et al. Further, our analysis indicates that per-gene overdispersion estimates in Hafemeister and Satija are biased, and that the data are in fact consistent with the overdispersion parameter being independent of gene expression. We then use negative control data without biological variability to estimate the technical overdispersion of UMI counts, and find that across several different experimental protocols, the data are close to Poisson and suggest very moderate overdispersion. Finally, we perform a benchmark to compare the performance of Pearson residuals, variance-stabilizing transformations, and GLM-PCA on scRNA-seq datasets with known ground truth.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.model\"]",
+      "revision": "f953bc4bfa929f4e33c6cddba06f33afda6d0d6e1ef953676fda499ac4319442",
+      "paper_id": "p_000004",
+      "paper_key": "p4"
+    },
+    "n_000010": {
+      "document_id": "lause2021.runtimes",
+      "canonical_id": "lause2021.runtimes",
+      "text": "Table 1: Runtimes for different normalization pipelines\n\tSqrt(CPMedian), PCA\tPearson residuals, PCA\tGLM-PCA\n33k PBMC\t31 s\t35 s\t15 h\n33k PBMC, 1000 HVGs\t3 s\t4 s\t4 h\n2M organogenesis, 2000 HVGs\t166 s\t224 s\t52 h\nThe datasets are the full 33k PBMC dataset, the PBMC dataset after selecting 1, 000 HVGs, and the organogenesis dataset [39] after selecting 2, 000 HVGs. Genes with largest Pearson residual variances were selected, which took 9 s (PBMC) and 15 min (organogenesis), respectively. See \u201cMethods\u201d for details. All runtimes measured on a machine with 256 Gb RAM and 30 CPU threads at 2.1 GHz",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.runtimes\"]",
+      "revision": "2e683c9c0685709cdb16ca0d303b880596b5548367114c96bf84937fd27c4680",
+      "paper_id": "p_000004",
+      "paper_key": "p4"
+    },
+    "n_000011": {
+      "document_id": "squair2021.abstract",
+      "canonical_id": "squair2021.abstract",
+      "text": "Differential expression analysis in single-cell transcriptomics enables the dissection of cell-type-specific responses to perturbations such as disease, trauma, or experimental manipulations. While many statistical methods are available to identify differentially expressed genes, the principles that distinguish these methods and their performance remain unclear. Here, we show that the relative performance of these methods is contingent on their ability to account for variation between biological replicates. Methods that ignore this inevitable variation are biased and prone to false discoveries. Indeed, the most widely used methods can discover hundreds of differentially expressed genes in the absence of biological differences. To exemplify these principles, we exposed true and false discoveries of differentially expressed genes in the injured mouse spinal cord.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000005\",\"465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a\",\"note\",\"corpus-squair2021.abstract\"]",
+      "revision": "bf05327b2ddd5cb675e672bea26a8fcceeae5521ff38ed898831e973414e1bac",
+      "paper_id": "p_000005",
+      "paper_key": "p5"
+    },
+    "n_000012": {
+      "document_id": "squair2021.benchmark",
+      "canonical_id": "squair2021.benchmark",
+      "text": "We aimed to compare available statistical methods for differential expression (DE) analysis based on their ability to generate biologically accurate results. We reasoned that performing this comparison in real datasets where the experimental ground truth is known would faithfully reflect differences in the performance of these methods, while avoiding the shortcomings of simulated data. We posited that the closest possible approximation to this ground truth could be obtained from matched bulk and scRNA-seq performed on the same population of purified cells, exposed to the same perturbations, and sequenced in the same laboratories. An extensive survey of the literature identified a total of eighteen \u2018gold standard\u2019 datasets that met these criteria (Fig. 1a)12\u201315. This compendium allowed us to carry out a large-scale comparison of DE methods in experimental settings where the ground truth is known.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000005\",\"465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a\",\"note\",\"corpus-squair2021.benchmark\"]",
+      "revision": "6a19a208474287e8af44037fe5375475d669443f644648b4ef55ca825da6aecf",
+      "paper_id": "p_000005",
+      "paper_key": "p5"
+    },
+    "n_000013": {
+      "document_id": "zimmerman2021.abstract",
+      "canonical_id": "zimmerman2021.abstract",
+      "text": "Cells from the same individual share common genetic and environmental backgrounds and are not statistically independent; therefore, they are subsamples or pseudoreplicates. Thus, single-cell data have a hierarchical structure that many current single-cell methods do not address, leading to biased inference, highly inflated type 1 error rates, and reduced robustness and reproducibility. This includes methods that use a batch effect correction for individual as a means of accounting for within-sample correlation. Here, we document this dependence across a range of cell types and show that pseudo-bulk aggregation methods are conservative and underpowered relative to mixed models. To compute differential expression within a specific cell type across treatment groups, we propose applying generalized linear mixed models with a random effect for individual, to properly account for both zero inflation and the correlation structure among measures from cells within an individual. Finally, we provide power estimates across a range of experimental conditions to assist researchers in designing appropriately powered studies.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000006\",\"464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c\",\"note\",\"corpus-zimmerman2021.abstract\"]",
+      "revision": "97a9d9e2bd1f968d880c9c24ae093037c8de174775ecab2f94a64fcdddd000c6",
+      "paper_id": "p_000006",
+      "paper_key": "p6"
+    },
+    "n_000014": {
+      "document_id": "zimmerman2021.type1-caption",
+      "canonical_id": "zimmerman2021.type1-caption",
+      "text": "Type I error rates of some currently applied tools in single-cell analyses. Type I error rates of ten different methods under twenty different conditions and a significance threshold of p < 0.05. In all, 250,000 iterations were computed to obtain an error rate for each method. The inflated type I error rates computed with mixed models at the lower number of individuals per group are a consequence of the two-part hurdle model simultaneously testing two hypotheses and an overabundance of subsampling with small sample sizes. Type I error rates are well-controlled for with mixed models and pseudo-bulk methods, while type I error rates increase with other methods as additional independent samples or more cells are added. Pseudo-bulk methods are overly conservative. Confidence intervals (95%) are included in the enlarged version of this table (Supplementary Table 1).",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000006\",\"464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c\",\"note\",\"corpus-zimmerman2021.type1-caption\"]",
+      "revision": "fc635a4de550fc85820b91c515a5221a2189267b99dece74a71ca0835ff4601c",
+      "paper_id": "p_000006",
+      "paper_key": "p6"
+    },
+    "n_000015": {
+      "document_id": "crowell2020.abstract",
+      "canonical_id": "crowell2020.abstract",
+      "text": "Single-cell RNA sequencing (scRNA-seq) has become an empowering technology to profile the transcriptomes of individual cells on a large scale. Early analyses of differential expression have aimed at identifying differences between subpopulations to identify subpopulation markers. More generally, such methods compare expression levels across sets of cells, thus leading to cross-condition analyses. Given the emergence of replicated multi-condition scRNA-seq datasets, an area of increasing focus is making sample-level inferences, termed here as differential state analysis; however, it is not clear which statistical framework best handles this situation. Here, we surveyed methods to perform cross-condition differential state analyses, including cell-level mixed models and methods based on aggregated pseudobulk data. To evaluate method performance, we developed a flexible simulation that mimics multi-sample scRNA-seq data. We analyzed scRNA-seq data from mouse cortex cells to uncover subpopulation-specific responses to lipopolysaccharide treatment, and provide robust tools for multi-condition analysis within the muscat R package.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.abstract\"]",
+      "revision": "b3f2de5586368d57eafe70c94640ca9cd5237e2befcc5062c02fe99b6a090caa",
+      "paper_id": "p_000007",
+      "paper_key": "p7"
+    },
+    "n_000016": {
+      "document_id": "crowell2020.cell-count",
+      "canonical_id": "crowell2020.cell-count",
+      "text": "To investigate the effect of subpopulation size on DS detection, we ran methods on simulations containing 10% of DE genes using subsets of 20\u2013400 cells per subpopulation-sample (Fig. 2b). For most methods, FDR control varies drastically with the number of cells, while TPRs improve for more cells across all methods. For aggregation-based methods, ~100 cells were sufficient to reach decent performance; in particular, there is a sizable gain in performance in going from 20 to 100 cells (per subpopulation per sample), but only a moderate gain in a deeper sampling of subpopulations (e.g., 200 or 400 cells per subpopulation per sample).",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.cell-count\"]",
+      "revision": "d7a9c0f285e8dd87463cd597f8a1a027c364611295b73aa85bce204c93c9bc9b",
+      "paper_id": "p_000007",
+      "paper_key": "p7"
+    },
+    "n_000017": {
+      "document_id": "crowell2020.samples",
+      "canonical_id": "crowell2020.samples",
+      "text": "As reference datasets, we used (i) scRNA-seq data of peripheral blood mononuclear cells (PBMCs) from eight lupus patients measured before and after 6 h-treatment with IFN-\u03b2 (16 samples in total)20, where cells were already annotated into various immune subpopulations; and, (ii) single-nuclei RNA-seq data of brain cortex tissue from eight mice split into a vehicle and LPS treatment group.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.samples\"]",
+      "revision": "d5c1eb5e916f8bff30a51818d648adeff3cde14073473225eb0919e2893485a0",
+      "paper_id": "p_000007",
+      "paper_key": "p7"
+    },
+    "n_000018": {
+      "document_id": "luecken2022.abstract",
+      "canonical_id": "luecken2022.abstract",
+      "text": "Single-cell atlases often include samples that span locations, laboratories and conditions, leading to complex, nested batch effects in data. Thus, joint analysis of atlas datasets requires reliable data integration. To guide integration method choice, we benchmarked 68 method and preprocessing combinations on 85 batches of gene expression, chromatin accessibility and simulation data from 23 publications, altogether representing >1.2 million cells distributed in 13 atlas-level integration tasks. We evaluated methods according to scalability, usability and their ability to remove batch effects while retaining biological variation using 14 evaluation metrics. We show that highly variable gene selection improves the performance of data integration methods, whereas scaling pushes methods to prioritize batch removal over conservation of biological variation. Overall, scANVI, Scanorama, scVI and scGen perform well, particularly on complex integration tasks, while single-cell ATAC-sequencing integration performance is strongly affected by choice of feature space. Our freely available Python module and benchmarking pipeline can identify optimal data integration methods for new data, benchmark new methods and improve method development.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.abstract\"]",
+      "revision": "3bcbf254227509854680e53c412eb1b064007c76f7c55c25a884709997c8dabc",
+      "paper_id": "p_000008",
+      "paper_key": "p8"
+    },
+    "n_000019": {
+      "document_id": "luecken2022.tasks",
+      "canonical_id": "luecken2022.tasks",
+      "text": "Table 1: Integration tasks for benchmarking\nIntegration task\tCell number\tBatches\tTested features\nPancreas\t16,382\t9 batches\tWidely used test data, protocols\nLung\t32,472\t16 donors\tHuman variation, protocols, spatial locations, high resolution subtypes, laboratories\nImmune (human)\t33,506\t10 donors\tTissues, laboratories, similar cell types\nImmune (human and mouse)\t97,952\t23 samples\tTissues, laboratories, similar cell types, species\nMouse brain (RNA)\t978,734\t4 datasets\tLarge dataset, spatial locations, nucleus versus cell, protocols\nMouse brain small (ATAC, 3 tasks: windows, peaks, gene activity)\t10,761, 11,597, 11,270\t3 datasets\tDifferent modality, laboratories, technologies and feature spaces\nMouse brain large (ATAC, 3 tasks: windows, peaks gene activity)\t84,813\t11 samples\tDifferent samples from 3 unbalanced datasets; different modality, laboratories, technologies and feature spaces\nSimulation 1\t12,097\t6 batches\tVariation in cellular compositions\nSimulation 2\t19,318\t16 batches\tNested batch effects, composition variation\nOverview of the tasks used to benchmark data integration methods. The tested feature describes the unique challenge presented by the integration task. Donor refers to human individuals, sample is used when mice are involved and batches is the general term that includes dataset and sample batches. The six ATAC tasks are summarized in two entries.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.tasks\"]",
+      "revision": "59a2949374ee987fc1cf8235b4eec8cc2372715e60ef278a35dcb1249dd4d706",
+      "paper_id": "p_000008",
+      "paper_key": "p8"
+    },
+    "n_000020": {
+      "document_id": "luecken2022.tradeoff",
+      "canonical_id": "luecken2022.tradeoff",
+      "text": "Particularly in more complex integration tasks, we observed a tradeoff between batch effect removal and bio-conservation (Fig. 3a and Supplementary Data 1). While methods such as SAUCIE, LIGER, BBKNN and Seurat v3 tend to favor the removal of batch effects over conservation of biological variation, DESC and Conos make the opposite choice, and Scanorama, scVI and FastMNN (gene) balance these two objectives. Other methods strike different balances per task (Extended Data Fig. 4). This tradeoff is particularly noticeable where biological and batch effects overlap.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.tradeoff\"]",
+      "revision": "c605bde899d334b715a1ca93fae41d7e6879076eda6423e748780ed036a70637",
+      "paper_id": "p_000008",
+      "paper_key": "p8"
+    },
+    "n_000021": {
+      "document_id": "lun2016.abstract",
+      "canonical_id": "lun2016.abstract",
+      "text": "Normalization of single-cell RNA sequencing data is necessary to eliminate cell-specific biases prior to downstream analyses. However, this is not straightforward for noisy single-cell data where many counts are zero. We present a novel approach where expression values are summed across pools of cells, and the summed values are used for normalization. Pool-based size factors are then deconvolved to yield cell-based factors. Our deconvolution approach outperforms existing methods for accurate normalization of cell-specific biases in simulated data. Similar behavior is observed in real data, where deconvolution improves the relevance of results of downstream analyses.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000009\",\"42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d\",\"note\",\"corpus-lun2016.abstract\"]",
+      "revision": "6dfa9e5db20d460a5ae15a6e8a05ad8d0bb9b0239c001cf6371b7af8c90d3492",
+      "paper_id": "p_000009",
+      "paper_key": "p9"
+    },
+    "n_000022": {
+      "document_id": "lun2016.assumptions",
+      "canonical_id": "lun2016.assumptions",
+      "text": "Both DESeq and TMM normalization assume that some minimal proportion of genes are not DE between libraries. For DESeq, the proportion is 50 % of all genes, whereas for TMM, it is 40\u201370 % depending on the direction of DE [4] (for simplicity, this will be referred to as a non-DE majority for both methods). Consequently, any systematic difference in expression across the majority of genes is treated as bias, which is incorporated into the size/normalization factors and removed upon scaling. If the non-DE assumption does not hold, the computed factors will not be accurate. In addition, both methods perform poorly in the presence of a large number of zeroes. For DESeq normalization, the geometric mean will be equal to zero for genes with a zero count in any library, such that the ratios for that gene become undefined. Moreover, a library with zero counts for a majority of genes will have a size factor of zero, which precludes any sensible scaling. For TMM normalization, M values are undefined when the count in either library is zero. In such conditions, both methods require ad hoc workarounds such as the removal of zero counts (this is done automatically by their respective implementations).",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000009\",\"42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d\",\"note\",\"corpus-lun2016.assumptions\"]",
+      "revision": "a8a6281bba0ad8cc38694546128ecda10e86d0f554216f53d38949592ac5be1b",
+      "paper_id": "p_000009",
+      "paper_key": "p9"
+    },
+    "n_000023": {
+      "document_id": "zappia2017.abstract",
+      "canonical_id": "zappia2017.abstract",
+      "text": "As single-cell RNA sequencing (scRNA-seq) technologies have rapidly developed, so have analysis methods. Many methods have been tested, developed, and validated using simulated datasets. Unfortunately, current simulations are often poorly documented, their similarity to real data is not demonstrated, or reproducible code is not available. Here, we present the Splatter Bioconductor package for simple, reproducible, and well-documented simulation of scRNA-seq data. Splatter provides an interface to multiple simulation methods including Splat, our own simulation, based on a gamma-Poisson distribution. Splat can simulate single populations of cells, populations with multiple cell types, or differentiation paths.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000010\",\"d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8\",\"note\",\"corpus-zappia2017.abstract\"]",
+      "revision": "a15b03ee1a00dc2fe7ab1871ce2154d0acc331daabd3ddf6c7f218747a241513",
+      "paper_id": "p_000010",
+      "paper_key": "p10"
+    },
+    "n_000024": {
+      "document_id": "zappia2017.models",
+      "canonical_id": "zappia2017.models",
+      "text": "Currently, Splatter implements six different simulation models, each with their own assumptions but accessed through a consistent, easy-to-use interface. These simulations are described in more detail in the following sections and in the documentation for each simulation in Splatter, which also describes the required input parameters.",
+      "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000010\",\"d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8\",\"note\",\"corpus-zappia2017.models\"]",
+      "revision": "876261657aac73915835859b6ca85678a403fe67a5238abec212d7042a1b3a96",
+      "paper_id": "p_000010",
+      "paper_key": "p10"
+    }
+  },
+  "receipts": [
+    {
+      "paper": "vieth2019",
+      "preview_id": "0b97d6225b6e42dc80cdb5368e1d747a",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "4e83e1c705871d0245bf1a832f1d63e47f6ba7d498af585c6b9eb14adae6ca5e",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.abstract\"]",
+            "kind": "note",
+            "id": "corpus-vieth2019.abstract",
+            "revision": "f3723d66499f72b9b253083e73a7822efb6faace0540e643a9ef9f3a5b7384d5",
+            "expected_revision": null,
+            "note_id": "n_000001",
+            "paper_id": "p_000001",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.abstract.whitespace-copy\"]",
+            "kind": "note",
+            "id": "corpus-vieth2019.abstract.whitespace-copy",
+            "revision": "b94476c716ffe042ad678bdfe470f7353bbfa218f8276f84d5ce3816db23333e",
+            "expected_revision": null,
+            "note_id": "n_000002",
+            "paper_id": "p_000001",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.normalization\"]",
+            "kind": "note",
+            "id": "corpus-vieth2019.normalization",
+            "revision": "5e6babb8a62b99a739461921bb5f62255e52b08ec1652ceaf1332bb5ddafa0fd",
+            "expected_revision": null,
+            "note_id": "n_000003",
+            "paper_id": "p_000001",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 3,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "4e83e1c705871d0245bf1a832f1d63e47f6ba7d498af585c6b9eb14adae6ca5e",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.abstract\"]",
+            "kind": "note",
+            "id": "corpus-vieth2019.abstract",
+            "revision": "f3723d66499f72b9b253083e73a7822efb6faace0540e643a9ef9f3a5b7384d5",
+            "expected_revision": "f3723d66499f72b9b253083e73a7822efb6faace0540e643a9ef9f3a5b7384d5",
+            "note_id": "n_000001",
+            "paper_id": "p_000001",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.abstract.whitespace-copy\"]",
+            "kind": "note",
+            "id": "corpus-vieth2019.abstract.whitespace-copy",
+            "revision": "b94476c716ffe042ad678bdfe470f7353bbfa218f8276f84d5ce3816db23333e",
+            "expected_revision": "b94476c716ffe042ad678bdfe470f7353bbfa218f8276f84d5ce3816db23333e",
+            "note_id": "n_000002",
+            "paper_id": "p_000001",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000001\",\"112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940\",\"note\",\"corpus-vieth2019.normalization\"]",
+            "kind": "note",
+            "id": "corpus-vieth2019.normalization",
+            "revision": "5e6babb8a62b99a739461921bb5f62255e52b08ec1652ceaf1332bb5ddafa0fd",
+            "expected_revision": "5e6babb8a62b99a739461921bb5f62255e52b08ec1652ceaf1332bb5ddafa0fd",
+            "note_id": "n_000003",
+            "paper_id": "p_000001",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 3,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "hafemeister2019",
+      "preview_id": "9088ac611c414f4494037b8235d1b6ad",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "17f4775c95457b7519dd9d92329a9db5eceb36c9c23f6fb00cd0a71119cc993d",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000002\",\"6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a\",\"note\",\"corpus-hafemeister2019.abstract\"]",
+            "kind": "note",
+            "id": "corpus-hafemeister2019.abstract",
+            "revision": "4ee23b9f9d84a113539b35cfadb485a20862a0ca8aa86c10a0e7b3bcd02c1afb",
+            "expected_revision": null,
+            "note_id": "n_000004",
+            "paper_id": "p_000002",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000002\",\"6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a\",\"note\",\"corpus-hafemeister2019.depth\"]",
+            "kind": "note",
+            "id": "corpus-hafemeister2019.depth",
+            "revision": "f144ba7e9d2229213824f9f3f0618b48d9c19b9c46ce03c727dc04ece371a575",
+            "expected_revision": null,
+            "note_id": "n_000005",
+            "paper_id": "p_000002",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 2,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "17f4775c95457b7519dd9d92329a9db5eceb36c9c23f6fb00cd0a71119cc993d",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000002\",\"6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a\",\"note\",\"corpus-hafemeister2019.abstract\"]",
+            "kind": "note",
+            "id": "corpus-hafemeister2019.abstract",
+            "revision": "4ee23b9f9d84a113539b35cfadb485a20862a0ca8aa86c10a0e7b3bcd02c1afb",
+            "expected_revision": "4ee23b9f9d84a113539b35cfadb485a20862a0ca8aa86c10a0e7b3bcd02c1afb",
+            "note_id": "n_000004",
+            "paper_id": "p_000002",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000002\",\"6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a\",\"note\",\"corpus-hafemeister2019.depth\"]",
+            "kind": "note",
+            "id": "corpus-hafemeister2019.depth",
+            "revision": "f144ba7e9d2229213824f9f3f0618b48d9c19b9c46ce03c727dc04ece371a575",
+            "expected_revision": "f144ba7e9d2229213824f9f3f0618b48d9c19b9c46ce03c727dc04ece371a575",
+            "note_id": "n_000005",
+            "paper_id": "p_000002",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 2,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "townes2019",
+      "preview_id": "c0b0ab251b184964bdc6578bd796cb24",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "330e5e0372fc1b45edd40eedd291abe22c46e9258ea8edcfe4f0884f9d47f983",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000003\",\"5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae\",\"note\",\"corpus-townes2019.abstract\"]",
+            "kind": "note",
+            "id": "corpus-townes2019.abstract",
+            "revision": "cbbad68a1aa9edc4044a15a9345c017b356d4d66c3cbefd431c2134c05a20967",
+            "expected_revision": null,
+            "note_id": "n_000006",
+            "paper_id": "p_000003",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000003\",\"5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae\",\"note\",\"corpus-townes2019.umi-read\"]",
+            "kind": "note",
+            "id": "corpus-townes2019.umi-read",
+            "revision": "0f9ce1f933563fd240c1076e14c90130dfe277acf498423ccd00aa84db1d23cc",
+            "expected_revision": null,
+            "note_id": "n_000007",
+            "paper_id": "p_000003",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 2,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "330e5e0372fc1b45edd40eedd291abe22c46e9258ea8edcfe4f0884f9d47f983",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000003\",\"5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae\",\"note\",\"corpus-townes2019.abstract\"]",
+            "kind": "note",
+            "id": "corpus-townes2019.abstract",
+            "revision": "cbbad68a1aa9edc4044a15a9345c017b356d4d66c3cbefd431c2134c05a20967",
+            "expected_revision": "cbbad68a1aa9edc4044a15a9345c017b356d4d66c3cbefd431c2134c05a20967",
+            "note_id": "n_000006",
+            "paper_id": "p_000003",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000003\",\"5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae\",\"note\",\"corpus-townes2019.umi-read\"]",
+            "kind": "note",
+            "id": "corpus-townes2019.umi-read",
+            "revision": "0f9ce1f933563fd240c1076e14c90130dfe277acf498423ccd00aa84db1d23cc",
+            "expected_revision": "0f9ce1f933563fd240c1076e14c90130dfe277acf498423ccd00aa84db1d23cc",
+            "note_id": "n_000007",
+            "paper_id": "p_000003",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 2,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "lause2021",
+      "preview_id": "f847cf8963ae4d9d9430d23fa4cf2bfb",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "87c9d89591cfffd7bcdd4e14668cde2c55e7a6422cc02832a91ddf77d63b3f65",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.caveat\"]",
+            "kind": "note",
+            "id": "corpus-lause2021.caveat",
+            "revision": "cda60fd00e704d58d0b1edc3b185ee9c37891220d32e928a29e54bb0189dd261",
+            "expected_revision": null,
+            "note_id": "n_000008",
+            "paper_id": "p_000004",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.model\"]",
+            "kind": "note",
+            "id": "corpus-lause2021.model",
+            "revision": "f953bc4bfa929f4e33c6cddba06f33afda6d0d6e1ef953676fda499ac4319442",
+            "expected_revision": null,
+            "note_id": "n_000009",
+            "paper_id": "p_000004",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.runtimes\"]",
+            "kind": "note",
+            "id": "corpus-lause2021.runtimes",
+            "revision": "2e683c9c0685709cdb16ca0d303b880596b5548367114c96bf84937fd27c4680",
+            "expected_revision": null,
+            "note_id": "n_000010",
+            "paper_id": "p_000004",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 3,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "87c9d89591cfffd7bcdd4e14668cde2c55e7a6422cc02832a91ddf77d63b3f65",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.caveat\"]",
+            "kind": "note",
+            "id": "corpus-lause2021.caveat",
+            "revision": "cda60fd00e704d58d0b1edc3b185ee9c37891220d32e928a29e54bb0189dd261",
+            "expected_revision": "cda60fd00e704d58d0b1edc3b185ee9c37891220d32e928a29e54bb0189dd261",
+            "note_id": "n_000008",
+            "paper_id": "p_000004",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.model\"]",
+            "kind": "note",
+            "id": "corpus-lause2021.model",
+            "revision": "f953bc4bfa929f4e33c6cddba06f33afda6d0d6e1ef953676fda499ac4319442",
+            "expected_revision": "f953bc4bfa929f4e33c6cddba06f33afda6d0d6e1ef953676fda499ac4319442",
+            "note_id": "n_000009",
+            "paper_id": "p_000004",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000004\",\"673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc\",\"note\",\"corpus-lause2021.runtimes\"]",
+            "kind": "note",
+            "id": "corpus-lause2021.runtimes",
+            "revision": "2e683c9c0685709cdb16ca0d303b880596b5548367114c96bf84937fd27c4680",
+            "expected_revision": "2e683c9c0685709cdb16ca0d303b880596b5548367114c96bf84937fd27c4680",
+            "note_id": "n_000010",
+            "paper_id": "p_000004",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 3,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "squair2021",
+      "preview_id": "c94117cc50524d4fa80a6a4ec67e835f",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "338badf1088963a3a1c0022c8f72d61d400ed9d5221213dd6a0c1783cdec7343",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000005\",\"465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a\",\"note\",\"corpus-squair2021.abstract\"]",
+            "kind": "note",
+            "id": "corpus-squair2021.abstract",
+            "revision": "bf05327b2ddd5cb675e672bea26a8fcceeae5521ff38ed898831e973414e1bac",
+            "expected_revision": null,
+            "note_id": "n_000011",
+            "paper_id": "p_000005",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000005\",\"465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a\",\"note\",\"corpus-squair2021.benchmark\"]",
+            "kind": "note",
+            "id": "corpus-squair2021.benchmark",
+            "revision": "6a19a208474287e8af44037fe5375475d669443f644648b4ef55ca825da6aecf",
+            "expected_revision": null,
+            "note_id": "n_000012",
+            "paper_id": "p_000005",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 2,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "338badf1088963a3a1c0022c8f72d61d400ed9d5221213dd6a0c1783cdec7343",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000005\",\"465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a\",\"note\",\"corpus-squair2021.abstract\"]",
+            "kind": "note",
+            "id": "corpus-squair2021.abstract",
+            "revision": "bf05327b2ddd5cb675e672bea26a8fcceeae5521ff38ed898831e973414e1bac",
+            "expected_revision": "bf05327b2ddd5cb675e672bea26a8fcceeae5521ff38ed898831e973414e1bac",
+            "note_id": "n_000011",
+            "paper_id": "p_000005",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000005\",\"465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a\",\"note\",\"corpus-squair2021.benchmark\"]",
+            "kind": "note",
+            "id": "corpus-squair2021.benchmark",
+            "revision": "6a19a208474287e8af44037fe5375475d669443f644648b4ef55ca825da6aecf",
+            "expected_revision": "6a19a208474287e8af44037fe5375475d669443f644648b4ef55ca825da6aecf",
+            "note_id": "n_000012",
+            "paper_id": "p_000005",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 2,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "zimmerman2021",
+      "preview_id": "d93d278ca1a84281b712d534ed807dac",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "5152129b20f5392617809e93aaad4f1c05ade5d2f71282e67bc712c2c527f3b4",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000006\",\"464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c\",\"note\",\"corpus-zimmerman2021.abstract\"]",
+            "kind": "note",
+            "id": "corpus-zimmerman2021.abstract",
+            "revision": "97a9d9e2bd1f968d880c9c24ae093037c8de174775ecab2f94a64fcdddd000c6",
+            "expected_revision": null,
+            "note_id": "n_000013",
+            "paper_id": "p_000006",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000006\",\"464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c\",\"note\",\"corpus-zimmerman2021.type1-caption\"]",
+            "kind": "note",
+            "id": "corpus-zimmerman2021.type1-caption",
+            "revision": "fc635a4de550fc85820b91c515a5221a2189267b99dece74a71ca0835ff4601c",
+            "expected_revision": null,
+            "note_id": "n_000014",
+            "paper_id": "p_000006",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 2,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "5152129b20f5392617809e93aaad4f1c05ade5d2f71282e67bc712c2c527f3b4",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000006\",\"464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c\",\"note\",\"corpus-zimmerman2021.abstract\"]",
+            "kind": "note",
+            "id": "corpus-zimmerman2021.abstract",
+            "revision": "97a9d9e2bd1f968d880c9c24ae093037c8de174775ecab2f94a64fcdddd000c6",
+            "expected_revision": "97a9d9e2bd1f968d880c9c24ae093037c8de174775ecab2f94a64fcdddd000c6",
+            "note_id": "n_000013",
+            "paper_id": "p_000006",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000006\",\"464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c\",\"note\",\"corpus-zimmerman2021.type1-caption\"]",
+            "kind": "note",
+            "id": "corpus-zimmerman2021.type1-caption",
+            "revision": "fc635a4de550fc85820b91c515a5221a2189267b99dece74a71ca0835ff4601c",
+            "expected_revision": "fc635a4de550fc85820b91c515a5221a2189267b99dece74a71ca0835ff4601c",
+            "note_id": "n_000014",
+            "paper_id": "p_000006",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 2,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "crowell2020",
+      "preview_id": "798b4deec0a84551bd2c602bedd69b8c",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "b137f0e53e86614837022bd103bc742eb0e152553bb9e5e0be78b59dbfad5915",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.abstract\"]",
+            "kind": "note",
+            "id": "corpus-crowell2020.abstract",
+            "revision": "b3f2de5586368d57eafe70c94640ca9cd5237e2befcc5062c02fe99b6a090caa",
+            "expected_revision": null,
+            "note_id": "n_000015",
+            "paper_id": "p_000007",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.cell-count\"]",
+            "kind": "note",
+            "id": "corpus-crowell2020.cell-count",
+            "revision": "d7a9c0f285e8dd87463cd597f8a1a027c364611295b73aa85bce204c93c9bc9b",
+            "expected_revision": null,
+            "note_id": "n_000016",
+            "paper_id": "p_000007",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.samples\"]",
+            "kind": "note",
+            "id": "corpus-crowell2020.samples",
+            "revision": "d5c1eb5e916f8bff30a51818d648adeff3cde14073473225eb0919e2893485a0",
+            "expected_revision": null,
+            "note_id": "n_000017",
+            "paper_id": "p_000007",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 3,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "b137f0e53e86614837022bd103bc742eb0e152553bb9e5e0be78b59dbfad5915",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.abstract\"]",
+            "kind": "note",
+            "id": "corpus-crowell2020.abstract",
+            "revision": "b3f2de5586368d57eafe70c94640ca9cd5237e2befcc5062c02fe99b6a090caa",
+            "expected_revision": "b3f2de5586368d57eafe70c94640ca9cd5237e2befcc5062c02fe99b6a090caa",
+            "note_id": "n_000015",
+            "paper_id": "p_000007",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.cell-count\"]",
+            "kind": "note",
+            "id": "corpus-crowell2020.cell-count",
+            "revision": "d7a9c0f285e8dd87463cd597f8a1a027c364611295b73aa85bce204c93c9bc9b",
+            "expected_revision": "d7a9c0f285e8dd87463cd597f8a1a027c364611295b73aa85bce204c93c9bc9b",
+            "note_id": "n_000016",
+            "paper_id": "p_000007",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000007\",\"7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a\",\"note\",\"corpus-crowell2020.samples\"]",
+            "kind": "note",
+            "id": "corpus-crowell2020.samples",
+            "revision": "d5c1eb5e916f8bff30a51818d648adeff3cde14073473225eb0919e2893485a0",
+            "expected_revision": "d5c1eb5e916f8bff30a51818d648adeff3cde14073473225eb0919e2893485a0",
+            "note_id": "n_000017",
+            "paper_id": "p_000007",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 3,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "luecken2022",
+      "preview_id": "e12a40d48dae47efb64880bf5116189d",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "84d461e4c7439f8a8417942439e5cfd266d31d8238baa20dd83d8945754f1de1",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.abstract\"]",
+            "kind": "note",
+            "id": "corpus-luecken2022.abstract",
+            "revision": "3bcbf254227509854680e53c412eb1b064007c76f7c55c25a884709997c8dabc",
+            "expected_revision": null,
+            "note_id": "n_000018",
+            "paper_id": "p_000008",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.tasks\"]",
+            "kind": "note",
+            "id": "corpus-luecken2022.tasks",
+            "revision": "59a2949374ee987fc1cf8235b4eec8cc2372715e60ef278a35dcb1249dd4d706",
+            "expected_revision": null,
+            "note_id": "n_000019",
+            "paper_id": "p_000008",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.tradeoff\"]",
+            "kind": "note",
+            "id": "corpus-luecken2022.tradeoff",
+            "revision": "c605bde899d334b715a1ca93fae41d7e6879076eda6423e748780ed036a70637",
+            "expected_revision": null,
+            "note_id": "n_000020",
+            "paper_id": "p_000008",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 3,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "84d461e4c7439f8a8417942439e5cfd266d31d8238baa20dd83d8945754f1de1",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.abstract\"]",
+            "kind": "note",
+            "id": "corpus-luecken2022.abstract",
+            "revision": "3bcbf254227509854680e53c412eb1b064007c76f7c55c25a884709997c8dabc",
+            "expected_revision": "3bcbf254227509854680e53c412eb1b064007c76f7c55c25a884709997c8dabc",
+            "note_id": "n_000018",
+            "paper_id": "p_000008",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.tasks\"]",
+            "kind": "note",
+            "id": "corpus-luecken2022.tasks",
+            "revision": "59a2949374ee987fc1cf8235b4eec8cc2372715e60ef278a35dcb1249dd4d706",
+            "expected_revision": "59a2949374ee987fc1cf8235b4eec8cc2372715e60ef278a35dcb1249dd4d706",
+            "note_id": "n_000019",
+            "paper_id": "p_000008",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000008\",\"9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67\",\"note\",\"corpus-luecken2022.tradeoff\"]",
+            "kind": "note",
+            "id": "corpus-luecken2022.tradeoff",
+            "revision": "c605bde899d334b715a1ca93fae41d7e6879076eda6423e748780ed036a70637",
+            "expected_revision": "c605bde899d334b715a1ca93fae41d7e6879076eda6423e748780ed036a70637",
+            "note_id": "n_000020",
+            "paper_id": "p_000008",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 3,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "lun2016",
+      "preview_id": "dd2be6ccdbc84700bd6ad88009f2ea83",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "3304bb457407e7e4bc5b44a9126c1e1393890ab363b62a48ec34bddf878ef886",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000009\",\"42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d\",\"note\",\"corpus-lun2016.abstract\"]",
+            "kind": "note",
+            "id": "corpus-lun2016.abstract",
+            "revision": "6dfa9e5db20d460a5ae15a6e8a05ad8d0bb9b0239c001cf6371b7af8c90d3492",
+            "expected_revision": null,
+            "note_id": "n_000021",
+            "paper_id": "p_000009",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000009\",\"42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d\",\"note\",\"corpus-lun2016.assumptions\"]",
+            "kind": "note",
+            "id": "corpus-lun2016.assumptions",
+            "revision": "a8a6281bba0ad8cc38694546128ecda10e86d0f554216f53d38949592ac5be1b",
+            "expected_revision": null,
+            "note_id": "n_000022",
+            "paper_id": "p_000009",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 2,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "3304bb457407e7e4bc5b44a9126c1e1393890ab363b62a48ec34bddf878ef886",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000009\",\"42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d\",\"note\",\"corpus-lun2016.abstract\"]",
+            "kind": "note",
+            "id": "corpus-lun2016.abstract",
+            "revision": "6dfa9e5db20d460a5ae15a6e8a05ad8d0bb9b0239c001cf6371b7af8c90d3492",
+            "expected_revision": "6dfa9e5db20d460a5ae15a6e8a05ad8d0bb9b0239c001cf6371b7af8c90d3492",
+            "note_id": "n_000021",
+            "paper_id": "p_000009",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000009\",\"42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d\",\"note\",\"corpus-lun2016.assumptions\"]",
+            "kind": "note",
+            "id": "corpus-lun2016.assumptions",
+            "revision": "a8a6281bba0ad8cc38694546128ecda10e86d0f554216f53d38949592ac5be1b",
+            "expected_revision": "a8a6281bba0ad8cc38694546128ecda10e86d0f554216f53d38949592ac5be1b",
+            "note_id": "n_000022",
+            "paper_id": "p_000009",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 2,
+          "conflict": 0
+        }
+      }
+    },
+    {
+      "paper": "zappia2017",
+      "preview_id": "ea3daf52f37b4e908aad30da16023e27",
+      "first": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "6c2ef3230539b38aaeea2149f65c4c04d879337f96ee0dbc9bf9293d99540d04",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000010\",\"d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8\",\"note\",\"corpus-zappia2017.abstract\"]",
+            "kind": "note",
+            "id": "corpus-zappia2017.abstract",
+            "revision": "a15b03ee1a00dc2fe7ab1871ce2154d0acc331daabd3ddf6c7f218747a241513",
+            "expected_revision": null,
+            "note_id": "n_000023",
+            "paper_id": "p_000010",
+            "action": "added",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000010\",\"d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8\",\"note\",\"corpus-zappia2017.models\"]",
+            "kind": "note",
+            "id": "corpus-zappia2017.models",
+            "revision": "876261657aac73915835859b6ca85678a403fe67a5238abec212d7042a1b3a96",
+            "expected_revision": null,
+            "note_id": "n_000024",
+            "paper_id": "p_000010",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 2,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "replay": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-0942653c79694d80b7a5c5d295db8679",
+        "bundle_revision": "6c2ef3230539b38aaeea2149f65c4c04d879337f96ee0dbc9bf9293d99540d04",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000010\",\"d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8\",\"note\",\"corpus-zappia2017.abstract\"]",
+            "kind": "note",
+            "id": "corpus-zappia2017.abstract",
+            "revision": "a15b03ee1a00dc2fe7ab1871ce2154d0acc331daabd3ddf6c7f218747a241513",
+            "expected_revision": "a15b03ee1a00dc2fe7ab1871ce2154d0acc331daabd3ddf6c7f218747a241513",
+            "note_id": "n_000023",
+            "paper_id": "p_000010",
+            "action": "unchanged",
+            "reason": null
+          },
+          {
+            "source_key": "[\"review-0942653c79694d80b7a5c5d295db8679\",\"reader-cf304535b74a43c8b3e8c8d673951a04\",\"p_000010\",\"d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8\",\"note\",\"corpus-zappia2017.models\"]",
+            "kind": "note",
+            "id": "corpus-zappia2017.models",
+            "revision": "876261657aac73915835859b6ca85678a403fe67a5238abec212d7042a1b3a96",
+            "expected_revision": "876261657aac73915835859b6ca85678a403fe67a5238abec212d7042a1b3a96",
+            "note_id": "n_000024",
+            "paper_id": "p_000010",
+            "action": "unchanged",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 0,
+          "updated": 0,
+          "unchanged": 2,
+          "conflict": 0
+        }
+      }
+    }
+  ]
+}

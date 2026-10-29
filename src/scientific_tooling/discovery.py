@@ -13,7 +13,7 @@ from pathlib import Path
 from . import discovery_sources as sources, reading
 from .brief import digest
 from .reading import WorkflowError
-from .state import lock, read_json, write_json
+from .state import hex_id, lock, read_json, read_sealed, write_json
 
 RUN_SCHEMA = "scientific-tooling.discovery.v1"
 SELECTION_SCHEMA = "scientific-tooling.paper-selection.v1"
@@ -24,9 +24,7 @@ def now():
 
 
 def identity(value):
-    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{32}", value):
-        raise WorkflowError("Use a saved discovery or selection request ID from this project.")
-    return value
+    return hex_id(value, "Use a saved discovery or selection request ID from this project.")
 
 
 def directory(workspace, run_id):
@@ -36,10 +34,10 @@ def directory(workspace, run_id):
 def show(workspace, run_id):
     data = workspace.load()
     path = directory(workspace, run_id)
-    result = read_json(path / "discovery.json")
-    if (result.get("schema") != RUN_SCHEMA or result.get("workspace_id") != data["workspace_id"]
-            or result.get("id") != run_id or result.get("revision") != digest({k: v for k, v in result.items() if k != "revision"})):
-        raise WorkflowError("Discovery identity or saved revision changed. Preserve and inspect its original files.")
+    changed = "Discovery identity or saved revision changed. Preserve and inspect its original files."
+    result = read_sealed(path / "discovery.json", RUN_SCHEMA, data["workspace_id"], changed)
+    if result.get("id") != run_id:
+        raise WorkflowError(changed)
     for response in result["responses"]:
         name = response["path"]
         if not re.fullmatch(r"responses/\d{2}\.(json|xml)", name):
@@ -275,9 +273,7 @@ def select(workspace, run_id=None, candidate_id=None, *, pdf=None, source=None, 
 
 
 def verify_snapshot(snapshot):
-    with Path(snapshot["path"]).open("rb") as stream:
-        actual = reading.hash_stream(stream)
-    if actual != (snapshot["sha256"], snapshot["size_bytes"]):
+    if reading.hash_file(snapshot["path"]) != (snapshot["sha256"], snapshot["size_bytes"]):
         raise WorkflowError("Retained selection PDF changed. Restore its exact bytes before retrying.")
 
 

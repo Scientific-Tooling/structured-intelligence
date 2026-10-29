@@ -1,0 +1,186 @@
+{
+  "version": "0.3.1",
+  "packages": {
+    "scientific-tooling": "{\"archive_info\": {\"hash\": \"sha256=3eac6ee98336de73ce668c8d8ceb70d1193e8518b787c30de1b9151f23d2f3fa\", \"hashes\": {\"sha256\": \"3eac6ee98336de73ce668c8d8ceb70d1193e8518b787c30de1b9151f23d2f3fa\"}}, \"url\": \"file:///C:/Users/yangm11/github/.reader-redesign/dist/scientific_tooling-0.3.1-py3-none-any.whl\"}",
+    "agent-pdf-workbench": "{\"url\": \"https://github.com/Scientific-Tooling/agent-pdf-workbench.git\", \"vcs_info\": {\"commit_id\": \"1773e6b4b44fd9950f7a08399f480e653e8dbedf\", \"requested_revision\": \"1773e6b4b44fd9950f7a08399f480e653e8dbedf\", \"vcs\": \"git\"}}",
+    "research-knowledge-substrate": "{\"url\": \"https://github.com/Scientific-Tooling/research-knowledge-substrate.git\", \"vcs_info\": {\"commit_id\": \"fd44ad7388abb482a5980508531383cacf4da381\", \"requested_revision\": \"fd44ad7388abb482a5980508531383cacf4da381\", \"vcs\": \"git\"}}"
+  },
+  "project": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project",
+  "stopped": {
+    "stopped": true,
+    "workspace": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project"
+  },
+  "summary": {
+    "schema": "scientific-tooling.workspace.v2",
+    "workspace": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project",
+    "workspace_id": "review-4ffaa85e60b743ddb0e7f87864fa39e4",
+    "question": "Candidate upgrade engineering fixture",
+    "key": "p1",
+    "title": "input paper",
+    "paper_id": "p_000001",
+    "phase": "imported",
+    "source_pdf": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project\\pdfs\\d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7.pdf",
+    "session_id": "ps_36d6c9be436d",
+    "viewer_url": "http://127.0.0.1:57328/?session_id=ps_36d6c9be436d",
+    "paper_count": 1,
+    "papers": [
+      {
+        "key": "p1",
+        "title": "input paper",
+        "paper_id": "p_000001",
+        "phase": "imported",
+        "source_pdf": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project\\pdfs\\d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7.pdf",
+        "session_id": "ps_36d6c9be436d",
+        "viewer_url": "http://127.0.0.1:57328/?session_id=ps_36d6c9be436d"
+      }
+    ],
+    "preview": {
+      "id": "23f309059e034b2b8f0cdff1a33d96c6",
+      "paper_id": "p_000001",
+      "counts": {
+        "addition": 1,
+        "unchanged": 0,
+        "conflict": 0
+      },
+      "items": [
+        {
+          "kind": "annotation",
+          "id": "ann_upgrade",
+          "content": {
+            "id": "ann_upgrade",
+            "page": 1,
+            "type": "highlight",
+            "quote": "Reading workflow test source.",
+            "anchor": null,
+            "comment": "Unreviewed upgrade fixture",
+            "tags": [],
+            "rects": [],
+            "createdAt": "2026-10-29T16:00:00+00:00",
+            "updatedAt": "2026-10-29T16:00:00+00:00"
+          },
+          "passages": [
+            {
+              "annotation_id": "ann_upgrade",
+              "page": 1,
+              "quote": "Reading workflow test source.",
+              "anchor": null,
+              "rects": []
+            }
+          ],
+          "content_revision": "cbadcc7e50e80fd767e53f9666799ecde6fa06847c91428faee6cad4068f7cfb",
+          "review": {
+            "status": "unreviewed"
+          },
+          "provenance": {
+            "session_id": "ps_36d6c9be436d",
+            "created_at": "2026-10-29T16:42:21.548512+00:00",
+            "updated_at": "2026-10-29T16:42:21.548512+00:00"
+          },
+          "revision": "a35303ef3896e1a3222d9a0b56e84b3791cb99d736bd08e328edfe65c9cf491c"
+        }
+      ],
+      "plan": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-4ffaa85e60b743ddb0e7f87864fa39e4",
+        "bundle_revision": "8845f84d79a42b1fc50ac32210bfd0a7556ae65259d92a97bb9b2454ccedb43d",
+        "applied": false,
+        "items": [
+          {
+            "source_key": "[\"review-4ffaa85e60b743ddb0e7f87864fa39e4\",\"reader-c2787cecb5b041cb82e8c8f307afea70\",\"p_000001\",\"d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7\",\"annotation\",\"ann_upgrade\"]",
+            "kind": "annotation",
+            "id": "ann_upgrade",
+            "revision": "a35303ef3896e1a3222d9a0b56e84b3791cb99d736bd08e328edfe65c9cf491c",
+            "expected_revision": null,
+            "note_id": null,
+            "paper_id": "p_000001",
+            "action": "addition",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "addition": 1,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      },
+      "applied": true,
+      "receipt": {
+        "schema": "rks.evidence-import-plan.v1",
+        "workspace_id": "review-4ffaa85e60b743ddb0e7f87864fa39e4",
+        "bundle_revision": "8845f84d79a42b1fc50ac32210bfd0a7556ae65259d92a97bb9b2454ccedb43d",
+        "applied": true,
+        "items": [
+          {
+            "source_key": "[\"review-4ffaa85e60b743ddb0e7f87864fa39e4\",\"reader-c2787cecb5b041cb82e8c8f307afea70\",\"p_000001\",\"d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7\",\"annotation\",\"ann_upgrade\"]",
+            "kind": "annotation",
+            "id": "ann_upgrade",
+            "revision": "a35303ef3896e1a3222d9a0b56e84b3791cb99d736bd08e328edfe65c9cf491c",
+            "expected_revision": null,
+            "note_id": "n_000001",
+            "paper_id": "p_000001",
+            "action": "added",
+            "reason": null
+          }
+        ],
+        "counts": {
+          "added": 1,
+          "updated": 0,
+          "unchanged": 0,
+          "conflict": 0
+        }
+      }
+    },
+    "brief": {
+      "schema": "scientific-tooling.project-brief.v1",
+      "path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project\\briefs\\547a52c460294a77b3f4830cb06ad7f2.md",
+      "counts": {
+        "evidence": 1,
+        "reviewed": 0,
+        "unreviewed": 1,
+        "linked_passages": 1,
+        "unavailable_passages": 0
+      },
+      "papers": [
+        {
+          "key": "p1",
+          "paper_id": "p_000001",
+          "title": "input paper",
+          "counts": {
+            "evidence": 1,
+            "reviewed": 0,
+            "unreviewed": 1,
+            "linked_passages": 1,
+            "unavailable_passages": 0
+          }
+        }
+      ],
+      "paper_count": 1,
+      "text": "# Source-linked project brief\n\nQuestion: Candidate upgrade engineering fixture\n\nEvidence is grouped by paper for comparison. No agreement, contradiction, or scientific conclusion is inferred.\n\n## Coverage\n\n| Paper | Evidence | Reviewed | Unreviewed | Linked passages | Unavailable |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| p1: input paper | 1 | 0 | 1 | 1 | 0 |\n\nPapers without imported evidence remain visible as coverage gaps, not negative findings.\n\n## p1: input paper\n\nQuestion: Candidate upgrade engineering fixture\n\nRKS paper: p\\_000001. Workspace: review-4ffaa85e60b743ddb0e7f87864fa39e4.\n\nThis brief compiles imported reading material. Interpretations retain their recorded review status; inclusion does not establish scientific support for the question.\n\n### n\\_000001: Unreviewed reading material\n\nImported interpretation:\n\n> Unreviewed upgrade fixture\n\nSource quote, page 1:\n\n> Reading workflow test source.\n\n[Open the supporting passage](http://127.0.0.1:57328/?session_id=ps_36d6c9be436d&document_sha256=d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7&annotation_id=ann_upgrade&page=1&passage_sha256=00baae0c98a3c694abce91efaa11535dbd21dae26833bd2e00e472c68540da07)\n\nAPW annotation: ann\\_upgrade. Imported revision: `a35303ef3896e1a3222d9a0b56e84b3791cb99d736bd08e328edfe65c9cf491c`.\n\nSource PDF SHA-256: `d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7`.\n\n### Limits\n\nLinks require the selected APW database and retained PDF cache. The viewer rejects changed documents, deleted or edited passage anchors, out-of-range pages, and quotes that cannot be located unambiguously. Source text layout is checked when the link opens.\n",
+      "passage_urls": [
+        "http://127.0.0.1:57328/?session_id=ps_36d6c9be436d&document_sha256=d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7&annotation_id=ann_upgrade&page=1&passage_sha256=00baae0c98a3c694abce91efaa11535dbd21dae26833bd2e00e472c68540da07"
+      ]
+    }
+  },
+  "files": {
+    "events.db": "5716acf29d6386d22b5a25e820c72120d51a10ae88540b563d523f0fddaffa0a",
+    "events.db-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "events.db-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "server.lock": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "server.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspace.json": "81d2fc6945bf35afbcae540f8da9d1bc267fa7f2cb1b5bdaa2f260240bfc4814",
+    "workspace.lock": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "briefs\\547a52c460294a77b3f4830cb06ad7f2.md": "757a5008fd2b3447e9939c9cb988568c3d9326c47d1adf9172de9523dabb997d",
+    "pdfs\\d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7.pdf": "d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+    "rks\\rks.sqlite3": "4099bc7d1a9927a905078920dffc87b439246c515efaa1b719e98818162a5921",
+    "rks\\rks.sqlite3-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "rks\\rks.sqlite3-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rks\\papers\\p_000001\\extracted_text.json": "dfc74921023fe16c27d205ebd223bd8c4fc93e256c34cef132fb4a2250fef7d8",
+    "rks\\papers\\p_000001\\sections.json": "826be8c79f9e80cb78af73d0f285f752e24f8ea538b629db4ae4bd264a6ebab5",
+    "rks\\papers\\p_000001\\source.pdf": "d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+    "papers\\p1\\handoff.json": "eb034ca5eb8d16bb55927c108cdabe1ce704583a126f38966ce72e900d6b3f2f",
+    "imports\\23f309059e034b2b8f0cdff1a33d96c6\\evidence.json": "83ff0a86232ca9db047e8ec308aefb3a9abcb24cb28af0382225160ca5122a81",
+    "imports\\23f309059e034b2b8f0cdff1a33d96c6\\plan.json": "7561622391f9fb4dfce610b8e4bce6ed37d639c498da42978c1cfee4a0643f4c",
+    "imports\\23f309059e034b2b8f0cdff1a33d96c6\\receipt.json": "d813128e58e31963a834c2ec31e91f923d8870fa8647f0ca36724fed4a00153a"
+  },
+  "archive_sha256": "9fd1cc0bbc0ed3d497c04fa5ce574a82a0713c34bd38d97008db8e66b355ac67"
+}

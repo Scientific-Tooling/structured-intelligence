@@ -1,0 +1,14 @@
+test_changed_or_resealed_fixture_cannot_silently_remap_a_passage (test_research_imported_evidence.ImportedEvidenceTest.test_changed_or_resealed_fixture_cannot_silently_remap_a_passage) ... ok
+test_corrupted_packet_cannot_reuse_valid_review_responses (test_research_imported_evidence.ImportedEvidenceTest.test_corrupted_packet_cannot_reuse_valid_review_responses) ... ok
+test_duplicate_does_not_add_credit_or_backfill_the_native_cutoff (test_research_imported_evidence.ImportedEvidenceTest.test_duplicate_does_not_add_credit_or_backfill_the_native_cutoff) ... ok
+test_exact_jats_notes_never_invent_pdf_anchors_or_change_reference_set (test_research_imported_evidence.ImportedEvidenceTest.test_exact_jats_notes_never_invent_pdf_anchors_or_change_reference_set) ... ok
+test_foreign_unknown_duplicate_or_changed_results_fail (test_research_imported_evidence.ImportedEvidenceTest.test_foreign_unknown_duplicate_or_changed_results_fail) ... ok
+test_human_provenance_and_timezone_required_and_never_qualify_release (test_research_imported_evidence.ImportedEvidenceTest.test_human_provenance_and_timezone_required_and_never_qualify_release) ... ok
+test_missing_duplicate_or_stale_reviews_are_rejected (test_research_imported_evidence.ImportedEvidenceTest.test_missing_duplicate_or_stale_reviews_are_rejected) ... ok
+test_source_failure_precedes_any_evaluation_workspace_write (test_research_imported_evidence.ImportedEvidenceTest.test_source_failure_precedes_any_evaluation_workspace_write) ... ok
+test_template_contains_only_pending_reviews_and_no_invented_held_out_questions (test_research_imported_evidence.ImportedEvidenceTest.test_template_contains_only_pending_reviews_and_no_invented_held_out_questions) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.066s
+
+OK

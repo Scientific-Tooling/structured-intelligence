@@ -37,6 +37,14 @@ The repository also includes a lightweight project landing page at `docs/index.h
 
 ### Papers to a Source-Linked Project Brief
 
+Learn what `sci` is and what it can do with the
+[two-minute introduction](docs/sci-overview.md), or follow the
+[detailed user guide with screenshots](docs/sci-user-guide.md). Both distinguish
+released capabilities, development features and the draft analysis handoff.
+
+For continuing development, use the [current handoff](docs/phase-2-handoff.md)
+and its linked candidate, evaluation and publication records.
+
 Use Python 3.12 or newer; **Python 3.14 is recommended** for the core tools.
 The repository default is recorded in `.python-version`. Bioinformatics Conda
 environments have their own dependency pins and are upgraded separately.

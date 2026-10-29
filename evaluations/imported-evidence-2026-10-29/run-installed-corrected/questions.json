@@ -1,0 +1,392 @@
+{
+  "schema": "scientific-tooling.questions.v1",
+  "corpus_id": "scrna-methods-imported-source-v2",
+  "corpus_revision": "3191de306e2798799cc2a809c96a9bd0dbfdfa56f4c95a7c54d3c9e45badbdfb",
+  "frozen_before_baseline": true,
+  "reference_status": "agent_draft_pending_domain_review",
+  "split_policy": "Paper-grouped public development/reserved split; no blind or sealed-test claim.",
+  "questions": [
+    {
+      "id": "q01",
+      "split": "development",
+      "primary_paper": "vieth2019",
+      "question": "How many library protocols, differential-expression setups, and approximate pipelines were evaluated by Vieth et al.?",
+      "expected_passages": [
+        "vieth2019.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "The abstract reports five library protocols, nine DE setups, and approximately 3000 pipelines.",
+      "required_qualifications": [
+        "These are the counts stated in the abstract, not the total number of simulated datasets."
+      ],
+      "cases": [
+        "numerical",
+        "approximation"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q02",
+      "split": "development",
+      "primary_paper": "vieth2019",
+      "question": "How did increasing asymmetry of differential expression affect normalization estimates in the Vieth simulations?",
+      "expected_passages": [
+        "vieth2019.normalization"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "Size-factor deviations increased with asymmetry; scran and SCnorm performed better than the listed alternatives under those simulation conditions.",
+      "required_qualifications": [
+        "Do not extend this simulation-specific comparison to every real single-cell dataset."
+      ],
+      "cases": [
+        "conditional",
+        "method_comparison"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q03",
+      "split": "development",
+      "primary_paper": "hafemeister2019",
+      "question": "What technical covariate and stabilization strategy does the original sctransform paper propose?",
+      "expected_passages": [
+        "hafemeister2019.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "Cellular sequencing depth is a covariate in regularized negative-binomial regression; information is pooled across genes of similar abundance to stabilize parameters.",
+      "required_qualifications": [
+        "The abstract discusses UMI-based scRNA-seq and an unconstrained model that may overfit."
+      ],
+      "cases": [
+        "method",
+        "scope"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q04",
+      "split": "development",
+      "primary_paper": "hafemeister2019",
+      "question": "What exact false-discovery rate does the supplied sctransform excerpt guarantee for a new donor-level differential-expression study?",
+      "expected_passages": [],
+      "answerable_from_excerpts": false,
+      "draft_answer": "The supplied excerpt states no such numerical guarantee; additional design-specific evidence is needed.",
+      "required_qualifications": [
+        "Do not infer an FDR guarantee from a normalization-method abstract."
+      ],
+      "cases": [
+        "incomplete_context",
+        "unsupported_guarantee"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q05",
+      "split": "development",
+      "primary_paper": "townes2019",
+      "question": "In the Townes negative controls, are UMI counts described as zero-inflated?",
+      "expected_passages": [
+        "townes2019.abstract",
+        "townes2019.umi-read"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "No. The negative-control UMI counts are described as having no zero inflation, unlike the read-count representation affected by PCR duplicates.",
+      "required_qualifications": [
+        "Restrict the statement to UMI counts and the studied negative controls; do not generalize to all read-count assays."
+      ],
+      "cases": [
+        "negation",
+        "measurement_scope"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q06",
+      "split": "development",
+      "primary_paper": "townes2019",
+      "question": "Which non-normal dimension-reduction and feature-selection methods do Townes et al. propose?",
+      "expected_passages": [
+        "townes2019.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "They propose GLM-PCA for non-normal distributions and feature selection using deviance.",
+      "required_qualifications": [
+        "The reported improvement concerns the evaluated clustering assessment."
+      ],
+      "cases": [
+        "method"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q07",
+      "split": "development",
+      "primary_paper": "lause2021",
+      "question": "Does the reported bias in low-expression overdispersion estimates necessarily substantially change the Pearson residuals?",
+      "expected_passages": [
+        "lause2021.caveat"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "The authors state that this bias does not substantially affect Pearson residuals for low expression means because the predicted variance is only weakly affected by the exact overdispersion value.",
+      "required_qualifications": [
+        "Do not equate biased parameter estimates with a demonstrated large residual error."
+      ],
+      "cases": [
+        "negation",
+        "qualification"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q08",
+      "split": "development",
+      "primary_paper": "lause2021",
+      "question": "For the full 33k PBMC dataset, what runtimes does Table 1 report for Pearson-residuals PCA and GLM-PCA?",
+      "expected_passages": [
+        "lause2021.runtimes"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "Table 1 reports 35 seconds for Pearson residuals followed by PCA and 15 hours for GLM-PCA on the full 33k PBMC dataset.",
+      "required_qualifications": [
+        "These are measured runtimes on the stated 256 Gb RAM, 30-thread, 2.1 GHz machine; do not mix with the 1000-HVG row."
+      ],
+      "cases": [
+        "table",
+        "numerical",
+        "units"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q09",
+      "split": "development",
+      "primary_paper": "squair2021",
+      "question": "What role does variation between biological replicates play in the false-discovery finding reported by Squair et al.?",
+      "expected_passages": [
+        "squair2021.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "The abstract says relative method performance depends on accounting for variation between biological replicates; methods that ignore it are prone to false discoveries, including differences when no biological difference is present.",
+      "required_qualifications": [
+        "This is the paper's reported benchmark finding, not proof that every use of every cell-level method is invalid."
+      ],
+      "cases": [
+        "negation",
+        "experimental_unit"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q10",
+      "split": "development",
+      "primary_paper": "squair2021",
+      "question": "How were the eighteen ground-standard datasets in Squair et al. selected?",
+      "expected_passages": [
+        "squair2021.benchmark"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "They used matched bulk and single-cell RNA-seq on the same purified cell population, with the same perturbations and laboratories; eighteen datasets met the criteria.",
+      "required_qualifications": [
+        "Bulk agreement is their chosen approximation to ground truth, not universal clinical ground truth."
+      ],
+      "cases": [
+        "numerical",
+        "design"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q11",
+      "split": "development",
+      "primary_paper": "zimmerman2021",
+      "question": "Why are cells from the same individual pseudoreplicates in the Zimmerman analysis?",
+      "expected_passages": [
+        "zimmerman2021.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "They share genetic and environmental backgrounds and are not statistically independent; the authors propose a generalized linear mixed model with a random effect for individual.",
+      "required_qualifications": [
+        "Independent donors and cells within donors are different experimental units."
+      ],
+      "cases": [
+        "negation",
+        "experimental_unit"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q12",
+      "split": "development",
+      "primary_paper": "zimmerman2021",
+      "question": "Do the Zimmerman and Squair excerpts justify saying that pseudobulk is universally better than mixed models?",
+      "expected_passages": [
+        "zimmerman2021.abstract",
+        "squair2021.abstract",
+        "squair2021.benchmark"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "No. Zimmerman reports pseudobulk as conservative and underpowered relative to mixed models in their setup, whereas Squair emphasizes accounting for biological-replicate variation using different benchmark data; the supplied excerpts do not establish a universal ordering.",
+      "required_qualifications": [
+        "Preserve the differing simulation and matched-data designs; do not manufacture a direct head-to-head comparison from unlike benchmarks."
+      ],
+      "cases": [
+        "conflicting_findings",
+        "valid_uncertainty",
+        "multiple_sources"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q13",
+      "split": "development",
+      "primary_paper": "crowell2020",
+      "question": "What does muscat call differential-state analysis, and at what level is the inference intended?",
+      "expected_passages": [
+        "crowell2020.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "It concerns sample-level cross-condition inferences within subpopulations in replicated multi-condition scRNA-seq datasets.",
+      "required_qualifications": [
+        "Differential-state analysis is not merely finding markers between cell types."
+      ],
+      "cases": [
+        "experimental_unit",
+        "method"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q14",
+      "split": "development",
+      "primary_paper": "crowell2020",
+      "question": "In the muscat PBMC reference dataset, how many lupus patients were measured, after what treatment duration, and how many samples resulted?",
+      "expected_passages": [
+        "crowell2020.samples"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "Eight lupus patients were measured before and after six hours of IFN-beta treatment, giving sixteen samples in total.",
+      "required_qualifications": [
+        "Sixteen paired samples do not mean sixteen independent patients."
+      ],
+      "cases": [
+        "numerical",
+        "units",
+        "paired_design"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q15",
+      "split": "reserved",
+      "primary_paper": "luecken2022",
+      "question": "How many method/preprocessing combinations and integration tasks were included in the atlas-integration abstract?",
+      "expected_passages": [
+        "luecken2022.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "The abstract reports 68 combinations and 13 integration tasks, spanning 85 batches from 23 publications and more than 1.2 million cells.",
+      "required_qualifications": [
+        "Combinations, methods, tasks, batches, publications, and cells are distinct counts."
+      ],
+      "cases": [
+        "numerical",
+        "scope"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q16",
+      "split": "reserved",
+      "primary_paper": "luecken2022",
+      "question": "What were the pancreas task cell count and batch count in Table 1?",
+      "expected_passages": [
+        "luecken2022.tasks"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "The pancreas task has 16,382 cells and nine batches.",
+      "required_qualifications": [
+        "Do not substitute the lung row's donor count or cell count."
+      ],
+      "cases": [
+        "table",
+        "numerical",
+        "row_scope"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q17",
+      "split": "reserved",
+      "primary_paper": "lun2016",
+      "question": "What happens to DESeq/TMM size-factor estimates if the non-differential-expression assumption does not hold?",
+      "expected_passages": [
+        "lun2016.assumptions"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "The paper states that the computed factors will not be accurate; it describes non-DE proportions of 50% for DESeq and 40-70% for TMM depending on DE direction.",
+      "required_qualifications": [
+        "The cited percentages and sparsity concerns are properties discussed for these normalization assumptions."
+      ],
+      "cases": [
+        "negation",
+        "conditional",
+        "numerical"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q18",
+      "split": "reserved",
+      "primary_paper": "lun2016",
+      "question": "What is pooled before deconvolution in the Lun normalization approach?",
+      "expected_passages": [
+        "lun2016.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "Expression values are summed across pools of cells, normalized at pool level, and pool-based size factors are deconvolved into cell-based factors.",
+      "required_qualifications": [
+        "This pooling is for normalization, not the biological-replicate pseudobulk DE comparison."
+      ],
+      "cases": [
+        "method"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q19",
+      "split": "reserved",
+      "primary_paper": "zappia2017",
+      "question": "What distribution underlies Splat, and which population structures can it simulate in the supplied abstract?",
+      "expected_passages": [
+        "zappia2017.abstract"
+      ],
+      "answerable_from_excerpts": true,
+      "draft_answer": "Splat is based on a gamma-Poisson distribution and can simulate one cell population, multiple cell types, or differentiation paths.",
+      "required_qualifications": [
+        "Describe the version documented in the 2017 article; do not assume the current package has identical capabilities."
+      ],
+      "cases": [
+        "method",
+        "historical_version"
+      ],
+      "review_status": "unreviewed"
+    },
+    {
+      "id": "q20",
+      "split": "reserved",
+      "primary_paper": "zappia2017",
+      "question": "How many patients were randomized to a clinical disease-treatment trial in the provided Splatter excerpts?",
+      "expected_passages": [],
+      "answerable_from_excerpts": false,
+      "draft_answer": "No clinical trial or randomized patient count is described in these simulation-method excerpts.",
+      "required_qualifications": [
+        "Absence from the supplied excerpts does not prove that no related clinical trial exists anywhere."
+      ],
+      "cases": [
+        "incomplete_context",
+        "abstention"
+      ],
+      "review_status": "unreviewed"
+    }
+  ]
+}

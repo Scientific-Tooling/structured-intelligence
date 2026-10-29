@@ -1,0 +1,38 @@
+{
+  "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+  "public_dependencies": true,
+  "packages": {
+    "scientific-tooling": {
+      "version": "0.4.0.dev20261029",
+      "module": "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Lib\\site-packages\\scientific_tooling\\__init__.py",
+      "direct_url": {
+        "dir_info": {},
+        "url": "file:///C:/Users/yangm11/github/structured-intelligence"
+      }
+    },
+    "agent-pdf-workbench": {
+      "version": "0.3.2.dev20261029",
+      "module": "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Lib\\site-packages\\agent_pdf_workbench\\__init__.py",
+      "direct_url": {
+        "url": "https://github.com/Scientific-Tooling/agent-pdf-workbench.git",
+        "vcs_info": {
+          "commit_id": "4c3a379123847aff42e221013ae4c49a4149997d",
+          "requested_revision": "4c3a379123847aff42e221013ae4c49a4149997d",
+          "vcs": "git"
+        }
+      }
+    },
+    "research-knowledge-substrate": {
+      "version": "0.2.0",
+      "module": "C:\\Users\\yangm11\\github\\.publication\\2026-10-29\\installed\\Lib\\site-packages\\rks\\__init__.py",
+      "direct_url": {
+        "url": "https://github.com/Scientific-Tooling/research-knowledge-substrate.git",
+        "vcs_info": {
+          "commit_id": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+          "requested_revision": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+          "vcs": "git"
+        }
+      }
+    }
+  }
+}

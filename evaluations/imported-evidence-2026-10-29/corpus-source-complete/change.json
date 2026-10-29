@@ -1,0 +1,38 @@
+{
+  "schema": "scientific-tooling.reference-correction.v1",
+  "parent_corpus_revision": "1914a020d82932ebb8b38deb4fec326ea44aa825237d55a4ccfdc35d4a394112",
+  "corpus_revision": "3191de306e2798799cc2a809c96a9bd0dbfdfa56f4c95a7c54d3c9e45badbdfb",
+  "question_ids_affected": [
+    "q02"
+  ],
+  "question_text_and_relevance_targets_changed": false,
+  "passage_id": "vieth2019.normalization",
+  "before": {
+    "id": "vieth2019.normalization",
+    "paper_id": "vieth2019",
+    "kind": "text",
+    "selector": "body.p.13",
+    "transform": "jats-itertext-whitespace-v1",
+    "source_text_sha256": "04d97be90aa894dbae43c42b7b1d90f43ac208c8e3b7a759ae3958135bd737b9",
+    "start": 0,
+    "end": 767,
+    "text": "The next step in any RNA-seq analysis is the normalisation of the count matrix. The main idea here is that the resulting size factors correct for differing sequencing depths. In order to improve normalisation, spike-ins as an added standard can help, but are not feasible for all scRNA-seq library preparations. Another avenue to improve normalisation would be to deal with sparsity by imputing missing data prior to normalisation as discussed in the next chapter (Fig. 1c). To begin with, we compare how much the estimated size factors deviate from the truth. As long as there is only a small proportion of DE-genes or if the differences are symmetric, estimated size factors are not too far from the simulated ones and there are no large differences among methods (",
+    "sha256": "b9bf02eef249aa8a23a2ab344cab7b0b13ea66270dd38bc7f29b61305f658baa"
+  },
+  "after": {
+    "id": "vieth2019.normalization",
+    "paper_id": "vieth2019",
+    "kind": "text",
+    "selector": "body.p.13",
+    "transform": "jats-itertext-whitespace-v1",
+    "source_text_sha256": "04d97be90aa894dbae43c42b7b1d90f43ac208c8e3b7a759ae3958135bd737b9",
+    "start": 0,
+    "end": 1052,
+    "text": "The next step in any RNA-seq analysis is the normalisation of the count matrix. The main idea here is that the resulting size factors correct for differing sequencing depths. In order to improve normalisation, spike-ins as an added standard can help, but are not feasible for all scRNA-seq library preparations. Another avenue to improve normalisation would be to deal with sparsity by imputing missing data prior to normalisation as discussed in the next chapter (Fig. 1c). To begin with, we compare how much the estimated size factors deviate from the truth. As long as there is only a small proportion of DE-genes or if the differences are symmetric, estimated size factors are not too far from the simulated ones and there are no large differences among methods (Fig. 3a and Supplementary Figs. 10 and 11). However with increasing asymmetry, size factors deviate more and more and the single cell methods scran25 and SCnorm26 perform markedly better than the bulk methods TMM27, MR28 and Positive Counts as well as the single cell method Linnorm29.",
+    "sha256": "73f69a751ec7d19180b5c6f544e92236ff5e351fa03545fcfd53d16fe5a47034"
+  },
+  "source_paragraph_sha256": "04d97be90aa894dbae43c42b7b1d90f43ac208c8e3b7a759ae3958135bd737b9",
+  "source_selector": "body.p.13",
+  "reason": "Original retained span ended before the facts requested by q02. Extend through complete qualifying sentences from the same pinned source paragraph.",
+  "domain_review": "pending"
+}

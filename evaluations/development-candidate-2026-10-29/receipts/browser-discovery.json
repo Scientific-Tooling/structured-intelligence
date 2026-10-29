@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "provider_data": "frozen fixtures",
+  "reader_http": "real",
+  "explicit_selection": true,
+  "lost_response_replay": true,
+  "missing_full_text": true,
+  "source_navigation": true,
+  "desktop_mobile": true,
+  "papers": 2,
+  "works": 2
+}

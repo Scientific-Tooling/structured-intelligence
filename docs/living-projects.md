@@ -32,11 +32,15 @@ comparison versions and review decisions. Editing an imported highlight without
 reimporting it is visible as changed reading material. The old import and its
 recorded review remain intact. Affected comparison entries identify their paper
 and criterion; comparisons that exclude later papers report that coverage gap.
+A paper whose preparation was interrupted is reported as needing attention while
+the prepared papers are still checked.
 
 Freshness is separate from scientific quality:
 
 - **Current:** captured inputs match the last edition at the reported check time.
-  The brief can still contain unreviewed material, gaps or warnings.
+  The brief can still contain unreviewed material, gaps or warnings. Inputs are
+  identities, revisions, availability, comparison versions and review states;
+  reworded messages, links or rendered Markdown alone never make an edition outdated.
 - **Outdated:** project inputs changed. Inspect them before creating a new edition.
 - **Unverified:** no edition has a captured baseline. Earlier Markdown files remain
   in `briefs/`; their original provenance cannot be invented.
@@ -64,7 +68,7 @@ or agent origin.
 
 The canonical `briefs/EDITION_ID/record.json` publishes the complete text and
 provenance together as one atomic record with a SHA-256 revision. `brief.md` is a
-convenient copy. Earlier editions are never overwritten; retrying an older edition
+convenient byte-exact copy whose SHA-256 is the record's `text_sha256`. Earlier editions are never overwritten; retrying an older edition
 cannot make it the latest. PDFs keep their existing hash-based paths; selecting
 a changed PDF creates a separate version through discovery. Old links can become
 unavailable, but the edition retains original supporting text and identities.
@@ -78,8 +82,10 @@ to a check time, not a promise about future edits.
 
 ## Recover an interrupted brief
 
-Creation saves its request before collecting inputs. The error and `history` list
-the request ID when work was interrupted:
+Creation first checks that the reader is running, every paper is prepared and
+evidence has been imported; a failed check leaves no request behind. It then saves
+its request before collecting inputs. The error and `history` list the request ID
+when work was interrupted:
 
 ```text
 sci brief --request-id REQUEST_ID --workspace review --json

@@ -1,0 +1,110 @@
+{
+  "candidate": "2026-10-29-c1",
+  "protocol": "protocol-v2.json",
+  "passed": true,
+  "scope": "fit-width scrolling and paper switch only; 100% zoom, annotation and search gates remain open",
+  "samples": [
+    {
+      "requested_page": 1,
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        1,
+        2
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 5,
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        4,
+        5,
+        6
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 10,
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        9,
+        10,
+        11
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 15,
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        14,
+        15,
+        16
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 20,
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        19,
+        20,
+        21
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 25,
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        24,
+        25,
+        26
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 30,
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        29,
+        30
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 1,
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        1,
+        2
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    }
+  ],
+  "errors": []
+}

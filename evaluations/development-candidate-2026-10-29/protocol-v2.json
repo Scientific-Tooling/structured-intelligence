@@ -1,0 +1,20 @@
+{
+  "schema": "scientific-tooling.acceptance-protocol-amendment.v1",
+  "revision": 2,
+  "candidate": "2026-10-29-c1",
+  "parent_protocol": "protocol.json",
+  "parent_sha256": "450498048d7b3b9a1c8943d7011f59f3131fc54e81d29383c254757d9b219425",
+  "reason": "Pre-measurement source inspection found that every PDF page retains a zero-sized canvas placeholder. Counting DOM canvases cannot measure raster retention. Correct the metric rather than penalizing bounded geometry placeholders. Revision 1 and all original receipts remain retained.",
+  "changes": {
+    "reader": {
+      "document_pages": 30,
+      "viewport": {"width": 1440, "height": 1000},
+      "measure_at": ["fit_width", "100_percent"],
+      "active_raster_canvases_max": 7,
+      "active_definition": "PDF page canvas with width > 0 and height > 0 after viewport render settles",
+      "old_document_raster_canvases_after_switch_max": 0,
+      "report": ["total_canvas_placeholders", "active_raster_canvases", "canvas_pixel_bytes", "js_heap_if_available", "page_errors", "visited_pages", "zoom", "paper_switch"]
+    }
+  },
+  "other_thresholds": "Unchanged from protocol revision 1. No reader performance result existed when this amendment was written."
+}

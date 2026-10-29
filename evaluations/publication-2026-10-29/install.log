@@ -1,0 +1,34 @@
+Processing .\structured-intelligence
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@44a8f33f47d9e867a03a8cff9e07a7b021e04cea (from scientific-tooling==0.4.0.dev20261029)
+  Using cached research_knowledge_substrate-0.2.0-py3-none-any.whl
+Collecting agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@4c3a379123847aff42e221013ae4c49a4149997d (from scientific-tooling==0.4.0.dev20261029)
+  Cloning https://github.com/Scientific-Tooling/agent-pdf-workbench.git (to revision 4c3a379123847aff42e221013ae4c49a4149997d) to C:\Users\yangm11\AppData\Local\Temp\pip-install-v27pyjnc\agent-pdf-workbench_096517be352f4970ae5faa27e08b3d4e
+  Running command git clone --filter=blob:none --quiet https://github.com/Scientific-Tooling/agent-pdf-workbench.git 'C:\Users\yangm11\AppData\Local\Temp\pip-install-v27pyjnc\agent-pdf-workbench_096517be352f4970ae5faa27e08b3d4e'
+  Running command git rev-parse -q --verify '4c3a379123847aff42e221013ae4c49a4149997d^{commit}'
+  4c3a379123847aff42e221013ae4c49a4149997d
+  Resolved https://github.com/Scientific-Tooling/agent-pdf-workbench.git to commit 4c3a379123847aff42e221013ae4c49a4149997d
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: scientific-tooling, agent-pdf-workbench
+  Building wheel for scientific-tooling (pyproject.toml): started
+  Building wheel for scientific-tooling (pyproject.toml): finished with status 'done'
+  Created wheel for scientific-tooling: filename=scientific_tooling-0.4.0.dev20261029-py3-none-any.whl size=78069 sha256=fe4d9e324774bed63fe0826ba8b8e4fa1148daaed39e5c99a31801b502e97a22
+  Stored in directory: C:\Users\yangm11\AppData\Local\Temp\pip-ephem-wheel-cache-7e8e8kyj\wheels\a9\e9\80\b1f7866e230a478e304435558f8df51c4897b6602aca9eb040
+  Building wheel for agent-pdf-workbench (pyproject.toml): started
+  Building wheel for agent-pdf-workbench (pyproject.toml): finished with status 'done'
+  Created wheel for agent-pdf-workbench: filename=agent_pdf_workbench-0.3.2.dev20261029-py3-none-any.whl size=657075 sha256=7d434dce54f51ad8ee11e5d151553d052fca8981139d82590a9e42b21b1122e9
+  Stored in directory: c:\users\yangm11\appdata\local\packages\openai.codex_2p2nqsd0c76g0\localcache\local\pip\cache\wheels\00\d0\be\87e6c26113947aa0e31d145fdbe455e986f5bd5c6502b4f220
+Successfully built scientific-tooling agent-pdf-workbench
+Installing collected packages: research-knowledge-substrate, agent-pdf-workbench, scientific-tooling
+
+Successfully installed agent-pdf-workbench-0.3.2.dev20261029 research-knowledge-substrate-0.2.0 scientific-tooling-0.4.0.dev20261029

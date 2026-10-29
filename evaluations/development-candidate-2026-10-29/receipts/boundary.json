@@ -1,0 +1,18 @@
+{
+  "name": "boundary",
+  "command": [
+    "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+    "scripts/run_research_tests.py",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_*integration.py",
+    "-v"
+  ],
+  "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+  "exit_code": 0,
+  "seconds": 14.516504700062796,
+  "log_sha256": "20bd1d4bc9686982e12390ea63ad05a27d66ff25f0fd8e0cec847d8e935475dc",
+  "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+}

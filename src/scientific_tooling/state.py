@@ -1,8 +1,10 @@
 """Atomic workflow records and process-owned locks, including on Windows."""
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import re
 import tempfile
 from contextlib import contextmanager
 from pathlib import Path
@@ -16,6 +18,31 @@ else:
 
     def open_record(path):
         return path.open("r", encoding="utf-8")
+
+
+def digest(value: object) -> str:
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"),
+                                     ensure_ascii=True, allow_nan=False).encode("utf-8")).hexdigest()
+
+
+def hex_id(value, message: str) -> str:
+    """Saved request and record IDs are UUID hex, so they are always safe path segments."""
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{32}", value):
+        raise WorkflowError(message)
+    return value
+
+
+def seal(value: dict) -> dict:
+    return {**value, "revision": digest(value)}
+
+
+def read_sealed(path: Path, schema: str, workspace_id: str, message: str) -> dict:
+    """Read a sealed record of this project; any change to it fails with message."""
+    value = read_json(path)
+    if (value.get("schema") != schema or value.get("workspace_id") != workspace_id
+            or value.get("revision") != digest({k: v for k, v in value.items() if k != "revision"})):
+        raise WorkflowError(message)
+    return value
 
 
 def read_json(path: Path) -> dict:

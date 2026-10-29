@@ -1,0 +1,24 @@
+test_addition_recovers_lost_response_and_retains_same_named_papers (test_workflow.WorkflowTest.test_addition_recovers_lost_response_and_retains_same_named_papers) ... ok
+test_all_inputs_validated_before_start_or_add (test_workflow.WorkflowTest.test_all_inputs_validated_before_start_or_add) ... ok
+test_changed_annotation_requires_new_preview_and_explicit_update (test_workflow.WorkflowTest.test_changed_annotation_requires_new_preview_and_explicit_update) ... ok
+test_comparison_cli_review_recovery_and_stale_passages (test_workflow.WorkflowTest.test_comparison_cli_review_recovery_and_stale_passages) ... ok
+test_comparison_lost_response_and_conflicting_save (test_workflow.WorkflowTest.test_comparison_lost_response_and_conflicting_save) ... ok
+test_complete_installed_cli_journey_and_resume (test_workflow.WorkflowTest.test_complete_installed_cli_journey_and_resume) ... ok
+test_failed_startup_acknowledgement_stops_only_the_launched_child (test_workflow.WorkflowTest.test_failed_startup_acknowledgement_stops_only_the_launched_child) ... ok
+test_legacy_manifest_migration_keeps_evidence_and_source_links (test_workflow.WorkflowTest.test_legacy_manifest_migration_keeps_evidence_and_source_links) ... ok
+test_lost_apply_response_replays_one_import (test_workflow.WorkflowTest.test_lost_apply_response_replays_one_import) ... ok
+test_lost_ingestion_and_session_responses_resume_without_duplicates (test_workflow.WorkflowTest.test_lost_ingestion_and_session_responses_resume_without_duplicates) ... ok
+test_multi_paper_cli_browser_sessions_and_project_brief (test_workflow.WorkflowTest.test_multi_paper_cli_browser_sessions_and_project_brief) ... ok
+test_occupied_saved_port_preserves_other_listener (test_workflow.WorkflowTest.test_occupied_saved_port_preserves_other_listener) ... ok
+test_project_evidence_search_cli_http_scope_and_stale_passages (test_workflow.WorkflowTest.test_project_evidence_search_cli_http_scope_and_stale_passages) ... ok
+test_search_rejects_foreign_evidence_response_and_ambiguous_paper (test_workflow.WorkflowTest.test_search_rejects_foreign_evidence_response_and_ambiguous_paper) ... ok
+test_skill_is_packaged_and_does_not_overwrite_an_existing_skill (test_workflow.WorkflowTest.test_skill_is_packaged_and_does_not_overwrite_an_existing_skill) ... ok
+test_source_corruption_and_wrong_workspace_are_preserved (test_workflow.WorkflowTest.test_source_corruption_and_wrong_workspace_are_preserved) ... ok
+test_startup_waits_for_publication_acknowledgement_before_reading_record (test_workflow.WorkflowTest.test_startup_waits_for_publication_acknowledgement_before_reading_record) ... ok
+test_stop_reaps_only_child_handles_owned_by_this_library_process (test_workflow.WorkflowTest.test_stop_reaps_only_child_handles_owned_by_this_library_process) ... ok
+test_workspace_lock_is_process_owned (test_workflow.WorkflowTest.test_workspace_lock_is_process_owned) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 219.705s
+
+OK

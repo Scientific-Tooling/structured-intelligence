@@ -1,0 +1,220 @@
+{
+  "candidate": "2026-10-29-c1",
+  "version": "0.4.0.dev20261029",
+  "stopped": {
+    "stopped": true,
+    "workspace": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project"
+  },
+  "comparison": {
+    "replayed": false,
+    "comparison": {
+      "schema": "scientific-tooling.comparison.v1",
+      "id": "cmp_eb7283f5407f41b9a2f60f323575a0e1",
+      "workspace_id": "review-4ffaa85e60b743ddb0e7f87864fa39e4",
+      "source_id": "reader-c2787cecb5b041cb82e8c8f307afea70",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Method"
+        }
+      ],
+      "paper_sources": [
+        "p_000001:d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7"
+      ],
+      "question": "Candidate upgrade engineering fixture",
+      "title": "Upgrade fixture",
+      "version": 1,
+      "created_at": "2026-10-29T12:42:30-04:00",
+      "cells": [
+        {
+          "key": "p_000001:d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7|c1",
+          "paper_source": "p_000001:d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+          "criterion_id": "c1",
+          "edit_version": 0,
+          "text": "",
+          "conditions": "",
+          "origin": "unspecified",
+          "evidence": [],
+          "cell_revision": "eaea13d5a35bfb58b332150ad12912ce913dd0d5a9a3d5d84ccccc1e5361abc6",
+          "support_status": "gap",
+          "review": {
+            "status": "unreviewed",
+            "latest": null,
+            "history": []
+          },
+          "paper": {
+            "key": "p1",
+            "title": "input paper"
+          }
+        }
+      ],
+      "revision": "a4ee58ebe6ca148ca54e1686bb198978a3268d8dfe08e4beb804bd66110b6a06",
+      "papers": [
+        {
+          "paper_source": "p_000001:d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+          "key": "p1",
+          "title": "input paper"
+        }
+      ],
+      "excluded_papers": [],
+      "markdown": "# Upgrade fixture\n\nQuestion: Candidate upgrade engineering fixture\n\nInterpretations are proposals tied to selected imported evidence. Links and review decisions do not establish scientific validity.\n\n## Method\n\n### p1: input paper\n\nSupport: gap. Comparison review: unreviewed.\n\nInterpretation (unspecified): Missing information.\n\nConditions: Not recorded.\n"
+    },
+    "request_id": "eb7283f5407f41b9a2f60f323575a0e1",
+    "request_path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project\\comparisons\\requests\\eb7283f5407f41b9a2f60f323575a0e1.json"
+  },
+  "search": {
+    "schema": "scientific-tooling.evidence-search.v1",
+    "query": "source",
+    "workspace_id": "review-4ffaa85e60b743ddb0e7f87864fa39e4",
+    "source_id": "reader-c2787cecb5b041cb82e8c8f307afea70",
+    "paper_sources": [
+      "p_000001:d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7"
+    ],
+    "review": "all",
+    "retrieval": {
+      "method": "bm25-terms-v1",
+      "normalization": "Unicode NFKC and casefold",
+      "ranking": "BM25 descending, stable ID ascending on ties",
+      "corpus_scope": "current imported evidence within the explicit source and review filters",
+      "parameters": {
+        "k1": 1.2,
+        "b": 0.75
+      },
+      "query_policy": "unique Unicode alphanumeric terms; OR matching; no stemming, stop-word removal or query rewriting"
+    },
+    "total": 1,
+    "limit": 20,
+    "offset": 0,
+    "has_more": false,
+    "outcome": "matches",
+    "results": [
+      {
+        "source_key": "[\"review-4ffaa85e60b743ddb0e7f87864fa39e4\",\"reader-c2787cecb5b041cb82e8c8f307afea70\",\"p_000001\",\"d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7\",\"annotation\",\"ann_upgrade\"]",
+        "note_id": "n_000001",
+        "paper_id": "p_000001",
+        "revision": "a35303ef3896e1a3222d9a0b56e84b3791cb99d736bd08e328edfe65c9cf491c",
+        "imported_at": "2026-10-29T12:42:23-04:00",
+        "record": {
+          "document": {
+            "path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project\\pdfs\\d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7.pdf",
+            "sha256": "d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+            "size_bytes": 604
+          },
+          "exported_at": "2026-10-29T16:42:21.854048+00:00",
+          "item": {
+            "content": {
+              "anchor": null,
+              "comment": "Unreviewed upgrade fixture",
+              "createdAt": "2026-10-29T16:00:00+00:00",
+              "id": "ann_upgrade",
+              "page": 1,
+              "quote": "Reading workflow test source.",
+              "rects": [],
+              "tags": [],
+              "type": "highlight",
+              "updatedAt": "2026-10-29T16:00:00+00:00"
+            },
+            "content_revision": "cbadcc7e50e80fd767e53f9666799ecde6fa06847c91428faee6cad4068f7cfb",
+            "id": "ann_upgrade",
+            "kind": "annotation",
+            "passages": [
+              {
+                "anchor": null,
+                "annotation_id": "ann_upgrade",
+                "page": 1,
+                "quote": "Reading workflow test source.",
+                "rects": []
+              }
+            ],
+            "provenance": {
+              "created_at": "2026-10-29T16:42:21.548512+00:00",
+              "session_id": "ps_36d6c9be436d",
+              "updated_at": "2026-10-29T16:42:21.548512+00:00"
+            },
+            "review": {
+              "status": "unreviewed"
+            },
+            "revision": "a35303ef3896e1a3222d9a0b56e84b3791cb99d736bd08e328edfe65c9cf491c"
+          },
+          "paper_id": "p_000001",
+          "schema": "scientific-tooling.selected-evidence.v1",
+          "source": {
+            "paper_ref": "rks:review-4ffaa85e60b743ddb0e7f87864fa39e4:p_000001:sha256:d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+            "session_id": "ps_36d6c9be436d",
+            "source_id": "reader-c2787cecb5b041cb82e8c8f307afea70",
+            "system": "apw"
+          },
+          "workspace_id": "review-4ffaa85e60b743ddb0e7f87864fa39e4"
+        },
+        "rank": 1,
+        "matches": [
+          {
+            "field": "quote",
+            "role": "source",
+            "text": "Reading workflow test source.",
+            "page": 1,
+            "annotation_id": "ann_upgrade",
+            "matched_terms": [
+              "source"
+            ]
+          }
+        ],
+        "paper": {
+          "key": "p1",
+          "title": "input paper"
+        },
+        "passages": [
+          {
+            "anchor": null,
+            "annotation_id": "ann_upgrade",
+            "page": 1,
+            "quote": "Reading workflow test source.",
+            "rects": [],
+            "available": true,
+            "message": "Source and annotation revision verified; the viewer checks page text when opened.",
+            "url": "http://127.0.0.1:57328/?session_id=ps_36d6c9be436d&document_sha256=d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7&annotation_id=ann_upgrade&page=1&passage_sha256=00baae0c98a3c694abce91efaa11535dbd21dae26833bd2e00e472c68540da07"
+          }
+        ]
+      }
+    ],
+    "unavailable_evidence": [],
+    "question": "Candidate upgrade engineering fixture",
+    "pending_papers": [],
+    "reader_hint": "Use sci resume with this workspace if the reader is stopped."
+  },
+  "history": {
+    "schema": "scientific-tooling.project-history.v1",
+    "editions": [],
+    "pending_briefs": [],
+    "legacy_briefs": [
+      {
+        "path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\upgrade-v2\\project\\briefs\\547a52c460294a77b3f4830cb06ad7f2.md",
+        "freshness": "unverified"
+      }
+    ]
+  },
+  "legacy_brief_preserved": true,
+  "exact_import_replay_count": 1,
+  "files": {
+    "events.db": "5716acf29d6386d22b5a25e820c72120d51a10ae88540b563d523f0fddaffa0a",
+    "events.db-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "events.db-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "server.lock": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "server.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workspace.json": "81d2fc6945bf35afbcae540f8da9d1bc267fa7f2cb1b5bdaa2f260240bfc4814",
+    "workspace.lock": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+    "briefs\\547a52c460294a77b3f4830cb06ad7f2.md": "757a5008fd2b3447e9939c9cb988568c3d9326c47d1adf9172de9523dabb997d",
+    "pdfs\\d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7.pdf": "d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+    "rks\\rks.sqlite3": "03446cf04e52f6e1b185af67947880fa83e3170375c6f9738ea8b09c5f7e5248",
+    "rks\\rks.sqlite3-shm": "fd4c9fda9cd3f9ae7c962b0ddf37232294d55580e1aa165aa06129b8549389eb",
+    "rks\\rks.sqlite3-wal": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rks\\papers\\p_000001\\extracted_text.json": "dfc74921023fe16c27d205ebd223bd8c4fc93e256c34cef132fb4a2250fef7d8",
+    "rks\\papers\\p_000001\\sections.json": "826be8c79f9e80cb78af73d0f285f752e24f8ea538b629db4ae4bd264a6ebab5",
+    "rks\\papers\\p_000001\\source.pdf": "d929f824eca6e5d91f1597b638462ff94cebd43bd70d80bb5ef407760b99bbd7",
+    "papers\\p1\\handoff.json": "eb034ca5eb8d16bb55927c108cdabe1ce704583a126f38966ce72e900d6b3f2f",
+    "imports\\23f309059e034b2b8f0cdff1a33d96c6\\evidence.json": "83ff0a86232ca9db047e8ec308aefb3a9abcb24cb28af0382225160ca5122a81",
+    "imports\\23f309059e034b2b8f0cdff1a33d96c6\\plan.json": "7561622391f9fb4dfce610b8e4bce6ed37d639c498da42978c1cfee4a0643f4c",
+    "imports\\23f309059e034b2b8f0cdff1a33d96c6\\receipt.json": "86cd4ed62e4f5703be581e39e59af6ec8aef6b997d159b9056c4797cefc42f92",
+    "comparisons\\requests\\eb7283f5407f41b9a2f60f323575a0e1.json": "6b1011b8ade070e0002e59e96adf526133111a5a5709276422e889ddd5a893eb"
+  }
+}

@@ -1,0 +1,1010 @@
+{
+  "schema": "scientific-tooling.imported-evidence-evaluation.v1",
+  "corpus_id": "scrna-methods-v1",
+  "corpus_revision": "1914a020d82932ebb8b38deb4fec326ea44aa825237d55a4ccfdc35d4a394112",
+  "questions_revision": "23ceba7982a9838bbd47d3396fe7c5afe483829f31ce8c6e745ae9be3f9c31c8",
+  "evaluated_at": "2026-10-29T17:17:35.644114+00:00",
+  "reference_status": "agent_draft_pending_domain_review",
+  "scientific_accuracy": null,
+  "domain_review_complete": false,
+  "scope": "Imported JATS excerpt notes, commentary role; no PDF passage anchors. Draft reference metrics only.",
+  "split_notice": "Paper-grouped public development/reserved split; no blind or sealed-test claim.",
+  "unanswerable_probes": 2,
+  "abstention_accuracy": null,
+  "methods": {
+    "rks-imported-note-bm25-v1": {
+      "aggregate": {
+        "development": {
+          "answerable_questions": 13,
+          "hit_at_1": 0.9230769230769231,
+          "hit_at_5": 0.9230769230769231,
+          "recall_at_5": 0.8717948717948718,
+          "mrr_at_10": 0.9307692307692308,
+          "hit_at_5_numerator": 12,
+          "hit_at_5_denominator": 13
+        },
+        "reserved": {
+          "answerable_questions": 5,
+          "hit_at_1": 1.0,
+          "hit_at_5": 1.0,
+          "recall_at_5": 1.0,
+          "mrr_at_10": 1.0,
+          "hit_at_5_numerator": 5,
+          "hit_at_5_denominator": 5
+        },
+        "all": {
+          "answerable_questions": 18,
+          "hit_at_1": 0.9444444444444444,
+          "hit_at_5": 0.9444444444444444,
+          "recall_at_5": 0.9074074074074073,
+          "mrr_at_10": 0.9500000000000001,
+          "hit_at_5_numerator": 17,
+          "hit_at_5_denominator": 18
+        }
+      },
+      "questions": [
+        {
+          "id": "q01",
+          "split": "development",
+          "cases": [
+            "numerical",
+            "approximation"
+          ],
+          "expected_passages": [
+            "vieth2019.abstract"
+          ],
+          "ranking": [
+            "vieth2019.abstract",
+            "lause2021.model",
+            "vieth2019.normalization",
+            "lause2021.caveat",
+            "luecken2022.abstract",
+            "lause2021.runtimes",
+            "hafemeister2019.depth",
+            "lun2016.assumptions",
+            "squair2021.abstract"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "vieth2019.abstract",
+            "vieth2019.abstract.whitespace-copy",
+            "lause2021.model",
+            "vieth2019.normalization",
+            "lause2021.caveat",
+            "luecken2022.abstract",
+            "lause2021.runtimes",
+            "hafemeister2019.depth",
+            "lun2016.assumptions",
+            "squair2021.abstract"
+          ]
+        },
+        {
+          "id": "q02",
+          "split": "development",
+          "cases": [
+            "conditional",
+            "method_comparison"
+          ],
+          "expected_passages": [
+            "vieth2019.normalization"
+          ],
+          "ranking": [
+            "lause2021.caveat",
+            "crowell2020.abstract",
+            "hafemeister2019.abstract",
+            "vieth2019.abstract",
+            "lun2016.abstract",
+            "zimmerman2021.abstract",
+            "lun2016.assumptions",
+            "lause2021.model",
+            "vieth2019.normalization"
+          ],
+          "metrics": {
+            "hit_at_1": 0.0,
+            "hit_at_5": 0.0,
+            "recall_at_5": 0.0,
+            "mrr_at_10": 0.1
+          },
+          "native_ranking": [
+            "lause2021.caveat",
+            "crowell2020.abstract",
+            "hafemeister2019.abstract",
+            "vieth2019.abstract",
+            "vieth2019.abstract.whitespace-copy",
+            "lun2016.abstract",
+            "zimmerman2021.abstract",
+            "lun2016.assumptions",
+            "lause2021.model",
+            "vieth2019.normalization"
+          ]
+        },
+        {
+          "id": "q03",
+          "split": "development",
+          "cases": [
+            "method",
+            "scope"
+          ],
+          "expected_passages": [
+            "hafemeister2019.abstract"
+          ],
+          "ranking": [
+            "hafemeister2019.abstract",
+            "lause2021.model",
+            "lause2021.caveat",
+            "townes2019.umi-read",
+            "townes2019.abstract",
+            "lun2016.assumptions",
+            "zimmerman2021.abstract",
+            "luecken2022.tradeoff",
+            "squair2021.abstract",
+            "lause2021.runtimes"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "hafemeister2019.abstract",
+            "lause2021.model",
+            "lause2021.caveat",
+            "townes2019.umi-read",
+            "townes2019.abstract",
+            "lun2016.assumptions",
+            "zimmerman2021.abstract",
+            "luecken2022.tradeoff",
+            "squair2021.abstract",
+            "lause2021.runtimes"
+          ]
+        },
+        {
+          "id": "q04",
+          "split": "development",
+          "cases": [
+            "incomplete_context",
+            "unsupported_guarantee"
+          ],
+          "expected_passages": [],
+          "ranking": [
+            "lause2021.caveat",
+            "luecken2022.abstract",
+            "hafemeister2019.depth",
+            "crowell2020.abstract",
+            "squair2021.abstract",
+            "hafemeister2019.abstract",
+            "townes2019.abstract",
+            "zimmerman2021.type1-caption",
+            "lun2016.assumptions",
+            "vieth2019.abstract"
+          ],
+          "metrics": null,
+          "native_ranking": [
+            "lause2021.caveat",
+            "luecken2022.abstract",
+            "hafemeister2019.depth",
+            "crowell2020.abstract",
+            "squair2021.abstract",
+            "hafemeister2019.abstract",
+            "townes2019.abstract",
+            "zimmerman2021.type1-caption",
+            "lun2016.assumptions",
+            "vieth2019.abstract"
+          ]
+        },
+        {
+          "id": "q05",
+          "split": "development",
+          "cases": [
+            "negation",
+            "measurement_scope"
+          ],
+          "expected_passages": [
+            "townes2019.abstract",
+            "townes2019.umi-read"
+          ],
+          "ranking": [
+            "townes2019.umi-read",
+            "townes2019.abstract",
+            "lause2021.model",
+            "lun2016.assumptions",
+            "zappia2017.models",
+            "zimmerman2021.abstract",
+            "lun2016.abstract",
+            "hafemeister2019.abstract",
+            "zimmerman2021.type1-caption",
+            "vieth2019.normalization"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "townes2019.umi-read",
+            "townes2019.abstract",
+            "lause2021.model",
+            "lun2016.assumptions",
+            "zappia2017.models",
+            "zimmerman2021.abstract",
+            "lun2016.abstract",
+            "hafemeister2019.abstract",
+            "zimmerman2021.type1-caption",
+            "vieth2019.normalization"
+          ]
+        },
+        {
+          "id": "q06",
+          "split": "development",
+          "cases": [
+            "method"
+          ],
+          "expected_passages": [
+            "townes2019.abstract"
+          ],
+          "ranking": [
+            "townes2019.abstract",
+            "lause2021.model",
+            "hafemeister2019.abstract",
+            "zimmerman2021.abstract",
+            "lun2016.assumptions",
+            "luecken2022.abstract",
+            "luecken2022.tasks",
+            "hafemeister2019.depth",
+            "lause2021.runtimes",
+            "crowell2020.abstract"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "townes2019.abstract",
+            "lause2021.model",
+            "hafemeister2019.abstract",
+            "zimmerman2021.abstract",
+            "lun2016.assumptions",
+            "luecken2022.abstract",
+            "luecken2022.tasks",
+            "hafemeister2019.depth",
+            "lause2021.runtimes",
+            "crowell2020.abstract"
+          ]
+        },
+        {
+          "id": "q07",
+          "split": "development",
+          "cases": [
+            "negation",
+            "qualification"
+          ],
+          "expected_passages": [
+            "lause2021.caveat"
+          ],
+          "ranking": [
+            "lause2021.caveat",
+            "lause2021.model",
+            "hafemeister2019.abstract",
+            "lun2016.assumptions",
+            "lause2021.runtimes",
+            "zimmerman2021.abstract",
+            "hafemeister2019.depth",
+            "vieth2019.abstract",
+            "squair2021.abstract"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "lause2021.caveat",
+            "lause2021.model",
+            "hafemeister2019.abstract",
+            "lun2016.assumptions",
+            "lause2021.runtimes",
+            "zimmerman2021.abstract",
+            "hafemeister2019.depth",
+            "vieth2019.abstract",
+            "vieth2019.abstract.whitespace-copy",
+            "squair2021.abstract"
+          ]
+        },
+        {
+          "id": "q08",
+          "split": "development",
+          "cases": [
+            "table",
+            "numerical",
+            "units"
+          ],
+          "expected_passages": [
+            "lause2021.runtimes"
+          ],
+          "ranking": [
+            "lause2021.runtimes",
+            "lause2021.model",
+            "lause2021.caveat",
+            "luecken2022.tasks",
+            "hafemeister2019.abstract",
+            "townes2019.abstract",
+            "zimmerman2021.type1-caption",
+            "lun2016.assumptions",
+            "zimmerman2021.abstract",
+            "luecken2022.tradeoff"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "lause2021.runtimes",
+            "lause2021.model",
+            "lause2021.caveat",
+            "luecken2022.tasks",
+            "hafemeister2019.abstract",
+            "townes2019.abstract",
+            "zimmerman2021.type1-caption",
+            "lun2016.assumptions",
+            "zimmerman2021.abstract",
+            "luecken2022.tradeoff"
+          ]
+        },
+        {
+          "id": "q09",
+          "split": "development",
+          "cases": [
+            "negation",
+            "experimental_unit"
+          ],
+          "expected_passages": [
+            "squair2021.abstract"
+          ],
+          "ranking": [
+            "squair2021.abstract",
+            "lause2021.caveat",
+            "lause2021.model",
+            "luecken2022.tradeoff",
+            "townes2019.umi-read",
+            "lun2016.assumptions",
+            "luecken2022.abstract",
+            "townes2019.abstract",
+            "hafemeister2019.abstract",
+            "hafemeister2019.depth"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "squair2021.abstract",
+            "lause2021.caveat",
+            "lause2021.model",
+            "luecken2022.tradeoff",
+            "townes2019.umi-read",
+            "lun2016.assumptions",
+            "luecken2022.abstract",
+            "townes2019.abstract",
+            "hafemeister2019.abstract",
+            "hafemeister2019.depth"
+          ]
+        },
+        {
+          "id": "q10",
+          "split": "development",
+          "cases": [
+            "numerical",
+            "design"
+          ],
+          "expected_passages": [
+            "squair2021.benchmark"
+          ],
+          "ranking": [
+            "squair2021.benchmark",
+            "lause2021.model",
+            "lause2021.runtimes",
+            "vieth2019.normalization",
+            "townes2019.abstract",
+            "crowell2020.samples",
+            "lause2021.caveat",
+            "crowell2020.cell-count",
+            "zimmerman2021.type1-caption",
+            "luecken2022.tasks"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "squair2021.benchmark",
+            "lause2021.model",
+            "lause2021.runtimes",
+            "vieth2019.normalization",
+            "townes2019.abstract",
+            "crowell2020.samples",
+            "lause2021.caveat",
+            "crowell2020.cell-count",
+            "zimmerman2021.type1-caption",
+            "luecken2022.tasks"
+          ]
+        },
+        {
+          "id": "q11",
+          "split": "development",
+          "cases": [
+            "negation",
+            "experimental_unit"
+          ],
+          "expected_passages": [
+            "zimmerman2021.abstract"
+          ],
+          "ranking": [
+            "zimmerman2021.abstract",
+            "townes2019.umi-read",
+            "squair2021.benchmark",
+            "lause2021.model",
+            "crowell2020.abstract",
+            "townes2019.abstract",
+            "vieth2019.normalization",
+            "zappia2017.abstract",
+            "crowell2020.samples",
+            "crowell2020.cell-count"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "zimmerman2021.abstract",
+            "townes2019.umi-read",
+            "squair2021.benchmark",
+            "lause2021.model",
+            "crowell2020.abstract",
+            "townes2019.abstract",
+            "vieth2019.normalization",
+            "zappia2017.abstract",
+            "crowell2020.samples",
+            "crowell2020.cell-count"
+          ]
+        },
+        {
+          "id": "q12",
+          "split": "development",
+          "cases": [
+            "conflicting_findings",
+            "valid_uncertainty",
+            "multiple_sources"
+          ],
+          "expected_passages": [
+            "zimmerman2021.abstract",
+            "squair2021.abstract",
+            "squair2021.benchmark"
+          ],
+          "ranking": [
+            "zimmerman2021.abstract",
+            "crowell2020.abstract",
+            "zimmerman2021.type1-caption",
+            "zappia2017.models",
+            "lause2021.model",
+            "lun2016.assumptions",
+            "squair2021.benchmark",
+            "squair2021.abstract",
+            "lause2021.caveat",
+            "hafemeister2019.abstract"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 0.3333333333333333,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "zimmerman2021.abstract",
+            "crowell2020.abstract",
+            "zimmerman2021.type1-caption",
+            "zappia2017.models",
+            "lause2021.model",
+            "lun2016.assumptions",
+            "squair2021.benchmark",
+            "squair2021.abstract",
+            "lause2021.caveat",
+            "hafemeister2019.abstract"
+          ]
+        },
+        {
+          "id": "q13",
+          "split": "development",
+          "cases": [
+            "experimental_unit",
+            "method"
+          ],
+          "expected_passages": [
+            "crowell2020.abstract"
+          ],
+          "ranking": [
+            "crowell2020.abstract",
+            "hafemeister2019.depth",
+            "lause2021.caveat",
+            "zimmerman2021.abstract",
+            "luecken2022.abstract",
+            "squair2021.benchmark",
+            "squair2021.abstract",
+            "lun2016.assumptions",
+            "lause2021.runtimes",
+            "zimmerman2021.type1-caption"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "crowell2020.abstract",
+            "hafemeister2019.depth",
+            "lause2021.caveat",
+            "zimmerman2021.abstract",
+            "luecken2022.abstract",
+            "squair2021.benchmark",
+            "squair2021.abstract",
+            "lun2016.assumptions",
+            "lause2021.runtimes",
+            "zimmerman2021.type1-caption"
+          ]
+        },
+        {
+          "id": "q14",
+          "split": "development",
+          "cases": [
+            "numerical",
+            "units",
+            "paired_design"
+          ],
+          "expected_passages": [
+            "crowell2020.samples"
+          ],
+          "ranking": [
+            "crowell2020.samples",
+            "lause2021.runtimes",
+            "luecken2022.tasks",
+            "crowell2020.abstract",
+            "zimmerman2021.abstract",
+            "zimmerman2021.type1-caption",
+            "vieth2019.normalization",
+            "lause2021.caveat",
+            "lun2016.abstract",
+            "squair2021.abstract"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "crowell2020.samples",
+            "lause2021.runtimes",
+            "luecken2022.tasks",
+            "crowell2020.abstract",
+            "zimmerman2021.abstract",
+            "zimmerman2021.type1-caption",
+            "vieth2019.normalization",
+            "lause2021.caveat",
+            "lun2016.abstract",
+            "squair2021.abstract"
+          ]
+        },
+        {
+          "id": "q15",
+          "split": "reserved",
+          "cases": [
+            "numerical",
+            "scope"
+          ],
+          "expected_passages": [
+            "luecken2022.abstract"
+          ],
+          "ranking": [
+            "luecken2022.abstract",
+            "zimmerman2021.type1-caption",
+            "luecken2022.tasks",
+            "luecken2022.tradeoff",
+            "vieth2019.normalization",
+            "hafemeister2019.depth",
+            "lause2021.caveat",
+            "lun2016.abstract",
+            "squair2021.abstract",
+            "crowell2020.samples"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "luecken2022.abstract",
+            "zimmerman2021.type1-caption",
+            "luecken2022.tasks",
+            "luecken2022.tradeoff",
+            "vieth2019.normalization",
+            "hafemeister2019.depth",
+            "lause2021.caveat",
+            "lun2016.abstract",
+            "squair2021.abstract",
+            "crowell2020.samples"
+          ]
+        },
+        {
+          "id": "q16",
+          "split": "reserved",
+          "cases": [
+            "table",
+            "numerical",
+            "row_scope"
+          ],
+          "expected_passages": [
+            "luecken2022.tasks"
+          ],
+          "ranking": [
+            "luecken2022.tasks",
+            "luecken2022.tradeoff",
+            "zimmerman2021.type1-caption",
+            "lause2021.runtimes",
+            "luecken2022.abstract",
+            "townes2019.umi-read",
+            "zimmerman2021.abstract",
+            "hafemeister2019.abstract",
+            "lun2016.assumptions",
+            "lause2021.caveat"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "luecken2022.tasks",
+            "luecken2022.tradeoff",
+            "zimmerman2021.type1-caption",
+            "lause2021.runtimes",
+            "luecken2022.abstract",
+            "townes2019.umi-read",
+            "zimmerman2021.abstract",
+            "hafemeister2019.abstract",
+            "lun2016.assumptions",
+            "lause2021.caveat"
+          ]
+        },
+        {
+          "id": "q17",
+          "split": "reserved",
+          "cases": [
+            "negation",
+            "conditional",
+            "numerical"
+          ],
+          "expected_passages": [
+            "lun2016.assumptions"
+          ],
+          "ranking": [
+            "lun2016.assumptions",
+            "lause2021.caveat",
+            "vieth2019.normalization",
+            "vieth2019.abstract",
+            "zimmerman2021.abstract",
+            "hafemeister2019.depth",
+            "crowell2020.abstract",
+            "lun2016.abstract",
+            "lause2021.model"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "lun2016.assumptions",
+            "lause2021.caveat",
+            "vieth2019.normalization",
+            "vieth2019.abstract",
+            "vieth2019.abstract.whitespace-copy",
+            "zimmerman2021.abstract",
+            "hafemeister2019.depth",
+            "crowell2020.abstract",
+            "lun2016.abstract",
+            "lause2021.model"
+          ]
+        },
+        {
+          "id": "q18",
+          "split": "reserved",
+          "cases": [
+            "method"
+          ],
+          "expected_passages": [
+            "lun2016.abstract"
+          ],
+          "ranking": [
+            "lun2016.abstract",
+            "hafemeister2019.abstract",
+            "crowell2020.samples",
+            "lun2016.assumptions",
+            "townes2019.abstract",
+            "lause2021.runtimes",
+            "vieth2019.normalization",
+            "squair2021.benchmark",
+            "lause2021.caveat",
+            "lause2021.model"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "lun2016.abstract",
+            "hafemeister2019.abstract",
+            "crowell2020.samples",
+            "lun2016.assumptions",
+            "townes2019.abstract",
+            "lause2021.runtimes",
+            "vieth2019.normalization",
+            "squair2021.benchmark",
+            "lause2021.caveat",
+            "lause2021.model"
+          ]
+        },
+        {
+          "id": "q19",
+          "split": "reserved",
+          "cases": [
+            "method",
+            "historical_version"
+          ],
+          "expected_passages": [
+            "zappia2017.abstract"
+          ],
+          "ranking": [
+            "zappia2017.abstract",
+            "lause2021.model",
+            "lun2016.assumptions",
+            "squair2021.benchmark",
+            "townes2019.umi-read",
+            "crowell2020.abstract",
+            "hafemeister2019.abstract",
+            "vieth2019.abstract",
+            "zappia2017.models"
+          ],
+          "metrics": {
+            "hit_at_1": 1.0,
+            "hit_at_5": 1.0,
+            "recall_at_5": 1.0,
+            "mrr_at_10": 1.0
+          },
+          "native_ranking": [
+            "zappia2017.abstract",
+            "lause2021.model",
+            "lun2016.assumptions",
+            "squair2021.benchmark",
+            "townes2019.umi-read",
+            "crowell2020.abstract",
+            "hafemeister2019.abstract",
+            "vieth2019.abstract",
+            "vieth2019.abstract.whitespace-copy",
+            "zappia2017.models"
+          ]
+        },
+        {
+          "id": "q20",
+          "split": "reserved",
+          "cases": [
+            "incomplete_context",
+            "abstention"
+          ],
+          "expected_passages": [],
+          "ranking": [
+            "crowell2020.samples",
+            "zappia2017.abstract",
+            "squair2021.abstract",
+            "zappia2017.models",
+            "zimmerman2021.abstract",
+            "vieth2019.normalization",
+            "lun2016.abstract",
+            "crowell2020.cell-count",
+            "crowell2020.abstract",
+            "lause2021.caveat"
+          ],
+          "metrics": null,
+          "native_ranking": [
+            "crowell2020.samples",
+            "zappia2017.abstract",
+            "squair2021.abstract",
+            "zappia2017.models",
+            "zimmerman2021.abstract",
+            "vieth2019.normalization",
+            "lun2016.abstract",
+            "crowell2020.cell-count",
+            "crowell2020.abstract",
+            "lause2021.caveat"
+          ]
+        }
+      ]
+    }
+  },
+  "fixture_revision": "1855366941db50b502430d6899d959fd4fd564543c5c120dca0a17cc8cfc356a",
+  "candidate": {
+    "candidate": "2026-10-29-c1",
+    "manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc",
+    "packages": {
+      "scientific-tooling": {
+        "version": "0.4.0.dev20261029",
+        "checked_files": 16,
+        "module_path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Lib\\site-packages\\scientific_tooling",
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=03567b270e91be9ef0b57daa2b413deed1580b993522fc648fdfe9cee931945d",
+            "hashes": {
+              "sha256": "03567b270e91be9ef0b57daa2b413deed1580b993522fc648fdfe9cee931945d"
+            }
+          },
+          "url": "file:///C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/wheels/scientific_tooling-0.4.0.dev20261029-py3-none-any.whl"
+        }
+      },
+      "agent-pdf-workbench": {
+        "version": "0.3.2.dev20261029",
+        "checked_files": 19,
+        "module_path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Lib\\site-packages\\agent_pdf_workbench",
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=b3107c3834b002c6ceaec27b79540d4ee77dd867fb08b1afb3d9f273baf61f18",
+            "hashes": {
+              "sha256": "b3107c3834b002c6ceaec27b79540d4ee77dd867fb08b1afb3d9f273baf61f18"
+            }
+          },
+          "url": "file:///C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/wheels/agent_pdf_workbench-0.3.2.dev20261029-py3-none-any.whl"
+        }
+      },
+      "research-knowledge-substrate": {
+        "version": "0.2.0",
+        "checked_files": 122,
+        "module_path": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Lib\\site-packages\\rks",
+        "direct_url": {
+          "archive_info": {
+            "hash": "sha256=4da2e23a4654c81880ca87d3ba6cb546e36e25cb2a15582d7f7a598c7570a992",
+            "hashes": {
+              "sha256": "4da2e23a4654c81880ca87d3ba6cb546e36e25cb2a15582d7f7a598c7570a992"
+            }
+          },
+          "url": "file:///C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/wheels/research_knowledge_substrate-0.2.0-py3-none-any.whl"
+        }
+      }
+    }
+  },
+  "acceptance_gate": "pending_independent_labels_and_new_held_out_questions",
+  "endpoint": "rks note search-evidence via sci Workspace.search and HostedWorkflow.search",
+  "precision": null,
+  "source_navigation_acceptance": false,
+  "provenance": {
+    "python": "3.14.10 (main, Oct 26 2026, 14:10:46) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "harness_sha256": {
+      "research_imported_evidence.py": "05ef75fa892d453e75536c3ae744697a4766ba9f80815d4934d982fa4e45f915",
+      "research_corpus.py": "402f2ff3a82b859655ac64eb2b9b27fc70b75e113b3ca7abcedb00e8cc68977c"
+    },
+    "native_result_policy": "Top ten native evidence records, in returned order. Apply each cutoff to native result slots BEFORE collapsing canonical duplicates; never backfill. No precision or scientific-accuracy claim.",
+    "timings": [
+      {
+        "question_id": "q01",
+        "seconds_including_cli_startup": 0.5833519999869168
+      },
+      {
+        "question_id": "q02",
+        "seconds_including_cli_startup": 0.4893150001298636
+      },
+      {
+        "question_id": "q03",
+        "seconds_including_cli_startup": 0.5070552001707256
+      },
+      {
+        "question_id": "q04",
+        "seconds_including_cli_startup": 0.4702526000328362
+      },
+      {
+        "question_id": "q05",
+        "seconds_including_cli_startup": 0.45640049991197884
+      },
+      {
+        "question_id": "q06",
+        "seconds_including_cli_startup": 0.47153490013442934
+      },
+      {
+        "question_id": "q07",
+        "seconds_including_cli_startup": 0.4726698000449687
+      },
+      {
+        "question_id": "q08",
+        "seconds_including_cli_startup": 0.5505735999904573
+      },
+      {
+        "question_id": "q09",
+        "seconds_including_cli_startup": 0.509081199998036
+      },
+      {
+        "question_id": "q10",
+        "seconds_including_cli_startup": 0.5012617998290807
+      },
+      {
+        "question_id": "q11",
+        "seconds_including_cli_startup": 0.5043951000552624
+      },
+      {
+        "question_id": "q12",
+        "seconds_including_cli_startup": 0.4990594000555575
+      },
+      {
+        "question_id": "q13",
+        "seconds_including_cli_startup": 0.48599330009892583
+      },
+      {
+        "question_id": "q14",
+        "seconds_including_cli_startup": 0.7102452998515218
+      },
+      {
+        "question_id": "q15",
+        "seconds_including_cli_startup": 0.569782700156793
+      },
+      {
+        "question_id": "q16",
+        "seconds_including_cli_startup": 0.5077291000634432
+      },
+      {
+        "question_id": "q17",
+        "seconds_including_cli_startup": 0.49627599981613457
+      },
+      {
+        "question_id": "q18",
+        "seconds_including_cli_startup": 0.5254927000496536
+      },
+      {
+        "question_id": "q19",
+        "seconds_including_cli_startup": 0.6686255000531673
+      },
+      {
+        "question_id": "q20",
+        "seconds_including_cli_startup": 0.5485068000853062
+      }
+    ],
+    "hosted_scope": "Real hosted handler calls; HTTP transport/browser not measured here"
+  },
+  "checks": {
+    "read_only_bytes_unchanged": true,
+    "exact_replay": true,
+    "cli_hosted_same_rankings": true,
+    "empty_query": true,
+    "review_filter": true,
+    "paper_filter": true,
+    "foreign_session_rejected": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "pending": 26,
+    "approved": 0,
+    "revise": 0,
+    "exclude": 0
+  },
+  "all_targets_approved": false,
+  "held_out_submissions": 0,
+  "held_out_evaluation": "not_performed",
+  "release_gate_passed": false,
+  "scientific_accuracy": null,
+  "provenance": "Caller assertions, not authenticated identities. This command never writes scientific review into RKS."
+}

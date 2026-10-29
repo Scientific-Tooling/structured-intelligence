@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "total_tests": 128,
+  "test_counts": {
+    "workflow": 19,
+    "discovery": 12,
+    "state": 4,
+    "maintenance": 21,
+    "analysis": 9,
+    "adapters": 61,
+    "boundary": 2
+  },
+  "apw_commit": "4c3a379123847aff42e221013ae4c49a4149997d",
+  "rks_commit": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+  "apw_hosted_ci": {
+    "run_id": 40931374863,
+    "conclusion": "success",
+    "url": "https://github.com/Scientific-Tooling/agent-pdf-workbench/actions/runs/40931374863"
+  },
+  "source_publication_only": true,
+  "independent_scientific_review": "pending"
+}

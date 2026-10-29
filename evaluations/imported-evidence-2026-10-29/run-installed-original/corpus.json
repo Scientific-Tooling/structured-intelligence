@@ -1,0 +1,755 @@
+{
+  "schema": "scientific-tooling.corpus.v1",
+  "id": "scrna-methods-v1",
+  "created_at": "2026-10-26",
+  "topic": "Single-cell RNA-seq methods: normalization, sample-aware differential expression, integration, and simulation",
+  "curation": {
+    "agent": "Codex",
+    "status": "candidate_reference_set",
+    "domain_review": "pending",
+    "limitations": [
+      "Ten purposively selected methods papers are a starter corpus, not a representative sample of all single-cell research.",
+      "Question answers and relevance judgments are agent-drafted, source-checked candidates requiring independent domain review.",
+      "The reserved split is public and was authored with this corpus; it is not a sealed or blind evaluation."
+    ]
+  },
+  "papers": [
+    {
+      "id": "vieth2019",
+      "title": "A systematic evaluation of single cell RNA-seq analysis pipelines",
+      "authors": [
+        "Beate Vieth",
+        "Swati Parekh",
+        "Christoph Ziegenhain",
+        "Wolfgang Enard",
+        "Ines Hellmann"
+      ],
+      "doi": "10.1038/s41467-019-12266-7",
+      "pmcid": "PMC6789098",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6789098/",
+      "publisher_url": "https://doi.org/10.1038/s41467-019-12266-7",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6789098/fullTextXML",
+        "sha256": "baad86bf2478429d01e59a7a263a69638522759d4c03f00e7f88bd28360d788c",
+        "size_bytes": 121556
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-019-12266-7.pdf",
+        "sha256": "112dcf8fe1db9ff5c33e05bda563e678cff5254ceffe8521dd37f439ae0c2940",
+        "size_bytes": 3995480,
+        "page_count": 11
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article\u2019s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article\u2019s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "40610f514a023addaaded0b956f6d392f035a44f501dabef6662c19fe8d9c15a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "hafemeister2019",
+      "title": "Normalization and variance stabilization of single-cell RNA-seq data using regularized negative binomial regression",
+      "authors": [
+        "Christoph Hafemeister",
+        "Rahul Satija"
+      ],
+      "doi": "10.1186/s13059-019-1874-1",
+      "pmcid": "PMC6927181",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6927181/",
+      "publisher_url": "https://doi.org/10.1186/s13059-019-1874-1",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6927181/fullTextXML",
+        "sha256": "575d6101c7cacbe08e8b83d75ad09dea04b21eee33c1ba8b61ba93cc23784ba5",
+        "size_bytes": 120526
+      },
+      "pdf": {
+        "url": "https://link.springer.com/content/pdf/10.1186/s13059-019-1874-1.pdf",
+        "sha256": "6926a728faa6400b2e3945931b078f088e1873cc220e59eec782ed2e8e255b4a",
+        "size_bytes": 5378176,
+        "page_count": 15
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The Creative Commons Public Domain Dedication waiver (http://creativecommons.org/publicdomain/zero/1.0/) applies to the data made available in this article, unless otherwise stated.",
+        "evidence_sha256": "555297b929502cefaa778c4a0c6a53294e5de38d9db1044508a4b3d59a602948",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "townes2019",
+      "title": "Feature selection and dimension reduction for single-cell RNA-Seq based on a multinomial model",
+      "authors": [
+        "F William Townes",
+        "Stephanie C Hicks",
+        "Martin J Aryee",
+        "Rafael A Irizarry"
+      ],
+      "doi": "10.1186/s13059-019-1861-6",
+      "pmcid": "PMC6927135",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6927135/",
+      "publisher_url": "https://doi.org/10.1186/s13059-019-1861-6",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6927135/fullTextXML",
+        "sha256": "3bcd7817e357ef4343060c959c6973b8391ea7a0294b06261d2e45c2f696cf4e",
+        "size_bytes": 189574
+      },
+      "pdf": {
+        "url": "https://link.springer.com/content/pdf/10.1186/s13059-019-1861-6.pdf",
+        "sha256": "5d3382bfbf474e6266a1278460e5d3e54166405f975ce1e92bdbacfca414e2ae",
+        "size_bytes": 3811035,
+        "page_count": 16
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The Creative Commons Public Domain Dedication waiver(http://creativecommons.org/publicdomain/zero/1.0/) applies to the data made available in this article, unless otherwise stated.",
+        "evidence_sha256": "90aa029174335be2f0eeef9892176bac24a81950524e3dc1fb7753a3b7e54fb9",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "lause2021",
+      "title": "Analytic Pearson residuals for normalization of single-cell RNA-seq UMI data",
+      "authors": [
+        "Jan Lause",
+        "Philipp Berens",
+        "Dmitry Kobak"
+      ],
+      "doi": "10.1186/s13059-021-02451-7",
+      "pmcid": "PMC8419999",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8419999/",
+      "publisher_url": "https://doi.org/10.1186/s13059-021-02451-7",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8419999/fullTextXML",
+        "sha256": "15b8ff0f4abb46b6fd1245968db39f5538d1402c9d0d7dd7295115ae832b6bdc",
+        "size_bytes": 265527
+      },
+      "pdf": {
+        "url": "https://link.springer.com/content/pdf/10.1186/s13059-021-02451-7.pdf",
+        "sha256": "673d6bd4ed3f6ea2d90067f0e046decb118ff281bf482a7fdad444ab52b03ddc",
+        "size_bytes": 2150409,
+        "page_count": 20
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article\u2019s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article\u2019s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/. The Creative Commons Public Domain Dedication waiver (http://creativecommons.org/publicdomain/zero/1.0/) applies to the data made available in this article, unless otherwise stated in a credit line to the data.",
+        "evidence_sha256": "1df29047f66e1f8586fe6a6a2bea2db644b9c22892cf30646493ded527c98d5a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "squair2021",
+      "title": "Confronting false discoveries in single-cell differential expression",
+      "authors": [
+        "Jordan W. Squair",
+        "Matthieu Gautier",
+        "Claudia Kathe",
+        "Mark A. Anderson",
+        "Nicholas D. James",
+        "Thomas H. Hutson",
+        "R\u00e9mi Hudelle",
+        "Taha Qaiser",
+        "Kaya J. E. Matson",
+        "Quentin Barraud",
+        "Ariel J. Levine",
+        "Gioele La Manno",
+        "Michael A. Skinnider",
+        "Gr\u00e9goire Courtine"
+      ],
+      "doi": "10.1038/s41467-021-25960-2",
+      "pmcid": "PMC8479118",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8479118/",
+      "publisher_url": "https://doi.org/10.1038/s41467-021-25960-2",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8479118/fullTextXML",
+        "sha256": "b57cae308d321f956f9faf08e17409270a6c42e5688ae4aa80c36cda54c00ac9",
+        "size_bytes": 206175
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-021-25960-2.pdf",
+        "sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "size_bytes": 6800245,
+        "page_count": 15
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article\u2019s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article\u2019s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "40610f514a023addaaded0b956f6d392f035a44f501dabef6662c19fe8d9c15a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "zimmerman2021",
+      "title": "A practical solution to pseudoreplication bias in single-cell studies",
+      "authors": [
+        "Kip D Zimmerman",
+        "Mark A Espeland",
+        "Carl D Langefeld"
+      ],
+      "doi": "10.1038/s41467-021-21038-1",
+      "pmcid": "PMC7854630",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7854630/",
+      "publisher_url": "https://doi.org/10.1038/s41467-021-21038-1",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7854630/fullTextXML",
+        "sha256": "ceb08f28de71780ed7379e5957f55e13ea0e7601d72568fc7dcd0fcba62fe3a0",
+        "size_bytes": 122162
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-021-21038-1.pdf",
+        "sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "size_bytes": 1037814,
+        "page_count": 9
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article\u2019s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article\u2019s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "57ee6918a4aad32a6cea3e908629424ea8fac29acb84e262d6c9ef40a096de1d",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "crowell2020",
+      "title": "muscat detects subpopulation-specific state transitions from multi-sample multi-condition single-cell transcriptomics data",
+      "authors": [
+        "Helena L. Crowell",
+        "Charlotte Soneson",
+        "Pierre-Luc Germain",
+        "Daniela Calini",
+        "Ludovic Collin",
+        "Catarina Raposo",
+        "Dheeraj Malhotra",
+        "Mark D. Robinson"
+      ],
+      "doi": "10.1038/s41467-020-19894-4",
+      "pmcid": "PMC7705760",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7705760/",
+      "publisher_url": "https://doi.org/10.1038/s41467-020-19894-4",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7705760/fullTextXML",
+        "sha256": "2b928a2e682ed7ec76e3f367182404c3fb472cc60af10d7efa1b4aad649a0553",
+        "size_bytes": 206022
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41467-020-19894-4.pdf",
+        "sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "size_bytes": 2817431,
+        "page_count": 12
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article\u2019s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article\u2019s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "40610f514a023addaaded0b956f6d392f035a44f501dabef6662c19fe8d9c15a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "luecken2022",
+      "title": "Benchmarking atlas-level data integration in single-cell genomics",
+      "authors": [
+        "Malte D. Luecken",
+        "M. B\u00fcttner",
+        "K. Chaichoompu",
+        "A. Danese",
+        "M. Interlandi",
+        "M. F. Mueller",
+        "D. C. Strobl",
+        "L. Zappia",
+        "M. Dugas",
+        "M. Colom\u00e9-Tatch\u00e9",
+        "Fabian J. Theis"
+      ],
+      "doi": "10.1038/s41592-021-01336-8",
+      "pmcid": "PMC8748196",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8748196/",
+      "publisher_url": "https://doi.org/10.1038/s41592-021-01336-8",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8748196/fullTextXML",
+        "sha256": "f65dd8b63336ff1a5045dad3cb9c5905ec3bb8b494a221f67dfbffb9a6f612db",
+        "size_bytes": 230141
+      },
+      "pdf": {
+        "url": "https://www.nature.com/articles/s41592-021-01336-8.pdf",
+        "sha256": "9383de7b64ae813371125ecfd92019834d32e835f1645baba4184c8738645e67",
+        "size_bytes": 10672133,
+        "page_count": 25
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "https://creativecommons.org/licenses/by/4.0/Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The images or other third party material in this article are included in the article\u2019s Creative Commons license, unless indicated otherwise in a credit line to the material. If material is not included in the article\u2019s Creative Commons license and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/.",
+        "evidence_sha256": "40610f514a023addaaded0b956f6d392f035a44f501dabef6662c19fe8d9c15a",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "lun2016",
+      "title": "Pooling across cells to normalize single-cell RNA sequencing data with many zero counts",
+      "authors": [
+        "Aaron T L Lun",
+        "Karsten Bach",
+        "John C Marioni"
+      ],
+      "doi": "10.1186/s13059-016-0947-7",
+      "pmcid": "PMC4848819",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4848819/",
+      "publisher_url": "https://doi.org/10.1186/s13059-016-0947-7",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4848819/fullTextXML",
+        "sha256": "9b5c62a7e01bd03b1e7ae8dc6233297743f18452a47e4ad563cf5e9bc2bff830",
+        "size_bytes": 129216
+      },
+      "pdf": {
+        "url": "https://link.springer.com/content/pdf/10.1186/s13059-016-0947-7.pdf",
+        "sha256": "42c11b662dd204b9bccb05d261d48e369583fc052c8ce72a32eba647164ce65d",
+        "size_bytes": 1520063,
+        "page_count": 14
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The Creative Commons Public Domain Dedication waiver (http://creativecommons.org/publicdomain/zero/1.0/) applies to the data made available in this article, unless otherwise stated.",
+        "evidence_sha256": "555297b929502cefaa778c4a0c6a53294e5de38d9db1044508a4b3d59a602948",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    },
+    {
+      "id": "zappia2017",
+      "title": "Splatter: simulation of single-cell RNA sequencing data",
+      "authors": [
+        "Luke Zappia",
+        "Belinda Phipson",
+        "Alicia Oshlack"
+      ],
+      "doi": "10.1186/s13059-017-1305-0",
+      "pmcid": "PMC5596896",
+      "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5596896/",
+      "publisher_url": "https://doi.org/10.1186/s13059-017-1305-0",
+      "xml": {
+        "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5596896/fullTextXML",
+        "sha256": "4de891c74213c2ec6cbd3fc4f1e0b8a50571481e0e09f06b847e41cec6756224",
+        "size_bytes": 133622
+      },
+      "pdf": {
+        "url": "https://link.springer.com/content/pdf/10.1186/s13059-017-1305-0.pdf",
+        "sha256": "d66e2607c882c09a0eb90d1b622d2e2bac817e6d7f1a91df118a239c086660b8",
+        "size_bytes": 2426340,
+        "page_count": 15
+      },
+      "license": {
+        "spdx": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/",
+        "evidence_text": "Open AccessThis article is distributed under the terms of the Creative Commons Attribution 4.0 International License (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made. The Creative Commons Public Domain Dedication waiver (http://creativecommons.org/publicdomain/zero/1.0/) applies to the data made available in this article, unless otherwise stated.",
+        "evidence_sha256": "e3346a9aeb6820e348f8fe7a68c141fed91fc1a6c60fc6bd9a57c9c71f9566ad",
+        "verified_at": "2026-10-26",
+        "verified_by": "agent:source-check",
+        "scope": "Authored text and selected authored tables only; no third-party images are redistributed."
+      }
+    }
+  ],
+  "passages": [
+    {
+      "id": "vieth2019.abstract",
+      "paper_id": "vieth2019",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "f450c1463a1425a33ac84201f1776c5057733967ef49bd7c850b045a084b23ee",
+      "start": 0,
+      "end": 1061,
+      "text": "The recent rapid spread of single cell RNA sequencing (scRNA-seq) methods has created a large variety of experimental and computational pipelines for which best practices have not yet been established. Here, we use simulations based on five scRNA-seq library protocols in combination with nine realistic differential expression (DE) setups to systematically evaluate three mapping, four imputation, seven normalisation and four differential expression testing approaches resulting in ~3000 pipelines, allowing us to also assess interactions among pipeline steps. We find that choices of normalisation and library preparation protocols have the biggest impact on scRNA-seq analyses. Specifically, we find that library preparation determines the ability to detect symmetric expression differences, while normalisation dominates pipeline performance in asymmetric DE-setups. Finally, we illustrate the importance of informed choices by showing that a good scRNA-seq pipeline can have the same impact on detecting a biological signal as quadrupling the sample size.",
+      "sha256": "f450c1463a1425a33ac84201f1776c5057733967ef49bd7c850b045a084b23ee"
+    },
+    {
+      "id": "vieth2019.normalization",
+      "paper_id": "vieth2019",
+      "kind": "text",
+      "selector": "body.p.13",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "04d97be90aa894dbae43c42b7b1d90f43ac208c8e3b7a759ae3958135bd737b9",
+      "start": 0,
+      "end": 767,
+      "text": "The next step in any RNA-seq analysis is the normalisation of the count matrix. The main idea here is that the resulting size factors correct for differing sequencing depths. In order to improve normalisation, spike-ins as an added standard can help, but are not feasible for all scRNA-seq library preparations. Another avenue to improve normalisation would be to deal with sparsity by imputing missing data prior to normalisation as discussed in the next chapter (Fig. 1c). To begin with, we compare how much the estimated size factors deviate from the truth. As long as there is only a small proportion of DE-genes or if the differences are symmetric, estimated size factors are not too far from the simulated ones and there are no large differences among methods (",
+      "sha256": "b9bf02eef249aa8a23a2ab344cab7b0b13ea66270dd38bc7f29b61305f658baa"
+    },
+    {
+      "id": "hafemeister2019.abstract",
+      "paper_id": "hafemeister2019",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "351e4542717b5cc869e7c839bf7b80940de38bbea86adaa9ee89fc2effbfe87c",
+      "start": 0,
+      "end": 1319,
+      "text": "Single-cell RNA-seq (scRNA-seq) data exhibits significant cell-to-cell variation due to technical factors, including the number of molecules detected in each cell, which can confound biological heterogeneity with technical effects. To address this, we present a modeling framework for the normalization and variance stabilization of molecular count data from scRNA-seq experiments. We propose that the Pearson residuals from \u201cregularized negative binomial regression,\u201d where cellular sequencing depth is utilized as a covariate in a generalized linear model, successfully remove the influence of technical characteristics from downstream analyses while preserving biological heterogeneity. Importantly, we show that an unconstrained negative binomial model may overfit scRNA-seq data, and overcome this by pooling information across genes with similar abundances to obtain stable parameter estimates. Our procedure omits the need for heuristic steps including pseudocount addition or log-transformation and improves common downstream analytical tasks such as variable gene selection, dimensional reduction, and differential expression. Our approach can be applied to any UMI-based scRNA-seq dataset and is freely available as part of the R package sctransform, with a direct interface to our single-cell toolkit Seurat.",
+      "sha256": "351e4542717b5cc869e7c839bf7b80940de38bbea86adaa9ee89fc2effbfe87c"
+    },
+    {
+      "id": "hafemeister2019.depth",
+      "paper_id": "hafemeister2019",
+      "kind": "text",
+      "selector": "body.p.3",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "8bb2be17673b2b0281ab8ef0933429510a196fb96f86a6190c817cea311fe1ab",
+      "start": 0,
+      "end": 262,
+      "text": "In general, the normalized expression level of a gene should not be correlated with the total sequencing depth of a cell. Downstream analytical tasks (dimensional reduction, differential expression) should also not be influenced by variation in sequencing depth.",
+      "sha256": "8bb2be17673b2b0281ab8ef0933429510a196fb96f86a6190c817cea311fe1ab"
+    },
+    {
+      "id": "townes2019.abstract",
+      "paper_id": "townes2019",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "df00edc2833a94e9e5282e027999ed5c01906608f56f1be1a413b51dc29a6706",
+      "start": 0,
+      "end": 699,
+      "text": "Single-cell RNA-Seq (scRNA-Seq) profiles gene expression of individual cells. Recent scRNA-Seq datasets have incorporated unique molecular identifiers (UMIs). Using negative controls, we show UMI counts follow multinomial sampling with no zero inflation. Current normalization procedures such as log of counts per million and feature selection by highly variable genes produce false variability in dimension reduction. We propose simple multinomial methods, including generalized principal component analysis (GLM-PCA) for non-normal distributions, and feature selection using deviance. These methods outperform the current practice in a downstream clustering assessment using ground truth datasets.",
+      "sha256": "df00edc2833a94e9e5282e027999ed5c01906608f56f1be1a413b51dc29a6706"
+    },
+    {
+      "id": "townes2019.umi-read",
+      "paper_id": "townes2019",
+      "kind": "text",
+      "selector": "body.p.14",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "3447e036a97a136662706047a2e6c4a8c2fc9db729c15dd92628f4fb483907c8",
+      "start": 0,
+      "end": 636,
+      "text": "To illustrate the marked difference between UMI count distributions and read count distributions, we created histograms from individual genes and spike-ins of the negative control data. Here, the UMI counts are the computationally de-duplicated versions of the read counts; both measurements are from the same experiment, so no differences are due to technical or biological variation. The results suggest that while read counts appear zero-inflated and multimodal, UMI counts follow a discrete distribution with no zero inflation (Additional file 1: Figure S1). The apparent zero inflation in read counts is a result of PCR duplicates.",
+      "sha256": "3447e036a97a136662706047a2e6c4a8c2fc9db729c15dd92628f4fb483907c8"
+    },
+    {
+      "id": "lause2021.model",
+      "paper_id": "lause2021",
+      "kind": "text",
+      "selector": "abstract.p.2",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "dcab45dc82be2c01fb59a1ffe1dc33e02d0ec49daf84bbedcf75bcf29521ec19",
+      "start": 0,
+      "end": 958,
+      "text": "We show that the model of Hafemeister and Satija produces noisy parameter estimates because it is overspecified, which is why the original paper employs post hoc smoothing. When specified more parsimoniously, it has a simple analytic solution equivalent to the rank-one Poisson GLM-PCA of Townes et al. Further, our analysis indicates that per-gene overdispersion estimates in Hafemeister and Satija are biased, and that the data are in fact consistent with the overdispersion parameter being independent of gene expression. We then use negative control data without biological variability to estimate the technical overdispersion of UMI counts, and find that across several different experimental protocols, the data are close to Poisson and suggest very moderate overdispersion. Finally, we perform a benchmark to compare the performance of Pearson residuals, variance-stabilizing transformations, and GLM-PCA on scRNA-seq datasets with known ground truth.",
+      "sha256": "dcab45dc82be2c01fb59a1ffe1dc33e02d0ec49daf84bbedcf75bcf29521ec19"
+    },
+    {
+      "id": "lause2021.caveat",
+      "paper_id": "lause2021",
+      "kind": "text",
+      "selector": "body.p.27",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "5a5aa46c5ec876d16c2293026493563806f45b73068d7c04f1202181c31e1af6",
+      "start": 0,
+      "end": 373,
+      "text": "The above arguments show that the overdispersion parameter estimates in Hafemeister and Satija [3] for genes with low expression were strongly biased. In practice, however, the predicted variance \u03bc+\u03bc2/\u03b8 is only weakly affected by the exact value of \u03b8 for low expression means \u03bc, and so the bias reported here does not substantially affect the Pearson residuals (see below).",
+      "sha256": "b559d24f6fd40ebeb5bbf4e12918d82298cfd3a5166fd2c1f1401dc3a1a1c7b9"
+    },
+    {
+      "id": "lause2021.runtimes",
+      "paper_id": "lause2021",
+      "kind": "table",
+      "selector": "table-wrap.1",
+      "transform": "jats-simple-table-tsv-v1",
+      "table": {
+        "headers": [
+          "",
+          "Sqrt(CPMedian), PCA",
+          "Pearson residuals, PCA",
+          "GLM-PCA"
+        ],
+        "rows": [
+          [
+            "33k PBMC",
+            "31 s",
+            "35 s",
+            "15 h"
+          ],
+          [
+            "33k PBMC, 1000 HVGs",
+            "3 s",
+            "4 s",
+            "4 h"
+          ],
+          [
+            "2M organogenesis, 2000 HVGs",
+            "166 s",
+            "224 s",
+            "52 h"
+          ]
+        ],
+        "caption": "Runtimes for different normalization pipelines",
+        "footnotes": [
+          "The datasets are the full 33k PBMC dataset, the PBMC dataset after selecting 1, 000 HVGs, and the organogenesis dataset [39] after selecting 2, 000 HVGs. Genes with largest Pearson residual variances were selected, which took 9 s (PBMC) and 15 min (organogenesis), respectively. See \u201cMethods\u201d for details. All runtimes measured on a machine with 256 Gb RAM and 30 CPU threads at 2.1 GHz"
+        ]
+      },
+      "text": "Table 1: Runtimes for different normalization pipelines\n\tSqrt(CPMedian), PCA\tPearson residuals, PCA\tGLM-PCA\n33k PBMC\t31 s\t35 s\t15 h\n33k PBMC, 1000 HVGs\t3 s\t4 s\t4 h\n2M organogenesis, 2000 HVGs\t166 s\t224 s\t52 h\nThe datasets are the full 33k PBMC dataset, the PBMC dataset after selecting 1, 000 HVGs, and the organogenesis dataset [39] after selecting 2, 000 HVGs. Genes with largest Pearson residual variances were selected, which took 9 s (PBMC) and 15 min (organogenesis), respectively. See \u201cMethods\u201d for details. All runtimes measured on a machine with 256 Gb RAM and 30 CPU threads at 2.1 GHz",
+      "sha256": "c2974a0a21f3179b1342cb4a28c8ff6ab0ddf119bad92138dbd6bd42a20c47da"
+    },
+    {
+      "id": "squair2021.abstract",
+      "paper_id": "squair2021",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "1e0640e85d33f937bbf6fbd8a9a347573e1e463abab74a6b77a3c5897a4f6c7c",
+      "start": 0,
+      "end": 873,
+      "text": "Differential expression analysis in single-cell transcriptomics enables the dissection of cell-type-specific responses to perturbations such as disease, trauma, or experimental manipulations. While many statistical methods are available to identify differentially expressed genes, the principles that distinguish these methods and their performance remain unclear. Here, we show that the relative performance of these methods is contingent on their ability to account for variation between biological replicates. Methods that ignore this inevitable variation are biased and prone to false discoveries. Indeed, the most widely used methods can discover hundreds of differentially expressed genes in the absence of biological differences. To exemplify these principles, we exposed true and false discoveries of differentially expressed genes in the injured mouse spinal cord.",
+      "sha256": "1e0640e85d33f937bbf6fbd8a9a347573e1e463abab74a6b77a3c5897a4f6c7c"
+    },
+    {
+      "id": "squair2021.benchmark",
+      "paper_id": "squair2021",
+      "kind": "text",
+      "selector": "body.p.4",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "0725fae96efb9303bd12809dcebdfa18db24586d3b957842e0751935829e35c1",
+      "start": 0,
+      "end": 908,
+      "text": "We aimed to compare available statistical methods for differential expression (DE) analysis based on their ability to generate biologically accurate results. We reasoned that performing this comparison in real datasets where the experimental ground truth is known would faithfully reflect differences in the performance of these methods, while avoiding the shortcomings of simulated data. We posited that the closest possible approximation to this ground truth could be obtained from matched bulk and scRNA-seq performed on the same population of purified cells, exposed to the same perturbations, and sequenced in the same laboratories. An extensive survey of the literature identified a total of eighteen \u2018gold standard\u2019 datasets that met these criteria (Fig. 1a)12\u201315. This compendium allowed us to carry out a large-scale comparison of DE methods in experimental settings where the ground truth is known.",
+      "sha256": "78474a8bcfafc474d62fd19070675de8ced20ad678b4fc5283079596036f9540"
+    },
+    {
+      "id": "zimmerman2021.abstract",
+      "paper_id": "zimmerman2021",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "272de9b81ffe4754d24caf0de97006a67caee14a485873321d4da40e180b4cb4",
+      "start": 0,
+      "end": 1128,
+      "text": "Cells from the same individual share common genetic and environmental backgrounds and are not statistically independent; therefore, they are subsamples or pseudoreplicates. Thus, single-cell data have a hierarchical structure that many current single-cell methods do not address, leading to biased inference, highly inflated type 1 error rates, and reduced robustness and reproducibility. This includes methods that use a batch effect correction for individual as a means of accounting for within-sample correlation. Here, we document this dependence across a range of cell types and show that pseudo-bulk aggregation methods are conservative and underpowered relative to mixed models. To compute differential expression within a specific cell type across treatment groups, we propose applying generalized linear mixed models with a random effect for individual, to properly account for both zero inflation and the correlation structure among measures from cells within an individual. Finally, we provide power estimates across a range of experimental conditions to assist researchers in designing appropriately powered studies.",
+      "sha256": "272de9b81ffe4754d24caf0de97006a67caee14a485873321d4da40e180b4cb4"
+    },
+    {
+      "id": "zimmerman2021.type1-caption",
+      "paper_id": "zimmerman2021",
+      "kind": "text",
+      "selector": "body.p.9",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "e1e2fac6be12139aa07e3e22aa36c3b5a4c882f7607a18f652b38c3ce5c4fe43",
+      "start": 0,
+      "end": 873,
+      "text": "Type I error rates of some currently applied tools in single-cell analyses. Type I error rates of ten different methods under twenty different conditions and a significance threshold of p < 0.05. In all, 250,000 iterations were computed to obtain an error rate for each method. The inflated type I error rates computed with mixed models at the lower number of individuals per group are a consequence of the two-part hurdle model simultaneously testing two hypotheses and an overabundance of subsampling with small sample sizes. Type I error rates are well-controlled for with mixed models and pseudo-bulk methods, while type I error rates increase with other methods as additional independent samples or more cells are added. Pseudo-bulk methods are overly conservative. Confidence intervals (95%) are included in the enlarged version of this table (Supplementary Table 1).",
+      "sha256": "e1e2fac6be12139aa07e3e22aa36c3b5a4c882f7607a18f652b38c3ce5c4fe43"
+    },
+    {
+      "id": "crowell2020.abstract",
+      "paper_id": "crowell2020",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "2a19846dbdf08013ea82fe8cdf09cbee421c1100807b1a69c0a010d6836d3ca9",
+      "start": 0,
+      "end": 1142,
+      "text": "Single-cell RNA sequencing (scRNA-seq) has become an empowering technology to profile the transcriptomes of individual cells on a large scale. Early analyses of differential expression have aimed at identifying differences between subpopulations to identify subpopulation markers. More generally, such methods compare expression levels across sets of cells, thus leading to cross-condition analyses. Given the emergence of replicated multi-condition scRNA-seq datasets, an area of increasing focus is making sample-level inferences, termed here as differential state analysis; however, it is not clear which statistical framework best handles this situation. Here, we surveyed methods to perform cross-condition differential state analyses, including cell-level mixed models and methods based on aggregated pseudobulk data. To evaluate method performance, we developed a flexible simulation that mimics multi-sample scRNA-seq data. We analyzed scRNA-seq data from mouse cortex cells to uncover subpopulation-specific responses to lipopolysaccharide treatment, and provide robust tools for multi-condition analysis within the muscat R package.",
+      "sha256": "2a19846dbdf08013ea82fe8cdf09cbee421c1100807b1a69c0a010d6836d3ca9"
+    },
+    {
+      "id": "crowell2020.samples",
+      "paper_id": "crowell2020",
+      "kind": "text",
+      "selector": "body.p.12",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "7163703f2af6850558c5043e13b0b8d7ff1d6372c4a9d02df3d475971026525d",
+      "start": 0,
+      "end": 390,
+      "text": "As reference datasets, we used (i) scRNA-seq data of peripheral blood mononuclear cells (PBMCs) from eight lupus patients measured before and after 6 h-treatment with IFN-\u03b2 (16 samples in total)20, where cells were already annotated into various immune subpopulations; and, (ii) single-nuclei RNA-seq data of brain cortex tissue from eight mice split into a vehicle and LPS treatment group.",
+      "sha256": "3b08364862ca738ea79f250c710e4ef0370f7629a9f579152da7abe0367adaf2"
+    },
+    {
+      "id": "crowell2020.cell-count",
+      "paper_id": "crowell2020",
+      "kind": "text",
+      "selector": "body.p.23",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "26f9acd7eb891216bf742b005289e726d09a1018f84bcd4643020e027aaaa170",
+      "start": 0,
+      "end": 638,
+      "text": "To investigate the effect of subpopulation size on DS detection, we ran methods on simulations containing 10% of DE genes using subsets of 20\u2013400 cells per subpopulation-sample (Fig. 2b). For most methods, FDR control varies drastically with the number of cells, while TPRs improve for more cells across all methods. For aggregation-based methods, ~100 cells were sufficient to reach decent performance; in particular, there is a sizable gain in performance in going from 20 to 100 cells (per subpopulation per sample), but only a moderate gain in a deeper sampling of subpopulations (e.g., 200 or 400 cells per subpopulation per sample).",
+      "sha256": "331ec48df344bd9130607f6354515a363d224827dee27d26b91aead5a81df198"
+    },
+    {
+      "id": "luecken2022.abstract",
+      "paper_id": "luecken2022",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "6df02cd8f46727ef378f34e57160dbb94d76a74e9489d18a502505c5814a7bfe",
+      "start": 0,
+      "end": 1247,
+      "text": "Single-cell atlases often include samples that span locations, laboratories and conditions, leading to complex, nested batch effects in data. Thus, joint analysis of atlas datasets requires reliable data integration. To guide integration method choice, we benchmarked 68 method and preprocessing combinations on 85 batches of gene expression, chromatin accessibility and simulation data from 23 publications, altogether representing >1.2 million cells distributed in 13 atlas-level integration tasks. We evaluated methods according to scalability, usability and their ability to remove batch effects while retaining biological variation using 14 evaluation metrics. We show that highly variable gene selection improves the performance of data integration methods, whereas scaling pushes methods to prioritize batch removal over conservation of biological variation. Overall, scANVI, Scanorama, scVI and scGen perform well, particularly on complex integration tasks, while single-cell ATAC-sequencing integration performance is strongly affected by choice of feature space. Our freely available Python module and benchmarking pipeline can identify optimal data integration methods for new data, benchmark new methods and improve method development.",
+      "sha256": "6df02cd8f46727ef378f34e57160dbb94d76a74e9489d18a502505c5814a7bfe"
+    },
+    {
+      "id": "luecken2022.tradeoff",
+      "paper_id": "luecken2022",
+      "kind": "text",
+      "selector": "body.p.18",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "9e91bacf067c02ff955648e12378aedb041dcb8e063832c4333a77c1a0d3fbeb",
+      "start": 0,
+      "end": 567,
+      "text": "Particularly in more complex integration tasks, we observed a tradeoff between batch effect removal and bio-conservation (Fig. 3a and Supplementary Data 1). While methods such as SAUCIE, LIGER, BBKNN and Seurat v3 tend to favor the removal of batch effects over conservation of biological variation, DESC and Conos make the opposite choice, and Scanorama, scVI and FastMNN (gene) balance these two objectives. Other methods strike different balances per task (Extended Data Fig. 4). This tradeoff is particularly noticeable where biological and batch effects overlap.",
+      "sha256": "5b0a067b5e0ef96a1461fcec2bd086ed49dffb49b5440d25f7cf0141bd132f6d"
+    },
+    {
+      "id": "luecken2022.tasks",
+      "paper_id": "luecken2022",
+      "kind": "table",
+      "selector": "table-wrap.1",
+      "transform": "jats-simple-table-tsv-v1",
+      "table": {
+        "headers": [
+          "Integration task",
+          "Cell number",
+          "Batches",
+          "Tested features"
+        ],
+        "rows": [
+          [
+            "Pancreas",
+            "16,382",
+            "9 batches",
+            "Widely used test data, protocols"
+          ],
+          [
+            "Lung",
+            "32,472",
+            "16 donors",
+            "Human variation, protocols, spatial locations, high resolution subtypes, laboratories"
+          ],
+          [
+            "Immune (human)",
+            "33,506",
+            "10 donors",
+            "Tissues, laboratories, similar cell types"
+          ],
+          [
+            "Immune (human and mouse)",
+            "97,952",
+            "23 samples",
+            "Tissues, laboratories, similar cell types, species"
+          ],
+          [
+            "Mouse brain (RNA)",
+            "978,734",
+            "4 datasets",
+            "Large dataset, spatial locations, nucleus versus cell, protocols"
+          ],
+          [
+            "Mouse brain small (ATAC, 3 tasks: windows, peaks, gene activity)",
+            "10,761, 11,597, 11,270",
+            "3 datasets",
+            "Different modality, laboratories, technologies and feature spaces"
+          ],
+          [
+            "Mouse brain large (ATAC, 3 tasks: windows, peaks gene activity)",
+            "84,813",
+            "11 samples",
+            "Different samples from 3 unbalanced datasets; different modality, laboratories, technologies and feature spaces"
+          ],
+          [
+            "Simulation 1",
+            "12,097",
+            "6 batches",
+            "Variation in cellular compositions"
+          ],
+          [
+            "Simulation 2",
+            "19,318",
+            "16 batches",
+            "Nested batch effects, composition variation"
+          ]
+        ],
+        "caption": "Integration tasks for benchmarking",
+        "footnotes": [
+          "Overview of the tasks used to benchmark data integration methods. The tested feature describes the unique challenge presented by the integration task. Donor refers to human individuals, sample is used when mice are involved and batches is the general term that includes dataset and sample batches. The six ATAC tasks are summarized in two entries."
+        ]
+      },
+      "text": "Table 1: Integration tasks for benchmarking\nIntegration task\tCell number\tBatches\tTested features\nPancreas\t16,382\t9 batches\tWidely used test data, protocols\nLung\t32,472\t16 donors\tHuman variation, protocols, spatial locations, high resolution subtypes, laboratories\nImmune (human)\t33,506\t10 donors\tTissues, laboratories, similar cell types\nImmune (human and mouse)\t97,952\t23 samples\tTissues, laboratories, similar cell types, species\nMouse brain (RNA)\t978,734\t4 datasets\tLarge dataset, spatial locations, nucleus versus cell, protocols\nMouse brain small (ATAC, 3 tasks: windows, peaks, gene activity)\t10,761, 11,597, 11,270\t3 datasets\tDifferent modality, laboratories, technologies and feature spaces\nMouse brain large (ATAC, 3 tasks: windows, peaks gene activity)\t84,813\t11 samples\tDifferent samples from 3 unbalanced datasets; different modality, laboratories, technologies and feature spaces\nSimulation 1\t12,097\t6 batches\tVariation in cellular compositions\nSimulation 2\t19,318\t16 batches\tNested batch effects, composition variation\nOverview of the tasks used to benchmark data integration methods. The tested feature describes the unique challenge presented by the integration task. Donor refers to human individuals, sample is used when mice are involved and batches is the general term that includes dataset and sample batches. The six ATAC tasks are summarized in two entries.",
+      "sha256": "7b250cf3ce89b66931320cbd533eb620990dc92df2434fa009fece9db85eebf3"
+    },
+    {
+      "id": "lun2016.abstract",
+      "paper_id": "lun2016",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "0b3c5453213701ca1f9410848543747a5fea4af622273f137172494ebc053aa0",
+      "start": 0,
+      "end": 674,
+      "text": "Normalization of single-cell RNA sequencing data is necessary to eliminate cell-specific biases prior to downstream analyses. However, this is not straightforward for noisy single-cell data where many counts are zero. We present a novel approach where expression values are summed across pools of cells, and the summed values are used for normalization. Pool-based size factors are then deconvolved to yield cell-based factors. Our deconvolution approach outperforms existing methods for accurate normalization of cell-specific biases in simulated data. Similar behavior is observed in real data, where deconvolution improves the relevance of results of downstream analyses.",
+      "sha256": "0b3c5453213701ca1f9410848543747a5fea4af622273f137172494ebc053aa0"
+    },
+    {
+      "id": "lun2016.assumptions",
+      "paper_id": "lun2016",
+      "kind": "text",
+      "selector": "body.p.10",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "5579b423263ad5982f0fb8a4ad43eaaff52d2a4dbde39b607ff9e2b9cfb31531",
+      "start": 0,
+      "end": 1205,
+      "text": "Both DESeq and TMM normalization assume that some minimal proportion of genes are not DE between libraries. For DESeq, the proportion is 50 % of all genes, whereas for TMM, it is 40\u201370 % depending on the direction of DE [4] (for simplicity, this will be referred to as a non-DE majority for both methods). Consequently, any systematic difference in expression across the majority of genes is treated as bias, which is incorporated into the size/normalization factors and removed upon scaling. If the non-DE assumption does not hold, the computed factors will not be accurate. In addition, both methods perform poorly in the presence of a large number of zeroes. For DESeq normalization, the geometric mean will be equal to zero for genes with a zero count in any library, such that the ratios for that gene become undefined. Moreover, a library with zero counts for a majority of genes will have a size factor of zero, which precludes any sensible scaling. For TMM normalization, M values are undefined when the count in either library is zero. In such conditions, both methods require ad hoc workarounds such as the removal of zero counts (this is done automatically by their respective implementations).",
+      "sha256": "5579b423263ad5982f0fb8a4ad43eaaff52d2a4dbde39b607ff9e2b9cfb31531"
+    },
+    {
+      "id": "zappia2017.abstract",
+      "paper_id": "zappia2017",
+      "kind": "text",
+      "selector": "abstract.p.1",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "34a2aea1f5b5688799a6a9d41d4bf0c09a53fc17f0e1ddb8595721aa0a12c7fd",
+      "start": 0,
+      "end": 717,
+      "text": "As single-cell RNA sequencing (scRNA-seq) technologies have rapidly developed, so have analysis methods. Many methods have been tested, developed, and validated using simulated datasets. Unfortunately, current simulations are often poorly documented, their similarity to real data is not demonstrated, or reproducible code is not available. Here, we present the Splatter Bioconductor package for simple, reproducible, and well-documented simulation of scRNA-seq data. Splatter provides an interface to multiple simulation methods including Splat, our own simulation, based on a gamma-Poisson distribution. Splat can simulate single populations of cells, populations with multiple cell types, or differentiation paths.",
+      "sha256": "34a2aea1f5b5688799a6a9d41d4bf0c09a53fc17f0e1ddb8595721aa0a12c7fd"
+    },
+    {
+      "id": "zappia2017.models",
+      "paper_id": "zappia2017",
+      "kind": "text",
+      "selector": "body.p.8",
+      "transform": "jats-itertext-whitespace-v1",
+      "source_text_sha256": "d2131896135fc7b592e5ed5aaeb183849b09c2a6f1868223cfacee4f84cfa346",
+      "start": 0,
+      "end": 336,
+      "text": "Currently, Splatter implements six different simulation models, each with their own assumptions but accessed through a consistent, easy-to-use interface. These simulations are described in more detail in the following sections and in the documentation for each simulation in Splatter, which also describes the required input parameters.",
+      "sha256": "d2131896135fc7b592e5ed5aaeb183849b09c2a6f1868223cfacee4f84cfa346"
+    }
+  ],
+  "variants": [
+    {
+      "id": "vieth2019.abstract.whitespace-copy",
+      "canonical_id": "vieth2019.abstract",
+      "transform": "whitespace-duplicate-v1",
+      "text": "The  recent  rapid  spread  of  single  cell  RNA  sequencing  (scRNA-seq)  methods  has  created  a  large  variety  of  experimental  and  computational  pipelines  for  which  best  practices  have  not  yet  been  established.  Here,  we  use  simulations  based  on  five  scRNA-seq  library  protocols  in  combination  with  nine  realistic  differential  expression  (DE)  setups  to  systematically  evaluate  three  mapping,  four  imputation,  seven  normalisation  and  four  differential  expression  testing  approaches  resulting  in  ~3000  pipelines,  allowing  us  to  also  assess  interactions  among  pipeline  steps.  We  find  that  choices  of  normalisation  and  library  preparation  protocols  have  the  biggest  impact  on  scRNA-seq  analyses.  Specifically,  we  find  that  library  preparation  determines  the  ability  to  detect  symmetric  expression  differences,  while  normalisation  dominates  pipeline  performance  in  asymmetric  DE-setups.  Finally,  we  illustrate  the  importance  of  informed  choices  by  showing  that  a  good  scRNA-seq  pipeline  can  have  the  same  impact  on  detecting  a  biological  signal  as  quadrupling  the  sample  size.",
+      "purpose": "Derived duplicate representation; not an additional independent paper or historical publication version."
+    }
+  ]
+}

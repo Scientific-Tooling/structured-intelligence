@@ -1,19 +1,27 @@
 """Living-project provenance, freshness and crash recovery with installed RKS/APW."""
 from __future__ import annotations
 
+import hashlib
+import io
 import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 from unittest.mock import patch
 
 from agent_pdf_workbench.service import AgentPdfWorkbenchService
 from agent_pdf_workbench import evidence as apw_evidence, passage as apw_passage
-from scientific_tooling import discovery, maintenance, server
+from scientific_tooling import brief, cli, comparison, discovery, maintenance, server
 from scientific_tooling.reading import WorkflowError
 from scientific_tooling.state import read_json, write_json
 from scientific_tooling.workspace import Workspace
 from test_discovery import FakeClient, crossref
 from test_workflow import pdf_bytes
+
+
+class OfflineClient:
+    def fetch(self, url, *, pdf=False):
+        raise OSError("Provider unreachable in this test.")
 
 
 class MaintenanceTest(unittest.TestCase):
@@ -38,6 +46,143 @@ class MaintenanceTest(unittest.TestCase):
     def import_annotation(self, accept_updates=False):
         preview = self.workspace.preview([self.annotation["id"]], [])
         return self.workspace.apply(preview["id"], accept_updates=accept_updates)
+
+    def add_comparison(self, text):
+        entry = self.workspace.search("source")["results"][0]
+        created = self.workspace.compare("create", payload={"title": "Fixture", "criteria": ["Result"]})["comparison"]
+        return self.workspace.compare("set", comparison_id=created["id"], expected_revision=created["revision"],
+            payload={"paper": "p1", "criterion_id": "c1", "text": text, "conditions": "Synthetic",
+                     "origin": "agent", "evidence": [{"note_id": entry["note_id"], "revision": entry["revision"]}]})["comparison"]
+
+    def run_cli(self, *args):
+        output = io.StringIO()
+        with redirect_stdout(output):
+            code = cli.main([*args, "--workspace", str(self.workspace.root)])
+        return code, output.getvalue()
+
+    def test_brief_file_holds_exact_edition_bytes_including_carriage_returns(self):
+        self.add_comparison("First line\r\nSecond line")
+        result = self.workspace.make_brief("f" * 32)
+        edition = maintenance.history(self.workspace, result["id"])
+        self.assertIn("\r\n", edition["text"])
+        path = Path(result["path"])
+        self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), edition["text_sha256"])
+        self.assertEqual(self.workspace.summary()["brief"]["text"], edition["text"])
+        self.assertTrue(self.workspace.make_brief("f" * 32)["replayed"])
+        # Earlier releases wrote brief.md in text mode; that exact translation is still recognised.
+        path.write_bytes(edition["text"].replace("\n", "\r\n").encode("utf-8"))
+        self.assertEqual(self.workspace.summary()["brief"]["text"], edition["text"])
+        path.write_bytes(edition["text"].replace("Second line", "Altered line").encode("utf-8"))
+        with self.assertRaisesRegex(WorkflowError, "text or location changed"):
+            self.workspace.summary()
+        with self.assertRaisesRegex(WorkflowError, "Saved brief text changed"):
+            self.workspace.make_brief("f" * 32)
+
+    def test_validation_failures_are_not_listed_as_interrupted_briefs(self):
+        self.workspace.set_port(0)
+        with self.assertRaisesRegex(WorkflowError, "Resume the reader") as raised:
+            self.workspace.make_brief("1" * 32)
+        self.assertNotIn("Brief request retained", str(raised.exception))
+        self.workspace.set_port(8790)
+        original = maintenance.capture
+        with patch.object(maintenance, "capture", side_effect=lambda workspace: {**original(workspace), "evidence": []}):
+            with self.assertRaisesRegex(WorkflowError, "No matching imported evidence") as raised:
+                self.workspace.make_brief("2" * 32)
+        self.assertNotIn("Brief request retained", str(raised.exception))
+        self.assertEqual(maintenance.history(self.workspace)["pending_briefs"], [])
+        self.assertFalse((self.workspace.root / "briefs" / ("1" * 32)).exists())
+        self.assertFalse((self.workspace.root / "briefs" / ("2" * 32)).exists())
+
+    def test_interrupted_paper_preparation_is_reported_not_fatal(self):
+        first = self.workspace.make_brief()
+        pdf = self.root / "interrupted.pdf"
+        pdf.write_bytes(pdf_bytes("A paper whose preparation was interrupted."))
+        data = self.workspace.load()
+        self.workspace.append_papers(data, self.workspace.inspect_pdfs([pdf]))
+        self.workspace.save(data)  # sci add stopped before prepare() gave the paper an RKS identity.
+        report = maintenance.inspect(self.workspace)
+        self.assertEqual(report["freshness"], "outdated")
+        self.assertEqual([c["id"] for c in report["changes"]], ["p2"])
+        self.assertEqual([(a["kind"], a["paper"]) for a in report["attention"]], [("source", "p2")])
+        self.assertIn("interrupted", report["attention"][0]["message"])
+        with self.assertRaisesRegex(WorkflowError, "finish preparing"):
+            self.workspace.make_brief()
+        self.assertEqual(maintenance.history(self.workspace)["pending_briefs"], [])
+        self.assertEqual(self.workspace.summary()["brief"]["id"], first["id"])
+
+    def test_presentation_changes_do_not_make_a_brief_outdated(self):
+        self.add_comparison("Literal fixture finding")
+        result = self.workspace.make_brief()
+        check, markdown = brief.check_passage, comparison.render_markdown
+        def reworded(*args, **kwargs):
+            available, _ = check(*args, **kwargs)
+            return available, "Reworded verification message."
+        with patch.object(brief, "check_passage", side_effect=reworded), \
+                patch.object(comparison, "render_markdown", side_effect=lambda item: "Reworded\n" + markdown(item)):
+            report = maintenance.inspect(self.workspace)
+        self.assertNotEqual(report["snapshot_revision"], result["snapshot_revision"])
+        self.assertEqual(report["freshness"], "current")
+        self.assertEqual(report["changes"], [])
+
+    def test_a_damaged_older_edition_does_not_block_a_new_brief(self):
+        self.workspace.make_brief("a" * 32)
+        path = self.workspace.root / "briefs" / ("a" * 32) / "record.json"
+        saved = read_json(path)
+        saved["text"] = "altered"
+        write_json(path, saved)
+        second = self.workspace.make_brief("b" * 32)
+        self.assertFalse(second["replayed"])
+        self.assertEqual(self.workspace.summary()["brief"]["id"], "b" * 32)
+        with self.assertRaisesRegex(WorkflowError, "history changed"):
+            maintenance.inspect(self.workspace)
+
+    def test_one_export_per_session_and_a_missing_item_hides_only_itself(self):
+        second = {**self.annotation, "id": "ann_second", "comment": "Second interpretation"}
+        self.service.upsert_annotation(session_id=self.session, annotation=second)
+        self.workspace.apply(self.workspace.preview([second["id"]], [])["id"])
+        with patch.object(apw_evidence, "export_evidence", wraps=apw_evidence.export_evidence) as export, \
+                patch.object(maintenance, "hash_file", wraps=maintenance.hash_file) as hashed:
+            snapshot = maintenance.capture(self.workspace)
+        self.assertEqual(export.call_count, 1)
+        self.assertEqual(hashed.call_count, 1)  # The source PDF is hashed once for papers and passages.
+        self.assertEqual({e["reading_status"] for e in snapshot["evidence"]}, {"unchanged"})
+        self.service.delete_annotation(session_id=self.session, annotation_id=second["id"])
+        snapshot = maintenance.capture(self.workspace)
+        states = {e["record"]["item"]["id"]: e["reading_status"] for e in snapshot["evidence"]}
+        self.assertEqual(states, {"ann_first": "unchanged", "ann_second": "unavailable"})
+
+    def test_cli_reports_changes_history_and_saved_brief_freshness(self):
+        first = self.workspace.make_brief()
+        code, text = self.run_cli("changes")
+        self.assertEqual(code, 0)
+        self.assertIn("Brief freshness: current", text)
+        self.assertIn("0 changes since the last retained edition; 0 items need attention.", text)
+        code, text = self.run_cli("update")
+        self.assertEqual(code, 0)
+        self.assertTrue(Path(text.split("Saved report: ", 1)[1].splitlines()[0]).is_file())
+        with patch.object(maintenance, "render_edition", side_effect=WorkflowError("Simulated lost response")):
+            with self.assertRaisesRegex(WorkflowError, "Brief request retained"):
+                self.workspace.make_brief("c" * 32)
+        code, text = self.run_cli("history")
+        self.assertEqual(code, 0)
+        self.assertIn(f"{first['id']}  {first['created_at']}  {first['path']}", text)
+        self.assertIn(f"Interrupted brief: {'c' * 32}. Resume with sci brief --request-id {'c' * 32}.", text)
+        code, text = self.run_cli("history", first["id"])
+        self.assertTrue(text.startswith("# Source-linked project brief"))
+        code, text = self.run_cli("status")
+        self.assertIn(f"Brief: {first['path']}", text)
+        self.assertIn("Run sci changes to check whether it still matches the project.", text)
+
+    def test_cli_repeats_a_saved_discovery_with_its_original_bounds(self):
+        old = discovery.discover(self.workspace, "search", "conditions", provider="crossref", limit=2,
+                                 client=FakeClient(records=[crossref(), crossref("10.1234/previous")]))
+        with patch.object(discovery.sources, "Client", return_value=FakeClient(records=[crossref("10.1234/new")])):
+            code, text = self.run_cli("discover", "repeat", old["id"])
+        self.assertEqual(code, 0)
+        self.assertIn("Changes from saved discovery", text)
+        self.assertIn("Not returned means absent from this bounded result list", text)
+        repeated = [run for run in discovery.inventory(self.workspace)["discoveries"] if run["id"] != old["id"]]
+        self.assertEqual(discovery.show(self.workspace, repeated[0]["id"])["limit"], 2)
 
     def test_passages_are_shared_with_comparisons_but_rechecked_between_observations(self):
         entry = self.workspace.search("source")["results"][0]
@@ -237,6 +382,15 @@ class MaintenanceTest(unittest.TestCase):
             server.request(port, "/api/workflow/maintenance?session_id=foreign")
         with self.assertRaises(WorkflowError):
             server.request(port, "/api/workflow", {"action": "project_update", "session_id": "foreign"})
+        saved = server.request(port, "/api/workflow", {"action": "project_update", "session_id": state["session_id"]})
+        self.assertEqual(saved["freshness"], "current")
+        self.assertTrue(Path(saved["path"]).is_file())
+        with self.assertRaises(WorkflowError):
+            discovery.discover(self.workspace, "search", "conditions", provider="crossref", limit=2, client=OfflineClient())
+        failed = discovery.inventory(self.workspace)["discoveries"][0]["id"]
+        with self.assertRaisesRegex(WorkflowError, "Repeat a completed saved discovery"):
+            server.request(port, "/api/workflow", {"action": "discovery_repeat", "session_id": state["session_id"],
+                                                   "discovery_id": failed})
         self.assertEqual(len(maintenance.history(self.workspace)["editions"]), 1)
 
 

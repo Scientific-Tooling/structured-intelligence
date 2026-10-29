@@ -1,0 +1,18 @@
+{
+  "name": "state",
+  "command": [
+    "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+    "scripts/run_research_tests.py",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_state.py",
+    "-v"
+  ],
+  "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+  "exit_code": 0,
+  "seconds": 1.202623400138691,
+  "log_sha256": "32ed83ec5b2fac875ef5a5ae0a0e617772fff659888afc261f4d879bbc1cd01e",
+  "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+}

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import re
 import sys
@@ -13,15 +12,11 @@ from urllib.parse import quote, urlencode, urlsplit, urlunsplit
 from .reading import (
     WorkflowError,
     command_prefix,
-    hash_stream,
+    hash_file,
     run_json,
     session_url,
 )
-
-
-def digest(value: object) -> str:
-    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":"),
-                                     ensure_ascii=True, allow_nan=False).encode("utf-8")).hexdigest()
+from .state import digest  # Re-exported: callers digest records through this module.
 
 
 def escape(value: str) -> str:
@@ -37,7 +32,8 @@ def passage_url(base: str, record: dict, passage: dict) -> str:
     return urlunsplit((parsed.scheme, parsed.netloc, quote(parsed.path or "/", safe="/:@%"), urlencode(query), ""))
 
 
-def check_passage(apw: list[str], record: dict, passage: dict, *, resolver=None) -> tuple[bool, str]:
+def check_passage(apw: list[str] | None, record: dict, passage: dict, *, resolver=None, file_hash=hash_file) -> tuple[bool, str]:
+    """apw is the dev CLI prefix, used only without an in-process resolver."""
     if not passage["quote"].strip():
         return False, "No text quote. Capture and review a source text anchor before citing it."
     try:
@@ -59,22 +55,21 @@ def check_passage(apw: list[str], record: dict, passage: dict, *, resolver=None)
         path = Path(resolved["session"]["pdf_uri"])
         if not path.is_absolute():
             raise WorkflowError("Reading snapshot must have an absolute local PDF path.")
-        with path.open("rb") as source:
-            actual = hash_stream(source)
-        if actual != (record["document"]["sha256"], record["document"]["size_bytes"]):
+        if file_hash(path) != (record["document"]["sha256"], record["document"]["size_bytes"]):
             raise WorkflowError("Source PDF changed. Restore the exact reading snapshot before using this citation.")
     except (WorkflowError, OSError, ValueError, KeyError, TypeError) as exc:
         return False, str(exc)
     return True, "Source and annotation revision verified; the viewer checks page text when opened."
 
 
-def checked_passages(apw: list[str], record: dict, viewer_url: str | None, checked: dict, *, resolver=None) -> list[dict]:
+def checked_passages(apw: list[str] | None, record: dict, viewer_url: str | None, checked: dict, *,
+                     resolver=None, file_hash=hash_file) -> list[dict]:
     """Shared citation checks for search and comparisons; never substitutes a source."""
     passages = []
     for passage in record["item"]["passages"]:
         key = (record["source"]["session_id"], record["document"]["sha256"], digest(passage))
         if key not in checked:
-            checked[key] = check_passage(apw, record, passage, resolver=resolver)
+            checked[key] = check_passage(apw, record, passage, resolver=resolver, file_hash=file_hash)
         available, reason = checked[key]
         url = passage_url(viewer_url, record, passage) if available and viewer_url else None
         passages.append({**passage, "available": available, "message": reason, "url": url})

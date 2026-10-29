@@ -1,0 +1,18 @@
+{
+  "name": "adapters",
+  "command": [
+    "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+    "scripts/run_research_tests.py",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_research_*.py",
+    "-v"
+  ],
+  "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+  "exit_code": 0,
+  "seconds": 1.3764594001695514,
+  "log_sha256": "a82aa14c4f7cd655bce94067f3146198cc37c534acc0ba5ef70c3d2011b09efb",
+  "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+}

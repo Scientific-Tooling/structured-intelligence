@@ -1,0 +1,14 @@
+test_input_change_during_creation_never_commits_a_record (test_analysis.AnalysisTest.test_input_change_during_creation_never_commits_a_record) ... ok
+test_installed_cli_emits_the_same_handoff_and_check_contract (test_analysis.AnalysisTest.test_installed_cli_emits_the_same_handoff_and_check_contract) ... ok
+test_lost_publication_replays_committed_record_and_recovers_missing_artifacts (test_analysis.AnalysisTest.test_lost_publication_replays_committed_record_and_recovers_missing_artifacts) ... ok
+test_malformed_parameters_and_unreviewed_claim_fields_are_rejected (test_analysis.AnalysisTest.test_malformed_parameters_and_unreviewed_claim_fields_are_rejected) ... ok
+test_modified_artifacts_and_records_are_not_overwritten_and_foreign_workspace_fails (test_analysis.AnalysisTest.test_modified_artifacts_and_records_are_not_overwritten_and_foreign_workspace_fails) ... ok
+test_reading_edits_and_missing_inputs_make_handoff_outdated_without_rewriting_it (test_analysis.AnalysisTest.test_reading_edits_and_missing_inputs_make_handoff_outdated_without_rewriting_it) ... ok
+test_retains_support_and_explicit_draft_and_replays_without_reading_changed_inputs (test_analysis.AnalysisTest.test_retains_support_and_explicit_draft_and_replays_without_reading_changed_inputs) ... ok
+test_stale_selection_fails_with_a_pending_request_and_request_conflicts_fail (test_analysis.AnalysisTest.test_stale_selection_fails_with_a_pending_request_and_request_conflicts_fail) ... ok
+test_unselected_cell_edits_do_not_invalidate_selected_support_but_review_changes_do (test_analysis.AnalysisTest.test_unselected_cell_edits_do_not_invalidate_selected_support_but_review_changes_do) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 56.946s
+
+OK

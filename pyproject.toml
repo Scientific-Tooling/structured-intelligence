@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scientific-tooling"
-version = "0.3.1"
+version = "0.4.0.dev20261029"
 description = "Resumable multi-paper research projects and source-linked briefs for researchers and agents."
 readme = "workflows/research/quickstart.md"
 requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
   "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
-  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@3ea2a5290f25dbc86a7ea178d0c0ed92849b2ba0",
+  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@4c3a379123847aff42e221013ae4c49a4149997d",
 ]
 
 [project.scripts]
@@ -20,8 +20,9 @@ scientific-tooling = "scientific_tooling.cli:main"
 
 [tool.setuptools]
 include-package-data = false
-packages = ["scientific_tooling", "scientific_tooling.agent_skill", "scientific_tooling.ncbi_eutils"]
-package-dir = {"" = "src", "scientific_tooling.agent_skill" = "skills/paper-to-brief", "scientific_tooling.ncbi_eutils" = "skills/ncbi-eutilities-assistant/scripts"}
+packages = ["scientific_tooling", "scientific_tooling.agent_skill", "scientific_tooling.analysis_skill", "scientific_tooling.ncbi_eutils"]
+package-dir = {"" = "src", "scientific_tooling.agent_skill" = "skills/paper-to-brief", "scientific_tooling.analysis_skill" = "skills/scrnaseq-differential-expression", "scientific_tooling.ncbi_eutils" = "skills/ncbi-eutilities-assistant/scripts"}
 
 [tool.setuptools.package-data]
 "scientific_tooling.agent_skill" = ["SKILL.md", "agents/*.yaml"]
+"scientific_tooling.analysis_skill" = ["SKILL.md"]

@@ -1,0 +1,107 @@
+{
+  "schema": "scientific-tooling.analysis-demo-evaluation.v1",
+  "checked_at": "2026-10-29T13:39:23.194179+00:00",
+  "purpose": "synthetic engineering demonstration",
+  "build": {
+    "baseline": "5e8e50f3b2fdc31b6361fd0badbf29f6ad977897",
+    "overlaid_files": [
+      ".github/workflows/ci.yml",
+      "pyproject.toml",
+      "src/scientific_tooling/cli.py",
+      "src/scientific_tooling/analysis.py",
+      "tests/test_analysis.py",
+      "docs/analysis-handoffs.md",
+      "docs/sci-roadmap.md",
+      "examples/analysis-handoff/demo-requirements.txt",
+      "examples/analysis-handoff/make_demo.py",
+      "examples/analysis-handoff/request.example.json"
+    ],
+    "description": "Committed baseline plus feature files; concurrent shared-checkout refactors excluded",
+    "feature_sha256": {
+      "pyproject.toml": "7fa450fbb0a11627594a4889a3c196894ae94d5a3ddacc2235b7dda3eb84ebfa",
+      "src/scientific_tooling/cli.py": "8e7460eb8ca99f97ed18c9ca172c0e6090660a4d617b4bd722c0e618cc1bbc64",
+      "src/scientific_tooling/analysis.py": "aacfc55668475d41557ff2ea218468fc2be2d33114adf2ae8e014d93815e10aa",
+      "tests/test_analysis.py": "aee53c305027e66649e5389366207fac0c60bf0b4f89a706e9ea02f00daf9414"
+    }
+  },
+  "dataset": {
+    "purpose": "Synthetic engineering demonstration; not biological data or a scientific benchmark.",
+    "seed": 20261029,
+    "cells": 200,
+    "genes": 80,
+    "synthetic_samples": 8,
+    "samples_per_condition": 4,
+    "cells_per_sample": 25,
+    "counts_dtype": "int32",
+    "counts_sha256": "082050418fa4fd72da508be6d932e06b7943798a95534401de1661ebc703d007",
+    "dataset_sha256": "5349e770e2dd23592c34adc79215ad91e9834696342ec1393d7628aa886bb82f",
+    "roundtrip_verified": true,
+    "generator_sha256": "5840faeb0f945c4c0ff30c0e08cd8dfe04d934d948c39bcfaefbde03eb4a30c6",
+    "packages": {
+      "anndata": "0.13.4",
+      "numpy": "2.5.4",
+      "pandas": "3.1.0",
+      "scipy": "1.18.1",
+      "h5py": "3.16.0"
+    },
+    "analysis_executed": false,
+    "expected_scientific_findings": null
+  },
+  "handoff": {
+    "id": "c1c711050d5e436fb84828589ecd1741",
+    "revision": "1fc55384664d1527d50e64cd40f9310306d0fbb77246e38cecf1a4c8e6c414ad",
+    "path": "analyses/c1c711050d5e436fb84828589ecd1741/handoff.md",
+    "comparison_id": "cmp_0f45d3e27fa044729c08b9a906132f57",
+    "comparison_revision": "5f611a44b3efb664273c2eba279898bf53bb266ccfadc5846afef8c3354c85eb",
+    "selected_cells": 6,
+    "distinct_evidence_records": 10,
+    "current_support": "current",
+    "attention_items": 16,
+    "execution_status": "not_run",
+    "plan_review": "not_recorded"
+  },
+  "verification": {
+    "exact_replay": true,
+    "one_handoff": true,
+    "native_snapshot_unchanged": true,
+    "existing_brief_bytes_unchanged": true,
+    "all_selected_material_unreviewed": true
+  },
+  "dependencies": {
+    "agent-pdf-workbench": {
+      "url": "https://github.com/Scientific-Tooling/agent-pdf-workbench.git",
+      "vcs_info": {
+        "commit_id": "3ea2a5290f25dbc86a7ea178d0c0ed92849b2ba0",
+        "requested_revision": "3ea2a5290f25dbc86a7ea178d0c0ed92849b2ba0",
+        "vcs": "git"
+      }
+    },
+    "research-knowledge-substrate": {
+      "url": "https://github.com/Scientific-Tooling/research-knowledge-substrate.git",
+      "vcs_info": {
+        "commit_id": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+        "requested_revision": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+        "vcs": "git"
+      }
+    }
+  },
+  "limits": [
+    "Identity and recovery checks, not statistical validation.",
+    "No scientific plan review, resolved analysis runtime, execution or analysis outputs.",
+    "Windows Python 3.12 local check; cross-platform CI has not run for this change."
+  ],
+  "validation": {
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14",
+    "tests": {
+      "analysis": {
+        "passed": 9,
+        "failed": 0
+      },
+      "maintenance": {
+        "passed": 13,
+        "failed": 0
+      }
+    }
+  }
+}

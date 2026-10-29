@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 C:/Users/yangm11/github/.development-candidate/2026-10-29-c1/source/agent-pdf-workbench
+
+
+ Test Files  18 passed (18)
+      Tests  103 passed (103)
+   Start at  12:36:32
+   Duration  9.40s (transform 1.37s, setup 0ms, import 2.46s, tests 3.06s, environment 25.33s)
+

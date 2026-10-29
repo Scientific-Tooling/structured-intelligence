@@ -1,0 +1,18 @@
+{
+  "name": "maintenance",
+  "command": [
+    "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\installed\\Scripts\\python.exe",
+    "scripts/run_research_tests.py",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_maintenance.py",
+    "-v"
+  ],
+  "cwd": "C:\\Users\\yangm11\\github\\.development-candidate\\2026-10-29-c1\\source\\structured-intelligence",
+  "exit_code": 0,
+  "seconds": 119.90722129982896,
+  "log_sha256": "e30c285410a4193e096ebed4f75aca09c56d09c41b96afefc88d0f795d6f6f02",
+  "candidate_manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc"
+}

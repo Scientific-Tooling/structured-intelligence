@@ -1,14 +1,13 @@
 """Project comparison orchestration. RKS owns revisions, history and human reviews."""
 from __future__ import annotations
 
-import re
 import sys
 import uuid
 from pathlib import Path
 
 from .brief import checked_passages, escape
-from .reading import WorkflowError
-from .state import lock, read_json, write_json
+from .reading import WorkflowError, hash_file
+from .state import hex_id, lock, read_json, write_json
 
 
 def register(commands):
@@ -83,14 +82,19 @@ def scope(workspace):
         raise WorkflowError("Select a PDF before comparing findings.")
     if any(not p["paper_id"] for p in data["papers"]):
         raise WorkflowError("Resume this project to finish preparing its papers before comparing findings.")
-    sources = {f"{p['paper_id']}:{p['sha256']}": p for p in data["papers"]}
+    sources = paper_sources(data["papers"])
     args = ["--workspace-id", data["workspace_id"], "--source-id", data["source_id"]]
     for identity in sources:
         args += ["--paper-source", identity]
     return data, sources, args
 
 
-def enrich(workspace, result, data, papers, *, checked=None, resolver=None):
+def paper_sources(papers):
+    """Exact RKS paper sources (paper_id:sha256) of the papers that have an RKS identity."""
+    return {f"{p['paper_id']}:{p['sha256']}": p for p in papers if p["paper_id"]}
+
+
+def enrich(workspace, result, data, papers, *, checked=None, resolver=None, file_hash=hash_file):
     if result.get("schema") != "rks.comparison.v1" or result.get("workspace_id") != data["workspace_id"]:
         raise WorkflowError("Unexpected RKS comparison response. Check compatible tool versions.")
     if result["source_id"] != data["source_id"] or not set(result["paper_sources"]) <= set(papers):
@@ -101,7 +105,8 @@ def enrich(workspace, result, data, papers, *, checked=None, resolver=None):
         cell["paper"] = {k: papers[cell["paper_source"]][k] for k in ("key", "title")}
         for evidence in cell["evidence"]:
             evidence["passages"] = checked_passages(apw, evidence["record"],
-                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked, resolver=resolver)
+                f"http://127.0.0.1:{data['port']}" if data["port"] else None, checked,
+                resolver=resolver, file_hash=file_hash)
         if any(not p["available"] for e in cell["evidence"] for p in e["passages"]):
             cell["support_status"] = "stale"
             if cell["review"]["latest"]:
@@ -148,9 +153,7 @@ def operate(workspace, action, *, comparison_id=None, payload=None, expected_rev
         return {"comparison": enrich(workspace, result, data, papers)}
     if action not in {"create", "set", "review", "retry"}:
         raise WorkflowError("Unknown comparison operation")
-    request_id = request_id or uuid.uuid4().hex
-    if not isinstance(request_id, str) or not re.fullmatch(r"[0-9a-f]{32}", request_id):
-        raise WorkflowError("Use a UUID hex request ID from this project")
+    request_id = hex_id(request_id or uuid.uuid4().hex, "Use a UUID hex request ID from this project")
     path = workspace.root / "comparisons" / "requests" / f"{request_id}.json"
     with lock(workspace.root / "workspace.lock"):
         data, papers, args = scope(workspace)

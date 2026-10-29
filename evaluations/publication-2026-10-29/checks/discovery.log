@@ -1,0 +1,17 @@
+test_actual_ingestion_lost_response_restart_and_saved_source_link (test_discovery.DiscoveryTest.test_actual_ingestion_lost_response_restart_and_saved_source_link) ... ok
+test_bibliography_is_bound_to_the_selected_work (test_discovery.DiscoveryTest.test_bibliography_is_bound_to_the_selected_work) ... ok
+test_bounded_frozen_search_and_read_only_reopen (test_discovery.DiscoveryTest.test_bounded_frozen_search_and_read_only_reopen) ... ok
+test_download_failures_never_promote_abstracts_or_unselected_sources (test_discovery.DiscoveryTest.test_download_failures_never_promote_abstracts_or_unselected_sources) ... ok
+test_interrupted_handoff_reuses_retained_bytes_and_exact_request (test_discovery.DiscoveryTest.test_interrupted_handoff_reuses_retained_bytes_and_exact_request) ... ok
+test_invalid_queries_failed_providers_and_foreign_or_changed_requests (test_discovery.DiscoveryTest.test_invalid_queries_failed_providers_and_foreign_or_changed_requests) ... ok
+test_local_pdf_requires_explicit_selection_and_preserves_identity_conflicts (test_discovery.DiscoveryTest.test_local_pdf_requires_explicit_selection_and_preserves_identity_conflicts) ... ok
+test_malformed_provider_responses_are_saved_failures (test_discovery.DiscoveryTest.test_malformed_provider_responses_are_saved_failures) ... ok
+test_public_https_guard_rejects_private_sources_and_redirects (test_discovery.DiscoveryTest.test_public_https_guard_rejects_private_sources_and_redirects) ... ok
+test_pubmed_parser_identifier_normalization_and_provider_provenance (test_discovery.DiscoveryTest.test_pubmed_parser_identifier_normalization_and_provider_provenance) ... ok
+test_question_only_project_and_foreign_selection_are_explicit (test_discovery.DiscoveryTest.test_question_only_project_and_foreign_selection_are_explicit) ... ok
+test_same_work_same_bytes_reused_changed_pdf_is_new_version (test_discovery.DiscoveryTest.test_same_work_same_bytes_reused_changed_pdf_is_new_version) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 12.932s
+
+OK

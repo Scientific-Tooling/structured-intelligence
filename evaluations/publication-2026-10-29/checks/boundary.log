@@ -1,0 +1,7 @@
+test_selected_export_preview_import_edit_review_delete_and_replay (test_evidence_integration.EvidenceIntegrationTest.test_selected_export_preview_import_edit_review_delete_and_replay) ... ok
+test_open_repeat_revision_and_namespace_isolation (test_reading_integration.ReadingIntegrationTest.test_open_repeat_revision_and_namespace_isolation) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 13.436s
+
+OK

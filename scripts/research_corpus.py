@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
-from research_reading import WorkflowError
+from scientific_tooling.reading import WorkflowError
 
 DEFAULT_CORPUS = Path(__file__).resolve().parents[1] / "evaluations" / "scrna-methods-v1"
 MAX_SOURCE_BYTES = 25 * 1024 * 1024

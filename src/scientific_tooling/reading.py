@@ -74,6 +74,11 @@ def hash_stream(source, destination=None) -> tuple[str, int]:
     return digest.hexdigest(), size
 
 
+def hash_file(path) -> tuple[str, int]:
+    with Path(path).open("rb") as source:
+        return hash_stream(source)
+
+
 def snapshot_pdf(pdf: dict, cache_dir: Path) -> Path:
     """Publish only complete copies whose bytes match the RKS descriptor."""
     cache_dir.mkdir(parents=True, exist_ok=True)

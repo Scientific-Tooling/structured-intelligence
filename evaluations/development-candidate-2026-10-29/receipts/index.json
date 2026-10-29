@@ -1,0 +1,143 @@
+{
+  "candidate": "2026-10-29-c1",
+  "manifest_sha256": "20877448f6c844489adb9a9bf51fb6b48604933e5162a147bc7bf6aa3fde9ecc",
+  "protocol_revision_1_sha256": "450498048d7b3b9a1c8943d7011f59f3131fc54e81d29383c254757d9b219425",
+  "protocol_revision_2_sha256": "9205537360c0b27137afc578c8ca3d6150065c74db19560bb4015e9e38766b2f",
+  "receipts": [
+    {
+      "file": "adapters.json",
+      "sha256": "b33fe69d1197dc1bb652e40f44f8fba823a7da147e85b0a487ba137d3ba448e6",
+      "size_bytes": 634
+    },
+    {
+      "file": "adapters.log",
+      "sha256": "a82aa14c4f7cd655bce94067f3146198cc37c534acc0ba5ef70c3d2011b09efb",
+      "size_bytes": 7473
+    },
+    {
+      "file": "analysis.json",
+      "sha256": "232783a155656902c679f63f325b16e636ab995498c1bb80105bed15b57a2f40",
+      "size_bytes": 631
+    },
+    {
+      "file": "analysis.log",
+      "sha256": "6cb3dc6fc73f06df3fbac765fdef5bd453cab947e44bdc26c99ba07c6ffaa075",
+      "size_bytes": 1781
+    },
+    {
+      "file": "boundary.json",
+      "sha256": "1ded2c945d1c086702e32718d626bad04c2722e05982fd66805ec2a0fe395d76",
+      "size_bytes": 636
+    },
+    {
+      "file": "boundary.log",
+      "sha256": "20bd1d4bc9686982e12390ea63ad05a27d66ff25f0fd8e0cec847d8e935475dc",
+      "size_bytes": 454
+    },
+    {
+      "file": "browser-discovery.json",
+      "sha256": "252f079eb4f6a53f4d636ccc17e789d14c8336c0a4228fdf38528683087ac281",
+      "size_bytes": 269
+    },
+    {
+      "file": "browser-workflow.json",
+      "sha256": "334a4808a0b9843f56645f9c08474165a92eb3e9e84b6645c668a21a6cf12a6a",
+      "size_bytes": 865
+    },
+    {
+      "file": "discovery.json",
+      "sha256": "c8e95767c2edb5a9e3111d1e32b89125a8ea18b9113a4dcb284f580bfdbba535",
+      "size_bytes": 634
+    },
+    {
+      "file": "discovery.log",
+      "sha256": "203b11d108c91be89d7896c8757b2ac91a9e5f9cd632432848502f0a82a614e2",
+      "size_bytes": 2067
+    },
+    {
+      "file": "format.log",
+      "sha256": "f20510a9da4717c51c4cffee6d0dd88d6c9a723d0a83711d01216f5b48961283",
+      "size_bytes": 68
+    },
+    {
+      "file": "frontend-checks.json",
+      "sha256": "bbb78cf7ad8e186201f19011474f1499a16095043866fd91fd1867890e4e2adf",
+      "size_bytes": 54
+    },
+    {
+      "file": "frontend-unit-verified.log",
+      "sha256": "dd525a458143c3400acb5c3d452ba9fe8bbb066ae7d36c138ebdf323330e786d",
+      "size_bytes": 290
+    },
+    {
+      "file": "installation.json",
+      "sha256": "a5ff2069457c0b9bf21bedbdc142e25cdb5e0f580da61ba5f72c81c83786247c",
+      "size_bytes": 2931
+    },
+    {
+      "file": "lint.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "file": "long-reader.json",
+      "sha256": "f51e115d71c530714f6030043c0d793e1c26c3821e0635972fefe23159fbd983",
+      "size_bytes": 1987
+    },
+    {
+      "file": "maintenance.json",
+      "sha256": "4c4956fa64cda39f9e94d8cbda727c07d2fc1de330777f1bcceb48677e0b90aa",
+      "size_bytes": 638
+    },
+    {
+      "file": "maintenance.log",
+      "sha256": "e30c285410a4193e096ebed4f75aca09c56d09c41b96afefc88d0f795d6f6f02",
+      "size_bytes": 3609
+    },
+    {
+      "file": "results.json",
+      "sha256": "43ae9e74267455d7aa4bcdaf77e575c5fa87e2b8f635b32c0d105fe2912c7306",
+      "size_bytes": 4694
+    },
+    {
+      "file": "state.json",
+      "sha256": "c2475185da4f83d17fe5a3a809b802eda3f0665bbc6a9eb8e0f3f96fcbdfcc05",
+      "size_bytes": 625
+    },
+    {
+      "file": "state.log",
+      "sha256": "32ed83ec5b2fac875ef5a5ae0a0e617772fff659888afc261f4d879bbc1cd01e",
+      "size_bytes": 667
+    },
+    {
+      "file": "typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "file": "upgrade-candidate.json",
+      "sha256": "7b87cf7aad4284507e055fe5f696109eb58a26fbcc89c94f0d6ca3aea85dbcf7",
+      "size_bytes": 10240
+    },
+    {
+      "file": "upgrade-legacy.json",
+      "sha256": "fcd08152f4fe4a396307e30006e0a47e6aa48df7b537447065a5def3289cb33d",
+      "size_bytes": 10857
+    },
+    {
+      "file": "upgrade-restore.json",
+      "sha256": "962b89ef4f0c15e9c94de9883be6a6757a6e156a96f396d40877aa1315384b2f",
+      "size_bytes": 360
+    },
+    {
+      "file": "workflow.json",
+      "sha256": "674cd60f7c8f21509051c384cc24ae0c1145ed602c99f4cc4c4c0916ea54987a",
+      "size_bytes": 632
+    },
+    {
+      "file": "workflow.log",
+      "sha256": "ea5eadfe00a2d63f637c29f9241e9384862691ae9d2b12e46e62fc1889cd4d33",
+      "size_bytes": 3015
+    }
+  ]
+}

@@ -23,3 +23,6 @@ knowledge/outputs/**/*.tmp
 *.egg-info/
 build/
 dist/
+
+# Per-user Claude Code permissions
+.claude/settings.local.json

@@ -1,0 +1,14 @@
+{
+  "schema": "scientific-tooling.acceptance-protocol.v1",
+  "revision": 1,
+  "candidate": "2026-10-29-c1",
+  "date": "2026-10-29",
+  "source_and_state_integrity": {"foreign_results": 0, "silent_substitutions": 0, "false_reviews": 0, "duplicate_replays": 0, "corrupted_history": 0, "unchanged_pilot_citations_required": 10},
+  "retrieval": {"endpoint": "imported-evidence-search", "existing_questions_for_independent_review": 20, "new_reviewer_authored_held_out_min": 10, "answerable_hit_at_5_min": 0.9, "report": ["raw_hits", "answerable_query_count", "recall_at_5", "unanswerable_outcomes"], "incomplete_labels_allow_precision_claim": false},
+  "performance": {"imported_records": 10000, "recorded_warm_queries": 100, "warmup_queries": 10, "warm_p95_seconds_max": 2.0, "percentile": "nearest_rank", "cold_start_separate": true, "hardware_required": true},
+  "reader": {"document_pages": 30, "mounted_pdf_page_canvases_max": 7, "old_document_canvases_after_switch_max": 0, "report": ["page_visits", "canvas_count", "canvas_pixel_bytes", "js_heap_if_available", "page_errors", "paper_switch", "search", "zoom", "page_scoped_annotations"]},
+  "independent_use": {"participants": 3, "domain_reviewers_min": 1, "developer_repairs_allowed": 0, "record_assistance": true},
+  "draft_analysis": {"execution_status": "not_run", "plan_review": "not_recorded", "semantic_dataset_validation": false, "environment_resolution": false},
+  "release": {"public_dependency_install_required": true, "exact_browser_dependency_pin_required": true, "same_path_backup_restore_required": true, "relocation_supported": false},
+  "policy": "Retain original results. New code requires a child candidate; threshold changes require a new protocol revision with reason. Human reviews must be actual human statements."
+}

@@ -1,0 +1,9 @@
+test_invalid_serialization_preserves_previous_record (test_state.AtomicRecordTest.test_invalid_serialization_preserves_previous_record) ... ok
+test_open_reader_keeps_previous_complete_revision (test_state.AtomicRecordTest.test_open_reader_keeps_previous_complete_revision) ... ok
+test_replacement_failure_preserves_existing_directory (test_state.AtomicRecordTest.test_replacement_failure_preserves_existing_directory) ... ok
+test_windows_read_only_attribute_is_not_bypassed (test_state.AtomicRecordTest.test_windows_read_only_attribute_is_not_bypassed) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.485s
+
+OK
