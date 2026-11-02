@@ -1,0 +1,8 @@
+{
+  "apw_commit": "d800a7779f1893be1a4aa0a93804c7e630d6be1a",
+  "rks_commit": "44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
+  "passed": true,
+  "tests": 21,
+  "candidate": "2026-11-02-c3",
+  "ordinary_public_dependencies": true
+}

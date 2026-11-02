@@ -1,13 +1,21 @@
 # sci roadmap
 
-Updated October 29, 2026. Current baseline: **sci 0.3.1**.
+Updated November 2, 2026. Current baseline: **sci 0.3.1**.
 
 Development publication: **sci `0.4.0.dev20261029`**, with the continuous APW
-reader pinned at `4c3a379123847aff42e221013ae4c49a4149997d`. Candidate
+reader pinned at `d800a7779f1893be1a4aa0a93804c7e630d6be1a`. Candidate
 `2026-10-29-c1` and the imported-evidence evaluation/review packet are complete
 engineering checkpoints. Independent scientific review and remaining acceptance
 gates are open. Continue from the [development handoff](phase-2-handoff.md) and
 [imported-evidence results](../evaluations/imported-evidence-2026-10-29/results.md).
+
+The [November 2 engineering acceptance](../evaluations/engineering-acceptance-2026-11-02/README.md)
+passes M03 recovery, all ten real P01 citation targets, R01/R02 long-reader cases
+and the S03 10,000-record latency gate locally. Testing exposed an invalid-page
+citation defect; child candidate `2026-11-02-c3` fixes it and preserves the failed
+c2 evidence. The APW fix is published and both package and browser CI pins now
+use that exact commit; see the [publication verification](../evaluations/publication-2026-11-02/README.md).
+Independent review and remaining release qualification stay open.
 
 `sci` should help a researcher carry a question from papers to evidence, a
 defensible comparison, and a reproducible next step. The CLI maintains durable

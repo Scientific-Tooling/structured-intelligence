@@ -1,0 +1,312 @@
+{
+  "mode": "citations",
+  "browser_harness_sha256": "57ff2c74dcf1e03a03314fc864d64936cbb6461034fe35a906e71ccc515b743a",
+  "checks": [
+    {
+      "name": "initial: annotate-z-benchmark",
+      "passed": true,
+      "seconds": 1.4133561000000008,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 3,
+        "quote": "We completed a simulation study that reproduced both the inter- and intra-individual variance structures estimated from real data and documented the effect of intra-individual correlation on the type 1 error rates of the most frequently used single-cell analysis tools",
+        "original_receipt_sha256": "d59a64b18e1448d1450f859d7f60f8891546b6224f4b7fe1c7c40ce9645a5f40",
+        "highlight_rects": 5
+      }
+    },
+    {
+      "name": "initial: annotate-z-limits",
+      "passed": true,
+      "seconds": 1.0608132000000006,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 6,
+        "quote": "we recommend mixed-effects models based on long-standing statistical justi fications for the analysis of subsamples, including increased power. This is parti- cularly so in scenarios with heavy imbalance and where within- subject variability is large compared to between-subject variability.",
+        "original_receipt_sha256": "1bd59444ac93ac936b76c77eb643b2bc8e08196885ec73cf36a2d544edf9c32d",
+        "highlight_rects": 20
+      }
+    },
+    {
+      "name": "initial: annotate-z-result",
+      "passed": true,
+      "seconds": 1.0472652999999992,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 1,
+        "quote": "Here, we document this dependence across a range of cell types and show that pseudo-bulk aggregation methods are conservative and underpowered relative to mixed models.",
+        "original_receipt_sha256": "36725a2030e44194b8edf6d06563e3ca0ca7c5940b8224707f06e922fbb3abc2",
+        "highlight_rects": 3
+      }
+    },
+    {
+      "name": "initial: annotate-z-unit",
+      "passed": true,
+      "seconds": 1.0075057000000016,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 1,
+        "quote": "Cells from the same individual share common genetic and environmental backgrounds and are not statistically independent; therefore, they are subsamples or pseudoreplicates.",
+        "original_receipt_sha256": "3c2a3a2b1fcb3520adb1e19147c591941c77be65ee9d6abfef2164922feee00a",
+        "highlight_rects": 2
+      }
+    },
+    {
+      "name": "initial: annotate-s-benchmark",
+      "passed": true,
+      "seconds": 1.0877788000000002,
+      "details": {
+        "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "page": 2,
+        "quote": "We compared the performance of the fourteen methods across the entire compendium of the eighteen gold standard datasets. This analysis immediately revealed that all six of the top- performing methods shared a common analytical property. These methods aggregated cells within a biological replicate, to form so- called ‘pseudobulks’, before applying a statistical test",
+        "original_receipt_sha256": "8e8c10df1fa7da73d181e005688f6f8c82baffc942c4e7c6b45bc8c928365f3f",
+        "highlight_rects": 29
+      }
+    },
+    {
+      "name": "initial: annotate-s-limits",
+      "passed": true,
+      "seconds": 1.1323280999999987,
+      "details": {
+        "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "page": 8,
+        "quote": "In datasets of 25-50 cells, GLMMs could produce accurate results under very speci fic parameter combinations. However, in datasets comprising 500 or more cells, their performance converged to that of pseudobulk DE methods.",
+        "original_receipt_sha256": "f01c18cb9f74598c44192743fb39bb6bfa69c4b6db1ab22ca8e4c4876649eb19",
+        "highlight_rects": 6
+      }
+    },
+    {
+      "name": "initial: annotate-s-unit",
+      "passed": true,
+      "seconds": 1.0700604999999996,
+      "details": {
+        "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "page": 1,
+        "quote": "Here, we show that the relative performance of these methods is contingent on their ability to account for variation between biological replicates.",
+        "original_receipt_sha256": "d5915c0442d188ab34946f1825c900b0a98004239143b9f72c4ee390e57b5597",
+        "highlight_rects": 2
+      }
+    },
+    {
+      "name": "initial: annotate-c-design",
+      "passed": true,
+      "seconds": 1.0798822,
+      "details": {
+        "document_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "page": 3,
+        "quote": "To ensure that method performances are comparable and do not suffer from low cell numbers, we simulated an average of 200 cells per subpopulation-sample instance, amounting to a total of ~200 × (S1 + S2)× K ≈3, 600 cells per simulation. Each simulation and method was repeated five times per scenario, and performances were averaged across replicates.",
+        "original_receipt_sha256": "024798cd0eafb46526abcf91a6ad46e1e9552f8d4b206068b30363f2f1525a97",
+        "highlight_rects": 36
+      }
+    },
+    {
+      "name": "initial: annotate-c-result",
+      "passed": true,
+      "seconds": 1.179409799999994,
+      "details": {
+        "document_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "page": 4,
+        "quote": "For DE, DM, and DP, there is a set of methods that perform generally well, including most of the pseudobulk approaches and cell-level MM models. Aggregation- and MM- based methods also performed fairly consistent across simulation replicates, while other methods were generally more erratic in their performance",
+        "original_receipt_sha256": "d1b26db3900d6ad0e07a31143dbdabcc88b131fd9d862560935158dbc1f88e44",
+        "highlight_rects": 20
+      }
+    },
+    {
+      "name": "initial: annotate-c-unit",
+      "passed": true,
+      "seconds": 1.0670613999999987,
+      "details": {
+        "document_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "page": 3,
+        "quote": "Each cell additionally has a sub- population (cluster) label as well as a sample label; metadata should be linked to samples, such that they can be organized into comparable groups with sample-level replicates",
+        "original_receipt_sha256": "ec1a3ea9ea72beba29f67be2d6e73347990fff582759e8877206df6367c66f2f",
+        "highlight_rects": 4
+      }
+    },
+    {
+      "name": "after_restart: annotate-z-benchmark",
+      "passed": true,
+      "seconds": 1.0342899999999935,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 3,
+        "quote": "We completed a simulation study that reproduced both the inter- and intra-individual variance structures estimated from real data and documented the effect of intra-individual correlation on the type 1 error rates of the most frequently used single-cell analysis tools",
+        "original_receipt_sha256": "d59a64b18e1448d1450f859d7f60f8891546b6224f4b7fe1c7c40ce9645a5f40",
+        "highlight_rects": 5
+      }
+    },
+    {
+      "name": "after_restart: annotate-z-limits",
+      "passed": true,
+      "seconds": 1.0720111999999935,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 6,
+        "quote": "we recommend mixed-effects models based on long-standing statistical justi fications for the analysis of subsamples, including increased power. This is parti- cularly so in scenarios with heavy imbalance and where within- subject variability is large compared to between-subject variability.",
+        "original_receipt_sha256": "1bd59444ac93ac936b76c77eb643b2bc8e08196885ec73cf36a2d544edf9c32d",
+        "highlight_rects": 20
+      }
+    },
+    {
+      "name": "after_restart: annotate-z-result",
+      "passed": true,
+      "seconds": 1.0222562999999936,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 1,
+        "quote": "Here, we document this dependence across a range of cell types and show that pseudo-bulk aggregation methods are conservative and underpowered relative to mixed models.",
+        "original_receipt_sha256": "36725a2030e44194b8edf6d06563e3ca0ca7c5940b8224707f06e922fbb3abc2",
+        "highlight_rects": 3
+      }
+    },
+    {
+      "name": "after_restart: annotate-z-unit",
+      "passed": true,
+      "seconds": 0.5515598000000027,
+      "details": {
+        "document_sha256": "464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c",
+        "page": 1,
+        "quote": "Cells from the same individual share common genetic and environmental backgrounds and are not statistically independent; therefore, they are subsamples or pseudoreplicates.",
+        "original_receipt_sha256": "3c2a3a2b1fcb3520adb1e19147c591941c77be65ee9d6abfef2164922feee00a",
+        "highlight_rects": 2
+      }
+    },
+    {
+      "name": "after_restart: annotate-s-benchmark",
+      "passed": true,
+      "seconds": 1.048730899999995,
+      "details": {
+        "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "page": 2,
+        "quote": "We compared the performance of the fourteen methods across the entire compendium of the eighteen gold standard datasets. This analysis immediately revealed that all six of the top- performing methods shared a common analytical property. These methods aggregated cells within a biological replicate, to form so- called ‘pseudobulks’, before applying a statistical test",
+        "original_receipt_sha256": "8e8c10df1fa7da73d181e005688f6f8c82baffc942c4e7c6b45bc8c928365f3f",
+        "highlight_rects": 29
+      }
+    },
+    {
+      "name": "after_restart: annotate-s-limits",
+      "passed": true,
+      "seconds": 1.1976407000000036,
+      "details": {
+        "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "page": 8,
+        "quote": "In datasets of 25-50 cells, GLMMs could produce accurate results under very speci fic parameter combinations. However, in datasets comprising 500 or more cells, their performance converged to that of pseudobulk DE methods.",
+        "original_receipt_sha256": "f01c18cb9f74598c44192743fb39bb6bfa69c4b6db1ab22ca8e4c4876649eb19",
+        "highlight_rects": 6
+      }
+    },
+    {
+      "name": "after_restart: annotate-s-unit",
+      "passed": true,
+      "seconds": 1.0346972999999997,
+      "details": {
+        "document_sha256": "465fd1842f2e07e17d55e0170dd96dd994f61a15c019655f3f1503ef37e7f22a",
+        "page": 1,
+        "quote": "Here, we show that the relative performance of these methods is contingent on their ability to account for variation between biological replicates.",
+        "original_receipt_sha256": "d5915c0442d188ab34946f1825c900b0a98004239143b9f72c4ee390e57b5597",
+        "highlight_rects": 2
+      }
+    },
+    {
+      "name": "after_restart: annotate-c-design",
+      "passed": true,
+      "seconds": 1.0483452999999863,
+      "details": {
+        "document_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "page": 3,
+        "quote": "To ensure that method performances are comparable and do not suffer from low cell numbers, we simulated an average of 200 cells per subpopulation-sample instance, amounting to a total of ~200 × (S1 + S2)× K ≈3, 600 cells per simulation. Each simulation and method was repeated five times per scenario, and performances were averaged across replicates.",
+        "original_receipt_sha256": "024798cd0eafb46526abcf91a6ad46e1e9552f8d4b206068b30363f2f1525a97",
+        "highlight_rects": 36
+      }
+    },
+    {
+      "name": "after_restart: annotate-c-result",
+      "passed": true,
+      "seconds": 1.1076143000000012,
+      "details": {
+        "document_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "page": 4,
+        "quote": "For DE, DM, and DP, there is a set of methods that perform generally well, including most of the pseudobulk approaches and cell-level MM models. Aggregation- and MM- based methods also performed fairly consistent across simulation replicates, while other methods were generally more erratic in their performance",
+        "original_receipt_sha256": "d1b26db3900d6ad0e07a31143dbdabcc88b131fd9d862560935158dbc1f88e44",
+        "highlight_rects": 20
+      }
+    },
+    {
+      "name": "after_restart: annotate-c-unit",
+      "passed": true,
+      "seconds": 1.011836500000005,
+      "details": {
+        "document_sha256": "7b4cc7a8890549c6f34d6ebdb3660c2143bc7830b8004e8cfae270eaa72dbc0a",
+        "page": 3,
+        "quote": "Each cell additionally has a sub- population (cluster) label as well as a sample label; metadata should be linked to samples, such that they can be organized into comparable groups with sample-level replicates",
+        "original_receipt_sha256": "ec1a3ea9ea72beba29f67be2d6e73347990fff582759e8877206df6367c66f2f",
+        "highlight_rects": 4
+      }
+    },
+    {
+      "name": "reject changed document_sha256",
+      "passed": true,
+      "seconds": 0.17443499999999768,
+      "details": {
+        "status": "Citation belongs to a different PDF revision. Use the original reading workspace."
+      }
+    },
+    {
+      "name": "reject changed annotation_id",
+      "passed": true,
+      "seconds": 0.16718399999999384,
+      "details": {
+        "status": "Cited annotation is missing or deleted. Restore it from backup; imported RKS evidence is retained."
+      }
+    },
+    {
+      "name": "reject changed page",
+      "passed": true,
+      "seconds": 0.1607332000000024,
+      "details": {
+        "status": "Cited passage has changed. Inspect the imported revision and review a fresh export before regenerating the brief."
+      }
+    },
+    {
+      "name": "reject changed passage_sha256",
+      "passed": true,
+      "seconds": 0.13655479999999806,
+      "details": {
+        "status": "Cited passage has changed. Inspect the imported revision and review a fresh export before regenerating the brief."
+      }
+    },
+    {
+      "name": "edited and deleted real anchor reject the old citation",
+      "passed": true,
+      "seconds": 0.26619610000000105
+    },
+    {
+      "name": "changed real PDF fails explicitly",
+      "passed": true,
+      "seconds": 0.3807244000000064,
+      "details": {
+        "status": "Source PDF changed. Restore the exact reading snapshot before reopening this citation."
+      }
+    },
+    {
+      "name": "missing real PDF fails explicitly",
+      "passed": true,
+      "seconds": 0.20420860000001267,
+      "details": {
+        "status": "PDF not found: C:\\Users\\yangm11\\github\\.development-candidate\\2026-11-02-c3\\citations-01\\project\\pdfs\\464b4845a2b4d02fb3f2cd23b61f0bc9bd2287fc6ad2114baf7d64919006501c.pdf"
+      }
+    },
+    {
+      "name": "valid source with an unmatched quote retains the paper and quotation",
+      "passed": true,
+      "seconds": 2.2617597000000096
+    },
+    {
+      "name": "original citation works again after restoring the fault fixtures",
+      "passed": true,
+      "seconds": 0.9225995000000112
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "chromium_version": "151.0.7922.34"
+}

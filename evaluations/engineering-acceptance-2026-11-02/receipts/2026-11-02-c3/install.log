@@ -1,0 +1,7 @@
+Processing .\.development-candidate\2026-11-02-c3\wheels\agent_pdf_workbench-0.3.2.dev20261029-py3-none-any.whl
+Processing .\.development-candidate\2026-11-02-c3\wheels\research_knowledge_substrate-0.2.0-py3-none-any.whl
+Processing .\.development-candidate\2026-11-02-c3\wheels\scientific_tooling-0.4.0.dev20261029-py3-none-any.whl
+research-knowledge-substrate is already installed with the same version as the provided wheel. Use --force-reinstall to force an installation of the wheel.
+Installing collected packages: scientific-tooling, agent-pdf-workbench
+
+Successfully installed agent-pdf-workbench-0.3.2.dev20261029 scientific-tooling-0.4.0.dev20261029

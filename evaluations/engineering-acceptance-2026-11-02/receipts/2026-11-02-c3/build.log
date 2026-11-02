@@ -1,0 +1,35 @@
+Processing .\.development-candidate\2026-11-02-c3\source\structured-intelligence
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Processing .\.development-candidate\2026-11-02-c3\source\agent-pdf-workbench
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Processing .\.development-candidate\2026-11-02-c3\source\research-knowledge-substrate
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: scientific-tooling, agent-pdf-workbench, research-knowledge-substrate
+  Building wheel for scientific-tooling (pyproject.toml): started
+  Building wheel for scientific-tooling (pyproject.toml): finished with status 'done'
+  Created wheel for scientific-tooling: filename=scientific_tooling-0.4.0.dev20261029-py3-none-any.whl size=78069 sha256=9418ec13b6e4627f1575950480430be056a07572fb4bc8a5e9cd7c499e39d124
+  Stored in directory: C:\Users\yangm11\AppData\Local\Temp\pip-ephem-wheel-cache-9g5l0af1\wheels\f1\df\5a\522968ca89d2c1303b0cd995eda8305ed807fd2aa726f62a90
+  Building wheel for agent-pdf-workbench (pyproject.toml): started
+  Building wheel for agent-pdf-workbench (pyproject.toml): finished with status 'done'
+  Created wheel for agent-pdf-workbench: filename=agent_pdf_workbench-0.3.2.dev20261029-py3-none-any.whl size=657093 sha256=5902022793d0a3475598cbe2fd5a594bc365f963f12688f3e8239bc1b591c7de
+  Stored in directory: C:\Users\yangm11\AppData\Local\Temp\pip-ephem-wheel-cache-9g5l0af1\wheels\be\b4\d6\b03dae1a03a4dd1697e364faebea97e45fb6ed8c4975bc3fac
+  Building wheel for research-knowledge-substrate (pyproject.toml): started
+  Building wheel for research-knowledge-substrate (pyproject.toml): finished with status 'done'
+  Created wheel for research-knowledge-substrate: filename=research_knowledge_substrate-0.2.0-py3-none-any.whl size=214527 sha256=1b73e179d483ba209994d27e41bb95cc6356d832bbdf7aa7f1ad08d56d268ada
+  Stored in directory: C:\Users\yangm11\AppData\Local\Temp\pip-ephem-wheel-cache-9g5l0af1\wheels\d4\fc\7e\bf5ee6753d5e6a16d903bfed2da67a11f178273d8653792429
+Successfully built scientific-tooling agent-pdf-workbench research-knowledge-substrate

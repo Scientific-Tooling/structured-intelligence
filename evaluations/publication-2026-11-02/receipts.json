@@ -1,0 +1,14 @@
+{
+  "files": {
+    "checks/installation.json": "4eb16db2e01be51de76d4b754180287e7f3a0119f3660edb698e4e8ade1ea027",
+    "checks/installed-workflow.log": "901db42e476db00925ea17d9939bd8111ab700d6db01f5a926085afc70754b39",
+    "checks/native-boundaries.log": "a888cff5dbd3bd527a410d46c36f427b03d26921421636290ff6d992d83870a9",
+    "checks/results.json": "bbe3eb55d9cb054579cd7503f06c46e6bcd3f9e67be1cdc6f44f1e3d61779088",
+    "install.log": "0ee557f0ba09a7b2217032e40f589beaa7e1a3f21973ffd0bb0c3a12155e70c5",
+    "publication.json": "273df74ad4202a28ae9383dd5c121b9e941f91e3946eb3f0389f7523d49a039f",
+    "README.md": "266c5fc18fd3059c329ac0186eaee946dcc414bdebd6dc5849d4152098273e00",
+    "summary.json": "e076037f9db7c4f3c7745acdda583b0442f2083f0758773f47939606a8a2fe01",
+    "venv.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "verify_installation.py": "168f59ddab46bf4f05cead078f347349ddcf682b9293c88329f2f8c3a9af92ba"
+  }
+}

@@ -11,7 +11,7 @@ requires-python = ">=3.12"
 license = "MIT"
 dependencies = [
   "research-knowledge-substrate @ git+https://github.com/Scientific-Tooling/research-knowledge-substrate.git@44a8f33f47d9e867a03a8cff9e07a7b021e04cea",
-  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@4c3a379123847aff42e221013ae4c49a4149997d",
+  "agent-pdf-workbench @ git+https://github.com/Scientific-Tooling/agent-pdf-workbench.git@d800a7779f1893be1a4aa0a93804c7e630d6be1a",
 ]
 
 [project.scripts]

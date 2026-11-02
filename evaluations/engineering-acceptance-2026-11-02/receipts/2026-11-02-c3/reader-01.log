@@ -1,0 +1,26 @@
+{
+  "mode": "reader",
+  "passed": true,
+  "checks": [
+    {
+      "name": "all 30 pages both directions at fit_width",
+      "passed": true
+    },
+    {
+      "name": "all 30 pages both directions at 100_percent",
+      "passed": true
+    },
+    {
+      "name": "long-document search, next/previous matches and direct page jumps",
+      "passed": true
+    },
+    {
+      "name": "highlights on pages 2, 15 and 29 retain their exact page and quote",
+      "passed": true
+    },
+    {
+      "name": "zoom preserves the current page and paper switching clears old rasters",
+      "passed": true
+    }
+  ]
+}

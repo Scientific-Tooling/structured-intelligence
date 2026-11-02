@@ -1,0 +1,11 @@
+{
+  "schema": "scientific-tooling.engineering-acceptance.v1",
+  "candidate": "2026-11-02-c2",
+  "parent": "2026-10-29-c1",
+  "scope": "M03 browser recovery; P01 ten real citations; R01/R02 continuous reader; S03 search latency",
+  "rules": ["New output directory for every attempt", "Verify installed package files against frozen source before running", "Keep failures and harness revisions", "No scientific approval implied"],
+  "recovery": ["Failed freshness check removes earlier current label", "Lost response after committed brief retries the identical request once", "Interrupted brief resumes from its retained request", "Earlier edition bytes survive retries"],
+  "citations": {"count": 10, "sources": "Original October 28 pilot PDFs and annotation receipts, recreated in a disposable project", "required": ["document hash", "page", "selected visible highlight", "exact quote", "restart", "explicit rejection of changed or missing sources/anchors"]},
+  "reader": {"pages": 30, "viewport": [1440, 1000], "zooms": ["fit_width", "100_percent"], "active_rasters_max": 7, "required": ["Every page forwards and backwards", "Page jumps", "Search and next/previous results", "Highlights on separated pages", "Zoom position", "Paper switching and reopening"]},
+  "search": {"records": 10000, "papers": 10, "warmup_queries": 10, "measured_queries": 100, "warm_p95_seconds_max": 2.0, "percentile": "nearest rank", "measurement": "Native installed RKS search including connection/read transaction; CLI startup reported separately", "cold": "First query in a fresh process; OS disk caches are not purged", "fixture": "Deterministic synthetic imported commentary; latency only, no relevance or scientific accuracy claim"}
+}

@@ -1,0 +1,36 @@
+[
+  {
+    "name": "installed-workflow",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-11-02\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_workflow.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 182.33884149999358,
+    "tests": 19,
+    "log_sha256": "901db42e476db00925ea17d9939bd8111ab700d6db01f5a926085afc70754b39"
+  },
+  {
+    "name": "native-boundaries",
+    "command": [
+      "C:\\Users\\yangm11\\github\\.publication\\2026-11-02\\installed\\Scripts\\python.exe",
+      "scripts/run_research_tests.py",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_*integration.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "seconds": 13.895462099928409,
+    "tests": 2,
+    "log_sha256": "a888cff5dbd3bd527a410d46c36f427b03d26921421636290ff6d992d83870a9"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "mode": "edges",
+  "passed": true,
+  "checks": [
+    {
+      "name": "valid citation contract rejects ambiguous quotation",
+      "passed": true
+    },
+    {
+      "name": "valid citation contract rejects out-of-range page",
+      "passed": true
+    },
+    {
+      "name": "a late previous-paper freshness response cannot replace the current paper state",
+      "passed": true
+    }
+  ]
+}

@@ -1,8 +1,33 @@
 # Scientific Tooling: Phase 2 handoff
 
-Updated October 29, 2026. Workspace: `C:\Users\yangm11\github`.
+Updated November 2, 2026. Workspace: `C:\Users\yangm11\github`.
 
-## Current publication checkpoint October 29
+## Current local engineering checkpoint November 2
+
+The requested **M03 browser recovery, P01 ten real citation targets, R01/R02
+long-reader checks, and S03 10,000-record search benchmark pass locally**. See the
+[engineering acceptance report](../evaluations/engineering-acceptance-2026-11-02/README.md)
+for raw receipts, immutable candidate identities, retained failures and reproduction.
+
+Candidate `2026-11-02-c2` exposed an APW defect: an out-of-range citation page
+cleared a valid document and hid its quotation. The local fix separates passage
+validation from document loading. Child `2026-11-02-c3`, built and installed from
+frozen wheels, passed 41 browser acceptance checks with no page errors; frontend
+validation includes 104 unit tests and five passage browser regressions. The
+30-page reader stayed at at most four active rasters (limit seven). RKS is unchanged;
+its retained 100-query benchmark over 10,000 imported notes has p95 1.4515 seconds
+(limit two seconds), with unchanged database bytes and separate CLI timings.
+
+The APW fix is now published at `d800a7779f1893be1a4aa0a93804c7e630d6be1a`.
+Sci's package dependency and browser CI checkout both pin that exact commit;
+see [publication verification](../evaluations/publication-2026-11-02/README.md).
+Preserve c1, c2, c3 and all receipts; the frozen c3 metadata intentionally retains
+its older public pin, while this publication records the coordinated update
+separately. Independent review, other acceptance rows and supported-platform release
+qualification remain open. The sections below retain their dated checkpoints;
+use this section for the current engineering disposition.
+
+## Published source checkpoint October 29
 
 The development publication includes the accumulated sci implementation, guides,
 analysis handoff, candidate records and imported-evidence evaluation. APW's
@@ -26,7 +51,7 @@ workspace copy. Preserve exact evaluation bytes: `.gitattributes` disables text
 normalization for the candidate, imported-evidence and publication records so
 their retained hashes survive cross-platform Git checkouts.
 
-## Frozen candidate and imported evidence checkpoint
+## October 29 candidate and imported evidence checkpoint
 
 The current execution plan is the October 29 **Development feature completion
 plan** in [the sci roadmap](../docs/sci-roadmap.md).
@@ -185,7 +210,7 @@ The original pilot is `.living-project-pilot/single-cell-de`, comparison
 `cmp_0f45d3e27fa044729c08b9a906132f57`. Local passage URLs require that original
 project and its reader at the saved address; publisher links are also retained.
 
-### Remaining gates and next work
+### Remaining gates at the October 29 checkpoint
 
 | Gate | Current disposition and next evidence |
 | --- | --- |
@@ -1391,8 +1416,10 @@ a saved script are safer. No system packages were installed during this work.
 
 > Continue Scientific Tooling development from the current checkpoint in
 > `C:\Users\yangm11\github\phase-2-handoff.md`. Verify repository status and
-> preserve existing uncommitted changes. Candidate `2026-10-29-c1` and its 23-row
-> acceptance/failure matrix are frozen. Read the candidate baseline and
+> preserve existing uncommitted changes. Candidates `2026-10-29-c1`,
+> `2026-11-02-c2` and `2026-11-02-c3` and their acceptance evidence are frozen.
+> Read `structured-intelligence/evaluations/engineering-acceptance-2026-11-02/README.md`,
+> the original 23-row candidate matrix and
 > `structured-intelligence/evaluations/imported-evidence-2026-10-29/results.md`.
 > The imported-evidence fixture and source-linked review packet are implemented;
 > use `run-installed-original/`, `run-installed-corrected/` and `review-final/`.
@@ -1401,9 +1428,12 @@ a saved script are safer. No system packages were installed during this work.
 > changes. The 61-test adapter suite passes on Python 3.12 and 3.14. Preserve
 > both source revisions, all receipts and the immutable candidate; do not restart
 > this completed slice or use earlier checkout-import runs as installed evidence.
-> Next implement the missing browser recovery cases and rerun all ten real pilot
-> citation targets, following M03/P01 and the remaining reader gates. Application
-> changes require a child candidate and affected checks. S02/Q02 remain pending
+> M03/P01/R01/R02/S03 now pass locally. The c3 APW citation-page fix is published
+> at `d800a7779f1893be1a4aa0a93804c7e630d6be1a`, with coordinated sci package/CI
+> pins. Read the November 2 publication verification and check current hosted CI
+> before continuing supported-platform and remaining release qualification.
+> Further application corrections require another child candidate and affected
+> checks. S02/Q02 remain pending
 > actual independent review and at least ten newly authored held-out questions;
 > the packet has 26 pending decisions and zero approvals. Keep Structured
 > Intelligence orchestration, RKS durable evidence and APW source reading distinct.

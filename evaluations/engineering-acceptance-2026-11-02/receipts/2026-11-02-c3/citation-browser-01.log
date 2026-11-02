@@ -1,0 +1,122 @@
+{
+  "mode": "citations",
+  "passed": true,
+  "checks": [
+    {
+      "name": "initial: annotate-z-benchmark",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-z-limits",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-z-result",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-z-unit",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-s-benchmark",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-s-limits",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-s-unit",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-c-design",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-c-result",
+      "passed": true
+    },
+    {
+      "name": "initial: annotate-c-unit",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-z-benchmark",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-z-limits",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-z-result",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-z-unit",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-s-benchmark",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-s-limits",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-s-unit",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-c-design",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-c-result",
+      "passed": true
+    },
+    {
+      "name": "after_restart: annotate-c-unit",
+      "passed": true
+    },
+    {
+      "name": "reject changed document_sha256",
+      "passed": true
+    },
+    {
+      "name": "reject changed annotation_id",
+      "passed": true
+    },
+    {
+      "name": "reject changed page",
+      "passed": true
+    },
+    {
+      "name": "reject changed passage_sha256",
+      "passed": true
+    },
+    {
+      "name": "edited and deleted real anchor reject the old citation",
+      "passed": true
+    },
+    {
+      "name": "changed real PDF fails explicitly",
+      "passed": true
+    },
+    {
+      "name": "missing real PDF fails explicitly",
+      "passed": true
+    },
+    {
+      "name": "valid source with an unmatched quote retains the paper and quotation",
+      "passed": true
+    },
+    {
+      "name": "original citation works again after restoring the fault fixtures",
+      "passed": true
+    }
+  ]
+}

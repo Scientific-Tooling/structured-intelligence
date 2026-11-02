@@ -1,0 +1,11 @@
+{
+  "schema": "scientific-tooling.engineering-acceptance-child.v1",
+  "candidate": "2026-11-02-c3",
+  "parent_candidate": "2026-11-02-c2",
+  "parent_protocol": "protocol.json",
+  "reason": "c2 edges-01 demonstrated that an out-of-range citation page clears a verified document and hides saved quotations. Move page validation from PDF loading to passage focusing, after saved annotations are loaded.",
+  "unchanged_thresholds": "All protocol.json counts and thresholds remain unchanged. Retain c2 successes and the original failure.",
+  "rerun": ["APW frontend suite and passage browser regression", "M03 recovery and delayed previous-session response", "P01 ten real targets, restart, source and anchor failures, ambiguous quotation and out-of-range page", "R01/R02 all long-reader checks"],
+  "inherited": {"S03": "c2 benchmark-02: RKS source unchanged; benchmark fixture, 100 native warm queries and separate CLI timings retained"},
+  "installation": "Fresh c3 environment with wheels built from frozen sources. Local combined install uses --no-deps after dependency setup; public sci remains pinned to the published pre-fix APW commit. No release or publication claim."
+}

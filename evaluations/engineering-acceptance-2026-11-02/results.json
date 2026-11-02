@@ -1,0 +1,43 @@
+{
+  "candidate": "2026-11-02-c3",
+  "parent": "2026-11-02-c2",
+  "candidate_manifest_sha256": "c75bc1b940dcddc2967b256cc35699febc299e1bc27303d088f048a76e3919ea",
+  "browser_checks_passed": 41,
+  "page_errors": [],
+  "real_citation_targets": 10,
+  "real_citation_visits_including_restart": 20,
+  "reader": {
+    "page_visits": 120,
+    "max_active_rasters": 4,
+    "max_canvas_pixel_bytes": 10956960,
+    "limit": 7,
+    "heap": "Chromium performance.memory is coarse here and is not used as a total-memory acceptance claim"
+  },
+  "search": {
+    "passed": true,
+    "records": 10000,
+    "queries": 100,
+    "p95_seconds": 1.451504600001499,
+    "median_seconds": 1.3806399999884889,
+    "max_seconds": 1.5043316001538187,
+    "first_query_seconds": 1.4292718002106994,
+    "db_sha256_before_and_after": "3007cc5d2ef59081184bdf1df2d0f02217c2a61d85e782a1c4ca2a67fc58a896",
+    "os_caches_purged": false,
+    "measurement": "native search with connection and read transaction, excluding process startup",
+    "inherited_from": "2026-11-02-c2/benchmark-02",
+    "rks_tree_unchanged": true
+  },
+  "gates": {
+    "M03": "PASS local engineering acceptance",
+    "P01": "PASS local engineering acceptance",
+    "R01": "PASS local engineering acceptance",
+    "R02": "PASS local engineering acceptance",
+    "S03": "PASS local engineering acceptance"
+  },
+  "limits": [
+    "Windows 11 / Python 3.14.10 / Chromium 151.0.7922.34",
+    "Source and scientific interpretation review remain independent and pending",
+    "c3 local wheels include an unpublished APW fix; public sci still pins the prior APW commit",
+    "No new cross-platform release qualification or public dependency installation is implied"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "mode": "recovery",
+  "passed": true,
+  "checks": [
+    {
+      "name": "failed freshness clears current label and preserves editions",
+      "passed": true
+    },
+    {
+      "name": "lost committed response retries the identical request without another edition",
+      "passed": true
+    },
+    {
+      "name": "interrupted publication resumes its retained request after restart",
+      "passed": true
+    },
+    {
+      "name": "retrying an older edition leaves the latest edition current",
+      "passed": true
+    }
+  ]
+}

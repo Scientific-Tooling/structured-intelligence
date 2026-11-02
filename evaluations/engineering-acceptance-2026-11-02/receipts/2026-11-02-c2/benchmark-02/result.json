@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "records": 10000,
+  "queries": 100,
+  "p95_seconds": 1.451504600001499,
+  "median_seconds": 1.3806399999884889,
+  "max_seconds": 1.5043316001538187,
+  "first_query_seconds": 1.4292718002106994,
+  "db_sha256_before_and_after": "3007cc5d2ef59081184bdf1df2d0f02217c2a61d85e782a1c4ca2a67fc58a896",
+  "os_caches_purged": false,
+  "measurement": "native search with connection and read transaction, excluding process startup"
+}

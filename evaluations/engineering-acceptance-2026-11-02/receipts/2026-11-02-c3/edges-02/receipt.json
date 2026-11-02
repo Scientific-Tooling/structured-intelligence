@@ -1,0 +1,28 @@
+{
+  "mode": "edges",
+  "browser_harness_sha256": "27831bb8c61953f75e9447baf0c788ebbc4249ebd1a703d80e142afa8118ba0c",
+  "checks": [
+    {
+      "name": "valid citation contract rejects ambiguous quotation",
+      "passed": true,
+      "seconds": 3.6632656999999997
+    },
+    {
+      "name": "valid citation contract rejects out-of-range page",
+      "passed": true,
+      "seconds": 2.9094088999999985
+    },
+    {
+      "name": "a late previous-paper freshness response cannot replace the current paper state",
+      "passed": true,
+      "seconds": 25.295581,
+      "details": {
+        "delayed_freshness": "outdated",
+        "current_freshness": "current"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "chromium_version": "151.0.7922.34"
+}

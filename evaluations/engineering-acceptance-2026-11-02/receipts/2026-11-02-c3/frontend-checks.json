@@ -1,0 +1,37 @@
+{
+  "scope": "Commands observed in this acceptance session; no product source changed between these checks and c3 freeze. Only test formatting changed after the unit run.",
+  "commands": [
+    {
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "exit_code": 0
+    },
+    {
+      "command": "node node_modules/eslint/bin/eslint.js frontend/src/**/*.{ts,tsx} vite.config.ts vitest.config.ts --max-warnings 0",
+      "exit_code": 0
+    },
+    {
+      "command": "node node_modules/prettier/bin/prettier.cjs --check frontend/**/*.{ts,tsx,css,html} *.{json,ts}",
+      "exit_code": 0,
+      "note": "After formatting the new regression test"
+    },
+    {
+      "command": "node node_modules/vitest/vitest.mjs run",
+      "exit_code": 0,
+      "files_passed": 18,
+      "tests_passed": 104,
+      "seconds": 6.9
+    },
+    {
+      "command": "node node_modules/vite/bin/vite.js build",
+      "exit_code": 0
+    },
+    {
+      "command": "node node_modules/@playwright/test/cli.js test frontend/e2e/passage.spec.ts",
+      "exit_code": 0,
+      "tests_passed": 5,
+      "seconds": 12.7,
+      "python": "retained c1 interpreter with PYTHONPATH=src, rebuilt c3-equivalent reader assets"
+    }
+  ],
+  "manifest_sha256": "c75bc1b940dcddc2967b256cc35699febc299e1bc27303d088f048a76e3919ea"
+}

@@ -1,0 +1,64 @@
+{
+  "mode": "recovery",
+  "browser_harness_sha256": "04f649fab530542469f78e53389938404d848e1febfabf5f70bc57315a800de0",
+  "checks": [
+    {
+      "name": "failed freshness clears current label and preserves editions",
+      "passed": true,
+      "seconds": 0.30159109999999784
+    },
+    {
+      "name": "lost committed response retries the identical request without another edition",
+      "passed": true,
+      "seconds": 3.8998539999999995,
+      "details": {
+        "requests": [
+          {
+            "action": "brief",
+            "session_id": "ps_d8c27c8ebadd",
+            "preview_id": "1ec4cd4bc31246ee80040e9dd24f7539",
+            "request_id": "5c05902a2d024d8296901f56efdb7f42",
+            "annotation_ids": [
+              "ann_60bc6c51610d41348dd18d114f4a43cd"
+            ],
+            "note_ids": []
+          },
+          {
+            "action": "brief",
+            "session_id": "ps_d8c27c8ebadd",
+            "preview_id": "1ec4cd4bc31246ee80040e9dd24f7539",
+            "request_id": "5c05902a2d024d8296901f56efdb7f42",
+            "annotation_ids": [
+              "ann_60bc6c51610d41348dd18d114f4a43cd"
+            ],
+            "note_ids": []
+          }
+        ],
+        "editions": [
+          "5c05902a2d024d8296901f56efdb7f42",
+          "78c4f73798e64474aa756f9fc7fd9613"
+        ]
+      }
+    },
+    {
+      "name": "interrupted publication resumes its retained request after restart",
+      "passed": true,
+      "seconds": 19.305315599999997,
+      "details": {
+        "request_id": "b280f9abf1444736a56e54557901221f"
+      }
+    },
+    {
+      "name": "retrying an older edition leaves the latest edition current",
+      "passed": true,
+      "seconds": 5.555444300000003,
+      "details": {
+        "older": "78c4f73798e64474aa756f9fc7fd9613",
+        "latest": "b280f9abf1444736a56e54557901221f"
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "chromium_version": "151.0.7922.34"
+}

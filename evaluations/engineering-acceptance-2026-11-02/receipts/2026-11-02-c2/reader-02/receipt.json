@@ -1,0 +1,1934 @@
+{
+  "mode": "reader",
+  "browser_harness_sha256": "2abed7f24c91fe6c85e595ea2b213c3c52a0a681120b3253a00ea5ddf9377197",
+  "checks": [
+    {
+      "name": "all 30 pages both directions at fit_width",
+      "passed": true,
+      "seconds": 2.114825799999999,
+      "details": {
+        "visits": 60
+      }
+    },
+    {
+      "name": "all 30 pages both directions at 100_percent",
+      "passed": true,
+      "seconds": 2.4368456000000007,
+      "details": {
+        "visits": 60
+      }
+    },
+    {
+      "name": "long-document search, next/previous matches and direct page jumps",
+      "passed": true,
+      "seconds": 2.2552713000000004
+    },
+    {
+      "name": "highlights on pages 2, 15 and 29 retain their exact page and quote",
+      "passed": true,
+      "seconds": 0.8354946000000054
+    },
+    {
+      "name": "zoom preserves the current page and paper switching clears old rasters",
+      "passed": true,
+      "seconds": 1.4803844000000026
+    }
+  ],
+  "errors": [],
+  "passed": true,
+  "chromium_version": "151.0.7922.34",
+  "raster_samples": [
+    {
+      "requested_page": 1,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        1,
+        2
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 2,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        1,
+        2
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 3,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        2,
+        3,
+        4
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 4,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        3,
+        4
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 5,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        4,
+        5
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 6,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        5,
+        6
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 7,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        6,
+        7,
+        8
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 8,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 9,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        8,
+        9
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 10,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        9,
+        10,
+        11
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 11,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        10,
+        11
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 12,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        11,
+        12
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 13,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        12,
+        13
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 14,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        13,
+        14
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 15,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        14,
+        15
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 16,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        15,
+        16
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 17,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        16,
+        17,
+        18
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 18,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        17,
+        18
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 19,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        18,
+        19,
+        20
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 20,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        19,
+        20
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 21,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        20,
+        21,
+        22
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 22,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        21,
+        22
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 23,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        22,
+        23,
+        24
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 24,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        23,
+        24
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 25,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        24,
+        25
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 26,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        25,
+        26
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 27,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        26,
+        27
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 28,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        27,
+        28
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 29,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 30,
+      "mode": "fit_width",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        29,
+        30
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 30,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        29,
+        30
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 29,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 28,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        27,
+        28,
+        29
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 27,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        26,
+        27,
+        28
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 26,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        25,
+        26,
+        27
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 25,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        24,
+        25,
+        26
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 24,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        23,
+        24,
+        25
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 23,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        22,
+        23,
+        24
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 22,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        21,
+        22,
+        23
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 21,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        20,
+        21,
+        22
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 20,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        19,
+        20,
+        21
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 19,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        18,
+        19,
+        20
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 18,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        17,
+        18,
+        19
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 17,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        16,
+        17,
+        18
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 16,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        15,
+        16,
+        17
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 15,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        14,
+        15,
+        16
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 14,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        13,
+        14,
+        15
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 13,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        12,
+        13,
+        14
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 12,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        11,
+        12,
+        13
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 11,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        10,
+        11,
+        12
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 10,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        9,
+        10,
+        11
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 9,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        8,
+        9,
+        10
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 8,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 7,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        6,
+        7,
+        8
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 6,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        5,
+        6,
+        7
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 5,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        4,
+        5,
+        6
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 4,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        3,
+        4,
+        5
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 3,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        2,
+        3,
+        4
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 2,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 10956960,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 1,
+      "mode": "fit_width",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 2,
+      "pixel_bytes": 7304640,
+      "pages": [
+        1,
+        2
+      ],
+      "zoom": "137%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 1,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 2,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 3,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        2,
+        3,
+        4
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 4,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 5,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        4,
+        5,
+        6
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 6,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        5,
+        6,
+        7
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 7,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 8,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        7,
+        8,
+        9
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 9,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 10,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 11,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 12,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        11,
+        12,
+        13
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 13,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 14,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        13,
+        14,
+        15
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 15,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        14,
+        15,
+        16
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 16,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 17,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 18,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 19,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        18,
+        19,
+        20
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 20,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        19,
+        20,
+        21
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 21,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 22,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 23,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        22,
+        23,
+        24
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 24,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        23,
+        24,
+        25
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 25,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        24,
+        25,
+        26
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 26,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        25,
+        26,
+        27
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 27,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        26,
+        27,
+        28
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 28,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        27,
+        28,
+        29
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 29,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 30,
+      "mode": "100_percent",
+      "direction": "forward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 30,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 29,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        28,
+        29,
+        30
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 28,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        27,
+        28,
+        29,
+        30
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 27,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        26,
+        27,
+        28,
+        29
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 26,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        25,
+        26,
+        27,
+        28
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 25,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        24,
+        25,
+        26,
+        27
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 24,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        23,
+        24,
+        25,
+        26
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 23,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 22,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        21,
+        22,
+        23,
+        24
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 21,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        20,
+        21,
+        22,
+        23
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 20,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        19,
+        20,
+        21,
+        22
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 19,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        18,
+        19,
+        20,
+        21
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 18,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 17,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        16,
+        17,
+        18,
+        19
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 16,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        15,
+        16,
+        17,
+        18
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 15,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 14,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        13,
+        14,
+        15,
+        16
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 13,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 12,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        11,
+        12,
+        13,
+        14
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 11,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 10,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        9,
+        10,
+        11,
+        12
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 9,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        8,
+        9,
+        10,
+        11
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 8,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        7,
+        8,
+        9,
+        10
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 7,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 6,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 5,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 4,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 3,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 2,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 4,
+      "pixel_bytes": 7755264,
+      "pages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    },
+    {
+      "requested_page": 1,
+      "mode": "100_percent",
+      "direction": "backward",
+      "placeholders": 30,
+      "active": 3,
+      "pixel_bytes": 5816448,
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "zoom": "100%",
+      "js_heap": 10000000
+    }
+  ],
+  "annotations": [
+    {
+      "id": "ann_ceshqjurhbb0",
+      "page": 2,
+      "type": "highlight",
+      "quote": "Long document page 02 source passage.",
+      "anchor": {
+        "quote": "Long document page 02 source passage.",
+        "start": 0,
+        "end": 37,
+        "prefix": "",
+        "suffix": " Shared search marker on"
+      },
+      "comment": "",
+      "tags": [],
+      "rects": [
+        {
+          "x": 0.11759599673202614,
+          "y": 0.07313368055555555,
+          "width": 0.48104579152624594,
+          "height": 0.021464646464646464
+        }
+      ],
+      "createdAt": "2026-11-02T15:15:01.116Z",
+      "updatedAt": "2026-11-02T15:15:01.116Z"
+    },
+    {
+      "id": "ann_iyp68siehbht",
+      "page": 15,
+      "type": "highlight",
+      "quote": "Long document page 15 source passage.",
+      "anchor": {
+        "quote": "Long document page 15 source passage.",
+        "start": 0,
+        "end": 37,
+        "prefix": "",
+        "suffix": " Shared search marker on"
+      },
+      "comment": "",
+      "tags": [],
+      "rects": [
+        {
+          "x": 0.11759599673202614,
+          "y": 0.07313368055555555,
+          "width": 0.48104579152624594,
+          "height": 0.021464646464646464
+        }
+      ],
+      "createdAt": "2026-11-02T15:15:01.361Z",
+      "updatedAt": "2026-11-02T15:15:01.361Z"
+    },
+    {
+      "id": "ann_okxzin91hbmg",
+      "page": 29,
+      "type": "highlight",
+      "quote": "Long document page 29 source passage.",
+      "anchor": {
+        "quote": "Long document page 29 source passage.",
+        "start": 0,
+        "end": 37,
+        "prefix": "",
+        "suffix": " Shared search marker on"
+      },
+      "comment": "",
+      "tags": [],
+      "rects": [
+        {
+          "x": 0.11759599673202614,
+          "y": 0.07313368055555555,
+          "width": 0.48104579152624594,
+          "height": 0.021464646464646464
+        }
+      ],
+      "createdAt": "2026-11-02T15:15:01.528Z",
+      "updatedAt": "2026-11-02T15:15:01.528Z"
+    }
+  ]
+}

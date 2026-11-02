@@ -1,0 +1,21 @@
+{
+  "mode": "edges",
+  "browser_harness_sha256": "57ff2c74dcf1e03a03314fc864d64936cbb6461034fe35a906e71ccc515b743a",
+  "checks": [
+    {
+      "name": "valid citation contract rejects ambiguous quotation",
+      "passed": true,
+      "seconds": 3.3788081999999977
+    },
+    {
+      "name": "valid citation contract rejects out-of-range page",
+      "passed": false,
+      "seconds": 22.932330999999998,
+      "error": "Error: expect(locator).toContainText(expected) failed\n\nLocator: locator('#annotationList')\nExpected substring: \"outside source\"\nReceived string:    \"Save a useful passageSelect text in the paper, then choose Highlight. Your saved passages will appear here.\"\nTimeout: 20000ms\n\nCall log:\n  - Expect \"to.have.text\" with timeout 20000ms\n  - waiting for locator('#annotationList')\n    43 × locator resolved to <ul id=\"annotationList\" class=\"list annotation-list\">…</ul>\n       - unexpected value \"Save a useful passageSelect text in the paper, then choose Highlight. Your saved passages will appear here.\"\n\n    at captureRawStack (C:\\Users\\yangm11\\github\\agent-pdf-workbench\\node_modules\\playwright-core\\lib\\coreBundle.js:9681:17)\n    at callMatcherAsStep (C:\\Users\\yangm11\\github\\agent-pdf-workbench\\node_modules\\playwright\\lib\\matchers\\expect.js:13310:57)\n    at Object.toContainText (C:\\Users\\yangm11\\github\\agent-pdf-workbench\\node_modules\\playwright\\lib\\matchers\\expect.js:13300:23)\n    at C:\\Users\\yangm11\\github\\structured-intelligence\\evaluations\\engineering-acceptance-2026-11-02\\browser.mjs:343:53\n    at async check (C:\\Users\\yangm11\\github\\structured-intelligence\\evaluations\\engineering-acceptance-2026-11-02\\browser.mjs:31:21)\n    at async Object.edges (C:\\Users\\yangm11\\github\\structured-intelligence\\evaluations\\engineering-acceptance-2026-11-02\\browser.mjs:336:5)\n    at async file:///C:/Users/yangm11/github/structured-intelligence/evaluations/engineering-acceptance-2026-11-02/browser.mjs:386:3"
+    }
+  ],
+  "errors": [],
+  "passed": false,
+  "chromium_version": "151.0.7922.34",
+  "failure": "Error: expect(locator).toContainText(expected) failed\n\nLocator: locator('#annotationList')\nExpected substring: \"outside source\"\nReceived string:    \"Save a useful passageSelect text in the paper, then choose Highlight. Your saved passages will appear here.\"\nTimeout: 20000ms\n\nCall log:\n  - Expect \"to.have.text\" with timeout 20000ms\n  - waiting for locator('#annotationList')\n    43 × locator resolved to <ul id=\"annotationList\" class=\"list annotation-list\">…</ul>\n       - unexpected value \"Save a useful passageSelect text in the paper, then choose Highlight. Your saved passages will appear here.\"\n\n    at captureRawStack (C:\\Users\\yangm11\\github\\agent-pdf-workbench\\node_modules\\playwright-core\\lib\\coreBundle.js:9681:17)\n    at callMatcherAsStep (C:\\Users\\yangm11\\github\\agent-pdf-workbench\\node_modules\\playwright\\lib\\matchers\\expect.js:13310:57)\n    at Object.toContainText (C:\\Users\\yangm11\\github\\agent-pdf-workbench\\node_modules\\playwright\\lib\\matchers\\expect.js:13300:23)\n    at C:\\Users\\yangm11\\github\\structured-intelligence\\evaluations\\engineering-acceptance-2026-11-02\\browser.mjs:343:53\n    at async check (C:\\Users\\yangm11\\github\\structured-intelligence\\evaluations\\engineering-acceptance-2026-11-02\\browser.mjs:31:21)\n    at async Object.edges (C:\\Users\\yangm11\\github\\structured-intelligence\\evaluations\\engineering-acceptance-2026-11-02\\browser.mjs:336:5)\n    at async file:///C:/Users/yangm11/github/structured-intelligence/evaluations/engineering-acceptance-2026-11-02/browser.mjs:386:3"
+}

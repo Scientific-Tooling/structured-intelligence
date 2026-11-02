@@ -1,0 +1,31 @@
+{
+  "samples": [
+    {
+      "query": "donor replication cohort000",
+      "seconds_including_process_startup": 1.7508777000475675,
+      "total": 1000
+    },
+    {
+      "query": "batch correction cohort001",
+      "seconds_including_process_startup": 1.7247490000445396,
+      "total": 1000
+    },
+    {
+      "query": "mixed model cohort002",
+      "seconds_including_process_startup": 1.704379300121218,
+      "total": 1000
+    },
+    {
+      "query": "pseudobulk aggregation cohort003",
+      "seconds_including_process_startup": 1.6822903000283986,
+      "total": 1000
+    },
+    {
+      "query": "cell sampling cohort004",
+      "seconds_including_process_startup": 1.6841389001347125,
+      "total": 1000
+    }
+  ],
+  "db_sha256_before_and_after": "3007cc5d2ef59081184bdf1df2d0f02217c2a61d85e782a1c4ca2a67fc58a896",
+  "scope": "Five CLI timings, kept separate from the 100-query native p95 gate"
+}

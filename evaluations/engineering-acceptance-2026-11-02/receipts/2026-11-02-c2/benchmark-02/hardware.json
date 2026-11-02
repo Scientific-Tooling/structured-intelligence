@@ -1,0 +1,8 @@
+{
+  "cpu": {
+    "Name": "Intel(R) Core(TM) i5-9600 CPU @ 3.10GHz",
+    "NumberOfCores": 6,
+    "NumberOfLogicalProcessors": 6
+  },
+  "memory": 34198552576
+}
